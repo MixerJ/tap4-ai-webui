@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 
 import GoogleAdScript from '@/components/ad/GoogleAdScript';
 import SeoScript from '@/components/seo/SeoScript';
+import { Analytics } from "@vercel/analytics/react"
 
 import Loading from './loading';
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         </NextIntlClientProvider>
         <SeoScript />
         <GoogleAdScript />
+        <Analytics />
       </body>
     </html>
   );
