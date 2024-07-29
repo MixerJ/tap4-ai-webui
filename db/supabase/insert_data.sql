@@ -1398,8 +1398,8 @@ INSERT INTO public.web_navigation (
     'Suno',
     'Suno is building a future where anyone can make great music.',
     '
-### What is tap4.ai?
-tap4.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, Dalle3 for image creation, and document analysis.
+### What is toolsify.ai?
+toolsify.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, Dalle3 for image creation, and document analysis.
 
 ### How Can I Use GPT-4o for Free on tap4.ai?
 Every user can utilize GPT-4o for free up to 20 times a day on tap4.ai. Subscribing to the platform grants additional benefits and extended access beyond the free usage limits.
@@ -1448,9 +1448,9 @@ INSERT INTO public.web_navigation (
     'Tap4 AI Tools Directory',
     'We believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Building safe and beneficial AGI is our mission.',
     '
-### What is tap4.ai?
+### What is toolsify.ai?
 
-tap4.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, and Dalle3 for image creation and document analysis.
+toolsify.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, and Dalle3 for image creation and document analysis.
 
 ### How can I use GPT-4o for free on tap4.ai?
 
@@ -1599,14 +1599,14 @@ INSERT INTO public.web_navigation (
     'introducing sora: creating video from text',
     'introducing sora: creating video from text',
     '
-### What is tap4.ai?
-tap4.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, Dalle3 for image creation and document analysis.
+### What is toolsify.ai?
+toolsify.ai is an AI-driven platform that provides access to a vast array of AI technologies for various needs, including ChatGPT, GPT-4o for text generation and image understanding, Dalle3 for image creation and document analysis.
 
 ### How
-#### How can I use GPT-4o for free on tap4.ai?
-Every user can utilize GPT-4o for free up to 20 times a day on tap4.ai. Subscribing to the platform grants additional benefits and extended access beyond the free usage limits.
+#### How can I use GPT-4o for free on toolsify.ai?
+Every user can utilize GPT-4o for free up to 20 times a day on toolsify.ai. Subscribing to the platform grants additional benefits and extended access beyond the free usage limits.
 
-#### Can I generate images using tap4.ai?
+#### Can I generate images using toolsify.ai?
 Yes, with Dalle3 text-to-image generation capability, users can create images, sharing credits with GPT-4o for a seamless creative experience.
 
 #### How many GPTs are available on tap4.ai?
