@@ -64,10 +64,6 @@
     "10": {
       "question": "Quelles sont les autorisations d'utilisation des outils AI ?",
       "answer": "Le Répertoire des outils AI de Toolsify est simplement un répertoire d'outils AI. Les autorisations d'utilisation des outils AI sont basées sur le site web de l'outil AI."
-    },
-    "11": {
-      "question": "L'interface Web du Répertoire des outils AI de Toolsify est-elle open source ?",
-      "answer": "Oui, nous ouvrirons l'interface Web du Répertoire des outils AI de Toolsify sur GitHub (https://github.com/6677-ai/Toolsify-ai-webui). Veuillez nous donner un étoile."
     }
   },
   "FooterNavigation": {

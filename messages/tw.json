@@ -12,7 +12,7 @@
   },
   "Footer": {
     "title": "Toolsify AI工具目錄",
-    "subTitle": "發現2024年最佳AI工具，盡在Toolsify AI工具目錄！",
+    "subTitle": "發現2024年8月最佳AI工具，盡在Toolsify AI工具目錄！",
     "support": "支持",
     "tap4": "Tap4 AI",
     "tattoo": "AI紋身生成器",
@@ -64,10 +64,6 @@
     "10": {
       "question": "AI工具的使用權限是什麼？",
       "answer": "Toolsify AI工具目錄只是AI工具的目錄。AI工具的使用權限基於AI工具的網站。"
-    },
-    "11": {
-      "question": "Toolsify AI目錄的Web界面是開源的嗎？",
-      "answer": "是的，我們將在github（https://github.com/6677-ai/Toolsify-ai-webui）上開源Toolsify AI目錄的Web界面。請給我們點贊。"
     }
   },
   "FooterNavigation": {
