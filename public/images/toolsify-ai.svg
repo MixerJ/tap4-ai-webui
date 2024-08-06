@@ -24,7 +24,7 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:zoom="11.890625"
-     inkscape:cx="32"
+     inkscape:cx="21.403417"
      inkscape:cy="32"
      inkscape:window-width="1408"
      inkscape:window-height="1052"
@@ -116,44 +116,45 @@
   <g
      font-family="'Marker Felt'"
      id="g8"
-     style="fill:#f2f2f2;fill-opacity:1">
+     style="fill:#f2f2f2;fill-opacity:1"
+     transform="translate(-1.8023298,-0.02225099)">
     <text
        x="3.9824839"
        y="11.223363"
        fill="#000000"
        font-size="3.8806px"
-       stroke-width=".26458"
+       stroke-width="0.26458"
        xml:space="preserve"
        id="text6"
        style="fill:#f2f2f2;fill-opacity:1"><tspan
          x="3.9824839"
          y="11.223363"
          font-size="3.8806px"
-         stroke-width=".26458"
+         stroke-width="0.26458"
          id="tspan5"
          style="fill:#f2f2f2;fill-opacity:1" /></text>
     <text
-       transform="scale(.9713 1.0295)"
+       transform="scale(0.9713,1.0295)"
        x="2.1790972"
        y="9.0812054"
        fill="url(#meshgradient18)"
        font-size="3.2688px"
-       stroke-width=".2724"
+       stroke-width="0.2724"
        xml:space="preserve"
        id="text7"
-       style="fill:#f2f2f2;fill-opacity:1"><tspan
+       style="font-size:4.23335px;fill:#f2f2f2;fill-opacity:1"><tspan
          x="2.1790972"
          y="9.0812054"
          fill="url(#meshgradient18)"
          font-size="3.2688px"
-         stroke-width=".2724"
+         stroke-width="0.2724"
          id="tspan6"
-         style="fill:#f2f2f2;fill-opacity:1">toolsify.ai</tspan></text>
+         style="font-size:4.23335px;fill:#f2f2f2;fill-opacity:1">toolsify.ai</tspan></text>
     <text
-       transform="scale(.26458)"
+       transform="scale(0.26458)"
        fill="#000000"
        font-size="12px"
-       style="shape-inside:url(#rect9);white-space:pre;fill:#f2f2f2;fill-opacity:1"
+       style="white-space:pre;shape-inside:url(#rect9);fill:#f2f2f2;fill-opacity:1"
        xml:space="preserve"
        id="text8" />
   </g>
