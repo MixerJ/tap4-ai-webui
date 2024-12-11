@@ -49,8 +49,7 @@ If you find the project helpful, please consider buying me a coffee:
 
 <a href="https://www.buymeacoffee.com/tap4ai0o" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-If you are interested in the project, please add my WeChat: helloleo2023, note: "tap4 ai open source", or scan the QR
-code: ![tap4-ai-wx](./public/images/tap4-ai-wechat.jpg)
+If you are interested in the project, please add my WeChat: helloleo2023, note: "tap4 ai open source"
 
 ## Deployment Instructions
 
@@ -202,7 +201,14 @@ Due to compatibility issues with different site anti-crawling mechanisms, the cr
 such issues, you currently need to manually query the database submit table, and then manually create the relevant
 website content and insert it into the web_navigation table.
 
+### How to get the ai tools for project initialization?
+
+You can get the 13000+ AIs from Tap4 AI collected from other AI Tools Directory in
+[AI Source List](https://github.com/6677-ai/tap4-ai-webui/blob/main/ai_source_list)
+
 ## Wanna submit your website on Tap4.ai?
+
+Open: [Tap4 AI](https://tap4.ai)
 
 ### Wanna add you website to our `/startup` page?
 
@@ -211,40 +217,82 @@ website content and insert it into the web_navigation table.
 
 ## Links to our products
 
-### TAP4-AI-Directory
+### AI Video Online - Advanced AI Video All in One
 
-The Collection for the AI tools all over the world. | Collect free ChatGPT mirrors, alternatives,prompt, other AI tools,
-etc. For more, please visit: [Tap4 AI](https://tap4.ai)
+[AI Video Online](https://videoweb.ai/)
+More about AI Video Online:
+https://www.zhihu.com/pin/1835046959477567488
 
-### How to get your first users for startup at the website list
+### Flux Pro AI - Free Online Flux.1 AI Image Generator
 
-Here is the website list for submit your product to get users. Please visit
-[StartUp Your Product List](https://github.com/6677-ai/TAP4-AI-Directory/blob/main/Startup-Your-Product-List.md)
+[Flux 1.1 Pro](https://fluxproweb.com/)
+More about Flux Pro AI
+https://www.zhihu.com/pin/1832771259513069568
 
-### Free Stable Diffusion 3 Online
 
-Stable Diffusion 3 Medium is currently available for free experience, please visit
-[Free Stable Diffusion 3 Online](https://stable-diffusion-3.online/)
+### Free Stable Diffusion 3 Online Tool
 
-### The Tattoo AI Generator and Design
+[Free Stable Diffusion 3 Online](https://stable-diffusion-3.online)
 
-Tattao AI Design is a tattoo ai generator and design for the tattoo fans. If you are interested with it, visit
-[Tattoo AI Design](https://tattooai.design)
+### Free Tiny Png Tool
 
-## Sponsor List
+[Free Type Png Tool](https://freetinypng.com)
 
-### Anime Girl Studio -- AI Anime Girl Chat & Generator
+### Flux AI - Flux.1 AI Image Generator
 
-Anime Girl Studio is the ai anime girl generator and chat product. You can generate what you like and chat with the AI
-anime girl, please visit [Anime Girl Studio](https://animegirl.studio)
-
-### Best AI Girl Friend -- Best AI Girl Chat & Generator
-
-Best AI Girl Friend is the ai girl generator and chat product. You can generate what you like and chat with the AI anime
-girl, please visit [Best AI Girl Friend](https://aigirl.best)
+[Flux AI](https://flux-ai.io/)
 
 ## Other open source
 
 ### Website content AI crawler
 
 visit: [6677-ai/tap4-ai-crawler](https://github.com/6677-ai/tap4-ai-crawler)
+
+
+#### More AI
+
+### Photo to Video AI
+
+Photo to Video AI is currently available for free experience, please visit
+[Photo to Video AI](https://dreammachineai.online/)
+
+### Flux Pro Image Generator
+
+Flux Pro Image Generator is currently available for free experience, please visit
+[Flux Pro Image Generator](https://flux-pro.net/)
+
+### Chat o1
+
+Chatbot build with openai o1 and chatgpt 4o, please visit
+[Chat O1](https://chat4o.ai/)
+
+### Grok Image Generator
+
+Grok Image Generator with flux ai, please visit
+[Grok Image Generator](https://grokimagegenerator.net/))
+
+### Free Stable Diffusion 3 Online
+
+Stable Diffusion 3 Medium is currently available for free experience, please visit
+[Free Stable Diffusion 3 Online](https://stable-diffusion-3.online/)
+
+### Artiverse AI Tools Directory
+
+Artiverse AI Tools Directory. If you are interested with it, visit
+[Tattoo AI Design](https://artiverse.app/)
+
+### The Tattoo AI Generator and Design
+
+Tattao AI Design is a tattoo ai generator and design for the tattoo fans. If you are interested with it, visit
+[Tattoo AI Design](https://tattooai.design)
+
+### Best AI Image Generator
+
+Best AI Image Generator is the most powerful AI Image Generator integrated with Flux AI and Stable Diffusion AI. If you are interested with it, visit
+[Best AI Image Generator](https://bestimage.ai/)
+
+### Dream Companion AI
+
+Let your AI companion take care of your most personal needs with our innovative NSFW AI roleplay experience.. If you are interested with it, visit
+[Dream Companion AI](https://www.mydreamcompanion.com/)
+
