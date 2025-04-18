@@ -13,7 +13,6 @@ import { Analytics } from '@vercel/analytics/react';
 import Clarity from '@microsoft/clarity';
 import Loading from './loading';
 
-
 export default function RootLayout({
   children,
   params: { locale },
