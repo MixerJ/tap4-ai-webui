@@ -12,6 +12,7 @@ import SeoScript from '@/components/seo/SeoScript';
 import { Analytics } from '@vercel/analytics/react';
 
 import Loading from './loading';
+import Clarity from '@microsoft/clarity';
 
 export default function RootLayout({
   children,
@@ -21,7 +22,9 @@ export default function RootLayout({
   params: { locale: string };
 }) {
   const messages = useMessages();
+  const projectId = 'lvebcp2gwg';
 
+  Clarity.init(projectId);
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
       <body className='relative mx-auto flex min-h-screen flex-col bg-tap4-black text-white'>
