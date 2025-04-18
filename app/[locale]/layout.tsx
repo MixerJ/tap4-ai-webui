@@ -10,7 +10,7 @@ import { Suspense } from 'react';
 import GoogleAdScript from '@/components/ad/GoogleAdScript';
 import SeoScript from '@/components/seo/SeoScript';
 import { Analytics } from '@vercel/analytics/react';
-import Clarity from '@microsoft/clarity';
+import ClarityScript from '@/components/analytics/ClarityScript';
 import Loading from './loading';
 
 export default function RootLayout({
@@ -23,7 +23,6 @@ export default function RootLayout({
   const messages = useMessages();
   const projectId = 'lvebcp2gwg';
 
-  Clarity.init(projectId);
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
       <body className='relative mx-auto flex min-h-screen flex-col bg-tap4-black text-white'>
@@ -45,6 +44,7 @@ export default function RootLayout({
         <SeoScript />
         <GoogleAdScript />
         <Analytics />
+        <ClarityScript projectId={projectId} />
       </body>
     </html>
   );
