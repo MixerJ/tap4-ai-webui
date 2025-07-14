@@ -251,20 +251,45 @@ visit: [6677-ai/tap4-ai-crawler](https://github.com/6677-ai/tap4-ai-crawler)
 
 #### More AI
 
+### VideoWeb AI
+
+VideoWeb AI is an advanced Image to Video AI Tool. It's currently available for free experience, please visit
+[VideoWeb AI](https://videoweb.ai/)
+
+### Sana AI
+
+Sana AI is an advanced Text to Image / Video AI Tool. It's currently available for free experience, please visit
+[Sana AI](https://sana-ai.com/)
+
 ### Photo to Video AI
 
 Photo to Video AI is currently available for free experience, please visit
 [Photo to Video AI](https://dreammachineai.online/)
 
-### Flux Pro Image Generator
+### Flux KI
 
-Flux Pro Image Generator is currently available for free experience, please visit
+Flux KI is the powerful generative AI for German, please visit
 [Flux Pro Image Generator](https://flux-pro.net/)
 
-### Chat o1
+### Flux IA
+Flux IA is the generative IA for France & Espain, please visit:
+[Flux IA](https://fluxia.pro/)
 
-Chatbot build with openai o1 and chatgpt 4o, please visit
-[Chat O1](https://chat4o.ai/)
+### Virtual Try On AI
+
+Virtual Try On AI - Free Online Fashion AI for clothes, visit
+[Virtual Try On AI](https://aitryon.art/)
+
+### GPT 4o image generator
+
+Chat 4o build with openai o1 and chatgpt 4o, please visit
+[Chat 4O](https://chat4o.ai/)
+
+### Janus Pro
+
+Janus Pro Image Generator build with Janus Pro Model by DeepSeek, please visit
+[Janus Pro](https://janusproweb.com/)
+
 
 ### Grok Image Generator
 
@@ -279,7 +304,7 @@ Stable Diffusion 3 Medium is currently available for free experience, please vis
 ### Artiverse AI Tools Directory
 
 Artiverse AI Tools Directory. If you are interested with it, visit
-[Tattoo AI Design](https://artiverse.app/)
+[Artiverse AI](https://artiverse.app/)
 
 ### The Tattoo AI Generator and Design
 
@@ -293,6 +318,52 @@ Best AI Image Generator is the most powerful AI Image Generator integrated with 
 
 ### Dream Companion AI
 
-Let your AI companion take care of your most personal needs with our innovative NSFW AI roleplay experience.. If you are interested with it, visit
+Let your AI companion take care of your most personal needs with our innovative NSFW AI roleplay experience. If you are interested with it, visit
 [Dream Companion AI](https://www.mydreamcompanion.com/)
+
+### WUI AI
+
+WUI.ai uses AI to turn your long-form videos into short clips. If you are interested with it, visit
+[WUI.AI](https://www.wui.ai/)
+
+### Magic Try On AI
+
+Magic Try On AI - Free Online Fashion AI for clothes, visit
+[Magic Try On AI](https://aitryon.art/magic-try-on/)
+
+### Free AI Image Generator
+
+Free AI Image Generator - Free Online AI Image Generator with Flux AI & Janus Pro, visit
+[Free AI Image Generator](https://freeimgen.com/)
+
+
+### Sourcetable AI
+
+Sourcetable AI - Advanced Spreadsheet Software for Data Analysis and Business Intelligence. If you are interested with it, visit
+[Sourcetable AI](https://sourcetable.com)
+
+
+### Remio AI Note Taker
+
+Remio AI Note Taker transforms scattered information into structured knowledge with ease. Designed as your personal AI knowledge hub, it helps you capture, organize, and blend insights seamlessly. Whether you're researching, brainstorming, or writing, remio streamlines your workflow by intelligently managing notes, highlights, and references—all while keeping your data private and secure. Perfect for professionals, students, and creatives, remio turns messy ideas into clear, actionable knowledge. Join the waitlist to experience smarter note-taking today.. If you are interested with it, visit
+[Remio AI Note Taker](https://www.remio.ai/))
+
+
+### Ghibli Art Studio
+
+Ghibli Art Studio - Transform your photos into enchanting Ghibli-style artwork with our online Ghibli Art Studio AI tool. Powered by Studio ghiblify's ghiblify image-to-image technology, create magical Ghibli-inspired visuals faster and more affordably than ever before. If you are interested with it, visit
+[Ghibli Art Studio](https://videoweb.ai/ghibli-studio/)
+
+
+### AI Action Figure Generator
+
+AI Action Figure Generator - Transform Your Photos into Collectible Figures. Experience the magic of becoming a collectible figure by transforming your photos into professional-grade action figures using AI technology. If you are interested with it, visit
+[AI Action Figure Generator](https://flux-ai.io/ai-action-figure-generator/)
+
+### Makeform AI
+Makeform AI is a free online ai form builder like ChatGPT. Chat with AI to build surveys, quizzes, or polls in seconds – no coding needed!  If you are interested with it, visit
+[Makeform AI](https://www.makeform.ai/)
+
+
+
 
