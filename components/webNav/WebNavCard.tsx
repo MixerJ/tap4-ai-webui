@@ -1,10 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
 
-import Link from 'next/link';
-import { WebNavigation } from '@/db/supabase/types';
-import { CircleArrowRight, SquareArrowOutUpRight } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-
 'use client';
 
 import { useState } from 'react';
@@ -20,16 +15,18 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
 
   return (
     <div
-      className='group relative flex h-[210px] flex-col gap-3 rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-1 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 lg:h-[343px] border border-white/10'
+      className='group relative flex h-[210px] touch-manipulation flex-col gap-3 rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-1 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98] lg:h-[343px]'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
     >
       {/* 装饰性元素 */}
-      <div className='absolute -top-1 -right-1 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300'>
+      <div className='absolute -right-1 -top-1 z-20 opacity-0 transition-all duration-300 group-hover:opacity-100'>
         <div className='relative'>
-          <Star className='size-6 text-yellow-400 fill-yellow-400 animate-pulse' />
+          <Star className='size-6 animate-pulse fill-yellow-400 text-yellow-400' />
           <div className='absolute inset-0 animate-ping'>
-            <Star className='size-6 text-yellow-400 fill-yellow-400' />
+            <Star className='size-6 fill-yellow-400 text-yellow-400' />
           </div>
         </div>
       </div>
@@ -38,7 +35,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
       <Link href={`/ai/${name}`} title={title} className='group relative overflow-hidden rounded-xl'>
         <div className='relative aspect-[310/174] w-full overflow-hidden rounded-xl'>
           {!imageLoaded && (
-            <div className='absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 animate-shimmer' />
+            <div className='absolute inset-0 animate-shimmer bg-gradient-to-br from-indigo-500/20 to-purple-500/20' />
           )}
           <img
             src={thumbnail_url || '/images/placeholder.svg'}
@@ -46,24 +43,31 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
             title={title}
             width={310}
             height={174}
-            className={`aspect-[310/174] w-full object-cover transition-all duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`aspect-[310/174] w-full object-cover transition-all duration-500 group-hover:scale-110 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             onLoad={() => setImageLoaded(true)}
           />
 
           {/* 悬停遮罩层 */}
-          <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
-            }`} />
+          <div
+            className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-all duration-300 ${
+              isHovered ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
 
           {/* 悬停内容 */}
-          <div className={`absolute inset-0 z-10 flex items-center justify-center gap-2 rounded-xl bg-black/20 backdrop-blur-sm transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}>
+          <div
+            className={`absolute inset-0 z-10 flex items-center justify-center gap-2 rounded-xl bg-black/20 backdrop-blur-sm transition-all duration-300 ${
+              isHovered ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+            }`}
+          >
             <span className='text-lg font-semibold text-white'>{t('checkDetail')}</span>
             <CircleArrowRight className='size-5 text-white' />
           </div>
 
           {/* 渐变边框效果 */}
-          <div className='absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-[2px]' />
+          <div className='absolute inset-0 -m-[2px] rounded-xl bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
         </div>
       </Link>
 
@@ -81,7 +85,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
               title={title}
               target='_blank'
               rel='nofollow'
-              className='ml-2 rounded-lg p-1.5 text-white/60 transition-all duration-200 hover:bg-white/10 hover:text-white'
+              className='ml-2 flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-xl p-2 text-white/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 hover:text-white active:scale-90'
             >
               <SquareArrowOutUpRight className='size-4' />
               <span className='sr-only'>{title}</span>
@@ -99,8 +103,11 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
             <TrendingUp className='size-3' />
             <span>AI Tool</span>
           </div>
-          <div className={`h-1 flex-1 rounded-full bg-white/20 ml-2 transition-all duration-300 ${isHovered ? 'bg-gradient-to-r from-indigo-500 to-purple-500' : ''
-            }`} />
+          <div
+            className={`ml-2 h-1 flex-1 rounded-full bg-white/20 transition-all duration-300 ${
+              isHovered ? 'bg-gradient-to-r from-indigo-500 to-purple-500' : ''
+            }`}
+          />
         </div>
       </div>
 
