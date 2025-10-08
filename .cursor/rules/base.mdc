@@ -1,0 +1,210 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# Cursor Rules for Tap4 AI WebUI
+
+## 项目概述
+这是一个开源的 AI 工具导航网站，使用 Next.js 14 + TypeScript + Supabase 构建，支持多语言和 SEO 优化。
+
+## 核心原则
+
+### 1. 技术栈规范
+- **框架**: Next.js 14 with App Router (React Server Components)
+- **语言**: TypeScript (严格模式)
+- **样式**: Tailwind CSS + Radix UI
+- **数据库**: Supabase (PostgreSQL)
+- **国际化**: next-intl
+- **部署**: Vercel
+
+### 2. 代码质量要求
+- 使用 TypeScript 严格模式
+- 遵循 ESLint + Prettier 配置
+- 组件使用 React Server Components 优先
+- 使用自定义 hooks 管理状态
+- 遵循组件命名规范
+
+### 3. 文件结构规范
+```
+app/[locale]/           # 国际化路由
+  (with-footer)/       # 带页脚的页面组
+    (home)/           # 首页相关
+    category/         # 分类页面
+    explore/          # 探索页面
+components/            # 组件库
+  ui/                 # 基础UI组件
+  home/               # 首页组件
+  explore/            # 探索页组件
+lib/                  # 工具函数
+  utils/              # 通用工具
+  constants.ts        # 常量定义
+db/                   # 数据库相关
+messages/             # 国际化文件
+```
+
+### 4. 命名规范
+- **组件**: PascalCase (e.g., `Navigation.tsx`)
+- **工具函数**: camelCase (e.g., `formatDate.ts`)
+- **常量**: SCREAMING_SNAKE_CASE (e.g., `PAGE_SIZE`)
+- **文件**: kebab-case for pages, PascalCase for components
+
+### 5. 开发工作流
+1. 使用 pnpm 作为包管理器
+2. 遵循 git 提交规范
+3. 所有代码需要通过 ESLint 和 Prettier 检查
+4. 新功能需要添加相应的测试
+5. 数据库变更需要更新 SQL 文件
+
+### 6. 性能优化
+- 使用 React Server Components 减少客户端 bundle
+- 图片优化使用 Next.js Image 组件
+- 实现适当的数据缓存策略
+- SEO 优化：动态 sitemap、元数据等
+
+### 7. 安全考虑
+- 环境变量正确配置
+- API 密钥安全存储
+- 输入验证和 XSS 防护
+- CORS 配置正确
+
+### 8. 可访问性
+- 遵循 WCAG 2.1 标准
+- 支持键盘导航
+- 屏幕阅读器友好
+- 颜色对比度符合标准
+
+### 9. 多语言支持
+- 使用 next-intl 进行国际化
+- 所有用户可见文本都需要国际化
+- 支持 RTL 语言布局
+- 日期和数字格式本地化
+
+### 10. 数据管理
+- 使用 Supabase 作为主要数据源
+- 实现适当的错误处理
+- 数据验证使用 Zod
+- API 路由遵循 RESTful 规范
+
+## 开发环境设置
+1. Node.js >= 20.0.0
+2. pnpm >= 8.0.0
+3. 配置环境变量 (.env.local)
+4. 安装依赖：`pnpm install`
+5. 启动开发服务器：`pnpm dev`
+
+## 部署要求
+- Vercel 平台部署
+- 环境变量正确配置
+- 数据库连接正常
+- 构建通过所有检查
+
+## 代码审查标准
+- 功能完整性
+- 代码质量和规范
+- 性能影响
+- 安全性考虑
+- 文档完整性
+# Cursor Rules for Tap4 AI WebUI
+
+## 项目概述
+这是一个开源的 AI 工具导航网站，使用 Next.js 14 + TypeScript + Supabase 构建，支持多语言和 SEO 优化。
+
+## 核心原则
+
+### 1. 技术栈规范
+- **框架**: Next.js 14 with App Router (React Server Components)
+- **语言**: TypeScript (严格模式)
+- **样式**: Tailwind CSS + Radix UI
+- **数据库**: Supabase (PostgreSQL)
+- **国际化**: next-intl
+- **部署**: Vercel
+
+### 2. 代码质量要求
+- 使用 TypeScript 严格模式
+- 遵循 ESLint + Prettier 配置
+- 组件使用 React Server Components 优先
+- 使用自定义 hooks 管理状态
+- 遵循组件命名规范
+
+### 3. 文件结构规范
+```
+app/[locale]/           # 国际化路由
+  (with-footer)/       # 带页脚的页面组
+    (home)/           # 首页相关
+    category/         # 分类页面
+    explore/          # 探索页面
+components/            # 组件库
+  ui/                 # 基础UI组件
+  home/               # 首页组件
+  explore/            # 探索页组件
+lib/                  # 工具函数
+  utils/              # 通用工具
+  constants.ts        # 常量定义
+db/                   # 数据库相关
+messages/             # 国际化文件
+```
+
+### 4. 命名规范
+- **组件**: PascalCase (e.g., `Navigation.tsx`)
+- **工具函数**: camelCase (e.g., `formatDate.ts`)
+- **常量**: SCREAMING_SNAKE_CASE (e.g., `PAGE_SIZE`)
+- **文件**: kebab-case for pages, PascalCase for components
+
+### 5. 开发工作流
+1. 使用 pnpm 作为包管理器
+2. 遵循 git 提交规范
+3. 所有代码需要通过 ESLint 和 Prettier 检查
+4. 新功能需要添加相应的测试
+5. 数据库变更需要更新 SQL 文件
+
+### 6. 性能优化
+- 使用 React Server Components 减少客户端 bundle
+- 图片优化使用 Next.js Image 组件
+- 实现适当的数据缓存策略
+- SEO 优化：动态 sitemap、元数据等
+
+### 7. 安全考虑
+- 环境变量正确配置
+- API 密钥安全存储
+- 输入验证和 XSS 防护
+- CORS 配置正确
+
+### 8. 可访问性
+- 遵循 WCAG 2.1 标准
+- 支持键盘导航
+- 屏幕阅读器友好
+- 颜色对比度符合标准
+
+### 9. 多语言支持
+- 使用 next-intl 进行国际化
+- 所有用户可见文本都需要国际化
+- 支持 RTL 语言布局
+- 日期和数字格式本地化
+
+### 10. 数据管理
+- 使用 Supabase 作为主要数据源
+- 实现适当的错误处理
+- 数据验证使用 Zod
+- API 路由遵循 RESTful 规范
+
+## 开发环境设置
+1. Node.js >= 20.0.0
+2. pnpm >= 8.0.0
+3. 配置环境变量 (.env.local)
+4. 安装依赖：`pnpm install`
+5. 启动开发服务器：`pnpm dev`
+
+## 部署要求
+- Vercel 平台部署
+- 环境变量正确配置
+- 数据库连接正常
+- 构建通过所有检查
+
+## 代码审查标准
+- 功能完整性
+- 代码质量和规范
+- 性能影响
+- 安全性考虑
+- 文档完整性
