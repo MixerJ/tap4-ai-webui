@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Coffee } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { NAV_LINKS } from '@/lib/constants';
@@ -58,6 +59,16 @@ export default function Navigation() {
               ))}
             </ul>
             <div className='flex items-center gap-x-3'>
+              <Link
+                href='https://www.buymeacoffee.com/sueeiii'
+                target='_blank'
+                rel='noreferrer'
+                className='flex items-center gap-x-2 rounded-lg bg-orange-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-orange-600'
+                title={t('buyMeCoffee')}
+              >
+                <Coffee className='size-4' />
+                <span className='hidden sm:inline'>{t('buyMeCoffee')}</span>
+              </Link>
               <LocaleSwitcher />
             </div>
           </div>
