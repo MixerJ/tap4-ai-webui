@@ -1,4 +1,2 @@
-Sitemap: https://www.toolsify.ai/sitemap.xml
-
 User-agent: *
-Allow: /
+Crawl-Delay: 20
