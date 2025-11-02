@@ -5,15 +5,19 @@
   "Navigation": {
     "title": "Toolsify Diretório de Ferramentas de IA",
     "discover": "Descobrir IA",
+    "blog": "Blog",
     "submit": "Enviar",
     "newtools": "Novas Ferramentas",
     "startup": "Inicialização",
-    "menu": "menu"
+    "menu": "menu",
+    "search": "Pesquisar",
+    "buyMeCoffee": "Me Pague um Café"
   },
   "Footer": {
     "title": "Toolsify Diretório de Ferramentas de IA",
     "subTitle": "Descubra as melhores ferramentas de IA de 2025 com o Diretório de Ferramentas de IA do Toolsify!",
     "support": "Apoio",
+    "info": "Informação",
     "tap4": "Tap4 AI",
     "tattoo": "Gerador de Tatuagens AI",
     "privacy": "Política de Privacidade",
@@ -22,6 +26,7 @@
   },
   "Faq": {
     "title": "Perguntas Frequentes",
+    "subTitle": "Encontre respostas para perguntas comuns sobre nosso diretório de ferramentas de IA",
     "1": {
       "question": "O que é o Diretório de Ferramentas de IA do Toolsify?",
       "answer": "O Diretório de Ferramentas de IA do Toolsify - Toolsify.ai está construindo um diretório de ferramentas de IA que ajuda você a obter suas ferramentas de IA favoritas. Você pode obter ferramentas de escrita de IA, ferramentas de marketing de IA, ferramentas de parafraseamento de IA, ferramentas de SEO de IA, ferramentas de estudo de IA, ferramentas de geração de IA, ferramentas de pesquisa de IA, ferramentas de arte de IA, ferramentas de música de IA, ferramentas de vídeo de IA, ferramentas de codificação de IA, ferramentas de foto de IA e muito mais aqui."
@@ -116,12 +121,34 @@
   "Home": {
     "title": "Toolsify AI - Descubra as melhores ferramentas de IA 2025",
     "subTitle": "Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o. É grátis enviar aqui para melhorar seu SEO agora.",
+    "heroTitle1": "Descubra IA",
+    "heroTitle2": "Excelência",
+    "heroSubtitle": "Seu portal para as ferramentas e tecnologias de IA mais poderosas do mundo",
+    "heroFeature1Title": "Coleção Curada",
+    "heroFeature1Desc": "Ferramentas de IA selecionadas e verificadas por qualidade e confiabilidade",
+    "heroFeature2Title": "Categorias Inteligentes",
+    "heroFeature2Desc": "Organizadas por função e setor para fácil descoberta",
+    "heroFeature3Title": "Sempre Atualizado",
+    "heroFeature3Desc": "Conteúdo novo e novas ferramentas adicionadas regularmente",
+    "heroExploreBtn": "Explorar Ferramentas",
+    "heroLearnMoreBtn": "Saiba Mais",
     "ai-navigate": "Lista de Ferramentas de IA",
     "exploreMore": "Obtenha mais ferramentas de IA",
     "checkDetail": "Ver Detalhe",
     "search": "Pesquisar",
+    "searchSuggestions": "Tente: \"ChatGPT\", \"Geração de Imagens\", \"Assistente de Escrita\"",
     "result": "Resultado da pesquisa",
-    "empty": "Nenhum dado disponível"
+    "empty": "Nenhum dado disponível",
+    "featuredBlog": "Artigos em Destaque",
+    "featuredBlogSub": "Últimos insights e guias sobre ferramentas de IA",
+    "viewAllBlog": "Ver Todos os Artigos",
+    "readMore": "Ler Mais"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subTitle": "Insights, guias e atualizações sobre ferramentas de IA e tecnologia",
+    "readMore": "Ler Mais",
+    "backToBlog": "Voltar ao Blog"
   },
   "Category": {
     "home": "Início",
@@ -176,6 +203,11 @@
     },
     "submit": {
       "title": "Envie sua ferramenta de IA e obtenha Tráfego | Diretório de IA do Toolsify"
+    },
+    "blog": {
+      "title": "Blog - Toolsify AI",
+      "description": "Últimos artigos sobre ferramentas de IA, comparações e insights da indústria",
+      "keywords": "Ferramentas de IA, Inteligência Artificial, Blog de IA, Toolsify AI, Diretório de Ferramentas de IA, Artigos de IA, Guias de IA, Insights de IA"
     }
   }
 }

@@ -5,15 +5,19 @@
   "Navigation": {
     "title": "Répertoire des outils AI de Toolsify",
     "discover": "Découvrir l'IA",
+    "blog": "Blog",
     "submit": "Soumettre",
     "newtools": "Nouveaux outils",
     "startup": "Startups",
-    "menu": "Menu"
+    "menu": "Menu",
+    "search": "Rechercher",
+    "buyMeCoffee": "Offrez-moi un Café"
   },
   "Footer": {
     "title": "Répertoire des outils AI de Toolsify",
     "subTitle": "Découvrez les meilleurs outils AI de 2025 dans le Répertoire des outils AI de Toolsify !",
     "support": "Soutien",
+    "info": "Information",
     "tap4": "Tap4 AI",
     "tattoo": "Générateur de Tatouages AI",
     "privacy": "Politique de confidentialité",
@@ -22,6 +26,7 @@
   },
   "Faq": {
     "title": "FAQ",
+    "subTitle": "Trouvez des réponses aux questions courantes sur notre annuaire d'outils IA",
     "1": {
       "question": "Qu'est-ce que le Répertoire des outils AI de Toolsify ?",
       "answer": "Le Répertoire des outils AI de Toolsify - Toolsify.ai est en train de construire un répertoire d'outils AI pour vous aider à obtenir vos outils AI préférés. Vous pouvez y trouver des outils d'écriture AI, des outils de marketing AI, des outils de réécriture AI, des outils SEO AI, des outils d'apprentissage AI, des outils de génération AI, des outils de recherche AI, des outils artistiques AI, des outils de musique AI, des outils vidéo AI, des outils de codage AI, des outils photo AI, etc."
@@ -116,12 +121,34 @@
   "Home": {
     "title": "Toolsify AI - Découvrez les meilleurs outils d'IA 2025",
     "subTitle": "Obtenez vos outils IA préférés dans l'annuaire des outils Toolsify AI. Les listes d'outils IA sont mises à jour quotidiennement par GPT-4o. C'est gratuit de soumettre ici pour améliorer votre SEO maintenant.",
+    "heroTitle1": "Découvrez l'IA",
+    "heroTitle2": "Excellence",
+    "heroSubtitle": "Votre porte d'entrée vers les outils et technologies IA les plus puissants du monde",
+    "heroFeature1Title": "Collection Curatée",
+    "heroFeature1Desc": "Outils IA sélectionnés et vérifiés pour leur qualité et fiabilité",
+    "heroFeature2Title": "Catégories Intelligentes",
+    "heroFeature2Desc": "Organisées par fonction et secteur pour une découverte facile",
+    "heroFeature3Title": "Toujours à Jour",
+    "heroFeature3Desc": "Contenu frais et nouveaux outils ajoutés régulièrement",
+    "heroExploreBtn": "Explorer les Outils",
+    "heroLearnMoreBtn": "En Savoir Plus",
     "ai-navigate": "Liste des outils IA",
     "exploreMore": "Obtenez plus d'outils IA",
     "checkDetail": "Voir le détail",
     "search": "Recherche",
+    "searchSuggestions": "Essayez : \"ChatGPT\", \"Génération d'Images\", \"Assistant d'Écriture\"",
     "result": "Résultat de recherche",
-    "empty": "Aucune donnée disponible"
+    "empty": "Aucune donnée disponible",
+    "featuredBlog": "Articles en Vedette",
+    "featuredBlogSub": "Dernières perspectives et guides sur les outils IA",
+    "viewAllBlog": "Voir Tous les Articles",
+    "readMore": "Lire Plus"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subTitle": "Perspectives, guides et mises à jour sur les outils IA et la technologie",
+    "readMore": "Lire Plus",
+    "backToBlog": "Retour au Blog"
   },
   "Category": {
     "home": "Accueil",
@@ -176,6 +203,11 @@
     },
     "submit": {
       "title": "Soumettez votre outil AI et obtenez du trafic | Répertoire des outils AI de Toolsify"
+    },
+    "blog": {
+      "title": "Blog - Toolsify AI",
+      "description": "Derniers articles sur les outils IA, les comparaisons et les informations de l'industrie",
+      "keywords": "Outils IA, Intelligence Artificielle, Blog IA, Toolsify AI, Répertoire d'Outils IA, Articles IA, Guides IA, Informations IA"
     }
   }
 }

@@ -5,15 +5,19 @@
   "Navigation": {
     "title": "Toolsify AI ツールディレクトリ",
     "discover": "AI を発見する",
+    "blog": "ブログ",
     "submit": "提出する",
     "newtools": "新しいツール",
     "startup": "スタートアップ",
-    "menu": "メニュー"
+    "menu": "メニュー",
+    "search": "検索",
+    "buyMeCoffee": "コーヒーを奢る"
   },
   "Footer": {
     "title": "Toolsify AI ツールディレクトリ",
     "subTitle": "Toolsify AI ツールディレクトリで2025年のベストAIツールを発見しましょう！",
     "support": "サポート",
+    "info": "情報",
     "tap4": "Tap4 AI",
     "tattoo": "AIタトゥージェネレーター",
     "privacy": "プライバシーポリシー",
@@ -22,6 +26,7 @@
   },
   "Faq": {
     "title": "よくある質問",
+    "subTitle": "AIツールディレクトリに関するよくある質問の答えを見つける",
     "1": {
       "question": "Toolsify AI ツールディレクトリとは何ですか？",
       "answer": "Toolsify AI ツールディレクトリ - Toolsify.ai は、お気に入りのAIツールを手に入れるのを助けるAIツールディレクトリを作成しています。AIライティングツール、AIマーケティングツール、AIパラフレーズツール、AI SEOツール、AI学習ツール、AIジェネレーターツール、AIリサーチツール、AIアートツール、AI音楽ツール、AIビデオツール、AIコーディングツール、AIフォトツールなどがここで手に入ります。"
@@ -108,12 +113,34 @@
   "Home": {
     "title": "Toolsify AI - 最高のAIツールを発見 2025",
     "subTitle": "Toolsify AIツールディレクトリでお気に入りのAIツールを入手してください。AIツールリストはGPT-4oによって毎日更新されます。今すぐSEOを強化するためにここで無料で提出できます。",
+    "heroTitle1": "AIを発見",
+    "heroTitle2": "卓越性",
+    "heroSubtitle": "世界で最も強力なAIツールとテクノロジーへのゲートウェイ",
+    "heroFeature1Title": "厳選コレクション",
+    "heroFeature1Desc": "品質と信頼性が検証された厳選されたAIツール",
+    "heroFeature2Title": "スマートカテゴリ",
+    "heroFeature2Desc": "機能や業界別に整理され、簡単に発見できます",
+    "heroFeature3Title": "常に更新",
+    "heroFeature3Desc": "新しいコンテンツとツールを定期的に追加",
+    "heroExploreBtn": "ツールを探索",
+    "heroLearnMoreBtn": "詳細を見る",
     "ai-navigate": "AIツールリスト",
     "exploreMore": "さらに多くのAIツールを入手",
     "checkDetail": "詳細を見る",
     "search": "検索",
+    "searchSuggestions": "試してみてください：\"ChatGPT\"、\"画像生成\"、\"執筆アシスタント\"",
     "result": "検索結果",
-    "empty": "データがありません"
+    "empty": "データがありません",
+    "featuredBlog": "注目記事",
+    "featuredBlogSub": "AIツールに関する最新の洞察とガイド",
+    "viewAllBlog": "すべての記事を見る",
+    "readMore": "続きを読む"
+  },
+  "Blog": {
+    "title": "ブログ",
+    "subTitle": "AIツールとテクノロジーに関する洞察、ガイド、更新情報",
+    "readMore": "続きを読む",
+    "backToBlog": "ブログに戻る"
   },
   "Category": {
     "home": "ホーム",
@@ -168,6 +195,11 @@
     },
     "submit": {
       "title": "AIツールを提出してトラフィックを取得する | Toolsify AIツールディレクトリ"
+    },
+    "blog": {
+      "title": "ブログ - Toolsify AI",
+      "description": "AIツール、比較、業界の洞察に関する最新記事",
+      "keywords": "AIツール, 人工知能, AIブログ, Toolsify AI, AIツールディレクトリ, AI記事, AIガイド, AI洞察"
     }
   }
 }
