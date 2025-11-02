@@ -144,6 +144,32 @@
     "viewAllBlog": "View All Articles",
     "readMore": "Read More"
   },
+  "Consent": {
+    "title": "We Value Your Privacy",
+    "description": "We and our partners use cookies and similar technologies to provide, protect and improve our services, and to personalize content and ads. Click \"Accept All\" to consent to the use of these technologies.",
+    "learnMore": "Learn More",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "customize": "Customize",
+    "privacySettings": "Privacy Settings",
+    "functional": {
+      "title": "Necessary Cookies",
+      "description": "These cookies are essential for the basic functions of the website and cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics Cookies",
+      "description": "Help us understand how the website is used to improve user experience."
+    },
+    "advertising": {
+      "title": "Advertising Cookies",
+      "description": "Used to show you more relevant personalized advertising content."
+    },
+    "alwaysActive": "Always Active",
+    "savePreferences": "Save Preferences",
+    "back": "Back",
+    "policyText": "For more information, please see our",
+    "privacyPolicy": "Privacy Policy"
+  },
   "Blog": {
     "title": "Blog",
     "subTitle": "Insights, guides, and updates about AI tools and technology",
