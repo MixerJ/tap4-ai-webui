@@ -19,7 +19,7 @@ function InfoLink({
     <Link
       href={href}
       title={title}
-      className='whitespace-nowrap text-xs hover:opacity-70 lg:text-sm'
+      className='text-xs leading-relaxed text-white/60 transition-all duration-200 hover:translate-x-1 hover:text-white lg:text-sm'
       target={target}
       type={type}
     >
@@ -74,40 +74,59 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='w-full bg-[#15141A]'>
-      <div className='mx-auto flex min-h-[251px] max-w-pc flex-col items-center justify-between p-10 pb-5 lg:h-[180px] lg:flex-row lg:px-0 lg:pb-10'>
-        <div className='flex flex-col items-center lg:items-stretch'>
-          <p className='text-xl font-bold text-white lg:h-8 lg:text-[32px]'>{t('title')}</p>
-          <p className='text-xs'>{t('subTitle')}</p>
-        </div>
-        <div className='mt-5 flex flex-col items-center gap-y-5 lg:mt-0 lg:flex-row lg:items-stretch lg:gap-x-10'>
-          <div className='flex w-full flex-col gap-2'>
-            <p className='font-bold'>{t('support')}</p>
-            {SupportLinks.map((item) => (
-              <a
-                href={item.href}
-                key={item.href}
-                target='_blank'
-                rel='noreferrer'
-                className='text-xs hover:opacity-70 lg:text-sm'
-                title={item.title}
-              >
-                {item.title}
-              </a>
-            ))}
+    <footer className='relative w-full border-t border-white/5'>
+      {/* 背景装饰效果 - 更柔和 */}
+      <div className='from-indigo-500/3 via-purple-500/3 to-cyan-500/3 absolute inset-0 bg-gradient-to-r' />
+
+      <div className='relative mx-auto max-w-pc px-5 py-10 lg:px-0 lg:py-12'>
+        {/* 主要内容区域 */}
+        <div className='flex flex-col gap-8 lg:flex-row lg:justify-between lg:gap-12'>
+          {/* 左侧：品牌信息 */}
+          <div className='flex flex-col items-center gap-3 lg:max-w-md lg:items-start'>
+            <h3 className='bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-xl font-bold text-transparent lg:text-2xl'>
+              {t('title')}
+            </h3>
+            <p className='text-center text-xs leading-relaxed text-white/60 lg:text-left lg:text-sm'>{t('subTitle')}</p>
           </div>
-          <div className='grid grid-cols-2 gap-x-10 gap-y-5 lg:grid-cols-1 lg:gap-3'>
-            {INFO_LIST.map((item) => (
-              <InfoLink key={item.href} href={item.href} title={item.title} />
-            ))}
-            <a
-              href={`mailto:${CONTACT_US_EMAIL}`}
-              className='whitespace-nowrap text-xs hover:opacity-70 lg:text-sm'
-              title={t('contactUs')}
-              type='email'
-            >
-              {t('contactUs')}
-            </a>
+
+          {/* 右侧：链接区域 */}
+          <div className='flex flex-col gap-8 sm:flex-row sm:gap-12 lg:gap-16'>
+            {/* 支持链接 */}
+            <div className='flex flex-col gap-3'>
+              <h4 className='text-sm font-semibold text-white lg:text-base'>{t('support')}</h4>
+              <nav className='flex flex-col gap-2'>
+                {SupportLinks.map((item) => (
+                  <a
+                    href={item.href}
+                    key={item.href}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='text-xs leading-relaxed text-white/60 transition-all duration-200 hover:translate-x-1 hover:text-white lg:text-sm'
+                    title={item.title}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* 信息和联系 */}
+            <div className='flex flex-col gap-3'>
+              <h4 className='text-sm font-semibold text-white lg:text-base'>{t('info')}</h4>
+              <nav className='flex flex-col gap-2'>
+                {INFO_LIST.map((item) => (
+                  <InfoLink key={item.href} href={item.href} title={item.title} />
+                ))}
+                <a
+                  href={`mailto:${CONTACT_US_EMAIL}`}
+                  className='text-xs leading-relaxed text-white/60 transition-all duration-200 hover:translate-x-1 hover:text-white lg:text-sm'
+                  title={t('contactUs')}
+                  type='email'
+                >
+                  {t('contactUs')}
+                </a>
+              </nav>
+            </div>
           </div>
         </div>
       </div>

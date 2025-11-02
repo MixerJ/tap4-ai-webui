@@ -61,21 +61,24 @@ export default function SubmitForm({ className }: { className?: string }) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'mx-3 mb-5 flex h-[449px] flex-col justify-between rounded-[12px] bg-[#2C2D36] px-3 py-5 lg:h-[557px] lg:w-[444px] lg:p-8',
+          'group relative flex h-auto min-h-[449px] w-full max-w-lg flex-col justify-between rounded-2xl border border-white/10 bg-white/5 px-5 py-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 lg:h-auto lg:min-h-[557px] lg:px-8 lg:py-8',
           className,
         )}
       >
-        <div className='space-y-3 lg:space-y-5'>
+        {/* 背景渐变效果 */}
+        <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+
+        <div className='relative space-y-4 lg:space-y-6'>
           <FormField
             control={form.control}
             name='website'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
-                <FormLabel>{t('website')}</FormLabel>
+              <FormItem className='space-y-2'>
+                <FormLabel className='text-sm font-semibold text-white lg:text-base'>{t('website')}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder='Toolsify AI'
-                    className='input-border-pink h-[42px] w-full rounded-[8px] border-[0.5px] bg-dark-bg p-5'
+                    className='h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white backdrop-blur-sm transition-all duration-200 placeholder:text-white/50 focus:border-indigo-500/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 lg:h-14'
                     {...field}
                   />
                 </FormControl>
@@ -87,12 +90,12 @@ export default function SubmitForm({ className }: { className?: string }) {
             control={form.control}
             name='url'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
-                <FormLabel>{t('url')}</FormLabel>
+              <FormItem className='space-y-2'>
+                <FormLabel className='text-sm font-semibold text-white lg:text-base'>{t('url')}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder={FORM_PLACEHOLDER}
-                    className='input-border-pink h-[42px] w-full rounded-[8px] border-[0.5px] bg-dark-bg p-5'
+                    className='h-12 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white backdrop-blur-sm transition-all duration-200 placeholder:text-white/50 focus:border-indigo-500/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 lg:h-14'
                     {...field}
                   />
                 </FormControl>
@@ -101,18 +104,24 @@ export default function SubmitForm({ className }: { className?: string }) {
             )}
           />
         </div>
-        <div className='flex flex-col gap-[10px] lg:gap-8'>
+        <div className='relative mt-6 flex flex-col gap-4 lg:mt-8 lg:gap-6'>
           <button
             type='submit'
             disabled={loading}
             className={cn(
-              'flex-center mt-auto h-[48px] w-full gap-4 rounded-[8px] bg-white text-center font-bold text-black hover:cursor-pointer hover:opacity-80',
-              loading && 'hover:cursor-not-allowed',
+              'relative mt-auto flex h-12 w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-center font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 lg:h-14',
             )}
           >
-            {loading ? <Spinning className='size-[22px]' /> : t('submit')}
+            {loading ? (
+              <>
+                <Spinning className='size-5' />
+                <span>{t('submit')}</span>
+              </>
+            ) : (
+              t('submit')
+            )}
           </button>
-          <p className='text-[13px] text-white/40'>
+          <p className='text-xs leading-relaxed text-white/60 lg:text-sm'>
             {t('add')} <span className='text-white'>{WEBSITE_EXAMPLE}</span> {t('text')}
           </p>
         </div>

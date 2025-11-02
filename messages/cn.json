@@ -5,16 +5,19 @@
   "Navigation": {
     "title": "Toolsify AI工具目录",
     "discover": "发现AI",
+    "blog": "博客",
     "submit": "提交",
     "newtools": "新工具",
     "startup": "创业公司",
     "menu": "菜单",
+    "search": "搜索",
     "buyMeCoffee": "请我喝咖啡"
   },
   "Footer": {
     "title": "Toolsify AI工具目录",
     "subTitle": "发现2025年4月最佳AI工具，尽在Toolsify AI工具目录！",
     "support": "支持",
+    "info": "信息",
     "tap4": "Tap4 AI",
     "tattoo": "AI纹身生成器",
     "privacy": "隐私政策",
@@ -23,6 +26,7 @@
   },
   "Faq": {
     "title": "常见问题",
+    "subTitle": "查找关于AI工具目录的常见问题答案",
     "1": {
       "question": "Toolsify AI工具目录是什么？",
       "answer": "Toolsify AI工具目录 - toolsify.ai正在建立一个AI工具目录，帮助您获取您喜爱的AI工具。您可以在这里找到AI写作工具、AI营销工具、AI改写工具、AI SEO工具、AI学习工具、AI生成工具、AI研究工具、AI艺术工具、AI音乐工具、AI视频工具、AI编码工具、AI图片工具等等。"
@@ -117,12 +121,34 @@
   "Home": {
     "title": "Toolsify AI - 探索最佳AI工具 2025",
     "subTitle": "在Toolsify AI工具目录中获取您喜欢的AI工具。AI工具列表由GPT-4o每天更新。现在免费提交以增强您的SEO。",
+    "heroTitle1": "探索AI",
+    "heroTitle2": "卓越体验",
+    "heroSubtitle": "您通往世界最强大AI工具和技术的门户",
+    "heroFeature1Title": "精选合集",
+    "heroFeature1Desc": "精心挑选并验证质量和可靠性的AI工具",
+    "heroFeature2Title": "智能分类",
+    "heroFeature2Desc": "按功能和行业组织，便于发现",
+    "heroFeature3Title": "持续更新",
+    "heroFeature3Desc": "定期添加新鲜内容和新工具",
+    "heroExploreBtn": "探索工具",
+    "heroLearnMoreBtn": "了解更多",
     "ai-navigate": "AI工具列表",
     "exploreMore": "获取更多AI工具",
     "checkDetail": "查看详情",
     "search": "搜索",
+    "searchSuggestions": "试试：\"ChatGPT\"、\"图像生成\"、\"写作助手\"",
     "result": "搜索结果",
-    "empty": "无数据"
+    "empty": "无数据",
+    "featuredBlog": "精选文章",
+    "featuredBlogSub": "关于AI工具的最新见解和指南",
+    "viewAllBlog": "查看所有文章",
+    "readMore": "阅读更多"
+  },
+  "Blog": {
+    "title": "博客",
+    "subTitle": "关于AI工具和技术的前沿见解、指南和更新",
+    "readMore": "阅读更多",
+    "backToBlog": "返回博客"
   },
   "Category": {
     "home": "首页",
@@ -177,6 +203,11 @@
     },
     "submit": {
       "title": "提交您的AI工具并获取流量 | Toolsify AI目录"
+    },
+    "blog": {
+      "title": "博客 - Toolsify AI",
+      "description": "关于AI工具、对比和行业洞察的最新文章",
+      "keywords": "AI工具, 人工智能, AI博客, Toolsify AI, AI工具目录, AI文章, AI指南, AI洞察"
     }
   }
 }

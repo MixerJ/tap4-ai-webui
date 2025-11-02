@@ -5,16 +5,19 @@
   "Navigation": {
     "title": "Toolsify AI Tools Directory",
     "discover": "Discover AI",
+    "blog": "Blog",
     "submit": "Submit",
     "newtools": "New Tools",
     "startup": "Startup",
     "menu": "menu",
-    "buyMeCoffee": "Buy me a coffee"
+    "search": "Search",
+    "buyMeCoffee": "Buy Me a Coffee"
   },
   "Footer": {
     "title": "Toolsify AI Tools Directory",
     "subTitle": "Discover the best AI tools of April 2025 with the Toolsify AI Tools Directory!",
     "support": "Support",
+    "info": "Information",
     "tap4": "Tap4 AI",
     "tattoo": "AI Tattoo Generator",
     "privacy": "Privacy policy",
@@ -23,6 +26,7 @@
   },
   "Faq": {
     "title": "Frequently Asked Questions",
+    "subTitle": "Find answers to common questions about our AI tools directory",
     "1": {
       "question": "What is Open-source Toolsify AI Tools Directory?",
       "answer": "Toolsify AI Tools Directory - Toolsify.ai is building an ai tools directory that helps you get your favorite ai tools. It can get ai writing tools, ai markting tools, ai paraphrasing tools, ai seo tools, ai study tools, ai generator tools, ai research tools, ai art tools, ai music tools, ai video tools, ai coding tools, ai photo tools and more here."
@@ -117,12 +121,34 @@
   "Home": {
     "title": "Discover The Best AI Tools December 2025",
     "subTitle": "Get your favorite AI tools in Open-source Toolsify AI Tools Directory. AI tools list are updated daily by GPT-4o. It's free to submit here to enhance your SEO now. ",
+    "heroTitle1": "Discover AI",
+    "heroTitle2": "Excellence",
+    "heroSubtitle": "Your gateway to the world's most powerful AI tools and technologies",
+    "heroFeature1Title": "Curated Collection",
+    "heroFeature1Desc": "Hand-picked AI tools verified for quality and reliability",
+    "heroFeature2Title": "Smart Categories",
+    "heroFeature2Desc": "Organized by function and industry for easy discovery",
+    "heroFeature3Title": "Always Updated",
+    "heroFeature3Desc": "Fresh content and new tools added regularly",
+    "heroExploreBtn": "Explore Tools",
+    "heroLearnMoreBtn": "Learn More",
     "ai-navigate": "AI Tools List",
     "exploreMore": "Get More AI Tools",
     "checkDetail": "View Detail",
     "search": "Search",
+    "searchSuggestions": "Try: \"ChatGPT\", \"Image Generation\", \"Writing Assistant\"",
     "result": "Search Result",
-    "empty": "No data available"
+    "empty": "No data available",
+    "featuredBlog": "Featured Articles",
+    "featuredBlogSub": "Latest insights and guides about AI tools",
+    "viewAllBlog": "View All Articles",
+    "readMore": "Read More"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subTitle": "Insights, guides, and updates about AI tools and technology",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog"
   },
   "Category": {
     "home": "home",
@@ -177,6 +203,11 @@
     },
     "submit": {
       "title": "Submit your AI tool and get Get Traffic | Toolsify AI Directory"
+    },
+    "blog": {
+      "title": "Blog - Toolsify AI",
+      "description": "Latest articles about AI tools, comparisons, and industry insights",
+      "keywords": "AI Tools, Artificial Intelligence, AI Blog, Toolsify AI, AI Tools Directory, AI Articles, AI Guides, AI Insights"
     }
   }
 }

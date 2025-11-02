@@ -23,13 +23,17 @@ export default function LocaleSwitcher() {
 
   return (
     <Select value={localeVal} defaultValue={currentLocale} onValueChange={onValueChange}>
-      <SelectTrigger className='flex h-8 w-[80px] items-center gap-1 rounded-[4px] bg-[#232330] px-2 text-[#FFFFFF66]'>
-        <Icon src='/icons/global.svg' />
+      <SelectTrigger className='flex h-10 w-[90px] items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white/70 backdrop-blur-sm transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white focus:border-indigo-500/50 focus:bg-white/10 focus:ring-2 focus:ring-indigo-500/20 lg:h-11 lg:w-[100px]'>
+        <Icon src='/icons/global.svg' className='size-4 text-white/60 transition-colors duration-200' />
         <SelectValue placeholder='locale'>{localeVal.toUpperCase()}</SelectValue>
       </SelectTrigger>
-      <SelectContent className='bg-[#232330]'>
+      <SelectContent className='rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg'>
         {languages.map((language) => (
-          <SelectItem value={language.lang} key={language.code} className='hover:cursor-pointer hover:!bg-white/40'>
+          <SelectItem
+            value={language.lang}
+            key={language.code}
+            className='cursor-pointer rounded-lg text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white'
+          >
             {language.label}
           </SelectItem>
         ))}
