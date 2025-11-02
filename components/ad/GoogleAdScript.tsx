@@ -1,7 +1,9 @@
 import Script from 'next/script';
 
-import { GOOGLE_ADSENSE_URL } from '@/lib/env';
+interface GoogleAdScriptProps {
+  googleAdScriptUrl: string;
+}
 
-export default function GoogleAdScript() {
-  return <Script async src={GOOGLE_ADSENSE_URL} crossOrigin='anonymous' />;
+export default function GoogleAdScript({ googleAdScriptUrl }: GoogleAdScriptProps) {
+  return <Script async src={googleAdScriptUrl} crossOrigin='anonymous' strategy='afterInteractive' />;
 }
