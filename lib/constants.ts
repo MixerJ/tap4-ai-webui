@@ -4,6 +4,10 @@ export const NAV_LINKS = [
     href: '/explore',
   },
   {
+    code: 'blog',
+    href: '/blog',
+  },
+  {
     code: 'submit',
     href: '/submit',
   },
@@ -20,6 +24,9 @@ export const RevalidateOneMonth = 3600 * 24 * 30;
 
 export const PAGE_SIZE = 20;
 export const InfoPageSize = 12;
+export const BLOG_PAGE_SIZE = 5;
+export const HOME_PAGE_SIZE = 10;
+export const EXPLORE_PAGE_SIZE = 10;
 
 export const FORM_PLACEHOLDER = 'https://toolsify.ai/';
 

@@ -1,20 +1,19 @@
 import { createClient } from '@/db/supabase/client';
 
+import { EXPLORE_PAGE_SIZE } from '@/lib/constants';
 import SearchForm from '@/components/home/SearchForm';
 import BasePagination from '@/components/page/BasePagination';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
 
 import { TagList } from '../(home)/Tag';
 
-const WEB_PAGE_SIZE = 12;
-
 export default async function ExploreList({ pageNum }: { pageNum?: string }) {
   const supabase = createClient();
   const currentPage = pageNum ? Number(pageNum) : 1;
 
   // start and end
-  const start = (currentPage - 1) * WEB_PAGE_SIZE;
-  const end = start + WEB_PAGE_SIZE - 1;
+  const start = (currentPage - 1) * EXPLORE_PAGE_SIZE;
+  const end = start + EXPLORE_PAGE_SIZE - 1;
 
   const [{ data: categoryList }, { data: navigationList, count }] = await Promise.all([
     supabase.from('navigation_category').select(),
@@ -26,11 +25,16 @@ export default async function ExploreList({ pageNum }: { pageNum?: string }) {
   ]);
 
   return (
-    <>
+    <div className='w-full space-y-8 lg:space-y-12'>
+      {/* 搜索区域 */}
       <div className='flex w-full items-center justify-center'>
-        <SearchForm />
+        <div className='w-full max-w-lg'>
+          <SearchForm />
+        </div>
       </div>
-      <div className='mb-10 mt-5'>
+
+      {/* 分类标签区域 */}
+      <div className='mb-12 mt-8'>
         <TagList
           data={categoryList!.map((item) => ({
             id: String(item.id),
@@ -39,15 +43,19 @@ export default async function ExploreList({ pageNum }: { pageNum?: string }) {
           }))}
         />
       </div>
+
+      {/* 工具卡片列表 */}
       <WebNavCardList dataList={navigationList!} />
+
+      {/* 分页 */}
       <BasePagination
         currentPage={currentPage}
-        pageSize={WEB_PAGE_SIZE}
+        pageSize={EXPLORE_PAGE_SIZE}
         total={count!}
         route='/explore'
         subRoute='/page'
-        className='my-5 lg:my-10'
+        className='my-8 lg:my-12'
       />
-    </>
+    </div>
   );
 }

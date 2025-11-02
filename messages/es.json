@@ -5,15 +5,19 @@
   "Navigation": {
     "title": "Directorio de Herramientas de IA de Toolsify",
     "discover": "Descubrir",
+    "blog": "Blog",
     "submit": "Enviar",
     "newtools": "Nuevas Herramientas",
     "startup": "Inicio",
-    "menu": "Menú"
+    "menu": "Menú",
+    "search": "Buscar",
+    "buyMeCoffee": "Cómprame un Café"
   },
   "Footer": {
     "title": "Directorio de Herramientas de IA de Toolsify",
     "subTitle": "¡Descubre las mejores herramientas de IA de 2025 con el Directorio de Herramientas de IA de Toolsify!",
     "support": "Soporte",
+    "info": "Información",
     "tap4": "Tap4 AI",
     "tattoo": "Generador de Tatuajes AI",
     "privacy": "Política de Privacidad",
@@ -22,6 +26,7 @@
   },
   "Faq": {
     "title": "Preguntas Frecuentes",
+    "subTitle": "Encuentre respuestas a preguntas comunes sobre nuestro directorio de herramientas de IA",
     "1": {
       "question": "¿Qué es el Directorio de Herramientas de IA de Toolsify?",
       "answer": "El Directorio de Herramientas de IA de Toolsify - Toolsify.ai crea un directorio de herramientas de IA que te ayuda a encontrar tus herramientas de IA favoritas. Aquí puedes encontrar herramientas de escritura de IA, herramientas de marketing de IA, herramientas de parafraseo de IA, herramientas de SEO de IA, herramientas de aprendizaje de IA, herramientas generadoras de IA, herramientas de investigación de IA, herramientas de arte de IA, herramientas de música de IA, herramientas de video de IA, herramientas de codificación de IA, herramientas de fotografía de IA y más."
@@ -120,8 +125,19 @@
     "exploreMore": "Obtén más herramientas de IA",
     "checkDetail": "Ver detalles",
     "search": "Buscar",
+    "searchSuggestions": "Prueba: \"ChatGPT\", \"Generación de Imágenes\", \"Asistente de Escritura\"",
     "result": "Resultado de búsqueda",
-    "empty": "No hay datos disponibles"
+    "empty": "No hay datos disponibles",
+    "featuredBlog": "Artículos Destacados",
+    "featuredBlogSub": "Últimas perspectivas y guías sobre herramientas de IA",
+    "viewAllBlog": "Ver Todos los Artículos",
+    "readMore": "Leer Más"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subTitle": "Perspectivas, guías y actualizaciones sobre herramientas de IA y tecnología",
+    "readMore": "Leer Más",
+    "backToBlog": "Volver al Blog"
   },
   "Category": {
     "home": "Inicio",
@@ -176,6 +192,11 @@
     },
     "submit": {
       "title": "Envía tu herramienta de IA y obtén tráfico | Directorio de IA de Toolsify"
+    },
+    "blog": {
+      "title": "Blog - Toolsify AI",
+      "description": "Últimos artículos sobre herramientas de IA, comparaciones e información de la industria",
+      "keywords": "Herramientas de IA, Inteligencia Artificial, Blog de IA, Toolsify AI, Directorio de Herramientas de IA, Artículos de IA, Guías de IA, Información de IA"
     }
   }
 }

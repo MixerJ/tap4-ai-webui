@@ -1,24 +1,28 @@
 import { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import Faq from '@/components/Faq';
+import BlogList from './BlogList';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.explore',
+    namespace: 'Metadata.blog',
   });
 
   return {
-    title: t('title'),
-    description: t('description'),
-    keywords: t('keywords'),
+    title: t('title', { defaultValue: 'Blog - Toolsify AI' }),
+    description: t('description', {
+      defaultValue: 'Latest articles about AI tools, comparisons, and industry insights',
+    }),
+    keywords: t('keywords', {
+      defaultValue:
+        'AI Tools, Artificial Intelligence, AI Blog, Toolsify AI, AI Tools Directory, AI Articles, AI Guides, AI Insights',
+    }),
   };
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const t = useTranslations('Explore');
+export default async function BlogPage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations('Blog');
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -33,9 +37,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
       </div>
 
-      <div className='flex-y-center relative mx-auto w-full max-w-pc px-3'>
+      <div className='relative mx-auto w-full max-w-4xl px-5 py-10 lg:px-0 lg:py-16'>
         {/* 标题区域 */}
-        <div className='my-8 flex flex-col gap-2 text-balance text-center lg:my-16 lg:gap-4'>
+        <div className='mb-12 flex flex-col items-center gap-3 text-center lg:mb-16 lg:gap-4'>
           {/* 装饰性元素 */}
           <div className='mb-2 flex items-center justify-center gap-2 lg:mb-4'>
             <div className='h-px w-12 bg-gradient-to-r from-transparent via-indigo-500/50 to-indigo-500/50' />
@@ -43,12 +47,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className='h-px w-12 bg-gradient-to-r from-indigo-500/50 via-indigo-500/50 to-transparent' />
           </div>
           <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
-            {t('title')}
+            {t('title', { defaultValue: 'Blog' })}
           </h1>
-          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle')}</h2>
+          <p className='text-sm font-medium text-white/80 lg:text-lg'>
+            {t('subTitle', { defaultValue: 'Insights, guides, and updates about AI tools and technology' })}
+          </p>
         </div>
-        {children}
-        <Faq />
+
+        {/* 博客文章列表和分页 */}
+        <BlogList locale={locale} />
       </div>
     </div>
   );

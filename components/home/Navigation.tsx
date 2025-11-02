@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Coffee, Search } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
-import BaseImage from '../image/BaseImage';
+// import BaseImage from '../image/BaseImage';
 import LocaleSwitcher from '../LocaleSwitcher';
 import MenuBtn from './MenuBtn';
 import NavigationDrawer from './NavigationDrawer';
@@ -39,21 +39,21 @@ export default function Navigation() {
               href='/'
               title={t('title')}
             >
-              <div className='relative'>
-                <BaseImage
-                  src='/images/toolsify-ai.svg'
-                  alt={t('title')}
-                  title={t('title')}
-                  width={64}
-                  height={64}
-                  className='size-[58px] lg:size-16'
-                />
-                {/* Logo 光晕效果 */}
-                <div className='absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-20' />
-              </div>
+              {/* <div className='relative'>
+              <BaseImage
+                src='/images/toolsify-ai.svg'
+                alt={t('title')}
+                title={t('title')}
+                width={64}
+                height={64}
+                className='size-[58px] lg:size-16'
+                /> */}
+              {/* Logo 光晕效果 */}
+              {/* <div className='absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-20' />
+              </div>  */}
               <div className='hidden lg:block'>
                 <div className='bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-xl font-bold text-transparent'>
-                  Tap4 AI
+                  Toolsify AI
                 </div>
                 <div className='text-xs text-white/60'>AI Tools Directory</div>
               </div>
@@ -94,21 +94,20 @@ export default function Navigation() {
               >
                 <Search className='size-5' />
               </button>
-
+              <Link
+                href='https://ko-fi.com/C0C81N5Y9L'
+                target='_blank'
+                rel='noreferrer'
+                className='flex items-center gap-x-2 rounded-lg bg-orange-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-orange-600'
+                title={t('buyMeCoffee')}
+              >
+                <Coffee className='size-4' />
+                <span className='hidden sm:inline'>{t('buyMeCoffee')}</span>
+              </Link>
               {/* 语言切换器 */}
               <div className='relative'>
                 <LocaleSwitcher />
               </div>
-
-              {/* 主题切换按钮 */}
-              <button
-                type='button'
-                className='hidden items-center gap-2 rounded-xl border border-white/5 px-4 py-2 text-white/60 backdrop-blur-sm transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-purple-500/10 hover:text-white lg:flex'
-                aria-label='Toggle theme'
-              >
-                <div className='h-2 w-2 animate-glow rounded-full bg-gradient-to-r from-indigo-400 to-purple-400' />
-                <span className='text-sm font-medium'>Dark</span>
-              </button>
             </div>
           </div>
 

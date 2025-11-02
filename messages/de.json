@@ -5,15 +5,19 @@
   "Navigation": {
     "title": "Toolsify AI Tools Verzeichnis",
     "discover": "Entdecken",
+    "blog": "Blog",
     "submit": "Einreichen",
     "newtools": "Neue Tools",
     "startup": "Startup",
-    "menu": "Menü"
+    "menu": "Menü",
+    "search": "Suchen",
+    "buyMeCoffee": "Kauf mir einen Kaffee"
   },
   "Footer": {
     "title": "Toolsify AI Tools Verzeichnis",
     "subTitle": "Entdecken Sie die besten KI-Tools von 2025 mit dem Toolsify AI Tools Verzeichnis!",
     "support": "Unterstützung",
+    "info": "Informationen",
     "tap4": "Tap4 AI",
     "tattoo": "AI Tattoo-Generator",
     "privacy": "Datenschutzrichtlinie",
@@ -22,6 +26,7 @@
   },
   "Faq": {
     "title": "Häufig gestellte Fragen",
+    "subTitle": "Finden Sie Antworten auf häufige Fragen zu unserem KI-Tools-Verzeichnis",
     "1": {
       "question": "Was ist das Toolsify AI Tools Verzeichnis?",
       "answer": "Das Toolsify AI Tools Verzeichnis - Toolsify.ai erstellt ein Verzeichnis von KI-Tools, das Ihnen hilft, Ihre Lieblings-KI-Tools zu finden. Sie können hier KI-Schreibtools, KI-Marketingtools, KI-Paraphrasierungstools, KI-SEO-Tools, KI-Lern-Tools, KI-Generator-Tools, KI-Forschungstools, KI-Kunsttools, KI-Musiktools, KI-Videotools, KI-Coding-Tools, KI-Fototools und mehr finden."
@@ -120,8 +125,19 @@
     "exploreMore": "Weitere AI-Tools erhalten",
     "checkDetail": "Details anzeigen",
     "search": "Suche",
+    "searchSuggestions": "Versuchen Sie: \"ChatGPT\", \"Bildgenerierung\", \"Schreibassistent\"",
     "result": "Suchergebnis",
-    "empty": "Keine Daten verfügbar"
+    "empty": "Keine Daten verfügbar",
+    "featuredBlog": "Ausgewählte Artikel",
+    "featuredBlogSub": "Neueste Einblicke und Anleitungen zu KI-Tools",
+    "viewAllBlog": "Alle Artikel anzeigen",
+    "readMore": "Weiterlesen"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subTitle": "Einblicke, Anleitungen und Updates zu KI-Tools und Technologie",
+    "readMore": "Weiterlesen",
+    "backToBlog": "Zurück zum Blog"
   },
   "Category": {
     "home": "Startseite",
@@ -176,6 +192,11 @@
     },
     "submit": {
       "title": "Reichen Sie Ihr KI-Tool ein und erhalten Sie Traffic | Toolsify AI Verzeichnis"
+    },
+    "blog": {
+      "title": "Blog - Toolsify AI",
+      "description": "Neueste Artikel über KI-Tools, Vergleiche und Brancheneinblicke",
+      "keywords": "KI-Tools, Künstliche Intelligenz, KI-Blog, Toolsify AI, KI-Tools-Verzeichnis, KI-Artikel, KI-Leitfäden, KI-Einblicke"
     }
   }
 }
