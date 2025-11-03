@@ -1,2 +1,18 @@
+# Allow all crawlers
 User-agent: *
-Crawl-Delay: 20
+Allow: /
+
+# Allow Google AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Allow Google AdSense Bot
+User-agent: AdsBot-Google
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.toolsify.ai/sitemap.xml
+
+# Crawl delay for general bots (not Google)
+User-agent: *
+Crawl-Delay: 10

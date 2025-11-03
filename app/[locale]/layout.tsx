@@ -9,11 +9,15 @@ import './globals.css';
 import { Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 
-import GoogleAdScript from '@/components/ad/GoogleAdScript';
 import ClarityScript from '@/components/analytics/ClarityScript';
 import SeoScript from '@/components/seo/SeoScript';
 
 import Loading from './loading';
+
+// 仅在开发环境导入调试组件
+const AdSenseDiagnostic =
+  process.env.NODE_ENV === 'development' ? require('@/components/ads/AdSenseDiagnostic').default : null;
+const AdSenseDebug = process.env.NODE_ENV === 'development' ? require('@/components/ads/AdSenseDebug').default : null;
 
 export default function RootLayout({
   children,
@@ -29,6 +33,16 @@ export default function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
+      <head>
+        {/* Google AdSense - 直接在 head 中加载以确保优先级 */}
+        {adsenseEnabled && adsenseClientId && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
+            crossOrigin='anonymous'
+          />
+        )}
+      </head>
       <body className='relative mx-auto flex min-h-screen flex-col bg-tap4-black text-white'>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Toaster
@@ -45,13 +59,11 @@ export default function RootLayout({
           <Navigation />
           <Suspense fallback={<Loading />}>{children}</Suspense>
           <ConsentManager />
+          {/* 仅开发环境显示调试工具 */}
+          {process.env.NODE_ENV === 'development' && AdSenseDiagnostic && <AdSenseDiagnostic />}
+          {process.env.NODE_ENV === 'development' && AdSenseDebug && <AdSenseDebug />}
         </NextIntlClientProvider>
         <SeoScript />
-        {adsenseEnabled && adsenseClientId && (
-          <GoogleAdScript
-            googleAdScriptUrl={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-          />
-        )}
         <Analytics />
         <ClarityScript projectId={projectId} />
       </body>

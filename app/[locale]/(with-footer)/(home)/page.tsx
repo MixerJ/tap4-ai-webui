@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { HOME_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import SearchForm from '@/components/home/SearchForm';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
 
@@ -223,6 +224,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 <span>{t('viewAllBlog', { defaultValue: 'View All Articles' })}</span>
                 <span className='transition-transform duration-200 group-hover:translate-x-1'>→</span>
               </Link>
+            </div>
+
+            {/* 底部广告 - 在 Featured Articles 和 Footer 之间 */}
+            <div className='mx-auto w-full max-w-pc px-4'>
+              <ResponsiveAd adSlot='1041337705' className='mb-20 lg:mb-32' />
             </div>
           </div>
         )}
