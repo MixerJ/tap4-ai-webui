@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+
 import { BASE_URL } from '@/lib/env';
 
 export default function robots(): MetadataRoute.Robots {
@@ -19,6 +20,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    // host: BASE_URL,
   };
 }
