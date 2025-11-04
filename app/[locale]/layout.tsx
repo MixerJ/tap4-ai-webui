@@ -53,6 +53,10 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
       <head>
+        {/* Google AdSense Account Meta Tag */}
+        {adsenseEnabled && adsenseClientId && (
+          <meta name='google-adsense-account' content={adsenseClientId} />
+        )}
         {/* Google AdSense - 直接在 head 中加载以确保优先级 */}
         {adsenseEnabled && adsenseClientId && (
           <script
