@@ -68,9 +68,7 @@ export default async function Page({ params }: { params: { locale: string; code:
     '@type': 'CollectionPage',
     name: `${categoryTitle} AI Tools`,
     url: canonicalUrl,
-    description:
-      category.description ||
-      `Explore curated ${categoryTitle} AI tools, pricing, and feature comparisons on ${SITE_NAME}.`,
+    description: `Explore curated ${categoryTitle} AI tools, pricing, and feature comparisons on ${SITE_NAME}.`,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,

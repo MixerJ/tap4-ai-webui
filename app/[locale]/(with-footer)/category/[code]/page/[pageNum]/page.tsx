@@ -26,9 +26,7 @@ export async function generateMetadata({
   const category = categoryList[0];
   const categoryTitle = category.title || params.code;
   const pageTitle = `${categoryTitle} AI Tools - Page ${params.pageNum ?? 1}`;
-  const description =
-    category.description ||
-    `Browse page ${params.pageNum ?? 1} of curated ${categoryTitle} AI tools on ${SITE_NAME}. Compare features, use cases and pricing.`;
+  const description = `Browse page ${params.pageNum ?? 1} of curated ${categoryTitle} AI tools on ${SITE_NAME}. Compare features, use cases and pricing.`;
   const keywords = [
     categoryTitle,
     `${categoryTitle} AI tools`,
@@ -76,9 +74,7 @@ export default async function Page({ params }: { params: { locale: string; code:
     '@type': 'CollectionPage',
     name: `${categoryTitle} AI Tools`,
     url: canonicalUrl,
-    description:
-      category.description ||
-      `Explore curated ${categoryTitle} AI tools, pricing, and feature comparisons on ${SITE_NAME}.`,
+    description: `Explore curated ${categoryTitle} AI tools, pricing, and feature comparisons on ${SITE_NAME}.`,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,
