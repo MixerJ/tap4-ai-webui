@@ -11,7 +11,7 @@ User-agent: AdsBot-Google
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.toolsify.ai/sitemap.xml
+Sitemap: https://toolsify.ai/sitemap.xml
 
 # Crawl delay for general bots (not Google)
 User-agent: *

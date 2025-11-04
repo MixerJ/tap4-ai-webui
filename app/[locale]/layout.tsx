@@ -1,4 +1,5 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import type { Metadata } from 'next';
 
 import { Toaster } from '@/components/ui/sonner';
 import ConsentManager from '@/components/consent/ConsentManager';
@@ -18,6 +19,24 @@ import Loading from './loading';
 const AdSenseDiagnostic =
   process.env.NODE_ENV === 'development' ? require('@/components/ads/AdSenseDiagnostic').default : null;
 const AdSenseDebug = process.env.NODE_ENV === 'development' ? require('@/components/ads/AdSenseDebug').default : null;
+
+// 全局 Metadata 配置
+export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+};
 
 export default function RootLayout({
   children,
