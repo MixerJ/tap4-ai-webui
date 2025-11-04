@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
+import { buildAlternates, buildSocialMetadata } from '@/lib/seo';
 import Faq from '@/components/Faq';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -10,10 +11,20 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.explore',
   });
 
+  const title = t('title');
+  const description = t('description');
+
   return {
-    title: t('title'),
-    description: t('description'),
+    title,
+    description,
     keywords: t('keywords'),
+    alternates: buildAlternates(locale, 'explore'),
+    ...buildSocialMetadata({
+      locale,
+      path: 'explore',
+      title,
+      description,
+    }),
   };
 }
 
