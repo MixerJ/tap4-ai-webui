@@ -11,11 +11,11 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: 'Mediapartners-Google',
-        allow: '/',
+        allow: ['/', '/ads.txt'],
       },
       {
         userAgent: 'AdsBot-Google',
-        allow: '/',
+        allow: ['/', '/ads.txt'],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
