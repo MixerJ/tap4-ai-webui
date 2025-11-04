@@ -4,77 +4,80 @@
   },
   "Navigation": {
     "title": "Directorio de Herramientas de IA de Toolsify",
-    "discover": "Descubrir",
+    "discover": "Descubrir IA",
     "blog": "Blog",
     "submit": "Enviar",
-    "newtools": "Nuevas Herramientas",
-    "startup": "Inicio",
+    "newtools": "Nuevos",
+    "startup": "Startup",
     "menu": "Menú",
     "search": "Buscar",
-    "buyMeCoffee": "Cómprame un Café"
+    "buyMeCoffee": "Cómprame un café"
   },
   "Footer": {
-    "title": "Directorio de Herramientas de IA de Toolsify",
-    "subTitle": "¡Descubre las mejores herramientas de IA de 2025 con el Directorio de Herramientas de IA de Toolsify!",
-    "support": "Soporte",
-    "info": "Información",
+    "title": "Directorio Toolsify AI",
+    "subTitle": "Sigue el software de IA que más crece, descubre cómo los equipos automatizan sus flujos y envía tu producto para ganar visibilidad.",
+    "support": "Ayuda y soporte",
+    "info": "Compañía",
     "tap4": "Tap4 AI",
-    "tattoo": "Generador de Tatuajes AI",
-    "privacy": "Política de Privacidad",
-    "termsConditions": "Términos y Condiciones",
-    "contactUs": "Contáctanos"
+    "tattoo": "Generador de tatuajes IA",
+    "privacy": "Política de privacidad",
+    "termsConditions": "Términos y condiciones",
+    "contactUs": "Contacto"
   },
   "Faq": {
-    "title": "Preguntas Frecuentes",
-    "subTitle": "Encuentre respuestas a preguntas comunes sobre nuestro directorio de herramientas de IA",
+    "title": "Preguntas frecuentes",
+    "subTitle": "Descubre cómo enviar, explorar y promocionar herramientas de IA dentro de Toolsify AI",
     "1": {
-      "question": "¿Qué es el Directorio de Herramientas de IA de Toolsify?",
-      "answer": "El Directorio de Herramientas de IA de Toolsify - Toolsify.ai crea un directorio de herramientas de IA que te ayuda a encontrar tus herramientas de IA favoritas. Aquí puedes encontrar herramientas de escritura de IA, herramientas de marketing de IA, herramientas de parafraseo de IA, herramientas de SEO de IA, herramientas de aprendizaje de IA, herramientas generadoras de IA, herramientas de investigación de IA, herramientas de arte de IA, herramientas de música de IA, herramientas de video de IA, herramientas de codificación de IA, herramientas de fotografía de IA y más."
+      "question": "¿Qué es el Directorio Toolsify AI?",
+      "answer": "Toolsify AI es un directorio abierto y curado que reúne software de IA para contenidos, marketing, investigación, diseño, desarrollo, audio, vídeo y más, de modo que puedas evaluar la mejor solución en minutos."
     },
     "2": {
-      "question": "¿Cómo encuentro tus herramientas de IA en el Directorio de Herramientas de IA de Toolsify?",
-      "answer-1": "1. Abre Toolsify.ai.",
-      "answer-2": "2. Explora las herramientas de IA en el Directorio de Herramientas de IA de Toolsify.",
-      "answer-3": "3. Haz clic en las herramientas de IA que necesitas para obtener los detalles y visita su sitio web."
+      "question": "¿Cómo encuentro herramientas en Toolsify AI?",
+      "answer-1": "1. Visita Toolsify.ai e introduce una palabra clave o elige una categoría.",
+      "answer-2": "2. Aplica filtros de precio, industria y caso de uso para reducir la selección.",
+      "answer-3": "3. Abre un listado para revisar funciones destacadas, capturas y el enlace oficial."
     },
     "3": {
-      "question": "¿Cuáles son las características principales del Directorio de Herramientas de IA de Toolsify?",
-      "answer-1": "1. Directorio gratuito de herramientas de IA: Es gratis encontrar tus herramientas de IA favoritas aquí.",
-      "answer-2": "2. Lista de inicio: La lista de inicio gratuita para desarrolladores de herramientas de IA."
+      "question": "¿Qué hace distinto a Toolsify AI?",
+      "answer-1": "1. Curación gratuita: cada ficha pasa por revisión editorial y de comunidad.",
+      "answer-2": "2. Recursos de crecimiento: listas de lanzamiento, ideas de backlinks y consejos de marketing para tu producto."
     },
     "4": {
-      "question": "¿Es gratis enviar herramientas de IA al Directorio de Herramientas de IA de Toolsify?",
-      "answer": "Sí, actualmente es gratis. ¡Pero debes compartir un enlace de retroceso para el Directorio de Herramientas de IA de Toolsify!"
+      "question": "¿Enviar una herramienta tiene costo?",
+      "answer": "No. La publicación es gratuita y solemos aprobar nuevas herramientas en menos de 48 horas. Añadir un enlace a Toolsify.ai en tu web agiliza el proceso."
     },
     "5": {
-      "question": "¿Qué categorías de herramientas de IA admite el Directorio de Herramientas de IA de Toolsify?",
-      "answer": "Más adelante, admitiremos todo tipo de herramientas de IA. Por favor, espera unos días."
+      "question": "¿Qué categorías están disponibles?",
+      "answer": "Más de 50 categorías, desde contenido y diseño hasta analítica, soporte, ingeniería, compliance y productividad, con nuevas secciones en camino."
     },
     "6": {
-      "question": "¿Con qué frecuencia se actualiza la lista de herramientas de IA en el Directorio de Herramientas de IA de Toolsify?",
-      "answer": "La lista de herramientas de IA se actualiza diariamente."
+      "question": "¿Con qué frecuencia actualizan el directorio?",
+      "answer": "Publicamos herramientas nuevas cada día y actualizamos las existentes cuando cambian precios o funcionalidades."
     },
     "7": {
-      "question": "¿Apoya aquí a GPT-4o o a Sora AI?",
-      "answer": "Puedes obtener la herramienta GPT-4o o Sora AI aquí. Aquí tienes la introducción a GPT-4o y Sora Video, y puedes visitar el sitio web de las herramientas."
+      "question": "¿Incluyen modelos como GPT-4o o Sora?",
+      "answer": "Sí. Contamos con secciones dedicadas a GPT-4o, Sora y otros modelos insignia con demos, planes y documentación."
     },
     "8": {
-      "question": "Solución de Problemas",
-      "answer": "Si los contenidos no se muestran, intenta usar otro navegador o borrar tu caché. Si los problemas persisten, contáctanos en contact@6677.ai."
+      "question": "La página no carga, ¿qué hago?",
+      "answer": "Recarga la página, borra la caché o desactiva extensiones. Si el problema continúa, envíanos un correo con captura a contact@6677.ai."
     },
     "9": {
-      "question": "¿Cómo se genera el contenido del Directorio de IA de Toolsify?",
-      "answer": "El contenido de la descripción de las herramientas de IA es generado por GPT-4o de OpenAI."
+      "question": "¿Quién redacta las descripciones?",
+      "answer": "GPT-4o genera un borrador y el equipo editorial de Toolsify AI lo revisa para garantizar precisión y claridad."
     },
     "10": {
-      "question": "¿Cuáles son los derechos de uso de las herramientas de IA?",
-      "answer": "El Directorio de Herramientas de IA de Toolsify es solo el directorio para herramientas de IA. Los derechos de uso de las herramientas de IA se basan en el sitio web de las herramientas de IA."
+      "question": "¿Toolsify AI otorga licencias de uso?",
+      "answer": "No. Solo ofrecemos el directorio. Los derechos y licencias dependen de cada proveedor; revisa siempre el sitio oficial."
     }
   },
   "FooterNavigation": {
     "privacyPolicy": {
-      "1-h1": "Política de Privacidad del Directorio de Herramientas de IA de Toolsify",
-      "1-p": "Esta página se utiliza para informar a los visitantes sobre mis políticas con respecto a la recopilación, el uso y la divulgación de información personal si alguien decide utilizar mi servicio. Al utilizar mi servicio, usted acepta la recopilación y el uso de información en relación con esta política. La información personal que recojo se utiliza para proporcionar y mejorar el servicio. No utilizaré ni compartiré su información con nadie, excepto como se describe en esta Política de Privacidad. Los términos utilizados en esta Política de Privacidad tienen los mismos significados que en nuestros Términos y Condiciones.",
+      "1-title": "Política de Privacidad",
+      "1-subtitle": "Directorio Toolsify AI",
+      "1-p1": "Esta página se utiliza para informar a los visitantes sobre nuestras políticas con respecto a la recopilación, el uso y la divulgación de información personal si alguien decide utilizar nuestro servicio.",
+      "1-p2": "Si elige utilizar nuestro servicio, usted acepta la recopilación y el uso de información en relación con esta política. La información personal que recopilamos se utiliza para proporcionar y mejorar el servicio. No utilizaremos ni compartiremos su información con nadie, excepto como se describe en esta Política de Privacidad.",
+      "1-p3": "Los términos utilizados en esta Política de Privacidad tienen los mismos significados que en nuestros Términos y Condiciones.",
       "2-h2": "1. Recopilación y Uso de Información",
       "2-p": "Para una mejor experiencia mientras utiliza nuestro Servicio, puedo solicitarle que nos proporcione cierta información de identificación personal. La información que solicito se guardará en su dispositivo y no será recopilada de ninguna manera por mí. La aplicación utiliza servicios de terceros que pueden recopilar información utilizada para identificarlo.",
       "3-h2": "2. Datos de Registro",
@@ -96,8 +99,10 @@
       "8-p": "Podemos actualizar nuestra Política de Privacidad de vez en cuando. Por lo tanto, se le recomienda que revise esta página periódicamente para ver cualquier cambio. Le notificaré cualquier cambio publicando la nueva Política de Privacidad en esta página. Estos cambios son efectivos inmediatamente después de que se publiquen en esta página."
     },
     "termsConditions": {
-      "1-h1": "Términos de Servicio para el Directorio de IA de Toolsify",
-      "1-p": "¡Bienvenido al Directorio de IA de Toolsify! Nuestro sitio web, ubicado en https://Toolsify.ai (\"Sitio web\"), está dedicado a proporcionarle la capacidad de crear imágenes personalizadas. Al acceder o utilizar nuestro Sitio web, acepta quedar sujeto a estos Términos de Servicio (\"Términos\"). Si no está de acuerdo con alguna parte de los términos, queda prohibido utilizar el Sitio web.",
+      "1-title": "Términos de Servicio",
+      "1-subtitle": "Directorio Toolsify AI",
+      "1-p1": "¡Bienvenido al Directorio de IA de Toolsify! Nuestro sitio web, ubicado en https://Toolsify.ai (\"Sitio web\"), está dedicado a proporcionarle la capacidad de descubrir y explorar herramientas de IA.",
+      "1-p2": "Al acceder o utilizar nuestro Sitio web, acepta quedar sujeto a estos Términos de Servicio (\"Términos\"). Si no está de acuerdo con alguna parte de los términos, queda prohibido utilizar el Sitio web.",
       "2-h2": "1. Licencia de Uso",
       "2-p": "Se le otorga una licencia limitada, no exclusiva y no transferible para utilizar el Sitio web y sus servicios para fines personales y no comerciales. Esta licencia no incluye ningún derecho para copiar, modificar o distribuir el contenido del Sitio web o utilizarlo para fines comerciales sin nuestro consentimiento previo por escrito.",
       "3-h2": "2. Propiedad",
@@ -119,30 +124,30 @@
     "goHome": "Ir a Inicio"
   },
   "Home": {
-    "title": "Toolsify AI - Descubre las mejores herramientas de IA 2025",
-    "subTitle": "Obtén tus herramientas de IA favoritas en el Directorio de Herramientas de IA de Toolsify. La lista de herramientas de IA se actualiza diariamente por GPT-4o. Es gratis enviar aquí para mejorar tu SEO ahora.",
+    "title": "Descubre herramientas de IA de alto impacto",
+    "subTitle": "Explora más de 1.000 productos de IA curados, compara precios y funciones y envía tu propia herramienta gratis.",
     "heroTitle1": "Descubre IA",
     "heroTitle2": "Excelencia",
-    "heroSubtitle": "Tu puerta de entrada a las herramientas y tecnologías de IA más poderosas del mundo",
-    "heroFeature1Title": "Colección Curada",
-    "heroFeature1Desc": "Herramientas de IA seleccionadas y verificadas por calidad y fiabilidad",
-    "heroFeature2Title": "Categorías Inteligentes",
-    "heroFeature2Desc": "Organizadas por función e industria para un fácil descubrimiento",
-    "heroFeature3Title": "Siempre Actualizado",
-    "heroFeature3Desc": "Contenido fresco y nuevas herramientas añadidas regularmente",
-    "heroExploreBtn": "Explorar Herramientas",
-    "heroLearnMoreBtn": "Saber Más",
-    "ai-navigate": "Lista de herramientas de IA",
-    "exploreMore": "Obtén más herramientas de IA",
+    "heroSubtitle": "Tu puerta de entrada a las últimas soluciones de automatización, creatividad y productividad impulsadas por IA",
+    "heroFeature1Title": "Selección curada",
+    "heroFeature1Desc": "Cada ficha es revisada por el equipo y la comunidad para garantizar calidad y actualidad",
+    "heroFeature2Title": "Filtros inteligentes",
+    "heroFeature2Desc": "Filtra por sector, flujo de trabajo, modelo de precios e integraciones",
+    "heroFeature3Title": "Actualizaciones diarias",
+    "heroFeature3Desc": "Nuevos lanzamientos de IA, notas de versión y tendencias cada día",
+    "heroExploreBtn": "Explorar herramientas IA",
+    "heroLearnMoreBtn": "Cómo funciona",
+    "ai-navigate": "Lista de herramientas IA",
+    "exploreMore": "Ver más herramientas IA",
     "checkDetail": "Ver detalles",
     "search": "Buscar",
-    "searchSuggestions": "Prueba: \"ChatGPT\", \"Generación de Imágenes\", \"Asistente de Escritura\"",
-    "result": "Resultado de búsqueda",
-    "empty": "No hay datos disponibles",
-    "featuredBlog": "Artículos Destacados",
-    "featuredBlogSub": "Últimas perspectivas y guías sobre herramientas de IA",
-    "viewAllBlog": "Ver Todos los Artículos",
-    "readMore": "Leer Más"
+    "searchSuggestions": "Prueba: \"Alternativa a ChatGPT\", \"Asistente de diseño IA\", \"Automatización de workflow\"",
+    "result": "Resultados de búsqueda",
+    "empty": "Sin coincidencias. Prueba con otro término.",
+    "featuredBlog": "Artículos destacados",
+    "featuredBlogSub": "Estrategias, comparativas y casos reales para trabajar con IA",
+    "viewAllBlog": "Ver todos los artículos",
+    "readMore": "Leer más"
   },
   "Blog": {
     "title": "Blog",
@@ -155,59 +160,71 @@
     "empty": "No hay datos disponibles"
   },
   "Submit": {
-    "title": "Envía tu Herramienta de IA",
-    "subTitle": "Envía tu Herramienta de IA y Obtén tráfico desde el Directorio de IA de Toolsify",
-    "website": "Nombre del Sitio Web",
-    "url": "URL",
-    "submit": "Enviar",
-    "add": "Agregar",
-    "text": "a la página de inicio de tu sitio web, ¡y luego puedes enviar tu sitio web con éxito de forma gratuita!",
+    "title": "Envía tu herramienta de IA",
+    "subTitle": "Publica tu producto de IA en el directorio para conseguir backlinks, tráfico y primeros beta testers.",
+    "website": "Nombre del producto",
+    "url": "URL del producto",
+    "submit": "Enviar herramienta",
+    "add": "Añadir",
+    "text": "Añade el badge o enlace de Toolsify AI en tu página de inicio para acelerar la aprobación.",
     "networkError": "Error de red",
-    "success": "éxito"
+    "success": "Envío recibido"
   },
   "Startup": {
-    "title": "Impulsa el Lanzamiento de tu Startup",
-    "subTitle": "La Lista Definitiva de Sitios Web para Lanzar y Promocionar tu Startup en Línea. Para agregar a la lista o ayudar a enviar tu producto a la lista gratuita, por favor contáctanos: contact@Toolsify.ai.",
-    "updateTime": "Curada y actualizada diariamente. Última actualización:",
+    "title": "Lanza tu startup de IA",
+    "subTitle": "Plataformas de lanzamiento, portales de reseñas y comunidades maker seleccionadas para aumentar visibilidad, backlinks y clientes tempranos.",
+    "updateTime": "Listado curado y actualizado a diario. Última actualización:",
     "table": {
       "da": "DA",
-      "website": "Sitio Web",
+      "website": "Sitio web",
       "tags": "Etiquetas",
       "price": "Precio",
       "submission": "Envío"
     },
     "detail": {
-      "visitWebsite": "Visitar Sitio Web",
+      "visitWebsite": "Visitar sitio web",
       "introduction": "Introducción"
     }
   },
   "Explore": {
-    "title": "Descubre las Mejores Herramientas de IA 2025",
-    "subTitle": "Obtén tus herramientas de IA favoritas en el Directorio de Herramientas de IA de Toolsify. La lista de herramientas de IA se actualiza diariamente por GPT-4o."
+    "title": "Explora herramientas de IA por categoría",
+    "subTitle": "Encuentra software de IA para marketing, diseño, analítica, soporte, ingeniería, finanzas y mucho más."
   },
   "Metadata": {
     "home": {
-      "title": "Obtén tus mejores Herramientas de IA | Directorio de IA de Toolsify",
-      "description": "El Directorio de IA de Toolsify es una herramienta que proporciona un Directorio gratuito de Herramientas de IA. Obtén tus herramientas de IA favoritas con el Directorio de IA de Toolsify, el cual tiene como objetivo recopilar todas las herramientas de IA y ofrecer lo mejor para los usuarios.",
-      "keywords": "Directorio de IA de Toolsify"
+      "title": "Descubre herramientas de IA y automatizaciones de alto impacto",
+      "description": "Explora más de 1.000 herramientas de IA curadas, compara precios y funcionalidades y construye flujos de trabajo inteligentes con el directorio open source de Toolsify AI.",
+      "keywords": "directorio de herramientas IA, buscador de herramientas IA, mejor software IA, productividad con IA, automatización IA, herramientas de marketing IA, aplicaciones de diseño IA, Toolsify AI, recursos para startups IA, herramientas IA SaaS, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "ai": {
-      "titleSubfix": "Directorio de IA de Toolsify"
+      "titleSubfix": "Directorio Toolsify AI"
     },
     "explore": {
-      "title": "Mejor Exploración de Herramientas de IA 2025 | Directorio de IA de Toolsify",
-      "titlePrefix": "Explorar Directorio de IA de Toolsify",
-      "titleSuffix": "Directorio de IA de Toolsify",
-      "description": "El Directorio de IA de Toolsify es una herramienta que proporciona un Directorio gratuito de Herramientas de IA. Obtén tus herramientas de IA favoritas con el Directorio de IA de Toolsify, el cual tiene como objetivo recopilar todas las herramientas de IA y ofrecer lo mejor para los usuarios.",
-      "keywords": "Directorio de IA de Toolsify"
+      "title": "Explora herramientas de IA por categoría | Toolsify AI",
+      "titlePrefix": "Explorar directorio Toolsify AI",
+      "titleSuffix": "Directorio Toolsify AI",
+      "description": "Filtra herramientas de IA por caso de uso, modelo de precios e industria para encontrar las soluciones que encajan con tu flujo de trabajo.",
+      "keywords": "explorar herramientas IA, categorías de IA, filtros IA, aplicaciones IA especializadas, software IA en tendencia, comparación IA, herramientas de automatización IA, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "submit": {
-      "title": "Envía tu herramienta de IA y obtén tráfico | Directorio de IA de Toolsify"
+      "title": "Envía tu herramienta de IA | Directorio Toolsify AI",
+      "description": "Publica tu producto en Toolsify AI para que creadores, fundadores y equipos de marketing lo encuentren mientras buscan automatización.",
+      "keywords": "enviar herramienta IA, listar producto IA, directorio IA, promoción IA, envío Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "startup": {
+      "title": "Plataformas para lanzar startups de IA | Toolsify AI",
+      "description": "Directorio curado de sitios de lanzamiento, medios de reseñas y comunidades maker para generar backlinks, tráfico y primeros clientes para tu startup de IA.",
+      "keywords": "lanzar startup IA, enviar startup, promocionar startup IA, directorios de startups, plataformas launch, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "search": {
+      "title": "Herramientas de IA relacionadas con “{query}” | Toolsify AI",
+      "description": "Explora en el directorio Toolsify IA las herramientas relacionadas con “{query}”, comparando funciones clave, planes de precios y casos de uso reales.",
+      "keywords": "{query}, herramientas IA, software IA, directorio IA, Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "blog": {
-      "title": "Blog - Toolsify AI",
-      "description": "Últimos artículos sobre herramientas de IA, comparaciones e información de la industria",
-      "keywords": "Herramientas de IA, Inteligencia Artificial, Blog de IA, Toolsify AI, Directorio de Herramientas de IA, Artículos de IA, Guías de IA, Información de IA"
+      "title": "Blog de Toolsify AI | Insights y guías",
+      "description": "Análisis profundos de herramientas de IA, comparativas de productos y guías prácticas para construir con inteligencia artificial.",
+      "keywords": "insights IA, reseñas de herramientas IA, comparativas IA, tendencias de IA generativa, blog Toolsify AI, guías de productos IA, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     }
   }
 }

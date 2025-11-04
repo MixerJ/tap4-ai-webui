@@ -3,78 +3,81 @@
     "loading": "加载中..."
   },
   "Navigation": {
-    "title": "Toolsify AI工具目录",
+    "title": "Toolsify AI 工具目录",
     "discover": "发现AI",
     "blog": "博客",
     "submit": "提交",
-    "newtools": "新工具",
-    "startup": "创业公司",
+    "newtools": "最新",
+    "startup": "创业",
     "menu": "菜单",
     "search": "搜索",
     "buyMeCoffee": "请我喝咖啡"
   },
   "Footer": {
-    "title": "Toolsify AI工具目录",
-    "subTitle": "发现2025年4月最佳AI工具，尽在Toolsify AI工具目录！",
-    "support": "支持",
-    "info": "信息",
+    "title": "Toolsify AI 目录",
+    "subTitle": "追踪增长最快的 AI 软件，了解团队如何部署自动化，并提交你的产品获取曝光。",
+    "support": "帮助与支持",
+    "info": "公司信息",
     "tap4": "Tap4 AI",
-    "tattoo": "AI纹身生成器",
+    "tattoo": "AI 纹身生成器",
     "privacy": "隐私政策",
-    "termsConditions": "条款和条件",
+    "termsConditions": "条款与条件",
     "contactUs": "联系我们"
   },
   "Faq": {
     "title": "常见问题",
-    "subTitle": "查找关于AI工具目录的常见问题答案",
+    "subTitle": "了解如何在 Toolsify AI 上提交、发现与推广 AI 工具",
     "1": {
-      "question": "Toolsify AI工具目录是什么？",
-      "answer": "Toolsify AI工具目录 - toolsify.ai正在建立一个AI工具目录，帮助您获取您喜爱的AI工具。您可以在这里找到AI写作工具、AI营销工具、AI改写工具、AI SEO工具、AI学习工具、AI生成工具、AI研究工具、AI艺术工具、AI音乐工具、AI视频工具、AI编码工具、AI图片工具等等。"
+      "question": "Toolsify AI 工具目录是什么？",
+      "answer": "Toolsify AI 是一个开源的 AI 工具目录，覆盖内容创作、营销、研发、设计、音视频等场景，帮助你快速找到合适的智能化解决方案。"
     },
     "2": {
-      "question": "如何在Toolsify AI工具目录中找到您的AI工具？",
-      "answer-1": "1. 打开toolsify.ai。",
-      "answer-2": "2. 浏览Toolsify AI工具目录中的AI工具。",
-      "answer-3": "3. 单击您需要的AI工具，查看详情并访问它。"
+      "question": "如何在 Toolsify AI 上找到想要的工具？",
+      "answer-1": "1. 打开 Toolsify.ai，输入关键词或选择分类。",
+      "answer-2": "2. 使用价格、行业、场景等筛选条件，快速缩小范围。",
+      "answer-3": "3. 点击条目查看功能亮点、截图和官网链接。"
     },
     "3": {
-      "question": "Toolsify AI工具目录的主要功能是什么？",
-      "answer-1": "1. 免费AI工具目录：在这里找到您喜爱的AI工具是免费的。",
-      "answer-2": "2. 创业公司列表：免费的创业公司列表供AI工具开发者使用。"
+      "question": "Toolsify AI 有哪些优势？",
+      "answer-1": "1. 免费且精选：所有条目都经社区与编辑团队审核。",
+      "answer-2": "2. 增长支持：提供创业推广清单、反链思路与市场洞察。"
     },
     "4": {
-      "question": "向Toolsify AI工具目录提交AI工具是免费的吗？",
-      "answer": "是的，目前是免费的。但您应该分享Toolsify AI工具目录的后链接！"
+      "question": "提交 AI 工具需要付费吗？",
+      "answer": "提交完全免费。我们通常会在 48 小时内完成审核，若在官网添加 Toolsify.ai 反向链接可加速通过。"
     },
     "5": {
-      "question": "Toolsify AI工具目录支持哪些AI工具类别？",
-      "answer": "我们将在稍后支持所有类型的AI工具。请稍等几天。"
+      "question": "平台支持哪些 AI 分类？",
+      "answer": "目前已覆盖 50+ 分类，包括内容创作、设计、分析、客服、工程、数据、合规、效率等，并持续拓展。"
     },
     "6": {
-      "question": "Toolsify AI目录中AI工具的更新频率是多少？",
-      "answer": "AI工具列表将每天更新。"
+      "question": "目录多久更新一次？",
+      "answer": "我们每日审核新工具，并在定价或功能调整后及时更新现有条目。"
     },
     "7": {
-      "question": "这里支持GPT-4o或Sora AI吗？",
-      "answer": "您可以在这里获取GPT-4o或Sora AI工具。这里有GPT-4o和Sora视频的介绍，您可以访问工具的网站。"
+      "question": "能找到 GPT-4o、Sora 等旗舰模型吗？",
+      "answer": "可以。我们提供 GPT-4o、Sora 等旗舰产品的专属板块，包含演示、定价方案与开发者文档。"
     },
     "8": {
-      "question": "故障排除",
-      "answer": "如果内容没有出现，请尝试使用其他浏览器，清除缓存。如果问题仍然存在，请联系我们：contact@toolsify.ai。"
+      "question": "页面打不开该怎么办？",
+      "answer": "请尝试刷新、清除浏览器缓存或关闭插件。如仍无法访问，可将问题截图发送至 contact@6677.ai。"
     },
     "9": {
-      "question": "Toolsify AI目录的内容是如何生成的？",
-      "answer": "AI工具的描述内容是由OpenAI的GPT-4o生成的。"
+      "question": "条目信息由谁撰写？",
+      "answer": "每条描述由 GPT-4o 生成初稿，再由 Toolsify AI 编辑团队校对润色，确保准确清晰。"
     },
     "10": {
-      "question": "AI工具的使用权是什么？",
-      "answer": "Toolsify AI工具目录只是AI工具的目录。AI工具的使用权基于AI工具的网站。"
+      "question": "Toolsify AI 是否提供工具授权？",
+      "answer": "我们仅提供目录展示。工具的授权与使用条款需以各官网说明为准。"
     }
   },
   "FooterNavigation": {
     "privacyPolicy": {
-      "1-h1": "Toolsify AI工具目录隐私政策",
-      "1-p": "此页面用于通知访问者关于收集、使用和披露个人信息的政策，如果任何人决定使用我的服务。如果您选择使用我的服务，则表示您同意收集和使用与本政策相关的信息。我收集的个人信息用于提供和改进服务。除非在本隐私政策中另有说明，否则我不会与任何人分享您的信息。本隐私政策中使用的术语与我们的条款和条件中的术语具有相同的含义。",
+      "1-title": "隐私政策",
+      "1-subtitle": "Toolsify AI 目录",
+      "1-p1": "此页面用于通知访问者关于收集、使用和披露个人信息的政策，如果任何人决定使用我们的服务。",
+      "1-p2": "如果您选择使用我们的服务，则表示您同意收集和使用与本政策相关的信息。我们收集的个人信息用于提供和改进服务。除非在本隐私政策中另有说明，否则我们不会与任何人分享您的信息。",
+      "1-p3": "本隐私政策中使用的术语与我们的条款和条件中的术语具有相同的含义。",
       "2-h2": "1. 信息的收集和使用",
       "2-p": "为了提供更好的服务，在使用我们的服务时，我可能会要求您提供某些可以识别您个人身份的信息。我请求的信息将保存在您的设备上，我不会以任何方式收集。该应用程序使用可能收集用于识别您的信息的第三方服务。",
       "3-h2": "2. 日志数据",
@@ -96,8 +99,10 @@
       "8-p": "我可能会不时更新我们的隐私政策。因此，建议您定期查看此页面的任何更改。我将通过在此页面上发布新的隐私政策来通知您任何更改。这些更改在此页面上发布后立即生效。"
     },
     "termsConditions": {
-      "1-h1": "Toolsify AI目录服务条款",
-      "1-p": "欢迎来到Toolsify AI目录！我们的网站位于https://toolsify.ai（\"网站\"），致力于为您提供创建自定义图像的能力。通过访问或使用我们的网站，您同意受这些服务条款（\"条款\"）的约束。如果您不同意任何条款，则禁止使用该网站。",
+      "1-title": "服务条款",
+      "1-subtitle": "Toolsify AI 目录",
+      "1-p1": "欢迎来到 Toolsify AI 目录！我们的网站位于 https://toolsify.ai（\"网站\"），致力于为您提供发现和探索 AI 工具的能力。",
+      "1-p2": "通过访问或使用我们的网站，您同意受这些服务条款（\"条款\"）的约束。如果您不同意任何条款，则禁止使用该网站。",
       "2-h2": "1. 使用许可",
       "2-p": "您被授予有限的、非排他性的、不可转让的许可，以个人、非商业目的使用本网站及其服务。未经我们事先书面同意，本许可证不包括任何复制、修改或分发本网站内容或将其用于商业目的的权利。",
       "3-h2": "2. 所有权",
@@ -119,30 +124,30 @@
     "goHome": "回到首页"
   },
   "Home": {
-    "title": "Toolsify AI - 探索最佳AI工具 2025",
-    "subTitle": "在Toolsify AI工具目录中获取您喜欢的AI工具。AI工具列表由GPT-4o每天更新。现在免费提交以增强您的SEO。",
-    "heroTitle1": "探索AI",
-    "heroTitle2": "卓越体验",
-    "heroSubtitle": "您通往世界最强大AI工具和技术的门户",
-    "heroFeature1Title": "精选合集",
-    "heroFeature1Desc": "精心挑选并验证质量和可靠性的AI工具",
+    "title": "发现高影响力的 AI 工具",
+    "subTitle": "浏览超过 1,000 款经过审核的 AI 产品，比较价格与功能，并免费提交你的工具获取曝光。",
+    "heroTitle1": "Discover AI",
+    "heroTitle2": "Excellence",
+    "heroSubtitle": "为自动化、创作与效率场景带来最新的 AI 解决方案",
+    "heroFeature1Title": "精选集合",
+    "heroFeature1Desc": "每个条目都经团队与社区审核，确保质量与活跃度",
     "heroFeature2Title": "智能分类",
-    "heroFeature2Desc": "按功能和行业组织，便于发现",
-    "heroFeature3Title": "持续更新",
-    "heroFeature3Desc": "定期添加新鲜内容和新工具",
-    "heroExploreBtn": "探索工具",
-    "heroLearnMoreBtn": "了解更多",
-    "ai-navigate": "AI工具列表",
-    "exploreMore": "获取更多AI工具",
+    "heroFeature2Desc": "按行业、工作流、定价模式和集成支持快速筛选",
+    "heroFeature3Title": "每日更新",
+    "heroFeature3Desc": "每日新增 AI 上线、更新日志与热门趋势",
+    "heroExploreBtn": "探索 AI 工具",
+    "heroLearnMoreBtn": "了解工作方式",
+    "ai-navigate": "AI 工具列表",
+    "exploreMore": "查看更多 AI 工具",
     "checkDetail": "查看详情",
     "search": "搜索",
-    "searchSuggestions": "试试：\"ChatGPT\"、\"图像生成\"、\"写作助手\"",
+    "searchSuggestions": "试试：\"ChatGPT 替代\"、\"AI 设计助手\"、\"工作流自动化\"",
     "result": "搜索结果",
-    "empty": "无数据",
+    "empty": "未找到匹配结果，请尝试其他关键词。",
     "featuredBlog": "精选文章",
-    "featuredBlogSub": "关于AI工具的最新见解和指南",
-    "viewAllBlog": "查看所有文章",
-    "readMore": "阅读更多"
+    "featuredBlogSub": "关于 AI 构建策略、产品对比与案例研究的深度内容",
+    "viewAllBlog": "查看全部文章",
+    "readMore": "阅读全文"
   },
   "Consent": {
     "title": "我们重视您的隐私",
@@ -181,20 +186,20 @@
     "empty": "无数据"
   },
   "Submit": {
-    "title": "提交您的AI工具",
-    "subTitle": "提交您的AI工具并从Toolsify AI目录获取流量",
-    "website": "网站名称",
-    "url": "网站URL",
-    "submit": "提交",
+    "title": "提交你的 AI 工具",
+    "subTitle": "将你的 AI 产品收录到目录中，为网站带来外链、流量与早期用户。",
+    "website": "产品名称",
+    "url": "产品网址",
+    "submit": "提交工具",
     "add": "添加",
-    "text": "到您的网站首页，然后您可以免费成功提交您的网站！",
+    "text": "在官网添加 Toolsify AI 徽章或链接，可加速审核通过。",
     "networkError": "网络错误",
-    "success": "成功"
+    "success": "提交成功"
   },
   "Startup": {
-    "title": "启动您的创业公司",
-    "subTitle": "启动和推广您的创业公司网站的终极列表。要添加到列表或帮助提交您的产品到免费列表，请发送电子邮件至：contact@toolsify.ai。",
-    "updateTime": "每天策划和更新。上次更新：",
+    "title": "发布你的 AI 创业项目",
+    "subTitle": "精选 Launch 平台、评测网站与创客社区，帮助你的 AI 产品获取外链、流量与首批用户。",
+    "updateTime": "精选列表每日更新。上次刷新：",
     "table": {
       "da": "DA",
       "website": "网站",
@@ -208,32 +213,44 @@
     }
   },
   "Explore": {
-    "title": "发现2025年最佳AI工具",
-    "subTitle": "在Toolsify AI工具目录中找到您喜爱的AI工具。AI工具列表每天由GPT-4o更新。"
+    "title": "按分类探索 AI 工具",
+    "subTitle": "覆盖营销、设计、分析、客服、工程、财务等多个场景的 AI 软件。"
   },
   "Metadata": {
     "home": {
-      "title": "获取您的最佳AI工具 | Toolsify AI目录",
-      "description": "Toolsify AI目录是一款提供免费AI工具目录的工具。通过Toolsify AI目录获取您喜爱的AI工具，Toolsify AI目录旨在收集所有AI工具并为用户提供最佳服务。",
-      "keywords": "Toolsify AI目录"
+      "title": "发现顶尖AI工具与自动化应用",
+      "description": "浏览超过1,000款精挑细选的AI工具，比较价格与功能，借助开源的Toolsify AI目录打造更智能的工作流程。",
+      "keywords": "AI工具目录, AI工具搜索, 最佳AI软件, AI效率工具, AI自动化, AI营销工具, AI设计应用, Toolsify AI, AI创业资源, AI SaaS工具, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "ai": {
       "titleSubfix": "Toolsify AI目录"
     },
     "explore": {
-      "title": "2025年最佳AI工具探索 | Toolsify AI目录",
+      "title": "按场景探索精选AI工具 | Toolsify AI",
       "titlePrefix": "Toolsify AI目录探索",
       "titleSuffix": "Toolsify AI目录",
-      "description": "Toolsify AI目录是一款提供免费AI工具目录的工具。通过Toolsify AI目录获取您喜爱的AI工具，Toolsify AI目录旨在收集所有AI工具并为用户提供最佳服务。",
-      "keywords": "Toolsify AI目录"
+      "description": "按使用场景、定价模式和行业筛选AI工具，发现与你工作流程契合的热门应用。",
+      "keywords": "探索AI工具, AI工具分类, AI筛选, 垂直AI应用, 热门AI软件, AI对比, AI自动化工具, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "submit": {
-      "title": "提交您的AI工具并获取流量 | Toolsify AI目录"
+      "title": "提交AI工具 | Toolsify AI目录",
+      "description": "将您的AI产品提交到 Toolsify AI 目录，让开发者、创业者和营销团队在寻找自动化解决方案时第一时间发现您。",
+      "keywords": "提交AI工具, 上架AI产品, AI目录收录, AI推广, Toolsify AI 提交, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "startup": {
+      "title": "AI创业推广站点合集 | Toolsify AI",
+      "description": "精心整理的 Launch 平台、评测网站和创客社区，帮助您的 AI 创业项目获取外链、流量与首批用户。",
+      "keywords": "AI创业推广, 提交创业项目, Startup 推广, 外链站点, Launch 网站, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "search": {
+      "title": "与“{query}”相关的AI工具 | Toolsify AI",
+      "description": "在 Toolsify AI 目录中探索与“{query}”相关的 AI 软件，比较功能亮点、定价方案与典型用例。",
+      "keywords": "{query}, AI工具, AI软件, AI应用, AI目录, Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "blog": {
-      "title": "博客 - Toolsify AI",
-      "description": "关于AI工具、对比和行业洞察的最新文章",
-      "keywords": "AI工具, 人工智能, AI博客, Toolsify AI, AI工具目录, AI文章, AI指南, AI洞察"
+      "title": "Toolsify AI 博客 | 洞察与指南",
+      "description": "深入剖析AI工具、产品对比以及构建人工智能解决方案的实用指南。",
+      "keywords": "AI行业洞察, AI工具评测, AI对比, 生成式AI趋势, Toolsify AI博客, AI产品指南, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     }
   }
 }

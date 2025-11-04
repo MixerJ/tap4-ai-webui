@@ -17,6 +17,9 @@ export const NAV_LINKS = [
   },
 ];
 
+export const SITE_NAME = 'Toolsify AI';
+export const SITE_TAGLINE = 'Discover and compare the best AI tools for every workflow';
+
 export const RevalidateOneHour = 3600;
 export const RevalidateOneDay = 3600 * 24;
 export const RevalidateOneWeek = 3600 * 24 * 7;

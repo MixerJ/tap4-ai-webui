@@ -7,8 +7,8 @@
     "discover": "Descobrir IA",
     "blog": "Blog",
     "submit": "Enviar",
-    "newtools": "Novas Ferramentas",
-    "startup": "Inicialização",
+    "newtools": "Novos",
+    "startup": "Startup",
     "menu": "menu",
     "search": "Pesquisar",
     "buyMeCoffee": "Me Pague um Café"
@@ -73,8 +73,11 @@
   },
   "FooterNavigation": {
     "privacyPolicy": {
-      "1-h1": "Política de Privacidade para o Diretório de Ferramentas de IA do Toolsify",
-      "1-p": "Esta página é usada para informar os visitantes sobre minhas políticas com relação à coleta, uso e divulgação de Informações Pessoais caso alguém decida usar meu Serviço. Se você optar por usar meu Serviço, concorda com a coleta e uso de informações em relação a esta política. As Informações Pessoais que eu coleto são usadas para fornecer e melhorar o Serviço. Não usarei ou compartilharei suas informações com ninguém, exceto conforme descrito nesta Política de Privacidade. Os termos usados nesta Política de Privacidade têm os mesmos significados que em nossos Termos e Condições.",
+      "1-title": "Política de Privacidade",
+      "1-subtitle": "Diretório Toolsify AI",
+      "1-p1": "Esta página é usada para informar os visitantes sobre nossas políticas com relação à coleta, uso e divulgação de Informações Pessoais caso alguém decida usar nosso Serviço.",
+      "1-p2": "Se você optar por usar nosso Serviço, concorda com a coleta e uso de informações em relação a esta política. As Informações Pessoais que coletamos são usadas para fornecer e melhorar o Serviço. Não usaremos ou compartilharemos suas informações com ninguém, exceto conforme descrito nesta Política de Privacidade.",
+      "1-p3": "Os termos usados nesta Política de Privacidade têm os mesmos significados que em nossos Termos e Condições.",
       "2-h2": "1. Coleta e Uso de Informações",
       "2-p": "Para uma melhor experiência, ao usar nosso Serviço, posso solicitar que você nos forneça certas informações de identificação pessoal. As informações que solicito serão retidas em seu dispositivo e não serão coletadas por mim de forma alguma. O aplicativo usa serviços de terceiros que podem coletar informações usadas para identificá-lo.",
       "3-h2": "2. Dados de Registro",
@@ -96,8 +99,10 @@
       "8-p": "Posso atualizar nossa Política de Privacidade periodicamente. Assim, é recomendável revisar esta página periodicamente para quaisquer alterações. Notificarei você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página. Essas alterações são efetivas imediatamente após serem publicadas nesta página."
     },
     "termsConditions": {
-      "1-h1": "Termos de Serviço para o Diretório de IA do Toolsify",
-      "1-p": "Bem-vindo ao Diretório de IA do Toolsify! Nosso site, localizado em https://Toolsify.ai (\"Website\"), é dedicado a fornecer a você a capacidade de criar imagens personalizadas. Ao acessar ou usar nosso Website, você concorda em ficar vinculado a estes Termos de Serviço (\"Termos\"). Se você não concorda com qualquer parte dos termos, então você está proibido de usar o Website.",
+      "1-title": "Termos de Serviço",
+      "1-subtitle": "Diretório Toolsify AI",
+      "1-p1": "Bem-vindo ao Diretório de IA do Toolsify! Nosso site, localizado em https://Toolsify.ai (\"Website\"), é dedicado a fornecer a você a capacidade de descobrir e explorar ferramentas de IA.",
+      "1-p2": "Ao acessar ou usar nosso Website, você concorda em ficar vinculado a estes Termos de Serviço (\"Termos\"). Se você não concorda com qualquer parte dos termos, então você está proibido de usar o Website.",
       "2-h2": "1. Licença de Uso",
       "2-p": "Você recebe uma licença limitada, não exclusiva e intransferível para usar o Website e seus serviços para fins pessoais e não comerciais. Esta licença não inclui quaisquer direitos de copiar, modificar ou distribuir o conteúdo do Website ou usá-lo para fins comerciais sem nosso consentimento prévio por escrito.",
       "3-h2": "2. Propriedade",
@@ -187,27 +192,39 @@
   },
   "Metadata": {
     "home": {
-      "title": "Obtenha suas melhores Ferramentas de IA | Diretório de IA do Toolsify",
-      "description": "O Diretório de IA do Toolsify é uma ferramenta que fornece um Diretório de Ferramentas de IA gratuito. Obtenha suas ferramentas de IA favoritas com o Diretório de IA do Toolsify, o Diretório de IA do Toolsify visa reunir todas as ferramentas de IA e fornecer o melhor para os usuários.",
-      "keywords": "Diretório de IA do Toolsify"
+      "title": "Descubra as principais ferramentas e automações de IA",
+      "description": "Explore mais de 1.000 ferramentas de IA selecionadas, compare preços e recursos e otimize seus fluxos de trabalho com o diretório open source Toolsify AI.",
+      "keywords": "diretório de ferramentas IA, buscador de IA, melhor software IA, produtividade com IA, automação IA, ferramentas de marketing IA, apps de design IA, Toolsify AI, recursos para startups IA, ferramentas IA SaaS, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "ai": {
       "titleSubfix": "Diretório de IA do Toolsify"
     },
     "explore": {
-      "title": "Melhores Ferramentas de IA Explore 2025 | Diretório de IA do Toolsify",
+      "title": "Explore ferramentas de IA por categoria | Toolsify AI",
       "titlePrefix": "Explorar Diretório de IA do Toolsify",
       "titleSuffix": "Diretório de IA do Toolsify",
-      "description": "O Diretório de IA do Toolsify é uma ferramenta que fornece um Diretório de Ferramentas de IA gratuito. Obtenha suas ferramentas de IA favoritas com o Diretório de IA do Toolsify, o Diretório de IA do Toolsify visa reunir todas as ferramentas de IA e fornecer o melhor para os usuários.",
-      "keywords": "Diretório de IA do Toolsify"
+      "description": "Filtre ferramentas de IA por caso de uso, modelo de preço e setor para encontrar as soluções certas para o seu fluxo de trabalho.",
+      "keywords": "explorar ferramentas IA, categorias de IA, filtros IA, apps IA especializados, software IA em alta, comparação IA, ferramentas de automação IA, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "submit": {
-      "title": "Envie sua ferramenta de IA e obtenha Tráfego | Diretório de IA do Toolsify"
+      "title": "Envie sua ferramenta de IA | Diretório Toolsify AI",
+      "description": "Divulgue seu produto de IA no Diretório Toolsify AI e alcance desenvolvedores, fundadores e equipes de marketing que procuram novas soluções de automação.",
+      "keywords": "enviar ferramenta IA, listar produto IA, diretório IA, promoção IA, envio Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "startup": {
+      "title": "Hub de lançamento para startups de IA | Toolsify AI",
+      "description": "Lista curada de plataformas de lançamento, sites de review e comunidades maker para gerar backlinks, tráfego e primeiros clientes para sua startup de IA.",
+      "keywords": "lançar startup IA, enviar startup, promover startup IA, diretórios de startup, plataformas launch, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "search": {
+      "title": "Ferramentas de IA relacionadas a “{query}” | Toolsify AI",
+      "description": "Explore no Diretório Toolsify AI as ferramentas de IA ligadas a “{query}”, compare diferenciais, preços e casos de uso reais.",
+      "keywords": "{query}, ferramentas IA, software IA, diretório IA, Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "blog": {
-      "title": "Blog - Toolsify AI",
-      "description": "Últimos artigos sobre ferramentas de IA, comparações e insights da indústria",
-      "keywords": "Ferramentas de IA, Inteligência Artificial, Blog de IA, Toolsify AI, Diretório de Ferramentas de IA, Artigos de IA, Guias de IA, Insights de IA"
+      "title": "Blog Toolsify AI | Insights e guias",
+      "description": "Análises aprofundadas de ferramentas de IA, comparativos de produtos e guias práticos para construir com inteligência artificial.",
+      "keywords": "insights IA, reviews de ferramentas IA, comparativos IA, tendências de IA generativa, blog Toolsify AI, guias de produtos IA, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     }
   }
 }
