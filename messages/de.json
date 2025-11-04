@@ -4,77 +4,80 @@
   },
   "Navigation": {
     "title": "Toolsify AI Tools Verzeichnis",
-    "discover": "Entdecken",
+    "discover": "KI entdecken",
     "blog": "Blog",
     "submit": "Einreichen",
-    "newtools": "Neue Tools",
+    "newtools": "Neu",
     "startup": "Startup",
     "menu": "Menü",
     "search": "Suchen",
     "buyMeCoffee": "Kauf mir einen Kaffee"
   },
   "Footer": {
-    "title": "Toolsify AI Tools Verzeichnis",
-    "subTitle": "Entdecken Sie die besten KI-Tools von 2025 mit dem Toolsify AI Tools Verzeichnis!",
-    "support": "Unterstützung",
-    "info": "Informationen",
+    "title": "Toolsify AI Verzeichnis",
+    "subTitle": "Verfolgen Sie die am schnellsten wachsende KI-Software, lernen Sie Automatisierungs-Workflows kennen und reichen Sie Ihr eigenes Produkt zur Entdeckung ein.",
+    "support": "Support & Hilfe",
+    "info": "Unternehmen",
     "tap4": "Tap4 AI",
-    "tattoo": "AI Tattoo-Generator",
-    "privacy": "Datenschutzrichtlinie",
-    "termsConditions": "Nutzungsbedingungen",
-    "contactUs": "Kontaktieren Sie uns"
+    "tattoo": "AI Tattoo Generator",
+    "privacy": "Datenschutz",
+    "termsConditions": "AGB",
+    "contactUs": "Kontakt"
   },
   "Faq": {
     "title": "Häufig gestellte Fragen",
-    "subTitle": "Finden Sie Antworten auf häufige Fragen zu unserem KI-Tools-Verzeichnis",
+    "subTitle": "Alles Wichtige rund um das Einreichen, Entdecken und Bewerben von KI-Tools auf Toolsify AI",
     "1": {
       "question": "Was ist das Toolsify AI Tools Verzeichnis?",
-      "answer": "Das Toolsify AI Tools Verzeichnis - Toolsify.ai erstellt ein Verzeichnis von KI-Tools, das Ihnen hilft, Ihre Lieblings-KI-Tools zu finden. Sie können hier KI-Schreibtools, KI-Marketingtools, KI-Paraphrasierungstools, KI-SEO-Tools, KI-Lern-Tools, KI-Generator-Tools, KI-Forschungstools, KI-Kunsttools, KI-Musiktools, KI-Videotools, KI-Coding-Tools, KI-Fototools und mehr finden."
+      "answer": "Toolsify AI ist ein kuratiertes Open-Source-Verzeichnis, das hochwertige KI-Software für Content, Marketing, Forschung, Design, Entwicklung, Audio, Video und mehr bündelt, damit Sie schneller die passende Lösung finden."
     },
     "2": {
-      "question": "Wie finde ich Ihre KI-Tools im Toolsify AI Tools Verzeichnis?",
-      "answer-1": "1. Öffnen Sie Toolsify.ai.",
-      "answer-2": "2. Erkunden Sie die KI-Tools im Toolsify AI Tools Verzeichnis.",
-      "answer-3": "3. Klicken Sie auf die KI-Tools, die Sie benötigen, um die Details zu erhalten und besuchen Sie sie."
+      "question": "Wie finde ich Tools im Verzeichnis?",
+      "answer-1": "1. Besuchen Sie Toolsify.ai und geben Sie ein Stichwort oder eine Kategorie ein.",
+      "answer-2": "2. Nutzen Sie Filter wie Preismodell, Branche oder Use Case, um die Auswahl zu verfeinern.",
+      "answer-3": "3. Öffnen Sie einen Eintrag, um Funktions-Highlights, Screenshots und den direkten Website-Link zu sehen."
     },
     "3": {
-      "question": "Was sind die Hauptmerkmale des Toolsify AI Tools Verzeichnisses?",
-      "answer-1": "1. Kostenloses KI-Tools Verzeichnis: Es ist kostenlos, Ihre Lieblings-KI-Tools hier zu finden.",
-      "answer-2": "2. Startup-Liste: Die kostenlose Startupliste für KI-Tools-Entwickler."
+      "question": "Was macht Toolsify AI besonders?",
+      "answer-1": "1. Kostenlos und kuratiert: Jeder Eintrag wird von Community und Redaktion geprüft.",
+      "answer-2": "2. Growth-Unterstützung: Startup-Launch-Listen, Backlink-Ideen und Marketing-Insights für Ihr Produkt."
     },
     "4": {
-      "question": "Ist es kostenlos, KI-Tools im Toolsify AI Tools Verzeichnis einzureichen?",
-      "answer": "Ja, es ist derzeit kostenlos. Aber Sie sollten einen Backlink für das Toolsify AI Tools Verzeichnis teilen!"
+      "question": "Kostet das Einreichen eines Tools etwas?",
+      "answer": "Nein, das Listing ist kostenlos. Wir prüfen neue Tools in der Regel innerhalb von 48 Stunden – mit einem Backlink zu Toolsify.ai geht es oft noch schneller."
     },
     "5": {
-      "question": "Welche Kategorien von KI-Tools unterstützt das Toolsify AI Tools Verzeichnis?",
-      "answer": "Wir werden später alle Arten von KI-Tools unterstützen. Bitte warten Sie ein paar Tage."
+      "question": "Welche Kategorien werden unterstützt?",
+      "answer": "Über 50 Kategorien – von Content und Design über Analytics, Support und Engineering bis hin zu Compliance und Produktivität – und die Liste wächst stetig."
     },
     "6": {
-      "question": "Wie oft wird die Liste der KI-Tools im Toolsify AI Verzeichnis aktualisiert?",
-      "answer": "Die Liste der KI-Tools wird täglich aktualisiert."
+      "question": "Wie häufig aktualisiert ihr das Verzeichnis?",
+      "answer": "Wir veröffentlichen täglich neue KI-Tools und aktualisieren bestehende Einträge, sobald sich Preise oder Features ändern."
     },
     "7": {
-      "question": "Unterstützt es hier GPT-4o oder Sora AI?",
-      "answer": "Sie können das GPT-4o oder Sora AI Tool hier bekommen. Hier ist die Einführung von GPT-4o und Sora Video, und Sie können die Website der Tools besuchen."
+      "question": "Findet man auch GPT-4o, Sora & Co.?",
+      "answer": "Ja. Wir führen eigene Bereiche für GPT-4o, Sora und weitere Flaggschiff-Modelle inklusive Demos, Pricing und Dokumentation."
     },
     "8": {
-      "question": "Fehlerbehebung",
-      "answer": "Wenn die Inhalte nicht angezeigt werden, versuchen Sie es mit einem anderen Browser oder löschen Sie Ihren Cache. Wenn die Probleme weiterhin bestehen, kontaktieren Sie uns unter contact@6677.ai."
+      "question": "Was tun bei Ladeproblemen?",
+      "answer": "Aktualisieren Sie die Seite, löschen Sie den Cache oder deaktivieren Sie Browser-Erweiterungen. Besteht das Problem weiterhin, schreiben Sie uns mit Screenshot an contact@6677.ai."
     },
     "9": {
-      "question": "Wie wird der Inhalt des Toolsify AI Verzeichnisses generiert?",
-      "answer": "Der Inhalt der Beschreibung der KI-Tools wird von GPT-4o von OpenAI generiert."
+      "question": "Wer verfasst die Beschreibungen?",
+      "answer": "Die Texte entstehen mit GPT-4o als Entwurf und werden anschließend vom Toolsify-AI-Redaktionsteam geprüft und überarbeitet."
     },
     "10": {
-      "question": "Was sind die Nutzungsrechte der KI-Tools?",
-      "answer": "Das Toolsify AI Tools Verzeichnis ist nur das Verzeichnis für KI-Tools. Die Nutzungsrechte der KI-Tools basieren auf der Website der KI-Tools."
+      "question": "Vergibt Toolsify AI Nutzungsrechte?",
+      "answer": "Nein. Wir stellen lediglich das Verzeichnis bereit. Rechte und Lizenzen liegen beim jeweiligen Anbieter – bitte prüfen Sie die offiziellen Seiten."
     }
   },
   "FooterNavigation": {
     "privacyPolicy": {
-      "1-h1": "Datenschutzrichtlinie für das Toolsify AI Tools Verzeichnis",
-      "1-p": "Diese Seite wird verwendet, um Besucher über meine Richtlinien bezüglich der Sammlung, Verwendung und Offenlegung persönlicher Informationen zu informieren, wenn jemand beschließt, meinen Dienst zu nutzen. Wenn Sie sich entscheiden, meinen Dienst zu nutzen, stimmen Sie der Sammlung und Nutzung von Informationen in Bezug auf diese Richtlinie zu. Die persönlichen Informationen, die ich sammle, werden zur Bereitstellung und Verbesserung des Dienstes verwendet. Ich werde Ihre Informationen außer wie in dieser Datenschutzrichtlinie beschrieben, nicht verwenden oder teilen. Die in dieser Datenschutzrichtlinie verwendeten Begriffe haben die gleichen Bedeutungen wie in unseren Nutzungsbedingungen.",
+      "1-title": "Datenschutzrichtlinie",
+      "1-subtitle": "Toolsify AI Verzeichnis",
+      "1-p1": "Diese Seite wird verwendet, um Besucher über unsere Richtlinien bezüglich der Sammlung, Verwendung und Offenlegung persönlicher Informationen zu informieren, wenn jemand beschließt, unseren Dienst zu nutzen.",
+      "1-p2": "Wenn Sie sich entscheiden, unseren Dienst zu nutzen, stimmen Sie der Sammlung und Nutzung von Informationen in Bezug auf diese Richtlinie zu. Die persönlichen Informationen, die wir sammeln, werden zur Bereitstellung und Verbesserung des Dienstes verwendet. Wir werden Ihre Informationen außer wie in dieser Datenschutzrichtlinie beschrieben, nicht verwenden oder teilen.",
+      "1-p3": "Die in dieser Datenschutzrichtlinie verwendeten Begriffe haben die gleichen Bedeutungen wie in unseren Nutzungsbedingungen.",
       "2-h2": "1. Sammlung und Nutzung von Informationen",
       "2-p": "Für eine bessere Erfahrung, während der Nutzung unseres Dienstes, kann ich Sie bitten, uns bestimmte personenbezogene Daten zur Verfügung zu stellen. Die Informationen, die ich anfordere, werden auf Ihrem Gerät gespeichert und in keiner Weise von mir gesammelt. Die App verwendet Drittanbieterdienste, die Informationen sammeln, die zu Ihrer Identifizierung verwendet werden.",
       "3-h2": "2. Protokolldaten",
@@ -96,8 +99,10 @@
       "8-p": "Ich kann unsere Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Daher wird Ihnen geraten, diese Seite regelmäßig auf Änderungen zu überprüfen. Ich werde Sie über alle Änderungen informieren, indem ich die neue Datenschutzrichtlinie auf dieser Seite veröffentliche. Diese Änderungen sind sofort nach ihrer Veröffentlichung auf dieser Seite wirksam."
     },
     "termsConditions": {
-      "1-h1": "Nutzungsbedingungen für das Toolsify AI Verzeichnis",
-      "1-p": "Willkommen beim Toolsify AI Verzeichnis! Unsere Website, die unter https://Toolsify.ai (\"Website\") zu finden ist, ist darauf ausgelegt, Ihnen die Möglichkeit zu bieten, benutzerdefinierte Bilder zu erstellen. Durch den Zugriff auf oder die Nutzung unserer Website stimmen Sie zu, an diese Nutzungsbedingungen (\"Bedingungen\") gebunden zu sein. Wenn Sie mit einem Teil der Bedingungen nicht einverstanden sind, ist es Ihnen untersagt, die Website zu nutzen.",
+      "1-title": "Nutzungsbedingungen",
+      "1-subtitle": "Toolsify AI Verzeichnis",
+      "1-p1": "Willkommen beim Toolsify AI Verzeichnis! Unsere Website, die unter https://Toolsify.ai (\"Website\") zu finden ist, ist darauf ausgelegt, Ihnen die Möglichkeit zu bieten, AI-Tools zu entdecken und zu erkunden.",
+      "1-p2": "Durch den Zugriff auf oder die Nutzung unserer Website stimmen Sie zu, an diese Nutzungsbedingungen (\"Bedingungen\") gebunden zu sein. Wenn Sie mit einem Teil der Bedingungen nicht einverstanden sind, ist es Ihnen untersagt, die Website zu nutzen.",
       "2-h2": "1. Nutzungslizenz",
       "2-p": "Sie erhalten eine begrenzte, nicht exklusive, nicht übertragbare Lizenz zur Nutzung der Website und ihrer Dienste für persönliche, nicht kommerzielle Zwecke. Diese Lizenz umfasst keine Rechte, den Inhalt der Website zu kopieren, zu ändern oder zu verteilen oder ihn für kommerzielle Zwecke ohne unsere vorherige schriftliche Zustimmung zu nutzen.",
       "3-h2": "2. Eigentum",
@@ -119,29 +124,29 @@
     "goHome": "Zur Startseite"
   },
   "Home": {
-    "title": "Toolsify AI - Entdecken Sie die besten AI-Tools 2025",
-    "subTitle": "Holen Sie sich Ihre bevorzugten AI-Tools im Toolsify AI Tools Directory. AI-Toollisten werden täglich von GPT-4o aktualisiert. Es ist kostenlos, hier einzureichen, um Ihr SEO jetzt zu verbessern.",
-    "heroTitle1": "Entdecken Sie AI",
+    "title": "Hochwirksame KI-Tools entdecken",
+    "subTitle": "Durchstöbern Sie über 1.000 kuratierte KI-Produkte, vergleichen Sie Preise und Funktionen und reichen Sie Ihr eigenes Tool kostenlos ein.",
+    "heroTitle1": "Entdecke KI",
     "heroTitle2": "Exzellenz",
-    "heroSubtitle": "Ihr Tor zu den leistungsstärksten KI-Tools und Technologien der Welt",
-    "heroFeature1Title": "Kuratierte Sammlung",
-    "heroFeature1Desc": "Handverlesene KI-Tools, geprüft auf Qualität und Zuverlässigkeit",
-    "heroFeature2Title": "Intelligente Kategorien",
-    "heroFeature2Desc": "Nach Funktion und Branche organisiert für einfache Entdeckung",
-    "heroFeature3Title": "Immer Aktuell",
-    "heroFeature3Desc": "Regelmäßig neue Inhalte und Tools hinzugefügt",
-    "heroExploreBtn": "Werkzeuge Erkunden",
-    "heroLearnMoreBtn": "Mehr Erfahren",
-    "ai-navigate": "AI-Tool-Liste",
-    "exploreMore": "Weitere AI-Tools erhalten",
-    "checkDetail": "Details anzeigen",
+    "heroSubtitle": "Ihr Zugang zu den neuesten Automatisierungs-, Kreativ- und Produktivitätstools mit KI",
+    "heroFeature1Title": "Kuratierte Auswahl",
+    "heroFeature1Desc": "Jeder Eintrag wird von Team und Community geprüft, um Qualität und Aktualität sicherzustellen",
+    "heroFeature2Title": "Intelligente Filter",
+    "heroFeature2Desc": "Filtern Sie nach Branche, Workflow, Preismodell und Integrationen",
+    "heroFeature3Title": "Tägliche Updates",
+    "heroFeature3Desc": "Täglich neue KI-Releases, Changelogs und Trendanalysen",
+    "heroExploreBtn": "KI-Tools entdecken",
+    "heroLearnMoreBtn": "Funktionsweise",
+    "ai-navigate": "KI-Tool-Liste",
+    "exploreMore": "Weitere KI-Tools anzeigen",
+    "checkDetail": "Details ansehen",
     "search": "Suche",
-    "searchSuggestions": "Versuchen Sie: \"ChatGPT\", \"Bildgenerierung\", \"Schreibassistent\"",
-    "result": "Suchergebnis",
-    "empty": "Keine Daten verfügbar",
+    "searchSuggestions": "Versuchen Sie: \"ChatGPT-Alternative\", \"KI-Design-Assistent\", \"Workflow-Automatisierung\"",
+    "result": "Suchergebnisse",
+    "empty": "Keine Treffer. Probieren Sie einen anderen Suchbegriff.",
     "featuredBlog": "Ausgewählte Artikel",
-    "featuredBlogSub": "Neueste Einblicke und Anleitungen zu KI-Tools",
-    "viewAllBlog": "Alle Artikel anzeigen",
+    "featuredBlogSub": "Strategien, Vergleiche und Fallstudien zum Arbeiten mit KI",
+    "viewAllBlog": "Alle Artikel ansehen",
     "readMore": "Weiterlesen"
   },
   "Blog": {
@@ -155,20 +160,20 @@
     "empty": "Keine Daten verfügbar"
   },
   "Submit": {
-    "title": "Reichen Sie Ihr KI-Tool ein",
-    "subTitle": "Reichen Sie Ihr KI-Tool ein und erhalten Sie Traffic vom Toolsify AI Verzeichnis",
-    "website": "Webseitenname",
-    "url": "Webseiten-URL",
-    "submit": "Einreichen",
+    "title": "Ihr KI-Tool einreichen",
+    "subTitle": "Platzieren Sie Ihr KI-Produkt im Verzeichnis und gewinnen Sie Backlinks, Traffic sowie erste Beta-Nutzer.",
+    "website": "Produktname",
+    "url": "Produkt-URL",
+    "submit": "Tool einreichen",
     "add": "Hinzufügen",
-    "text": "zu Ihrer Website-Startseite, und dann können Sie Ihre Website erfolgreich kostenlos einreichen!",
+    "text": "Fügen Sie das Toolsify-AI-Badge oder einen Link auf Ihrer Startseite ein, um die Freigabe zu beschleunigen.",
     "networkError": "Netzwerkfehler",
-    "success": "Erfolg"
+    "success": "Einreichung erhalten"
   },
   "Startup": {
-    "title": "Starten Sie Ihren Startup-Launch",
-    "subTitle": "Die ultimative Liste von Websites, um Ihr Startup online zu starten und zu fördern. Für die Aufnahme in die Liste oder zur Unterstützung bei der Einreichung Ihres Produkts für die kostenlose Liste, senden Sie uns bitte eine E-Mail: contact@Toolsify.ai.",
-    "updateTime": "Kuratierte und täglich aktualisierte Liste. Zuletzt aktualisiert:",
+    "title": "Ihr KI-Startup launchen",
+    "subTitle": "Kuratierte Launch-Plattformen, Review-Portale und Maker-Communities für mehr Sichtbarkeit, Backlinks und frühe Kunden.",
+    "updateTime": "Kuratierte Liste, täglich aktualisiert. Zuletzt aktualisiert:",
     "table": {
       "da": "DA",
       "website": "Website",
@@ -182,32 +187,44 @@
     }
   },
   "Explore": {
-    "title": "Entdecken Sie die besten KI-Tools 2025",
-    "subTitle": "Holen Sie sich Ihre Lieblings-KI-Tools im Toolsify AI Tools Verzeichnis. Die Liste der KI-Tools wird täglich von GPT-4o aktualisiert."
+    "title": "KI-Tools nach Kategorie erkunden",
+    "subTitle": "Finden Sie KI-Software für Marketing, Design, Analytics, Support, Engineering, Finanzen und mehr."
   },
   "Metadata": {
     "home": {
-      "title": "Holen Sie sich Ihre besten KI-Tools | Toolsify AI Verzeichnis",
-      "description": "Das Toolsify AI Verzeichnis ist ein Werkzeug, das ein kostenloses Verzeichnis von KI-Tools bietet. Holen Sie sich Ihre Lieblings-KI-Tools mit dem Toolsify AI Verzeichnis, das darauf abzielt, alle KI-Tools zu sammeln und das Beste für die Benutzer bereitzustellen.",
-      "keywords": "Toolsify AI Verzeichnis"
+      "title": "Entdecken Sie führende KI-Tools und Automatisierungen",
+      "description": "Entdecken Sie über 1.000 kuratierte KI-Tools, vergleichen Sie Preise und Funktionen und optimieren Sie Ihre Workflows mit dem Open-Source-Verzeichnis von Toolsify AI.",
+      "keywords": "KI-Tools Verzeichnis, AI tools directory, beste KI-Software, KI-Produktivität, KI-Automatisierung, KI-Marketing-Tools, KI-Design-Apps, Toolsify AI, KI-Startup-Ressourcen, KI SaaS Tools, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "ai": {
       "titleSubfix": "Toolsify AI Verzeichnis"
     },
     "explore": {
-      "title": "Entdecken Sie die besten KI-Tools 2025 | Toolsify AI Verzeichnis",
+      "title": "KI-Tools nach Kategorien entdecken | Toolsify AI",
       "titlePrefix": "Erkunden Sie das Toolsify AI Verzeichnis",
       "titleSuffix": "Toolsify AI Verzeichnis",
-      "description": "Das Toolsify AI Verzeichnis ist ein Werkzeug, das ein kostenloses Verzeichnis von KI-Tools bietet. Holen Sie sich Ihre Lieblings-KI-Tools mit dem Toolsify AI Verzeichnis, das darauf abzielt, alle KI-Tools zu sammeln und das Beste für die Benutzer bereitzustellen.",
-      "keywords": "Toolsify AI Verzeichnis"
+      "description": "Filtern Sie KI-Tools nach Anwendungsfall, Preismodell und Branche und finden Sie die Lösungen, die perfekt zu Ihrem Workflow passen.",
+      "keywords": "KI-Tools erkunden, KI-Kategorien, KI-Filter, spezialisierte KI-Apps, Trending KI-Software, KI-Vergleich, KI-Automatisierungstools, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "submit": {
-      "title": "Reichen Sie Ihr KI-Tool ein und erhalten Sie Traffic | Toolsify AI Verzeichnis"
+      "title": "Ihr KI-Tool einreichen | Toolsify AI Verzeichnis",
+      "description": "Platzieren Sie Ihr KI-Produkt im Toolsify AI Verzeichnis, damit Entwickler, Gründer und Marketer es bei der Suche nach Automatisierungslösungen sofort finden.",
+      "keywords": "KI-Tool einreichen, KI-Produkt listen, KI-Verzeichnis Eintrag, KI-Promotion, Toolsify AI Einreichung, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "startup": {
+      "title": "Launch-Plattformen für KI-Startups | Toolsify AI",
+      "description": "Kuratiertes Verzeichnis von Launch-Websites, Review-Portalen und Maker-Communities, um Ihrem KI-Startup Backlinks, Traffic und erste Kunden zu verschaffen.",
+      "keywords": "KI-Startup Launch, Startup einreichen, KI-Startup promoten, Startup-Verzeichnisse, Launch-Plattformen, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "search": {
+      "title": "KI-Tools zu „{query}“ | Toolsify AI",
+      "description": "Entdecken Sie im Toolsify AI Verzeichnis KI-Software rund um „{query}“, vergleichen Sie Funktionen, Preise und typische Einsatzszenarien.",
+      "keywords": "{query}, KI-Tools, KI-Software, KI-Verzeichnis, Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "blog": {
-      "title": "Blog - Toolsify AI",
-      "description": "Neueste Artikel über KI-Tools, Vergleiche und Brancheneinblicke",
-      "keywords": "KI-Tools, Künstliche Intelligenz, KI-Blog, Toolsify AI, KI-Tools-Verzeichnis, KI-Artikel, KI-Leitfäden, KI-Einblicke"
+      "title": "Toolsify AI Blog | Insights und Guides",
+      "description": "Tiefgehende Analysen zu KI-Tools, Produktvergleichen und praxisnahen Leitfäden für den Einsatz künstlicher Intelligenz.",
+      "keywords": "KI-Insights, KI-Tool-Reviews, KI-Vergleiche, Generative KI-Trends, Toolsify AI Blog, KI-Produkt-Guides, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     }
   }
 }

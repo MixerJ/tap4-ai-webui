@@ -3,78 +3,81 @@
     "loading": "加載中..."
   },
   "Navigation": {
-    "title": "Toolsify AI工具目錄",
-    "discover": "發現AI",
-    "blog": "博客",
+    "title": "Toolsify AI 工具目錄",
+    "discover": "探索AI",
+    "blog": "部落格",
     "submit": "提交",
-    "newtools": "新工具",
-    "startup": "創業公司",
-    "menu": "菜單",
-    "search": "搜索",
+    "newtools": "最新",
+    "startup": "創業",
+    "menu": "選單",
+    "search": "搜尋",
     "buyMeCoffee": "請我喝咖啡"
   },
   "Footer": {
-    "title": "Toolsify AI工具目錄",
-    "subTitle": "發現2025年4月最佳AI工具，盡在Toolsify AI工具目錄！",
-    "support": "支持",
-    "info": "信息",
+    "title": "Toolsify AI 目錄",
+    "subTitle": "追蹤成長最快的 AI 軟體，了解團隊如何導入自動化，並提交你的產品獲得曝光。",
+    "support": "支援服務",
+    "info": "公司資訊",
     "tap4": "Tap4 AI",
-    "tattoo": "AI紋身生成器",
+    "tattoo": "AI 紋身產生器",
     "privacy": "隱私政策",
-    "termsConditions": "條款和條件",
-    "contactUs": "聯繫我們"
+    "termsConditions": "條款與條件",
+    "contactUs": "聯絡我們"
   },
   "Faq": {
     "title": "常見問題",
-    "subTitle": "查找關於AI工具目錄的常見問題答案",
+    "subTitle": "了解如何在 Toolsify AI 上提交、探索與推廣 AI 工具",
     "1": {
-      "question": "Toolsify AI工具目錄是什麼？",
-      "answer": "Toolsify AI工具目錄 - Toolsify.ai正在建立一個AI工具目錄，幫助您獲取您喜愛的AI工具。您可以在這裡找到AI寫作工具、AI營銷工具、AI改寫工具、AI SEO工具、AI學習工具、AI生成工具、AI研究工具、AI藝術工具、AI音樂工具、AI視頻工具、AI編碼工具、AI照片工具等。"
+      "question": "Toolsify AI 工具目錄是什麼？",
+      "answer": "Toolsify AI 是一個開源的 AI 工具目錄，收錄內容創作、行銷、研發、設計、影音等多元場景的優質 AI 軟體，協助你迅速找到合適的解決方案。"
     },
     "2": {
-      "question": "如何在Toolsify AI工具目錄中找到您的AI工具？",
-      "answer-1": "1. 打開Toolsify.ai。",
-      "answer-2": "2. 在Toolsify AI工具目錄中探索AI工具。",
-      "answer-3": "3. 點擊您需要的AI工具以獲取詳情並訪問它。"
+      "question": "如何在 Toolsify AI 上找到想要的工具？",
+      "answer-1": "1. 造訪 Toolsify.ai，輸入關鍵字或選擇分類。",
+      "answer-2": "2. 使用價格、產業、情境等條件快速篩選。",
+      "answer-3": "3. 點擊條目檢視功能重點、截圖與官方連結。"
     },
     "3": {
-      "question": "Toolsify AI工具目錄的主要功能是什麼？",
-      "answer-1": "1. 免費的AI工具目錄：在這裡免費找到您喜愛的AI工具。",
-      "answer-2": "2. 創業公司列表：為AI工具開發者提供免費的創業公司列表。"
+      "question": "Toolsify AI 有哪些優勢？",
+      "answer-1": "1. 免費且精選：所有條目皆經社群與編輯審核。",
+      "answer-2": "2. 增長資源：提供創業曝光清單、反鏈技巧與市場洞察。"
     },
     "4": {
-      "question": "提交AI工具到Toolsify AI工具目錄是免費的嗎？",
-      "answer": "是的，目前是免費的。但您應該分享Toolsify AI工具目錄的反向連結！"
+      "question": "提交 AI 工具需要付費嗎？",
+      "answer": "提交完全免費，我們通常會在 48 小時內完成審核。若於官網放上 Toolsify.ai 反向連結，可加快通過速度。"
     },
     "5": {
-      "question": "Toolsify AI工具目錄支持哪些類別的AI工具？",
-      "answer": "我們將來會支持所有類型的AI工具。請稍候幾天。"
+      "question": "平台支援哪些 AI 類別？",
+      "answer": "目前已涵蓋 50+ 類別，包括內容、設計、分析、客服、工程、資料、合規、效率等，並會持續擴充。"
     },
     "6": {
-      "question": "Toolsify AI目錄的AI工具更新頻率是多少？",
-      "answer": "AI工具列表將每天更新。"
+      "question": "目錄多久更新一次？",
+      "answer": "我們每日審核新工具，並在定價或功能調整後立即更新既有條目。"
     },
     "7": {
-      "question": "這裡支持GPT-4o或Sora AI嗎？",
-      "answer": "您可以在這裡找到GPT-4o或Sora AI工具。這裡有GPT-4o和Sora的介紹視頻，您可以訪問這些工具的網站。"
+      "question": "能找到 GPT-4o、Sora 等旗艦模型嗎？",
+      "answer": "當然。我們提供 GPT-4o、Sora 等旗艦產品的專區，涵蓋示範、定價方案與開發文件。"
     },
     "8": {
-      "question": "故障排除",
-      "answer": "如果內容未顯示，請嘗試使用其他瀏覽器，清除緩存。如果問題仍然存在，請通過contact@6677.ai聯繫我們。"
+      "question": "頁面載入異常該怎麼辦？",
+      "answer": "請嘗試重新整理、清除瀏覽器快取或停用外掛。若仍有問題，歡迎將截圖寄至 contact@6677.ai，我們會協助處理。"
     },
     "9": {
-      "question": "Toolsify AI目錄的內容是如何生成的？",
-      "answer": "AI工具描述的內容由OpenAI的GPT-4o生成。"
+      "question": "條目內容由誰撰寫？",
+      "answer": "敘述由 GPT-4o 生成初稿，再由 Toolsify AI 編輯團隊校稿潤飾，確保資訊準確易讀。"
     },
     "10": {
-      "question": "AI工具的使用權限是什麼？",
-      "answer": "Toolsify AI工具目錄只是AI工具的目錄。AI工具的使用權限基於AI工具的網站。"
+      "question": "Toolsify AI 是否提供工具授權？",
+      "answer": "我們僅提供目錄展示，實際授權與使用條款須以各工具官方網站為準。"
     }
   },
   "FooterNavigation": {
     "privacyPolicy": {
-      "1-h1": "Toolsify AI工具目錄隱私政策",
-      "1-p": "本頁用於告知訪客我的服務收集、使用和披露個人信息的政策。如果您決定使用我的服務，則表示您同意根據本政策收集和使用信息。我收集的個人信息用於提供和改進服務。除非在本隱私政策中描述的情況下，我不會使用或與任何人分享您的信息。本隱私政策中使用的術語與我們的條款和條件中的術語具有相同的含義。",
+      "1-title": "隱私政策",
+      "1-subtitle": "Toolsify AI 目錄",
+      "1-p1": "本頁用於告知訪客關於收集、使用和披露個人信息的政策，如果任何人決定使用我們的服務。",
+      "1-p2": "如果您決定使用我們的服務，則表示您同意根據本政策收集和使用信息。我們收集的個人信息用於提供和改進服務。除非在本隱私政策中描述的情況下，我們不會使用或與任何人分享您的信息。",
+      "1-p3": "本隱私政策中使用的術語與我們的條款和條件中的術語具有相同的含義。",
       "2-h2": "1. 信息收集和使用",
       "2-p": "為了更好的體驗，使用我們的服務時，我可能會要求您提供某些個人身份信息。我請求的信息將保留在您的設備上，並不會以任何方式被我收集。該應用程序使用的第三方服務可能會收集用於識別您的信息。",
       "3-h2": "2. 日誌數據",
@@ -96,8 +99,10 @@
       "8-p": "我可能會不時更新我們的隱私政策。因此，建議您定期查看此頁面的任何更改。我將通過在此頁面上發布新的隱私政策來通知您任何更改。這些更改在此頁面上發布後立即生效。"
     },
     "termsConditions": {
-      "1-h1": "Toolsify AI目錄服務條款",
-      "1-p": "歡迎來到Toolsify AI目錄！我們的網站位於https://Toolsify.ai（\"網站\"），致力於為您提供創建自定義圖像的能力。通過訪問或使用我們的網站，您同意受這些服務條款（\"條款\"）的約束。如果您不同意任何條款，則禁止使用該網站。",
+      "1-title": "服務條款",
+      "1-subtitle": "Toolsify AI 目錄",
+      "1-p1": "歡迎來到 Toolsify AI 目錄！我們的網站位於 https://toolsify.ai（\"網站\"），致力於為您提供發現和探索 AI 工具的能力。",
+      "1-p2": "通過訪問或使用我們的網站，您同意受這些服務條款（\"條款\"）的約束。如果您不同意任何條款，則禁止使用該網站。",
       "2-h2": "1. 使用許可",
       "2-p": "您被授予有限的、非排他性的、不可轉讓的許可，以個人、非商業目的使用本網站及其服務。未經我們事先書面同意，本許可不包括任何複製、修改或分發本網站內容或將其用於商業目的的權利。",
       "3-h2": "2. 所有權",
@@ -119,29 +124,29 @@
     "goHome": "回到首頁"
   },
   "Home": {
-    "title": "Toolsify AI - 探索最佳AI工具 2025",
-    "subTitle": "在Toolsify AI工具目錄中獲取您喜歡的AI工具。AI工具列表由GPT-4o每天更新。現在免費提交以增強您的SEO。",
-    "heroTitle1": "探索AI",
-    "heroTitle2": "卓越體驗",
-    "heroSubtitle": "您通往世界最強大AI工具和技術的門戶",
-    "heroFeature1Title": "精選合集",
-    "heroFeature1Desc": "精心挑選並驗證質量和可靠性的AI工具",
-    "heroFeature2Title": "智能分類",
-    "heroFeature2Desc": "按功能和行業組織，便於發現",
-    "heroFeature3Title": "持續更新",
-    "heroFeature3Desc": "定期添加新鮮內容和新工具",
-    "heroExploreBtn": "探索工具",
-    "heroLearnMoreBtn": "了解更多",
-    "ai-navigate": "AI工具列表",
-    "exploreMore": "獲取更多AI工具",
+    "title": "發現高影響力的 AI 工具",
+    "subTitle": "瀏覽超過 1,000 款經過審核的 AI 產品，比較價格與功能，並免費提交你的工具取得曝光。",
+    "heroTitle1": "Discover AI",
+    "heroTitle2": "Excellence",
+    "heroSubtitle": "為自動化、創作與效率場景帶來最新的 AI 解決方案",
+    "heroFeature1Title": "精選集合",
+    "heroFeature1Desc": "每個條目皆由團隊與社群審核，確保品質與活躍度",
+    "heroFeature2Title": "智慧分類",
+    "heroFeature2Desc": "依產業、工作流、定價模式與整合支援快速篩選",
+    "heroFeature3Title": "每日更新",
+    "heroFeature3Desc": "每日新增 AI 上架、版本更新與熱門趨勢",
+    "heroExploreBtn": "探索 AI 工具",
+    "heroLearnMoreBtn": "了解運作方式",
+    "ai-navigate": "AI 工具列表",
+    "exploreMore": "查看更多 AI 工具",
     "checkDetail": "查看詳情",
-    "search": "搜索",
-    "searchSuggestions": "試試：\"ChatGPT\"、\"圖像生成\"、\"寫作助手\"",
-    "result": "搜索結果",
-    "empty": "無數據",
+    "search": "搜尋",
+    "searchSuggestions": "試試：\"ChatGPT 替代\"、\"AI 設計助手\"、\"工作流自動化\"",
+    "result": "搜尋結果",
+    "empty": "沒有找到符合的結果，請改用其他關鍵字。",
     "featuredBlog": "精選文章",
-    "featuredBlogSub": "關於AI工具的最新見解和指南",
-    "viewAllBlog": "查看所有文章",
+    "featuredBlogSub": "聚焦 AI 策略、產品對比與實戰案例的深度內容",
+    "viewAllBlog": "查看全部文章",
     "readMore": "閱讀更多"
   },
   "Blog": {
@@ -155,20 +160,20 @@
     "empty": "無數據"
   },
   "Submit": {
-    "title": "提交您的AI工具",
-    "subTitle": "提交您的AI工具並從Toolsify AI目錄獲取流量",
-    "website": "網站名稱",
-    "url": "網站URL",
-    "submit": "提交",
-    "add": "添加",
-    "text": "到您的網站首頁，然後您可以免費成功提交您的網站！",
+    "title": "提交你的 AI 工具",
+    "subTitle": "將 AI 產品收錄於目錄，獲得外鏈、流量與早期使用者。",
+    "website": "產品名稱",
+    "url": "產品網址",
+    "submit": "提交工具",
+    "add": "新增",
+    "text": "在官網加入 Toolsify AI 徽章或連結，可加速審核。",
     "networkError": "網路錯誤",
-    "success": "成功"
+    "success": "提交成功"
   },
   "Startup": {
-    "title": "啟動您的創業公司",
-    "subTitle": "啟動和推廣您的創業公司網站的終極列表。要添加到列表或幫助提交您的產品到免費列表，請發送電子郵件至：contact@Toolsify.ai。",
-    "updateTime": "每天策劃和更新。上次更新：",
+    "title": "發布你的 AI 創業項目",
+    "subTitle": "精選 Launch 平台、評測網站與創客社群，協助 AI 產品取得外鏈、流量與首批用戶。",
+    "updateTime": "精選列表每日更新。上次刷新：",
     "table": {
       "da": "DA",
       "website": "網站",
@@ -182,32 +187,44 @@
     }
   },
   "Explore": {
-    "title": "發現2025年最佳AI工具",
-    "subTitle": "在Toolsify AI工具目錄中找到您喜愛的AI工具。AI工具列表每天由GPT-4o更新。"
+    "title": "按分類探索 AI 工具",
+    "subTitle": "涵蓋行銷、設計、分析、客服、工程、財務等多元情境的 AI 軟體。"
   },
   "Metadata": {
     "home": {
-      "title": "獲取您的最佳AI工具 | Toolsify AI目錄",
-      "description": "Toolsify AI目錄是一款提供免費AI工具目錄的工具。通過Toolsify AI目錄獲取您喜愛的AI工具，Toolsify AI目錄旨在收集所有AI工具並為用戶提供最佳服務。",
-      "keywords": "Toolsify AI目錄"
+      "title": "探索頂尖AI工具與自動化應用",
+      "description": "瀏覽超過1,000款精選AI工具，比較價格與功能，透過開源的Toolsify AI目錄打造更智慧的工作流程。",
+      "keywords": "AI工具目錄, AI工具搜尋, 最佳AI軟體, AI效率工具, AI自動化, AI行銷工具, AI設計應用, Toolsify AI, AI創業資源, AI SaaS工具, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "ai": {
       "titleSubfix": "Toolsify AI目錄"
     },
     "explore": {
-      "title": "2025年最佳AI工具探索 | Toolsify AI目錄",
+      "title": "按情境探索精選AI工具 | Toolsify AI",
       "titlePrefix": "Toolsify AI目錄探索",
       "titleSuffix": "Toolsify AI目錄",
-      "description": "Toolsify AI目錄是一款提供免費AI工具目錄的工具。通過Toolsify AI目錄獲取您喜愛的AI工具，Toolsify AI目錄旨在收集所有AI工具並為用戶提供最佳服務。",
-      "keywords": "Toolsify AI目錄"
+      "description": "依使用情境、定價模式與產業篩選AI工具，找出最符合您需求的熱門應用。",
+      "keywords": "探索AI工具, AI工具分類, AI篩選, 垂直AI應用, 熱門AI軟體, AI比較, AI自動化工具, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "submit": {
-      "title": "提交您的AI工具並獲取流量 | Toolsify AI目錄"
+      "title": "提交 AI 工具 | Toolsify AI 目錄",
+      "description": "將你的 AI 產品收錄於 Toolsify AI，讓開發者、創業者與行銷團隊在尋找自動化解決方案時第一時間找到你。",
+      "keywords": "提交AI工具, 上架AI產品, AI目錄收錄, AI推廣, Toolsify AI 提交, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "startup": {
+      "title": "AI 創業推廣資源 | Toolsify AI",
+      "description": "精選 Launch 平台、評測網站與創客社群，協助你的 AI 新創取得外鏈、流量與第一批用戶。",
+      "keywords": "AI 創業推廣, 提交新創, Startup 推廣, 外鏈平台, Launch 網站, toolsify, toolify ai directory, toolify.ai directory of AI tools"
+    },
+    "search": {
+      "title": "與「{query}」相關的 AI 工具 | Toolsify AI",
+      "description": "在 Toolsify AI 目錄中探索與「{query}」相關的 AI 軟體，比較功能亮點、價格方案與典型應用。",
+      "keywords": "{query}, AI 工具, AI 軟體, AI 應用, AI 目錄, Toolsify AI, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     },
     "blog": {
-      "title": "博客 - Toolsify AI",
-      "description": "關於AI工具、對比和行業洞察的最新文章",
-      "keywords": "AI工具, 人工智能, AI博客, Toolsify AI, AI工具目錄, AI文章, AI指南, AI洞察"
+      "title": "Toolsify AI 部落格｜洞察與指南",
+      "description": "深入解析AI工具、產品比較與建構人工智慧解決方案的實用指南。",
+      "keywords": "AI產業洞察, AI工具評測, AI比較, 生成式AI趨勢, Toolsify AI部落格, AI產品指南, toolsify, toolify ai directory, toolify.ai directory of AI tools"
     }
   }
 }

@@ -33,6 +33,10 @@ export default function Footer() {
 
   const SupportLinks = [
     {
+      title: 'Cubesolver AI',
+      href: 'https://cubesolver.ai/',
+    },
+    {
       title: 'Chat o1',
       href: 'https://chat4o.ai/',
     },
