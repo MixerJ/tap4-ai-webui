@@ -81,6 +81,7 @@ export async function POST(req: NextRequest) {
         category_name: tags && tags.length ? tags[0] : 'other',
         title,
         url,
+        collection_time: new Date(),
       });
 
       if (insertWebNavigationError) {
