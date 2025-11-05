@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { CONTACT_US_EMAIL } from '@/lib/env';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 function InfoLink({
   href,
@@ -94,11 +95,11 @@ export default function Footer() {
           </div>
 
           {/* 右侧：链接区域 */}
-          <div className='flex flex-col gap-8 sm:flex-row sm:gap-12 lg:gap-16'>
+          <div className='flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-12 lg:gap-16'>
             {/* 支持链接 */}
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col items-center gap-3 lg:items-start'>
               <h4 className='text-sm font-semibold text-white lg:text-base'>{t('support')}</h4>
-              <nav className='flex flex-col gap-2'>
+              <nav className='flex flex-col items-center gap-2 lg:items-start'>
                 {SupportLinks.map((item) => (
                   <a
                     href={item.href}
@@ -115,9 +116,9 @@ export default function Footer() {
             </div>
 
             {/* 信息和联系 */}
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col items-center gap-3 lg:items-start'>
               <h4 className='text-sm font-semibold text-white lg:text-base'>{t('info')}</h4>
-              <nav className='flex flex-col gap-2'>
+              <nav className='flex flex-col items-center gap-2 lg:items-start'>
                 {INFO_LIST.map((item) => (
                   <InfoLink key={item.href} href={item.href} title={item.title} />
                 ))}
@@ -131,6 +132,11 @@ export default function Footer() {
                 </a>
               </nav>
             </div>
+          </div>
+
+          {/* 移动端语言切换器 */}
+          <div className='flex justify-center border-t border-white/10 pt-6 lg:hidden'>
+            <LocaleSwitcher />
           </div>
         </div>
       </div>
