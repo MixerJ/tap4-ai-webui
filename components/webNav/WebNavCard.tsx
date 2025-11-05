@@ -15,7 +15,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
 
   return (
     <div
-      className='group relative flex h-[210px] touch-manipulation flex-col gap-3 rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-1 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98] lg:h-[343px]'
+      className='group relative flex min-h-[200px] touch-manipulation flex-col gap-2 rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-2 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98] sm:min-h-[220px] sm:gap-3 sm:p-2.5 lg:h-[343px] lg:gap-3 lg:p-1'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(true)}
@@ -33,7 +33,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
 
       {/* 图片区域 */}
       <Link href={`/ai/${name}`} title={title} className='group relative overflow-hidden rounded-xl'>
-        <div className='relative aspect-[310/174] w-full overflow-hidden rounded-xl'>
+        <div className='relative aspect-[310/174] w-full overflow-hidden rounded-lg sm:rounded-xl'>
           {!imageLoaded && (
             <div className='absolute inset-0 animate-shimmer bg-gradient-to-br from-indigo-500/20 to-purple-500/20' />
           )}
@@ -72,11 +72,11 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
       </Link>
 
       {/* 内容区域 */}
-      <div className='flex flex-1 flex-col justify-between px-[6px] py-2'>
-        <div className='space-y-2'>
-          <div className='flex items-start justify-between'>
-            <Link href={`/ai/${name}`} className='group/link flex-1'>
-              <h3 className='line-clamp-1 text-sm font-bold text-white transition-colors duration-200 group-hover/link:text-indigo-300 lg:text-base'>
+      <div className='flex flex-1 flex-col justify-between px-1 py-1.5 sm:px-1.5 sm:py-2 lg:px-[6px] lg:py-2'>
+        <div className='space-y-1.5 sm:space-y-2'>
+          <div className='flex items-start justify-between gap-2'>
+            <Link href={`/ai/${name}`} className='group/link min-w-0 flex-1'>
+              <h3 className='line-clamp-2 text-xs font-bold text-white transition-colors duration-200 group-hover/link:text-indigo-300 sm:line-clamp-1 sm:text-sm lg:text-base'>
                 {title}
               </h3>
             </Link>
@@ -85,26 +85,27 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
               title={title}
               target='_blank'
               rel='nofollow'
-              className='ml-2 flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-xl p-2 text-white/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 hover:text-white active:scale-90'
+              className='flex min-h-[36px] min-w-[36px] flex-shrink-0 touch-manipulation items-center justify-center rounded-lg p-1.5 text-white/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 hover:text-white active:scale-90 sm:min-h-[44px] sm:min-w-[44px] sm:rounded-xl sm:p-2'
             >
-              <SquareArrowOutUpRight className='size-4' />
+              <SquareArrowOutUpRight className='size-3.5 sm:size-4' />
               <span className='sr-only'>{title}</span>
             </a>
           </div>
 
-          <p className='line-clamp-3 text-xs text-white/60 transition-colors duration-200 group-hover:text-white/80 lg:line-clamp-4 lg:text-sm'>
+          <p className='line-clamp-2 text-[10px] leading-relaxed text-white/60 transition-colors duration-200 group-hover:text-white/80 sm:line-clamp-3 sm:text-xs lg:line-clamp-4 lg:text-sm'>
             {content}
           </p>
         </div>
 
         {/* 底部装饰 */}
-        <div className='mt-2 flex items-center justify-between'>
-          <div className='flex items-center gap-1 text-xs text-white/40'>
-            <TrendingUp className='size-3' />
-            <span>AI Tool</span>
+        <div className='mt-1.5 flex items-center justify-between sm:mt-2'>
+          <div className='flex items-center gap-1 text-[10px] text-white/40 sm:text-xs'>
+            <TrendingUp className='size-2.5 sm:size-3' />
+            <span className='hidden sm:inline'>AI Tool</span>
+            <span className='sm:hidden'>AI</span>
           </div>
           <div
-            className={`ml-2 h-1 flex-1 rounded-full bg-white/20 transition-all duration-300 ${
+            className={`ml-2 h-0.5 flex-1 rounded-full bg-white/20 transition-all duration-300 sm:h-1 ${
               isHovered ? 'bg-gradient-to-r from-indigo-500 to-purple-500' : ''
             }`}
           />
