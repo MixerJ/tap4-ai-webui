@@ -6,6 +6,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { RevalidateOneHour, SITE_NAME } from '@/lib/constants';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import Empty from '@/components/Empty';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
 
@@ -142,6 +143,11 @@ export default async function Page({ params }: { params: { locale: string; searc
             return null;
           })()}
         </section>
+
+        {/* 底部广告 - 在内容和 Footer 之间 */}
+        <div className='mx-auto w-full max-w-pc px-4'>
+          <ResponsiveAd adSlot='1279536074' className='mb-20 lg:mb-32' />
+        </div>
       </div>
       <ScrollToTop />
     </Suspense>

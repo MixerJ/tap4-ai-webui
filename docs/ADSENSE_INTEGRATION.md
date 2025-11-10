@@ -284,7 +284,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
           {/* 每 3 篇文章后插入广告 */}
           {(index + 1) % 3 === 0 && index !== posts.length - 1 && (
             <InFeedAd 
-              adSlot="1122334455" 
+              adSlot="5358381886" 
               adLayout="in-article"
             />
           )}

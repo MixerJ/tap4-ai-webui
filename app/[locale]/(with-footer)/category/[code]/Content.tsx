@@ -2,6 +2,7 @@
 import { WebNavigation } from '@/db/supabase/types';
 import { useTranslations } from 'next-intl';
 
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import Empty from '@/components/Empty';
 import ExploreBreadcrumb from '@/components/explore/ExploreBreadcrumb';
 import BasePagination from '@/components/page/BasePagination';
@@ -77,6 +78,11 @@ export default function Content({
             <Empty title={t('empty')} />
           </div>
         )}
+      </div>
+
+      {/* 底部广告 - 在内容和 Footer 之间 */}
+      <div className='mx-auto w-full max-w-pc px-4'>
+        <ResponsiveAd adSlot='4679725038' className='mb-20 lg:mb-32' />
       </div>
     </div>
   );
