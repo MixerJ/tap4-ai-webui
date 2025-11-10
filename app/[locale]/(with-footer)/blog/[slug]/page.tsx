@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 import { BLOG_POSTS } from '@/lib/blog';
 import { SITE_NAME } from '@/lib/constants';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import MarkdownProse from '@/components/MarkdownProse';
 
 export async function generateMetadata({
@@ -86,6 +87,12 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
     articleBody: content,
   };
 
+  // 将文章内容分成两部分
+  const contentParts = content.split('\n\n');
+  const midPoint = Math.floor(contentParts.length / 2);
+  const firstHalf = contentParts.slice(0, midPoint).join('\n\n');
+  const secondHalf = contentParts.slice(midPoint).join('\n\n');
+
   return (
     <>
       <script
@@ -152,7 +159,18 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
 
             {/* 文章内容 */}
             <div className='prose prose-lg prose-invert max-w-none'>
-              <MarkdownProse markdown={content} className='text-white/80' />
+              {/* <MarkdownProse markdown={content} className='text-white/80' /> */}
+              {/* 文章前半部分 */}
+              <MarkdownProse markdown={firstHalf} className='text-white/80' />
+
+              {/* 中间广告 */}
+              <ResponsiveAd adSlot='5246701249' />
+
+              {/* 文章后半部分 */}
+              <MarkdownProse markdown={secondHalf} className='text-white/80' />
+
+              {/* 文章结尾广告 */}
+              <ResponsiveAd adSlot='7961043238' className='mt-12' />
             </div>
 
             {/* 下载按钮 */}
