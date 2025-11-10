@@ -211,7 +211,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
 
             {/* 侧边栏 */}
             <aside className='hidden lg:sticky lg:top-24 lg:block lg:w-80 lg:flex-shrink-0'>
-              <SidebarAd adSlot='5544332211' />
+              <SidebarAd adSlot='2644588636' />
             </aside>
           </div>
 

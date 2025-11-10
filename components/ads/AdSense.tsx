@@ -8,6 +8,7 @@ interface AdSenseProps {
   adLayout?: string;
   fullWidthResponsive?: boolean;
   className?: string;
+  adLayoutKey?: string;
   style?: React.CSSProperties;
 }
 
@@ -15,6 +16,7 @@ export default function AdSense({
   adSlot,
   adFormat = 'auto',
   adLayout,
+  adLayoutKey,
   fullWidthResponsive = true,
   className = '',
   style = {},
@@ -46,15 +48,16 @@ export default function AdSense({
   }
 
   return (
-    <div className={`adsense-container ${className}`} style={style}>
+    <div className={`adsense-container w-full ${className}`} style={style}>
       <ins
         ref={adRef}
-        className='adsbygoogle'
-        style={{ display: 'block', ...style }}
+        className='adsbygoogle block w-full'
+        style={{ display: 'block', width: '100%', ...style }}
         data-ad-client={adsenseClientId}
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-ad-layout={adLayout}
+        data-ad-layout-key={adLayoutKey}
         data-full-width-responsive={fullWidthResponsive.toString()}
       />
     </div>
