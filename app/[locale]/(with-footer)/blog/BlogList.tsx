@@ -39,7 +39,7 @@ export default async function BlogList({ locale, pageNum }: BlogListProps) {
             />
             {/* 每 3 篇文章后插入广告 */}
             {index % 3 === 0 && index !== paginatedPosts.length - 1 && (
-              <InFeedAd adSlot='5246701249' adLayout='in-article' />
+              <InFeedAd adSlot='5246701249' adLayout='in-article' adLayoutKey='-fb+5w+4e-db+86' />
             )}
           </>
         ))}

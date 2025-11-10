@@ -6,7 +6,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { SITE_NAME } from '@/lib/constants';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
-import { Separator } from '@/components/ui/separator';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
+import SidebarAd from '@/components/ads/SidebarAd';
 import BaseImage from '@/components/image/BaseImage';
 import MarkdownProse from '@/components/MarkdownProse';
 
@@ -94,6 +95,14 @@ export default async function Page({
     sameAs: data.url ? [data.url] : undefined,
   };
 
+  // 将介绍内容分成两部分（如果内容足够长）
+  const detailContent = data?.detail || '';
+  const contentParts = detailContent.split('\n\n');
+  const midPoint = Math.floor(contentParts.length / 2);
+  const firstHalf = contentParts.slice(0, midPoint).join('\n\n');
+  const secondHalf = contentParts.slice(midPoint).join('\n\n');
+  const hasEnoughContent = contentParts.length > 4; // 如果内容段落超过4段，则分割
+
   return (
     <>
       <script
@@ -102,46 +111,111 @@ export default async function Page({
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
-      <div className='w-full'>
-        <div className='flex flex-col px-6 py-5 lg:h-[323px] lg:flex-row lg:justify-between lg:px-0 lg:py-10'>
-          <div className='flex flex-col items-center lg:items-start'>
-            <div className='space-y-1 text-balance lg:space-y-3'>
-              <h1 className='text-2xl lg:text-5xl'>{data.title}</h1>
-              <h2 className='text-xs lg:text-sm'>{data.content}</h2>
+      <div className='w-full space-y-8 lg:space-y-12'>
+        {/* Hero 卡片区域 */}
+        <div className='my-8 lg:my-16'>
+          <div className='relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-indigo-500/5 to-purple-500/5 p-6 shadow-lg shadow-indigo-500/10 backdrop-blur-sm sm:p-8 lg:p-12'>
+            {/* 光晕装饰 */}
+            <div className='pointer-events-none absolute -left-24 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-indigo-500/20 blur-3xl' />
+            <div className='pointer-events-none absolute bottom-0 right-[-60px] h-48 w-48 rounded-full bg-purple-500/20 blur-3xl' />
+
+            <div className='relative grid items-center gap-8 lg:grid-cols-5'>
+              {/* 文本区域 */}
+              <div className='flex flex-col items-center gap-4 text-center lg:col-span-3 lg:items-start lg:gap-6 lg:text-left'>
+                <div className='flex items-center gap-2 lg:mb-2'>
+                  <div className='h-px w-12 bg-gradient-to-r from-transparent via-indigo-400/60 to-indigo-400/60' />
+                  <div className='h-2 w-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400' />
+                  <div className='h-px w-12 bg-gradient-to-r from-indigo-400/60 via-indigo-400/60 to-transparent' />
+                </div>
+                <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl lg:text-6xl'>
+                  {data.title}
+                </h1>
+                <p className='max-w-3xl text-sm leading-relaxed text-white/80 lg:text-base'>{data.content}</p>
+                <div className='flex w-full flex-col items-center gap-3 sm:flex-row lg:justify-start'>
+                  <a
+                    href={data.url}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95 sm:w-auto'
+                  >
+                    {t('visitWebsite')}
+                    <CircleArrowRight className='size-4 transition-transform duration-300 group-hover:translate-x-1' />
+                  </a>
+                  {data.category_name && (
+                    <span className='inline-flex items-center rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-wide text-white/60 backdrop-blur-sm lg:text-sm'>
+                      {data.category_name}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* 图片区域 */}
+              <a
+                href={data.url}
+                target='_blank'
+                rel='noreferrer'
+                className='group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl shadow-indigo-500/10 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-indigo-500/20 lg:col-span-2'
+              >
+                <div className='relative aspect-[16/10] w-full'>
+                  <BaseImage
+                    title={data.title}
+                    alt={data.title}
+                    fill
+                    src={data.thumbnail_url || ''}
+                    className='object-cover transition-transform duration-500 group-hover:scale-105'
+                  />
+                </div>
+                <div className='absolute inset-0 z-10 flex items-center justify-center gap-2 rounded-2xl bg-black/0 text-lg font-medium text-white transition-all duration-300 group-hover:bg-black/50'>
+                  <CircleArrowRight className='size-5 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100' />
+                  <span className='translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100'>
+                    {t('visitWebsite')}
+                  </span>
+                </div>
+              </a>
             </div>
-            <a
-              href={data.url}
-              target='_blank'
-              rel='noreferrer'
-              className='flex-center mt-5 min-h-5 w-full gap-1 rounded-[8px] bg-white p-[10px] text-sm capitalize text-black hover:opacity-80 lg:mt-auto lg:w-[288px]'
-            >
-              {t('visitWebsite')} <CircleArrowRight className='size-[14px]' />
-            </a>
           </div>
-          <a
-            href={data.url}
-            target='_blank'
-            rel='noreferrer'
-            className='flex-center group relative h-[171px] w-full flex-shrink-0 lg:h-[234px] lg:w-[466px]'
-          >
-            <BaseImage
-              title={data.title}
-              alt={data.title}
-              // width={466}
-              // height={243}
-              fill
-              src={data.thumbnail_url || ''}
-              className='absolute mt-3 aspect-[466/234] w-full rounded-[16px] border border-[#424242] bg-[#424242] bg-cover lg:mt-0'
-            />
-            <div className='absolute inset-0 z-10 hidden items-center justify-center gap-1 rounded-[16px] bg-black bg-opacity-50 text-2xl text-white transition-all duration-200 group-hover:flex'>
-              {t('visitWebsite')} <CircleArrowRight className='size-5' />
-            </div>
-          </a>
         </div>
-        <Separator className='bg-[#010101]' />
-        <div className='mb-5 px-3 lg:px-0'>
-          <h2 className='my-5 text-2xl text-white/40 lg:my-10'>{t('introduction')}</h2>
-          <MarkdownProse markdown={data?.detail || ''} />
+
+        {/* 主内容区域和侧边栏 */}
+        <div className='flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-8'>
+          {/* 介绍内容区域 */}
+          <div className='flex-1 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm lg:p-10'>
+            <div className='mb-6 flex items-center gap-3'>
+              <div className='h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent' />
+              <h2 className='bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-xl font-semibold text-transparent lg:text-2xl'>
+                {t('introduction')}
+              </h2>
+              <div className='h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent' />
+            </div>
+            <div className='prose prose-lg prose-invert max-w-none'>
+              {hasEnoughContent ? (
+                <>
+                  {/* 内容前半部分 */}
+                  <MarkdownProse markdown={firstHalf} className='text-white/80' />
+
+                  {/* 中间广告 */}
+                  <ResponsiveAd adSlot='1139935274' className='my-8' />
+
+                  {/* 内容后半部分 */}
+                  <MarkdownProse markdown={secondHalf} className='text-white/80' />
+
+                  {/* 内容结尾广告 */}
+                  <ResponsiveAd adSlot='3175071670' className='mt-12' />
+                </>
+              ) : (
+                <>
+                  <MarkdownProse markdown={detailContent} className='text-white/80' />
+                  {/* 内容结尾广告 */}
+                  <ResponsiveAd adSlot='6828635404' className='mt-12' />
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* 侧边栏 */}
+          <aside className='hidden lg:sticky lg:top-24 lg:block lg:w-80 lg:flex-shrink-0'>
+            <SidebarAd adSlot='1035993499' />
+          </aside>
         </div>
       </div>
     </>
