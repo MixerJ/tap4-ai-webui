@@ -48,11 +48,11 @@ export default function AdSense({
   }
 
   return (
-    <div className={`adsense-container ${className}`} style={style}>
+    <div className={`adsense-container w-full ${className}`} style={style}>
       <ins
         ref={adRef}
-        className='adsbygoogle'
-        style={{ display: 'block', ...style }}
+        className='adsbygoogle block w-full'
+        style={{ display: 'block', width: '100%', ...style }}
         data-ad-client={adsenseClientId}
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
