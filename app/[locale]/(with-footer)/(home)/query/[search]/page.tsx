@@ -6,7 +6,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { RevalidateOneHour, SITE_NAME } from '@/lib/constants';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
-import { Separator } from '@/components/ui/separator';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import Empty from '@/components/Empty';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
 
@@ -106,28 +106,49 @@ export default async function Page({ params }: { params: { locale: string; searc
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}
-      <div className='mb-10 mt-5'>
+      <div className='w-full space-y-8 lg:space-y-12'>
+        {/* 分类标签区域 */}
         {normalizedQuery && (
-          <TagList
-            data={categoryList!.map((item) => ({
-              id: String(item.id),
-              name: item.name,
-              href: `/category/${item.name}`,
-            }))}
-          />
+          <div className='mb-8 mt-4'>
+            <TagList
+              data={categoryList!.map((item) => ({
+                id: String(item.id),
+                name: item.name,
+                href: `/category/${item.name}`,
+              }))}
+            />
+          </div>
         )}
+
+        {/* 搜索结果区域 */}
+        <section className='flex flex-col gap-5'>
+          {(() => {
+            if (dataList && !!dataList.length && normalizedQuery) {
+              return (
+                <>
+                  <div className='mb-4 flex items-center gap-3'>
+                    <div className='h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent' />
+                    <h2 className='bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-lg font-semibold text-transparent lg:text-2xl'>
+                      {t('result')}
+                    </h2>
+                    <div className='h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent' />
+                  </div>
+                  <WebNavCardList dataList={dataList!} />
+                </>
+              );
+            }
+            if (normalizedQuery) {
+              return <Empty title={t('empty')} />;
+            }
+            return null;
+          })()}
+        </section>
+
+        {/* 底部广告 - 在内容和 Footer 之间 */}
+        <div className='mx-auto w-full max-w-pc px-4'>
+          <ResponsiveAd adSlot='1279536074' className='mb-20 lg:mb-32' />
+        </div>
       </div>
-      <section className='flex flex-col gap-5'>
-        {dataList && !!dataList.length && normalizedQuery ? (
-          <>
-            <h2 className='mb-1 text-left text-[18px] lg:text-2xl'>{t('result')}</h2>
-            <WebNavCardList dataList={dataList!} />
-          </>
-        ) : (
-          <Empty title={t('empty')} />
-        )}
-      </section>
-      <Separator className='mx-auto my-10 h-px w-4/5 bg-[#2C2D36] lg:my-16' />
       <ScrollToTop />
     </Suspense>
   );

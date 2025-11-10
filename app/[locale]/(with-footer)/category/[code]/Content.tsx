@@ -2,6 +2,7 @@
 import { WebNavigation } from '@/db/supabase/types';
 import { useTranslations } from 'next-intl';
 
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import Empty from '@/components/Empty';
 import ExploreBreadcrumb from '@/components/explore/ExploreBreadcrumb';
 import BasePagination from '@/components/page/BasePagination';
@@ -25,9 +26,18 @@ export default function Content({
   const t = useTranslations('Category');
 
   return (
-    <>
-      <div className='mx-auto flex flex-col gap-3 py-5 lg:pt-10'>
-        <h1 className='text-center text-[28px] font-bold lg:text-5xl'>{headerTitle}</h1>
+    <div className='w-full space-y-8 lg:space-y-12'>
+      {/* 标题区域 */}
+      <div className='my-8 flex flex-col gap-3 text-balance text-center lg:my-16 lg:gap-4'>
+        {/* 装饰性元素 */}
+        <div className='mb-2 flex items-center justify-center gap-2 lg:mb-4'>
+          <div className='h-px w-12 bg-gradient-to-r from-transparent via-indigo-500/50 to-indigo-500/50' />
+          <div className='h-2 w-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400' />
+          <div className='h-px w-12 bg-gradient-to-r from-indigo-500/50 via-indigo-500/50 to-transparent' />
+        </div>
+        <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
+          {headerTitle}
+        </h1>
         <div className='mx-auto'>
           <ExploreBreadcrumb
             linkList={[
@@ -43,6 +53,8 @@ export default function Content({
           />
         </div>
       </div>
+
+      {/* 内容区域 */}
       <div className='mt-3'>
         {navigationList && !!navigationList?.length ? (
           <>
@@ -51,7 +63,7 @@ export default function Content({
                 <WebNavCard key={item.id} {...item} />
               ))}
             </div>
-            <div className='my-5 flex items-center justify-center lg:my-10'>
+            <div className='my-8 flex items-center justify-center lg:my-12'>
               <BasePagination
                 currentPage={currentPage}
                 total={total}
@@ -67,6 +79,11 @@ export default function Content({
           </div>
         )}
       </div>
-    </>
+
+      {/* 底部广告 - 在内容和 Footer 之间 */}
+      <div className='mx-auto w-full max-w-pc px-4'>
+        <ResponsiveAd adSlot='4679725038' className='mb-20 lg:mb-32' />
+      </div>
+    </div>
   );
 }
