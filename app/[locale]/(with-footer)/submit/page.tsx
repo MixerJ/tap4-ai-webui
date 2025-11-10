@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { SITE_NAME } from '@/lib/constants';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 
 import SubmitForm from './SubmitForm';
 
@@ -85,6 +86,11 @@ export default function Page({ params: { locale } }: { params: { locale: string 
           {/* 表单区域 */}
           <div className='flex justify-center'>
             <SubmitForm className='mt-6' />
+          </div>
+
+          {/* 底部广告 - 在内容和 Footer 之间 */}
+          <div className='mx-auto mt-12 w-full max-w-pc px-4'>
+            <ResponsiveAd adSlot='1085354138' className='mb-20 lg:mb-32' />
           </div>
         </div>
       </div>

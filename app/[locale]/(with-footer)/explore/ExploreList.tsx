@@ -1,6 +1,7 @@
 import { createClient } from '@/db/supabase/client';
 
 import { EXPLORE_PAGE_SIZE } from '@/lib/constants';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import SearchForm from '@/components/home/SearchForm';
 import BasePagination from '@/components/page/BasePagination';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
@@ -56,6 +57,11 @@ export default async function ExploreList({ pageNum }: { pageNum?: string }) {
         subRoute='/page'
         className='my-8 lg:my-12'
       />
+
+      {/* 底部广告 - 在内容和 Footer 之间 */}
+      <div className='mx-auto w-full max-w-pc px-4'>
+        <ResponsiveAd adSlot='9999500326' className='mb-20 lg:mb-32' />
+      </div>
     </div>
   );
 }
