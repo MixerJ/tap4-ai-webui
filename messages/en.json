@@ -18,15 +18,13 @@
     "subTitle": "Discover the best AI tools of April 2025 with the Toolsify AI Tools Directory!",
     "support": "Support",
     "info": "Information",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "AI Tattoo Generator",
     "privacy": "Privacy policy",
     "termsConditions": "Terms & Conditions",
     "contactUs": "Contact Us"
   },
   "Faq": {
-    "title": "Frequently Asked Questions",
-    "subTitle": "Find answers to common questions about our AI tools directory",
     "1": {
       "question": "What is Open-source Toolsify AI Tools Directory?",
       "answer": "Toolsify AI Tools Directory - Toolsify.ai is building an ai tools directory that helps you get your favorite ai tools. It can get ai writing tools, ai markting tools, ai paraphrasing tools, ai seo tools, ai study tools, ai generator tools, ai research tools, ai art tools, ai music tools, ai video tools, ai coding tools, ai photo tools and more here."
@@ -69,7 +67,9 @@
     "10": {
       "question": "What are the usage rights of the AI tools?",
       "answer": "Toolsify AI Tools Directory is just the AI Directory for AI tools. The usage rights of the AI tools are based on the AI tools' website."
-    }
+    },
+    "title": "Frequently Asked Questions",
+    "subTitle": "Find answers to common questions about our AI tools directory"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -189,7 +189,13 @@
     "add": "Add",
     "text": "to your website homepage, And then you can submit your website successfully for free！",
     "networkError": "Network Error",
-    "success": "success"
+    "success": "success",
+    "faqSubmitQ": "How do I submit my AI tool?",
+    "faqSubmitA": "Fill in the form with your tool name, URL, category, and a clear description, then submit for review.",
+    "faqReviewQ": "How long does review take?",
+    "faqReviewA": "Most submissions are reviewed within a few business days depending on queue volume.",
+    "faqRequirementsQ": "What are the listing requirements?",
+    "faqRequirementsA": "Your tool should be accessible, clearly described, and relevant to AI use cases."
   },
   "Startup": {
     "title": "Kickstart Your Startup Launch",
@@ -215,7 +221,7 @@
     "home": {
       "title": "Get your best AI Tools December 2025",
       "description": "Toolsify AI Directory is a tool provides free AI Tools Directory. Get your favorite AI tools with Toolsify AI Directory, Toolsify AI Directory aims to collect all the AI tools and provide the best for users.",
-      "keywords": "Toolsify AI Directory, AI Tools Directory, toolify.ai, toolify, AI Tools Directory, tap4 ai, tap4.ai toolify ai, toolsify ai, toolsify.ai"
+      "keywords": "Toolsify AI Directory, AI Tools Directory, toolify.ai, toolify, AI Tools Directory, toolsify ai, toolsify.ai toolify ai, toolsify ai, toolsify.ai"
     },
     "ai": {
       "titleSubfix": "Toolsify AI Directory"
@@ -225,7 +231,7 @@
       "titlePrefix": "Toolsify AI Directory Explore",
       "titleSuffix": "Toolsify AI Directory",
       "description": "Toolsify AI Directory is a tool provides free AI Tools Directory. Get your favorite AI tools with Toolsify AI Directory, Toolsify AI Directory aims to collect all the AI tools and provide the best for users.",
-      "keywords": "Toolsify AI Directory, AI Tools Directory, toolify.ai, toolify, AI Tools Directory, tap4 ai, tap4.ai toolify ai, toolsify ai, toolsify.ai"
+      "keywords": "Toolsify AI Directory, AI Tools Directory, toolify.ai, toolify, AI Tools Directory, toolsify ai, toolsify.ai toolify ai, toolsify ai, toolsify.ai"
     },
     "submit": {
       "title": "Submit your AI tool and get Get Traffic | Toolsify AI Directory"

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 
 // submit table empty -> stop
 
@@ -43,16 +43,17 @@ export async function POST(req: NextRequest) {
     // 检查 URL 是否已存在
     const { data: existingEntry, error: existingEntryError } = await supabase
       .from('web_navigation')
-      .select()
+      .select('id')
       .eq('url', url)
       .single();
+    const existing = existingEntry as unknown as { id: number } | null;
 
     if (existingEntryError && existingEntryError.code !== 'PGRST116') {
       // PGRST116 means no rows found
       throw new Error(existingEntryError.message);
     }
 
-    if (existingEntry) {
+    if (existing) {
       return NextResponse.json({ message: 'Success' });
     }
 
@@ -61,7 +62,7 @@ export async function POST(req: NextRequest) {
       email,
       url,
       name,
-    });
+    } as any);
 
     if (insertError) {
       throw new Error(insertError.message);

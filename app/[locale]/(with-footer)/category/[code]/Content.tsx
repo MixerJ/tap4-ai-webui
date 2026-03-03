@@ -16,7 +16,7 @@ export default function Content({
   route,
 }: {
   headerTitle: string;
-  navigationList: WebNavigation[];
+  navigationList: Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
   currentPage: number;
   total: number;
   pageSize: number;

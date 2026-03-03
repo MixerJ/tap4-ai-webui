@@ -1,43 +1,92 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 import { CircleArrowRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import { cache } from 'react';
 
 import { Separator } from '@/components/ui/separator';
 import BaseImage from '@/components/image/BaseImage';
 import MarkdownProse from '@/components/MarkdownProse';
+import StructuredData from '@/components/seo/StructuredData';
+import { BASE_URL } from '@/lib/env';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+
+type WebsiteDetail = {
+  name: string;
+  title: string;
+  content: string;
+  url: string;
+  thumbnail_url: string;
+  detail: string;
+  category_name: string;
+};
+
+const getWebsiteDetail = cache(async (websiteName: string) => {
+  const supabase = createClient();
+  const { data } = await supabase
+    .from('web_navigation')
+    .select('name,title,content,url,thumbnail_url,detail,category_name')
+    .eq('name', websiteName)
+    .limit(1)
+    .maybeSingle();
+
+  return data as unknown as WebsiteDetail | null;
+});
 
 export async function generateMetadata({
   params: { locale, websiteName },
 }: {
   params: { locale: string; websiteName: string };
 }): Promise<Metadata> {
-  const supabase = createClient();
   const t = await getTranslations({
     locale,
     namespace: 'Metadata.ai',
   });
-  const { data } = await supabase.from('web_navigation').select().eq('name', websiteName);
+  const data = await getWebsiteDetail(websiteName);
 
-  if (!data || !data[0]) {
+  if (!data) {
     notFound();
   }
 
-  return {
-    title: `${data[0].title} | ${t('titleSubfix')}`,
-    description: data[0].content,
-  };
+  return buildPageMetadata({
+    locale,
+    path: `/ai/${websiteName}`,
+    title: `${data.title} | ${t('titleSubfix')}`,
+    description: data.content,
+    keywords: [data.title, data.category_name || '', 'AI tool', 'AI directory'].filter(Boolean),
+  });
 }
 
-export default async function Page({ params: { websiteName } }: { params: { websiteName: string } }) {
-  const supabase = createClient();
+export default async function Page({
+  params: { locale, websiteName },
+}: {
+  params: { locale: string; websiteName: string };
+}) {
   const t = await getTranslations('Startup.detail');
-  const { data: dataList } = await supabase.from('web_navigation').select().eq('name', websiteName);
-  if (!dataList) {
+  const data = await getWebsiteDetail(websiteName);
+  if (!data) {
     notFound();
   }
-  const data = dataList[0];
+  const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const appUrl = `${siteUrl}${getLocalizedPath(locale, `/ai/${websiteName}`)}`;
+  const softwareJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: data.title,
+    applicationCategory: data.category_name || 'AI Tool',
+    description: data.content,
+    url: appUrl,
+    sameAs: data.url,
+    image: data.thumbnail_url || undefined,
+    inLanguage: locale,
+    provider: {
+      '@type': 'Organization',
+      name: 'Toolsify AI',
+      url: siteUrl,
+    },
+    areaServed: 'Worldwide',
+  };
 
   return (
     <div className='w-full'>
@@ -81,6 +130,7 @@ export default async function Page({ params: { websiteName } }: { params: { webs
         <h2 className='my-5 text-2xl text-white/40 lg:my-10'>{t('introduction')}</h2>
         <MarkdownProse markdown={data?.detail || ''} />
       </div>
+      <StructuredData id='ai-software-structured-data' data={softwareJsonLd} />
     </div>
   );
 }

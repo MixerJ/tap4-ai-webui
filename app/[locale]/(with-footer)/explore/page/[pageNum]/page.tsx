@@ -4,6 +4,10 @@ import ExploreList from '../../ExploreList';
 
 export const revalidate = RevalidateOneHour * 6;
 
-export default function page({ params: { pageNum } }: { params: { pageNum: string | undefined } }) {
-  return <ExploreList pageNum={pageNum} />;
+export default function page({
+  params: { locale, pageNum },
+}: {
+  params: { locale: string; pageNum: string | undefined };
+}) {
+  return <ExploreList locale={locale} pageNum={pageNum} />;
 }

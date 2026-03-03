@@ -18,15 +18,13 @@
     "subTitle": "Découvrez les meilleurs outils AI de 2025 dans le Répertoire des outils AI de Toolsify !",
     "support": "Soutien",
     "info": "Information",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "Générateur de Tatouages AI",
     "privacy": "Politique de confidentialité",
     "termsConditions": "Termes et conditions",
     "contactUs": "Contactez-nous"
   },
   "Faq": {
-    "title": "FAQ",
-    "subTitle": "Trouvez des réponses aux questions courantes sur notre annuaire d'outils IA",
     "1": {
       "question": "Qu'est-ce que le Répertoire des outils AI de Toolsify ?",
       "answer": "Le Répertoire des outils AI de Toolsify - Toolsify.ai est en train de construire un répertoire d'outils AI pour vous aider à obtenir vos outils AI préférés. Vous pouvez y trouver des outils d'écriture AI, des outils de marketing AI, des outils de réécriture AI, des outils SEO AI, des outils d'apprentissage AI, des outils de génération AI, des outils de recherche AI, des outils artistiques AI, des outils de musique AI, des outils vidéo AI, des outils de codage AI, des outils photo AI, etc."
@@ -69,7 +67,9 @@
     "10": {
       "question": "Quelles sont les autorisations d'utilisation des outils AI ?",
       "answer": "Le Répertoire des outils AI de Toolsify est simplement un répertoire d'outils AI. Les autorisations d'utilisation des outils AI sont basées sur le site web de l'outil AI."
-    }
+    },
+    "title": "FAQ",
+    "subTitle": "Trouvez des réponses aux questions courantes sur notre annuaire d'outils IA"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -163,7 +163,13 @@
     "add": "Ajouter",
     "text": "à la page d'accueil de votre site, et vous pouvez soumettre votre site gratuitement avec succès !",
     "networkError": "Erreur réseau",
-    "success": "succès"
+    "success": "succès",
+    "faqSubmitQ": "Comment soumettre mon outil IA ?",
+    "faqSubmitA": "Remplissez le formulaire avec le nom, l’URL, la catégorie et une description claire, puis soumettez-le pour examen.",
+    "faqReviewQ": "Combien de temps prend la validation ?",
+    "faqReviewA": "La plupart des soumissions sont examinées en quelques jours ouvrés selon la file d’attente.",
+    "faqRequirementsQ": "Quelles sont les conditions de référencement ?",
+    "faqRequirementsA": "Votre outil doit être accessible, clairement décrit et pertinent pour des cas d’usage IA."
   },
   "Startup": {
     "title": "Lancez votre startup",

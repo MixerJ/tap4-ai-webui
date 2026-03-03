@@ -18,15 +18,13 @@
     "subTitle": "Entdecken Sie die besten KI-Tools von 2025 mit dem Toolsify AI Tools Verzeichnis!",
     "support": "Unterstützung",
     "info": "Informationen",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "AI Tattoo-Generator",
     "privacy": "Datenschutzrichtlinie",
     "termsConditions": "Nutzungsbedingungen",
     "contactUs": "Kontaktieren Sie uns"
   },
   "Faq": {
-    "title": "Häufig gestellte Fragen",
-    "subTitle": "Finden Sie Antworten auf häufige Fragen zu unserem KI-Tools-Verzeichnis",
     "1": {
       "question": "Was ist das Toolsify AI Tools Verzeichnis?",
       "answer": "Das Toolsify AI Tools Verzeichnis - Toolsify.ai erstellt ein Verzeichnis von KI-Tools, das Ihnen hilft, Ihre Lieblings-KI-Tools zu finden. Sie können hier KI-Schreibtools, KI-Marketingtools, KI-Paraphrasierungstools, KI-SEO-Tools, KI-Lern-Tools, KI-Generator-Tools, KI-Forschungstools, KI-Kunsttools, KI-Musiktools, KI-Videotools, KI-Coding-Tools, KI-Fototools und mehr finden."
@@ -69,7 +67,9 @@
     "10": {
       "question": "Was sind die Nutzungsrechte der KI-Tools?",
       "answer": "Das Toolsify AI Tools Verzeichnis ist nur das Verzeichnis für KI-Tools. Die Nutzungsrechte der KI-Tools basieren auf der Website der KI-Tools."
-    }
+    },
+    "title": "Häufig gestellte Fragen",
+    "subTitle": "Finden Sie Antworten auf häufige Fragen zu unserem KI-Tools-Verzeichnis"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -163,7 +163,13 @@
     "add": "Hinzufügen",
     "text": "zu Ihrer Website-Startseite, und dann können Sie Ihre Website erfolgreich kostenlos einreichen!",
     "networkError": "Netzwerkfehler",
-    "success": "Erfolg"
+    "success": "Erfolg",
+    "faqSubmitQ": "Wie reiche ich mein KI-Tool ein?",
+    "faqSubmitA": "Fülle das Formular mit Name, URL, Kategorie und einer klaren Beschreibung aus und sende es zur Prüfung ab.",
+    "faqReviewQ": "Wie lange dauert die Prüfung?",
+    "faqReviewA": "Die meisten Einreichungen werden je nach Auslastung innerhalb weniger Werktage geprüft.",
+    "faqRequirementsQ": "Welche Voraussetzungen gelten für die Listung?",
+    "faqRequirementsA": "Dein Tool sollte erreichbar sein, klar beschrieben werden und für KI-Anwendungsfälle relevant sein."
   },
   "Startup": {
     "title": "Starten Sie Ihren Startup-Launch",

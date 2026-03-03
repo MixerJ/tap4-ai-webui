@@ -1,15 +1,19 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 import { Calendar, CircleChevronRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { HOME_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
+import { WebNavigation } from '@/db/supabase/types';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import SearchForm from '@/components/home/SearchForm';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
+import StructuredData from '@/components/seo/StructuredData';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+import { BASE_URL } from '@/lib/env';
 
 import { TagList } from './Tag';
 
@@ -21,15 +25,13 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.home',
   });
 
-  return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
+  return buildPageMetadata({
+    locale,
+    path: '',
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
-    alternates: {
-      canonical: './',
-    },
-  };
+  });
 }
 
 export const revalidate = RevalidateOneHour;
@@ -38,9 +40,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   const supabase = createClient();
   const t = await getTranslations('Home');
   const [{ data: categoryList }, { data: navigationList }] = await Promise.all([
-    supabase.from('navigation_category').select(),
-    supabase.from('web_navigation').select().order('collection_time', { ascending: false }).limit(HOME_PAGE_SIZE),
+    supabase.from('navigation_category').select('id, name'),
+    supabase
+      .from('web_navigation')
+      .select('id, name, thumbnail_url, title, url, content')
+      .order('collection_time', { ascending: false })
+      .limit(HOME_PAGE_SIZE),
   ]);
+  const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
+  const navItems = (navigationList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
 
   // Get featured blog posts
   const featuredSlugs = ['cubesolver-ai-magic-cube-3d', 'introducing-toolsify-ai-directory'];
@@ -54,6 +62,14 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   if (randomPost) {
     featuredPosts.push(randomPost);
   }
+  const siteUrl = BASE_URL || 'https://toolsify.ai';
+
+  const siteNavigationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SiteNavigationElement',
+    name: ['Explore', 'Startup', 'Blog', 'Submit'],
+    url: ['/explore', '/startup', '/blog', '/submit'].map((path) => `${siteUrl}${getLocalizedPath(locale, path)}`),
+  };
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -121,7 +137,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         {/* 分类标签区域 */}
         <div className='mb-12 mt-8 animate-slide-up' style={{ animationDelay: '0.4s' }}>
           <TagList
-            data={categoryList!.map((item) => ({
+            data={categories.map((item) => ({
               id: String(item.id),
               name: item.name,
               href: `/category/${item.name}`,
@@ -136,7 +152,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             <p className='text-sm text-white/60 lg:text-base'>Discover the best AI tools for your needs</p>
           </div>
 
-          <WebNavCardList dataList={navigationList!} />
+          <WebNavCardList dataList={navItems} />
 
           {/* 探索更多按钮 - 现代化设计 */}
           <div className='mt-8 flex justify-center'>
@@ -235,6 +251,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
         <ScrollToTop />
       </div>
+      <StructuredData id='home-navigation-structured-data' data={siteNavigationJsonLd} />
     </div>
   );
 }

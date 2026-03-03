@@ -3,12 +3,15 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { WebNavigation } from '@/db/supabase/types';
 import { CircleArrowRight, SquareArrowOutUpRight, Star, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-export default function WebNavCard({ name, thumbnail_url, title, url, content }: WebNavigation) {
+type WebNavCardItem = Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>;
+
+export default function WebNavCard({ name, thumbnail_url, title, url, content }: WebNavCardItem) {
   const t = useTranslations('Home');
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -37,12 +40,14 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
           {!imageLoaded && (
             <div className='absolute inset-0 animate-shimmer bg-gradient-to-br from-indigo-500/20 to-purple-500/20' />
           )}
-          <img
+          <Image
             src={thumbnail_url || '/images/placeholder.svg'}
             alt={title}
             title={title}
-            width={310}
-            height={174}
+            fill
+            sizes='(max-width: 1024px) 50vw, 25vw'
+            loader={({ src }) => src}
+            unoptimized
             className={`aspect-[310/174] w-full object-cover transition-all duration-500 group-hover:scale-110 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}

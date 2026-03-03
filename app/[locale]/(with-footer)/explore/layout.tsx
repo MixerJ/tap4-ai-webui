@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import Faq from '@/components/Faq';
+import { buildPageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const t = await getTranslations({
@@ -10,15 +11,18 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.explore',
   });
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: '/explore',
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
-  };
+  });
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const t = useTranslations('Explore');
+  const seoHeading = t('seoHeading', { defaultValue: 'Explore AI Tools by Category' });
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -43,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className='h-px w-12 bg-gradient-to-r from-indigo-500/50 via-indigo-500/50 to-transparent' />
           </div>
           <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
-            {t('title')}
+            {seoHeading}
           </h1>
           <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle')}</h2>
         </div>

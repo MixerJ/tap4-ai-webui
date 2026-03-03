@@ -6,6 +6,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import MarkdownProse from '@/components/MarkdownProse';
+import StructuredData from '@/components/seo/StructuredData';
+import { BASE_URL } from '@/lib/env';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 
 export async function generateMetadata({
   params: { locale, slug },
@@ -28,11 +31,14 @@ export async function generateMetadata({
     ', ',
   );
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: `/blog/${slug}`,
     title: `${title} - Toolsify AI Blog`,
     description: excerpt,
     keywords,
-  };
+    type: 'article',
+  });
 }
 
 export default async function BlogPostPage({ params: { locale, slug } }: { params: { locale: string; slug: string } }) {
@@ -45,6 +51,31 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
 
   const title = post.title[locale as keyof typeof post.title] || post.title.en;
   const content = post.content[locale as keyof typeof post.content] || post.content.en;
+  const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const articleUrl = `${siteUrl}${getLocalizedPath(locale, `/blog/${slug}`)}`;
+  const articleImage = post.image ? `${siteUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}` : `${siteUrl}/images/toolsify-ai.png`;
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: post.excerpt[locale as keyof typeof post.excerpt] || post.excerpt.en,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: locale,
+    mainEntityOfPage: articleUrl,
+    articleSection: post.category,
+    keywords: post.tags.join(', '),
+    image: articleImage,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Toolsify AI',
+      url: siteUrl,
+    },
+  };
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -152,6 +183,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
           </Link>
         </div>
       </div>
+      <StructuredData id='blog-article-structured-data' data={articleJsonLd} />
     </div>
   );
 }

@@ -18,15 +18,13 @@
     "subTitle": "發現2025年4月最佳AI工具，盡在Toolsify AI工具目錄！",
     "support": "支持",
     "info": "信息",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "AI紋身生成器",
     "privacy": "隱私政策",
     "termsConditions": "條款和條件",
     "contactUs": "聯繫我們"
   },
   "Faq": {
-    "title": "常見問題",
-    "subTitle": "查找關於AI工具目錄的常見問題答案",
     "1": {
       "question": "Toolsify AI工具目錄是什麼？",
       "answer": "Toolsify AI工具目錄 - Toolsify.ai正在建立一個AI工具目錄，幫助您獲取您喜愛的AI工具。您可以在這裡找到AI寫作工具、AI營銷工具、AI改寫工具、AI SEO工具、AI學習工具、AI生成工具、AI研究工具、AI藝術工具、AI音樂工具、AI視頻工具、AI編碼工具、AI照片工具等。"
@@ -69,7 +67,9 @@
     "10": {
       "question": "AI工具的使用權限是什麼？",
       "answer": "Toolsify AI工具目錄只是AI工具的目錄。AI工具的使用權限基於AI工具的網站。"
-    }
+    },
+    "title": "常見問題",
+    "subTitle": "查找關於AI工具目錄的常見問題答案"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -163,7 +163,13 @@
     "add": "添加",
     "text": "到您的網站首頁，然後您可以免費成功提交您的網站！",
     "networkError": "網路錯誤",
-    "success": "成功"
+    "success": "成功",
+    "faqSubmitQ": "如何提交我的 AI 工具？",
+    "faqSubmitA": "填寫工具名稱、URL、分類與清楚描述後送出，我們會進行審核。",
+    "faqReviewQ": "審核通常需要多久？",
+    "faqReviewA": "多數提交會在幾個工作天內完成審核，實際時間視佇列而定。",
+    "faqRequirementsQ": "收錄要求是什麼？",
+    "faqRequirementsA": "你的工具需可正常訪問、描述清楚，且與 AI 使用場景相關。"
   },
   "Startup": {
     "title": "啟動您的創業公司",

@@ -1,30 +1,39 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 import { getTranslations } from 'next-intl/server';
+import { WebNavigation } from '@/db/supabase/types';
 
 import { RevalidateOneHour } from '@/lib/constants';
 import { Separator } from '@/components/ui/separator';
 import Empty from '@/components/Empty';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
+import { buildPageMetadata } from '@/lib/seo';
 
 import { TagList } from '../../Tag';
 import Loading from './loading';
 
 const ScrollToTop = dynamic(() => import('@/components/page/ScrollToTop'), { ssr: false });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params: { locale, search },
+}: {
+  params: { locale: string; search: string };
+}): Promise<Metadata> {
   const t = await getTranslations({
     locale,
     namespace: 'Metadata.home',
   });
+  const keyword = decodeURIComponent(search || '');
 
-  return {
-    title: t('title'),
-    description: t('description'),
-    keywords: t('keywords'),
-  };
+  return buildPageMetadata({
+    locale,
+    path: `/query/${encodeURIComponent(keyword)}`,
+    title: `${t('title')} - ${keyword}`,
+    description: `${t('description')} - ${keyword}`,
+    keywords: [t('keywords'), keyword],
+  });
 }
 
 export const revalidate = RevalidateOneHour / 2;
@@ -32,18 +41,20 @@ export const revalidate = RevalidateOneHour / 2;
 export default async function Page({ params }: { params: { search?: string } }) {
   const supabase = createClient();
   const t = await getTranslations('Home');
-  const { data: categoryList } = await supabase.from('navigation_category').select();
+  const { data: categoryList } = await supabase.from('navigation_category').select('id, name');
   const { data: dataList } = await supabase
     .from('web_navigation')
-    .select()
+    .select('id, name, thumbnail_url, title, url, content')
     .ilike('detail', `%${decodeURI(params?.search || '')}%`);
+  const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
+  const navItems = (dataList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
 
   return (
     <Suspense fallback={<Loading />}>
       <div className='mb-10 mt-5'>
         {params?.search && (
           <TagList
-            data={categoryList!.map((item) => ({
+            data={categories.map((item) => ({
               id: String(item.id),
               name: item.name,
               href: `/category/${item.name}`,
@@ -55,7 +66,7 @@ export default async function Page({ params }: { params: { search?: string } }) 
         {dataList && !!dataList.length && params?.search ? (
           <>
             <h2 className='mb-1 text-left text-[18px] lg:text-2xl'>{t('result')}</h2>
-            <WebNavCardList dataList={dataList!} />
+            <WebNavCardList dataList={navItems} />
           </>
         ) : (
           <Empty title={t('empty')} />

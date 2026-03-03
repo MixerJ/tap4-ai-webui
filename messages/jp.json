@@ -18,15 +18,13 @@
     "subTitle": "Toolsify AI ツールディレクトリで2025年のベストAIツールを発見しましょう！",
     "support": "サポート",
     "info": "情報",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "AIタトゥージェネレーター",
     "privacy": "プライバシーポリシー",
     "termsConditions": "利用規約",
     "contactUs": "お問い合わせ"
   },
   "Faq": {
-    "title": "よくある質問",
-    "subTitle": "AIツールディレクトリに関するよくある質問の答えを見つける",
     "1": {
       "question": "Toolsify AI ツールディレクトリとは何ですか？",
       "answer": "Toolsify AI ツールディレクトリ - Toolsify.ai は、お気に入りのAIツールを手に入れるのを助けるAIツールディレクトリを作成しています。AIライティングツール、AIマーケティングツール、AIパラフレーズツール、AI SEOツール、AI学習ツール、AIジェネレーターツール、AIリサーチツール、AIアートツール、AI音楽ツール、AIビデオツール、AIコーディングツール、AIフォトツールなどがここで手に入ります。"
@@ -69,7 +67,9 @@
     "10": {
       "question": "AIツールの使用権は何ですか？",
       "answer": "Toolsify AIツールディレクトリは、AIツールのためのAIディレクトリにすぎません。AIツールの使用権は、AIツールのウェブサイトに基づいています。"
-    }
+    },
+    "title": "よくある質問",
+    "subTitle": "AIツールディレクトリに関するよくある質問の答えを見つける"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -155,7 +155,13 @@
     "add": "追加",
     "text": "ホームページに追加し、無料でサイトを正常に提出できます！",
     "networkError": "ネットワークエラー",
-    "success": "成功"
+    "success": "成功",
+    "faqSubmitQ": "AIツールを提出するには？",
+    "faqSubmitA": "ツール名、URL、カテゴリ、分かりやすい説明を入力して送信してください。審査を行います。",
+    "faqReviewQ": "審査にはどれくらいかかりますか？",
+    "faqReviewA": "通常は数営業日以内に審査されます。混雑状況により前後します。",
+    "faqRequirementsQ": "掲載要件は何ですか？",
+    "faqRequirementsA": "ツールにアクセス可能で、説明が明確であり、AIの利用用途に関連している必要があります。"
   },
   "Startup": {
     "title": "スタートアップを始めよう",

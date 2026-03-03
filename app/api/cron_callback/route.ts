@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 
 // submit table empty -> stop
 
@@ -42,13 +42,14 @@ export async function POST(req: NextRequest) {
       .select('id')
       .eq('name', name)
       .single();
+    const existing = existingEntry as unknown as { id: number } | null;
 
     if (existingEntryError && existingEntryError.code !== 'PGRST116') {
       // PGRST116 means no rows found
       throw new Error(existingEntryError.message);
     }
 
-    if (existingEntry) {
+    if (existing) {
       // Update existing entry
       const { error: updateWebNavigationError } = await supabase
         .from('web_navigation')
@@ -61,8 +62,8 @@ export async function POST(req: NextRequest) {
           category_name: tags && tags.length ? tags[0] : 'other',
           title,
           url,
-        })
-        .eq('id', existingEntry.id);
+        } as any)
+        .eq('id', existing.id);
 
       if (updateWebNavigationError) {
         throw new Error(updateWebNavigationError.message);
@@ -81,7 +82,7 @@ export async function POST(req: NextRequest) {
         category_name: tags && tags.length ? tags[0] : 'other',
         title,
         url,
-      });
+      } as any);
 
       if (insertWebNavigationError) {
         throw new Error(insertWebNavigationError.message);
@@ -91,7 +92,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Update submit table
-    const { error: updateSubmitError } = await supabase.from('submit').update({ status: 1 }).eq('url', url);
+    const { error: updateSubmitError } = await supabase.from('submit').update({ status: 1 } as any).eq('url', url);
 
     if (updateSubmitError) {
       throw new Error(updateSubmitError.message);

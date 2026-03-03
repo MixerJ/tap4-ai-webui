@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { BASE_URL } from '@/lib/env';
+import StructuredData from '@/components/seo/StructuredData';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 
 import SubmitForm from './SubmitForm';
 
@@ -10,13 +13,59 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.submit',
   });
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: '/submit',
     title: t('title'),
-  };
+    description: t('title'),
+  });
 }
 
-export default function Page() {
+export default function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Submit');
+  const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const pageUrl = `${siteUrl}${getLocalizedPath(locale, '/submit')}`;
+  const faqItems = [
+    {
+      q: t('faqSubmitQ'),
+      a: t('faqSubmitA'),
+    },
+    {
+      q: t('faqReviewQ'),
+      a: t('faqReviewA'),
+    },
+    {
+      q: t('faqRequirementsQ'),
+      a: t('faqRequirementsA'),
+    },
+  ];
+
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: t('title'),
+    description: t('subTitle'),
+    url: pageUrl,
+    inLanguage: locale,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Toolsify AI',
+      url: siteUrl,
+    },
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -51,6 +100,8 @@ export default function Page() {
           <SubmitForm className='mt-6' />
         </div>
       </div>
+      <StructuredData id='submit-webpage-structured-data' data={webPageJsonLd} />
+      <StructuredData id='submit-faq-structured-data' data={faqJsonLd} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { buildPageMetadata } from '@/lib/seo';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
@@ -24,7 +25,9 @@ export async function generateMetadata({
     notFound();
   }
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: `/blog/page/${currentPage}`,
     title: `${t('title', { defaultValue: 'Blog' })} - Page ${currentPage} - Toolsify AI`,
     description: t('description', {
       defaultValue: 'Latest articles about AI tools, comparisons, and industry insights',
@@ -33,7 +36,7 @@ export async function generateMetadata({
       defaultValue:
         'AI Tools, Artificial Intelligence, AI Blog, Toolsify AI, AI Tools Directory, AI Articles, AI Guides, AI Insights',
     }),
-  };
+  });
 }
 
 export default async function BlogPagePage({
