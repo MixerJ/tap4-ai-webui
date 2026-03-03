@@ -12,38 +12,40 @@
  * 5. 复制广告单元代码中的 data-ad-slot 值
  */
 
+import AD_SLOT_IDS from './ad-slots.config';
+
 export const AD_SLOTS = {
   // 博客相关广告
   blog: {
     // 博客文章中间广告（推荐：展示广告 - 自适应）
-    articleMiddle: '',
+    articleMiddle: AD_SLOT_IDS.blog.articleMiddle,
 
     // 博客文章结尾广告（推荐：展示广告 - 自适应）
-    articleEnd: '',
+    articleEnd: AD_SLOT_IDS.blog.articleEnd,
 
     // 博客侧边栏广告（推荐：展示广告 - 竖版）
-    sidebar: '',
+    sidebar: AD_SLOT_IDS.blog.sidebar,
 
     // 博客列表信息流广告（推荐：信息流广告）
-    inFeed: '',
+    inFeed: AD_SLOT_IDS.blog.inFeed,
   },
 
   // 首页相关广告
   home: {
     // 首页底部广告（推荐：展示广告 - 横版）
-    bottom: '',
+    bottom: AD_SLOT_IDS.home.bottom,
   },
 
   // 探索页相关广告
   explore: {
     // 探索页底部广告（推荐：展示广告 - 自适应）
-    bottom: '',
+    bottom: AD_SLOT_IDS.explore.bottom,
   },
 
   // 通用广告
   common: {
     // 通用响应式广告
-    responsive: '',
+    responsive: AD_SLOT_IDS.common.responsive,
   },
 } as const;
 

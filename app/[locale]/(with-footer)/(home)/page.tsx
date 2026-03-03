@@ -13,6 +13,7 @@ import SearchForm from '@/components/home/SearchForm';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
 import StructuredData from '@/components/seo/StructuredData';
 import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+import { AD_SLOTS } from '@/lib/adsense-slots';
 import { BASE_URL } from '@/lib/env';
 
 import { TagList } from './Tag';
@@ -70,6 +71,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
     name: ['Explore', 'Startup', 'Blog', 'Submit'],
     url: ['/explore', '/startup', '/blog', '/submit'].map((path) => `${siteUrl}${getLocalizedPath(locale, path)}`),
   };
+  const homeBottomAdSlot = AD_SLOTS.home.bottom;
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -243,9 +245,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             </div>
 
             {/* 底部广告 - 在 Featured Articles 和 Footer 之间 */}
-            <div className='mx-auto w-full max-w-pc px-4'>
-              <ResponsiveAd adSlot='1041337705' className='mb-20 lg:mb-32' />
-            </div>
+            {homeBottomAdSlot && (
+              <div className='mx-auto w-full max-w-pc px-4'>
+                <ResponsiveAd adSlot={homeBottomAdSlot} className='mb-20 lg:mb-32' />
+              </div>
+            )}
           </div>
         )}
 
