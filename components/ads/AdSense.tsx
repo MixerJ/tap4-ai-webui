@@ -6,6 +6,7 @@ interface AdSenseProps {
   adSlot: string;
   adFormat?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical';
   adLayout?: string;
+  adLayoutKey?: string;
   fullWidthResponsive?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -15,6 +16,7 @@ export default function AdSense({
   adSlot,
   adFormat = 'auto',
   adLayout,
+  adLayoutKey,
   fullWidthResponsive = true,
   className = '',
   style = {},
@@ -97,6 +99,7 @@ export default function AdSense({
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-ad-layout={adLayout}
+        data-ad-layout-key={adLayoutKey}
         data-full-width-responsive={fullWidthResponsive.toString()}
       />
     </div>

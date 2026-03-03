@@ -33,9 +33,9 @@ export default function Navigation() {
 
         <nav className='relative mx-auto flex max-w-pc flex-1 items-center'>
           {/* Logo 区域 */}
-          <div className='group'>
+          <div className='group flex-shrink-0'>
             <Link
-              className='flex items-center gap-3 transition-transform duration-300 hover:scale-105'
+              className='flex items-center gap-2 transition-transform duration-300 hover:scale-105 sm:gap-3'
               href='/'
               title={t('title')}
             >
@@ -51,11 +51,13 @@ export default function Navigation() {
               {/* Logo 光晕效果 */}
               {/* <div className='absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-20' />
               </div>  */}
-              <div className='hidden lg:block'>
-                <div className='bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-xl font-bold text-transparent'>
+              <div className='flex flex-col'>
+                <div className='bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-base font-bold text-transparent sm:text-lg lg:text-xl'>
                   Toolsify AI
                 </div>
-                <div className='text-xs text-white/60'>AI Tools Directory</div>
+                <div className='hidden text-[10px] text-white/60 sm:block sm:text-xs lg:text-xs'>
+                  AI Tools Directory
+                </div>
               </div>
             </Link>
           </div>
@@ -85,34 +87,34 @@ export default function Navigation() {
             </ul>
 
             {/* 用户操作区域 */}
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center gap-2 sm:gap-3 lg:gap-4'>
               {/* 搜索按钮（移动端） */}
               <button
                 type='button'
-                className='rounded-xl border border-white/5 p-3 text-white/60 backdrop-blur-sm transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-purple-500/10 hover:text-white active:scale-95 lg:hidden'
+                className='rounded-xl border border-white/5 p-2 text-white/60 backdrop-blur-sm transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/10 hover:to-purple-500/10 hover:text-white active:scale-95 sm:p-2.5 lg:hidden'
                 aria-label={t('search')}
               >
-                <Search className='size-5' />
+                <Search className='size-4 sm:size-5' />
               </button>
               <Link
                 href='https://ko-fi.com/C0C81N5Y9L'
                 target='_blank'
                 rel='noreferrer'
-                className='flex items-center gap-x-2 rounded-lg bg-orange-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-orange-600'
+                className='flex items-center gap-x-1.5 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-medium text-white transition-colors hover:bg-orange-600 sm:gap-x-2 sm:px-3 sm:py-2 sm:text-sm lg:gap-x-2 lg:px-3 lg:py-2 lg:text-sm'
                 title={t('buyMeCoffee')}
               >
-                <Coffee className='size-4' />
+                <Coffee className='size-3.5 sm:size-4 lg:size-4' />
                 <span className='hidden sm:inline'>{t('buyMeCoffee')}</span>
               </Link>
-              {/* 语言切换器 */}
-              <div className='relative'>
+              {/* 语言切换器 - 仅在桌面端显示 */}
+              <div className='relative hidden lg:block'>
                 <LocaleSwitcher />
               </div>
             </div>
           </div>
 
           {/* 移动端菜单按钮 */}
-          <div className='mx-3 flex items-center gap-x-4 lg:hidden'>
+          <div className='ml-2 flex items-center gap-x-3 sm:ml-3 sm:gap-x-4 lg:hidden'>
             <MenuBtn open={open} onClick={() => setOpen(!open)} />
           </div>
         </nav>

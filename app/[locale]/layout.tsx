@@ -1,5 +1,5 @@
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import type { Metadata } from 'next';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 import { Toaster } from '@/components/ui/sonner';
 import ConsentManager from '@/components/consent/ConsentManager';
@@ -10,11 +10,13 @@ import './globals.css';
 import { Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/constants';
+import { BASE_URL } from '@/lib/env';
+import { buildMetadataBase, buildRobotsMeta } from '@/lib/seo';
 import ClarityScript from '@/components/analytics/ClarityScript';
 import SeoScript from '@/components/seo/SeoScript';
 import StructuredData from '@/components/seo/StructuredData';
 import { languages } from '@/i18n';
-import { BASE_URL } from '@/lib/env';
 
 import Loading from './loading';
 
@@ -25,16 +27,33 @@ const AdSenseDebug = process.env.NODE_ENV === 'development' ? require('@/compone
 
 // 全局 Metadata 配置
 export const metadata: Metadata = {
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+  metadataBase: buildMetadataBase(),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_TAGLINE,
+  robots: buildRobotsMeta(),
+  openGraph: {
+    type: 'website',
+    url: BASE_URL,
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_TAGLINE,
+    images: [
+      {
+        url: `${BASE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} – ${SITE_TAGLINE}`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_NAME,
+    description: SITE_TAGLINE,
+    images: [`${BASE_URL}/og-image.jpg`],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -86,9 +105,7 @@ export default function RootLayout({
     <html lang={locale} suppressHydrationWarning className='dark'>
       <head>
         {/* Google AdSense Account Meta Tag */}
-        {adsenseEnabled && adsenseClientId && (
-          <meta name='google-adsense-account' content={adsenseClientId} />
-        )}
+        {adsenseEnabled && adsenseClientId && <meta name='google-adsense-account' content={adsenseClientId} />}
         {/* Google AdSense - 直接在 head 中加载以确保优先级 */}
         {adsenseEnabled && adsenseClientId && (
           <script
