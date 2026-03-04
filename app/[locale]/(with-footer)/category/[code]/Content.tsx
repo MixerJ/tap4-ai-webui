@@ -2,6 +2,7 @@
 import { WebNavigation } from '@/db/supabase/types';
 import { useTranslations } from 'next-intl';
 
+import { AD_SLOTS } from '@/lib/adsense-slots';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import Empty from '@/components/Empty';
 import ExploreBreadcrumb from '@/components/explore/ExploreBreadcrumb';
@@ -24,6 +25,7 @@ export default function Content({
   route: string;
 }) {
   const t = useTranslations('Category');
+  const categoryBottomAdSlot = AD_SLOTS.category.bottom;
 
   return (
     <div className='w-full space-y-8 lg:space-y-12'>
@@ -81,9 +83,11 @@ export default function Content({
       </div>
 
       {/* 底部广告 - 在内容和 Footer 之间 */}
-      <div className='mx-auto w-full max-w-pc px-4'>
-        <ResponsiveAd adSlot='4679725038' className='mb-20 lg:mb-32' />
-      </div>
+      {categoryBottomAdSlot && (
+        <div className='mx-auto w-full max-w-pc px-4'>
+          <ResponsiveAd adSlot={categoryBottomAdSlot} className='mb-20 lg:mb-32' />
+        </div>
+      )}
     </div>
   );
 }

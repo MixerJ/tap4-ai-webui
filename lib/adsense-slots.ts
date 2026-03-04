@@ -36,6 +36,18 @@ export const AD_SLOTS = {
     bottom: AD_SLOT_IDS.home.bottom,
   },
 
+  // Startup 页相关广告
+  startup: {
+    // Startup 页底部广告
+    bottom: AD_SLOT_IDS.startup.bottom,
+  },
+
+  // 分类页相关广告
+  category: {
+    // 分类页底部广告
+    bottom: AD_SLOT_IDS.category.bottom,
+  },
+
   // 探索页相关广告
   explore: {
     // 探索页底部广告（推荐：展示广告 - 自适应）

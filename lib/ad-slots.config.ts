@@ -9,10 +9,16 @@ const AD_SLOT_IDS = {
     articleMiddle: '',
     articleEnd: '',
     sidebar: '',
-    inFeed: '',
+    inFeed: '5246701249',
   },
   home: {
     bottom: '1041337705',
+  },
+  startup: {
+    bottom: '3366643360',
+  },
+  category: {
+    bottom: '4679725038',
   },
   explore: {
     bottom: '',

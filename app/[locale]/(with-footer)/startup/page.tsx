@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { SITE_NAME } from '@/lib/constants';
+import { AD_SLOTS } from '@/lib/adsense-slots';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
 import { formatTime } from '@/lib/utils/timeUtils';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
@@ -36,6 +37,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Startup');
   const meta = useTranslations('Metadata.startup');
+  const startupBottomAdSlot = AD_SLOTS.startup.bottom;
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -95,9 +97,11 @@ export default function Page({ params: { locale } }: { params: { locale: string 
           <MobileTable />
 
           {/* 底部广告 - 在内容和 Footer 之间 */}
-          <div className='mx-auto mt-12 w-full max-w-pc px-4'>
-            <ResponsiveAd adSlot='3366643360' className='mb-20 lg:mb-32' />
-          </div>
+          {startupBottomAdSlot && (
+            <div className='mx-auto mt-12 w-full max-w-pc px-4'>
+              <ResponsiveAd adSlot={startupBottomAdSlot} className='mb-20 lg:mb-32' />
+            </div>
+          )}
         </div>
       </div>
     </>
