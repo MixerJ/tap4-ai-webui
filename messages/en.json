@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify AI Tools Directory",
-    "subTitle": "Discover the best AI tools of April 2025 with the Toolsify AI Tools Directory!",
+    "subTitle": "Discover the best AI tools of April {year} with the Toolsify AI Tools Directory!",
     "support": "Support",
     "info": "Information",
     "tap4": "Toolsify AI",
@@ -119,7 +119,7 @@
     "goHome": "go home"
   },
   "Home": {
-    "title": "Discover The Best AI Tools December 2025",
+    "title": "Discover The Best AI Tools December {year}",
     "subTitle": "Get your favorite AI tools in Open-source Toolsify AI Tools Directory. AI tools list are updated daily by GPT-4o. It's free to submit here to enhance your SEO now. ",
     "heroTitle1": "Discover AI",
     "heroTitle2": "Excellence",
@@ -215,12 +215,12 @@
     }
   },
   "Explore": {
-    "title": "Discover The Best AI Tools December 2025",
+    "title": "Discover The Best AI Tools December {year}",
     "subTitle": "Get your favorite AI tools in Toolsify AI Tools Directory. AI tools list are updated daily by GPT-4o."
   },
   "Metadata": {
     "home": {
-      "title": "Get your best AI Tools December 2025",
+      "title": "Get your best AI Tools December {year}",
       "description": "Toolsify AI Directory is a tool provides free AI Tools Directory. Get your favorite AI tools with Toolsify AI Directory, Toolsify AI Directory aims to collect all the AI tools and provide the best for users.",
       "keywords": "Toolsify AI Directory, AI Tools Directory, toolify.ai, toolify, AI Tools Directory, toolsify ai, toolsify.ai toolify ai, toolsify ai, toolsify.ai"
     },
@@ -228,7 +228,7 @@
       "titleSubfix": "Toolsify AI Directory"
     },
     "explore": {
-      "title": "Best AI Tools Explore December 2025 | Toolsify AI Tools Directory",
+      "title": "Best AI Tools Explore December {year} | Toolsify AI Tools Directory",
       "titlePrefix": "Toolsify AI Directory Explore",
       "titleSuffix": "Toolsify AI Directory",
       "description": "Toolsify AI Directory is a tool provides free AI Tools Directory. Get your favorite AI tools with Toolsify AI Directory, Toolsify AI Directory aims to collect all the AI tools and provide the best for users.",

@@ -25,11 +25,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     locale,
     namespace: 'Metadata.home',
   });
+  const currentYear = new Date().getFullYear();
 
   return buildPageMetadata({
     locale,
     path: '',
-    title: t('title'),
+    title: t('title', { year: currentYear }),
     description: t('description'),
     keywords: t('keywords'),
   });
@@ -40,6 +41,7 @@ export const revalidate = RevalidateOneHour;
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const supabase = createClient();
   const t = await getTranslations('Home');
+  const currentYear = new Date().getFullYear();
   const [{ data: categoryList }, { data: navigationList }] = await Promise.all([
     supabase.from('navigation_category').select('id, name'),
     supabase
@@ -99,13 +101,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
 
           <h1 className='gradient-text animate-slide-up bg-gradient-to-r from-white via-indigo-200 to-purple-200 text-3xl font-bold text-white lg:text-6xl'>
-            {t('title')}
+            {t('title', { year: currentYear })}
           </h1>
           <h2
             className='animate-slide-up text-balance text-sm font-medium text-white/80 lg:text-lg'
             style={{ animationDelay: '0.2s' }}
           >
-            {t('subTitle')}
+            {t('subTitle', { year: currentYear })}
           </h2>
 
           {/* 统计信息 */}

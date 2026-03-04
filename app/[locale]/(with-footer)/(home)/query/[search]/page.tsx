@@ -25,12 +25,13 @@ export async function generateMetadata({
     locale,
     namespace: 'Metadata.home',
   });
+  const currentYear = new Date().getFullYear();
   const keyword = decodeURIComponent(search || '');
 
   return buildPageMetadata({
     locale,
     path: `/query/${encodeURIComponent(keyword)}`,
-    title: `${t('title')} - ${keyword}`,
+    title: `${t('title', { year: currentYear })} - ${keyword}`,
     description: `${t('description')} - ${keyword}`,
     keywords: [t('keywords'), keyword],
   });

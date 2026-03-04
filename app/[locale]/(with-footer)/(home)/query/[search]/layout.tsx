@@ -4,6 +4,7 @@ import SearchForm from '@/components/home/SearchForm';
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: { search?: string } }) {
   const t = await getTranslations('Home');
+  const currentYear = new Date().getFullYear();
   const searchQuery = params?.search ? decodeURI(params.search) : '';
 
   return (
@@ -29,9 +30,9 @@ export default async function Layout({ children, params }: { children: React.Rea
             <div className='h-px w-12 bg-gradient-to-r from-indigo-500/50 via-indigo-500/50 to-transparent' />
           </div>
           <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
-            {t('title')}
+            {t('title', { year: currentYear })}
           </h1>
-          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle')}</h2>
+          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle', { year: currentYear })}</h2>
         </div>
 
         {/* 搜索表单 */}
