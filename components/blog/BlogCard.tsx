@@ -26,7 +26,7 @@ export default function BlogCard({ post, locale, readMoreText = 'Read More' }: B
         <div className='mb-4 flex flex-wrap items-center gap-4 text-xs text-white/60 lg:text-sm'>
           <div className='flex items-center gap-1.5'>
             <Calendar className='size-4' />
-            <span>{new Date(post.date).toLocaleDateString(locale)}</span>
+            <span>{post.date}</span>
           </div>
           <div className='flex items-center gap-1.5'>
             <User className='size-4' />
