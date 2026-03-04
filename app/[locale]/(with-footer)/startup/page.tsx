@@ -7,6 +7,7 @@ import { AD_SLOTS } from '@/lib/adsense-slots';
 import { buildAlternates, buildLocalizedUrl, buildSocialMetadata } from '@/lib/seo';
 import { formatTime } from '@/lib/utils/timeUtils';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
+import StructuredData from '@/components/seo/StructuredData';
 
 import DesktopTable from './DesktopTable';
 import MobileTable from './MobileTable';
@@ -54,12 +55,7 @@ export default function Page({ params: { locale } }: { params: { locale: string 
 
   return (
     <>
-      <script
-        key='startup-jsonld'
-        type='application/ld+json'
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <StructuredData id='startup-jsonld' data={structuredData} />
       <div className='relative min-h-screen w-full'>
         {/* 动态背景 */}
         <div className='fixed inset-0 -z-10'>
