@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { Fragment } from 'react';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE } from '@/lib/constants';
@@ -32,18 +33,17 @@ export default async function BlogList({ locale, pageNum }: BlogListProps) {
       {/* 博客文章列表 */}
       <div className='space-y-6'>
         {paginatedPosts.map((post, index) => (
-          <>
+          <Fragment key={post.id}>
             <BlogCard
-              key={post.id}
               post={post}
               locale={locale}
               readMoreText={t('readMore', { defaultValue: 'Read More' })}
             />
             {/* 每 3 篇文章后插入广告 */}
-            {blogInFeedSlot && index % 3 === 0 && index !== paginatedPosts.length - 1 && (
+            {blogInFeedSlot && (index + 1) % 3 === 0 && index !== paginatedPosts.length - 1 && (
               <InFeedAd adSlot={blogInFeedSlot} adLayout='in-article' adLayoutKey='-fb+5w+4e-db+86' />
             )}
-          </>
+          </Fragment>
         ))}
       </div>
 

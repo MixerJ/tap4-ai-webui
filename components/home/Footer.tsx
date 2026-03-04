@@ -31,6 +31,7 @@ function InfoLink({
 
 export default function Footer() {
   const t = useTranslations('Footer');
+  const currentYear = new Date().getFullYear();
 
   const SupportLinks = [
     {
@@ -91,7 +92,9 @@ export default function Footer() {
             <h3 className='bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-xl font-bold text-transparent lg:text-2xl'>
               {t('title')}
             </h3>
-            <p className='text-center text-xs leading-relaxed text-white/60 lg:text-left lg:text-sm'>{t('subTitle')}</p>
+            <p className='text-center text-xs leading-relaxed text-white/60 lg:text-left lg:text-sm'>
+              {t('subTitle', { year: currentYear })}
+            </p>
           </div>
 
           {/* 右侧：链接区域 */}

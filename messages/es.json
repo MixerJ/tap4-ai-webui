@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Directorio de Herramientas de IA de Toolsify",
-    "subTitle": "¡Descubre las mejores herramientas de IA de 2025 con el Directorio de Herramientas de IA de Toolsify!",
+    "subTitle": "¡Descubre las mejores herramientas de IA de {year} con el Directorio de Herramientas de IA de Toolsify!",
     "support": "Soporte",
     "info": "Información",
     "tap4": "Toolsify AI",
@@ -119,7 +119,7 @@
     "goHome": "Ir a Inicio"
   },
   "Home": {
-    "title": "Toolsify AI - Descubre las mejores herramientas de IA 2025",
+    "title": "Toolsify AI - Descubre las mejores herramientas de IA {year}",
     "subTitle": "Obtén tus herramientas de IA favoritas en el Directorio de Herramientas de IA de Toolsify. La lista de herramientas de IA se actualiza diariamente por GPT-4o. Es gratis enviar aquí para mejorar tu SEO ahora.",
     "heroTitle1": "Descubre IA",
     "heroTitle2": "Excelencia",
@@ -189,7 +189,7 @@
     }
   },
   "Explore": {
-    "title": "Descubre las Mejores Herramientas de IA 2025",
+    "title": "Descubre las Mejores Herramientas de IA {year}",
     "subTitle": "Obtén tus herramientas de IA favoritas en el Directorio de Herramientas de IA de Toolsify. La lista de herramientas de IA se actualiza diariamente por GPT-4o."
   },
   "Metadata": {
@@ -202,7 +202,7 @@
       "titleSubfix": "Directorio de IA de Toolsify"
     },
     "explore": {
-      "title": "Mejor Exploración de Herramientas de IA 2025 | Directorio de IA de Toolsify",
+      "title": "Mejor Exploración de Herramientas de IA {year} | Directorio de IA de Toolsify",
       "titlePrefix": "Explorar Directorio de IA de Toolsify",
       "titleSuffix": "Directorio de IA de Toolsify",
       "description": "El Directorio de IA de Toolsify es una herramienta que proporciona un Directorio gratuito de Herramientas de IA. Obtén tus herramientas de IA favoritas con el Directorio de IA de Toolsify, el cual tiene como objetivo recopilar todas las herramientas de IA y ofrecer lo mejor para los usuarios.",

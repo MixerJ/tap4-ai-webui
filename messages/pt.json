@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify Diretório de Ferramentas de IA",
-    "subTitle": "Descubra as melhores ferramentas de IA de 2025 com o Diretório de Ferramentas de IA do Toolsify!",
+    "subTitle": "Descubra as melhores ferramentas de IA de {year} com o Diretório de Ferramentas de IA do Toolsify!",
     "support": "Apoio",
     "info": "Informação",
     "tap4": "Toolsify AI",
@@ -124,7 +124,7 @@
     "goHome": "ir para casa"
   },
   "Home": {
-    "title": "Toolsify AI - Descubra as melhores ferramentas de IA 2025",
+    "title": "Toolsify AI - Descubra as melhores ferramentas de IA {year}",
     "subTitle": "Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o. É grátis enviar aqui para melhorar seu SEO agora.",
     "heroTitle1": "Descubra IA",
     "heroTitle2": "Excelência",
@@ -194,7 +194,7 @@
     }
   },
   "Explore": {
-    "title": "Descubra as Melhores Ferramentas de IA 2025",
+    "title": "Descubra as Melhores Ferramentas de IA {year}",
     "subTitle": "Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA do Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o."
   },
   "Metadata": {

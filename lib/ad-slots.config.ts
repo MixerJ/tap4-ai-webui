@@ -6,10 +6,10 @@
  */
 const AD_SLOT_IDS = {
   blog: {
-    articleMiddle: '',
-    articleEnd: '',
-    sidebar: '',
-    inFeed: '5246701249',
+    articleMiddle: '9541169475',
+    articleEnd: '8963844152',
+    sidebar: '2644588636',
+    inFeed: '5358381886',
   },
   home: {
     bottom: '1041337705',

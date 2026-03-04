@@ -10,11 +10,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     locale,
     namespace: 'Metadata.explore',
   });
+  const currentYear = new Date().getFullYear();
 
   return buildPageMetadata({
     locale,
     path: '/explore',
-    title: t('title'),
+    title: t('title', { year: currentYear }),
     description: t('description'),
     keywords: t('keywords'),
   });
