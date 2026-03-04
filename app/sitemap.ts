@@ -15,6 +15,16 @@ function normalizeUrl(baseUrl: string, locale: string, path: string): string {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const latestBlogModified = BLOG_POSTS.length
+    ? new Date(
+        Math.max(
+          ...BLOG_POSTS.map((post) => {
+            const parsed = new Date(post.date).getTime();
+            return Number.isNaN(parsed) ? 0 : parsed;
+          }),
+        ),
+      )
+    : now;
 
   const sitemapRoutes: Array<{
     path: string;
@@ -48,9 +58,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       path: 'blog',
-      lastModified: now,
+      lastModified: latestBlogModified,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      path: 'privacy-policy',
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      path: 'terms-of-service',
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 
@@ -68,7 +90,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (let i = 2; i <= totalPages; i += 1) {
     blogPaginationRoutes.push({
       path: `blog/page/${i}`,
-      lastModified: now,
+      lastModified: latestBlogModified,
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     });
@@ -86,5 +108,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return sitemapData;
+  const unique = new Map<string, MetadataRoute.Sitemap[number]>();
+  sitemapData.forEach((entry) => {
+    unique.set(entry.url, entry);
+  });
+
+  return Array.from(unique.values()).sort((a, b) => a.url.localeCompare(b.url));
 }
