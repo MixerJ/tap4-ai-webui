@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { search?: string } }) 
   const { data: dataList } = await supabase
     .from('web_navigation')
     .select('id, name, thumbnail_url, title, url, content')
-    .ilike('detail', `%${decodeURI(params?.search || '')}%`);
+    .ilike('detail', `%${decodeURIComponent(params?.search || '')}%`);
   const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
   const navItems = (dataList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
 

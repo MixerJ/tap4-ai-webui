@@ -17,7 +17,7 @@ export default function BlogCardCompact({ post, locale, readMoreText = 'Read Mor
     <Link
       href={`/blog/${post.slug}`}
       target='_blank'
-      rel='noreferrer'
+      rel='noopener noreferrer'
       className='group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-indigo-500/10 lg:p-8'
     >
       {/* 背景渐变效果 */}

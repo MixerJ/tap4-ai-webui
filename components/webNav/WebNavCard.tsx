@@ -2,7 +2,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { WebNavigation } from '@/db/supabase/types';
@@ -11,19 +10,24 @@ import { useTranslations } from 'next-intl';
 
 type WebNavCardItem = Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>;
 
+const OPTIMIZABLE_HOSTS = new Set(['img.artiversehub.ai', 'toolsify.ai', 'www.toolsify.ai']);
+
 export default function WebNavCard({ name, thumbnail_url, title, url, content }: WebNavCardItem) {
   const t = useTranslations('Home');
-  const [isHovered, setIsHovered] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const imageSrc = thumbnail_url || '/images/placeholder.svg';
+
+  let shouldUnoptimized = false;
+  try {
+    if (imageSrc.startsWith('http')) {
+      const { hostname } = new URL(imageSrc);
+      shouldUnoptimized = !OPTIMIZABLE_HOSTS.has(hostname);
+    }
+  } catch {
+    shouldUnoptimized = true;
+  }
 
   return (
-    <div
-      className='group relative flex min-h-[200px] touch-manipulation flex-col gap-2 rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-2 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98] sm:min-h-[220px] sm:gap-3 sm:p-2.5 lg:h-[343px] lg:gap-3 lg:p-1'
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onTouchStart={() => setIsHovered(true)}
-      onTouchEnd={() => setIsHovered(false)}
-    >
+    <div className='group relative flex min-h-[200px] touch-manipulation flex-col gap-2 rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/80 to-slate-900/80 p-2 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98] sm:min-h-[220px] sm:gap-3 sm:p-2.5 lg:h-[343px] lg:gap-3 lg:p-1'>
       {/* 装饰性元素 */}
       <div className='absolute -right-1 -top-1 z-20 opacity-0 transition-all duration-300 group-hover:opacity-100'>
         <div className='relative'>
@@ -37,36 +41,21 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
       {/* 图片区域 */}
       <Link href={`/ai/${name}`} title={title} className='group relative overflow-hidden rounded-xl'>
         <div className='relative aspect-[310/174] w-full overflow-hidden rounded-lg sm:rounded-xl'>
-          {!imageLoaded && (
-            <div className='absolute inset-0 animate-shimmer bg-gradient-to-br from-indigo-500/20 to-purple-500/20' />
-          )}
           <Image
-            src={thumbnail_url || '/images/placeholder.svg'}
+            src={imageSrc}
             alt={title}
             title={title}
             fill
             sizes='(max-width: 1024px) 50vw, 25vw'
-            loader={({ src }) => src}
-            unoptimized
-            className={`aspect-[310/174] w-full object-cover transition-all duration-500 group-hover:scale-110 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={() => setImageLoaded(true)}
+            unoptimized={shouldUnoptimized}
+            className='aspect-[310/174] w-full object-cover transition-all duration-500 group-hover:scale-110'
           />
 
           {/* 悬停遮罩层 */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-all duration-300 ${
-              isHovered ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
+          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-all duration-300 group-hover:opacity-100' />
 
           {/* 悬停内容 */}
-          <div
-            className={`absolute inset-0 z-10 flex items-center justify-center gap-2 rounded-xl bg-black/20 backdrop-blur-sm transition-all duration-300 ${
-              isHovered ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-            }`}
-          >
+          <div className='absolute inset-0 z-10 flex scale-95 items-center justify-center gap-2 rounded-xl bg-black/20 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:scale-100 group-hover:opacity-100'>
             <span className='text-lg font-semibold text-white'>{t('checkDetail')}</span>
             <CircleArrowRight className='size-5 text-white' />
           </div>
@@ -89,7 +78,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
               href={url}
               title={title}
               target='_blank'
-              rel='nofollow'
+              rel='nofollow noopener noreferrer'
               className='flex min-h-[36px] min-w-[36px] flex-shrink-0 touch-manipulation items-center justify-center rounded-lg p-1.5 text-white/60 transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 hover:text-white active:scale-90 sm:min-h-[44px] sm:min-w-[44px] sm:rounded-xl sm:p-2'
             >
               <SquareArrowOutUpRight className='size-3.5 sm:size-4' />
@@ -109,11 +98,7 @@ export default function WebNavCard({ name, thumbnail_url, title, url, content }:
             <span className='hidden sm:inline'>AI Tool</span>
             <span className='sm:hidden'>AI</span>
           </div>
-          <div
-            className={`ml-2 h-0.5 flex-1 rounded-full bg-white/20 transition-all duration-300 sm:h-1 ${
-              isHovered ? 'bg-gradient-to-r from-indigo-500 to-purple-500' : ''
-            }`}
-          />
+          <div className='ml-2 h-0.5 flex-1 rounded-full bg-white/20 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-500 group-hover:to-purple-500 sm:h-1' />
         </div>
       </div>
 

@@ -51,7 +51,7 @@ export function buildLocalizedUrl(locale: string, path = ''): string {
 
 export function buildLocaleAlternates(locale: string, path = ''): Metadata['alternates'] {
   const languagesMap = languages.reduce<Record<string, string>>((acc, item) => {
-    acc[item.lang] = buildAbsoluteUrl(item.lang, path);
+    acc[item.code] = buildAbsoluteUrl(item.lang, path);
     return acc;
   }, {});
 

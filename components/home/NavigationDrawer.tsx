@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 
 function NavDrawerItem({ isActive, name }: { isActive: boolean; name: string }) {
   return (
-    <li
+    <div
       className={cn(
         'flex h-12 w-full items-center gap-4 rounded-xl border border-white/5 bg-slate-800/60 pl-4 pr-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:bg-slate-700/60',
         isActive &&
@@ -36,7 +36,7 @@ function NavDrawerItem({ isActive, name }: { isActive: boolean; name: string }) 
       {isActive && (
         <div className='ml-auto h-6 w-1 animate-glow rounded-full bg-gradient-to-b from-indigo-400 to-purple-400' />
       )}
-    </li>
+    </div>
   );
 }
 

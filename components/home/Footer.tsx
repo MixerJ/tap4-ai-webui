@@ -108,7 +108,7 @@ export default function Footer() {
                     href={item.href}
                     key={item.href}
                     target='_blank'
-                    rel='noreferrer'
+                    rel='noopener noreferrer'
                     className='text-xs leading-relaxed text-white/60 transition-all duration-200 hover:translate-x-1 hover:text-white lg:text-sm'
                     title={item.title}
                   >

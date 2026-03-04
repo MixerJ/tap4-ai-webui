@@ -36,7 +36,7 @@ export default function BlogCard({ post, locale, readMoreText = 'Read More' }: B
         </div>
 
         {/* 文章标题 */}
-        <Link href={`/blog/${post.slug}`} target='_blank' rel='noreferrer'>
+        <Link href={`/blog/${post.slug}`} target='_blank' rel='noopener noreferrer'>
           <h2 className='mb-3 text-xl font-bold text-white transition-colors duration-200 hover:text-indigo-400 lg:text-2xl'>
             {title}
           </h2>
@@ -58,7 +58,7 @@ export default function BlogCard({ post, locale, readMoreText = 'Read More' }: B
         <Link
           href={`/blog/${post.slug}`}
           target='_blank'
-          rel='noreferrer'
+          rel='noopener noreferrer'
           className='inline-flex items-center gap-2 text-sm font-medium text-indigo-400 transition-colors duration-200 hover:text-indigo-300 lg:text-base'
         >
           {readMoreText}

@@ -89,9 +89,9 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
       <div className='fixed inset-0 -z-10'>
         <div className='absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' />
         <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent' />
-        <div className='absolute left-1/4 top-1/4 h-96 w-96 animate-float rounded-full bg-indigo-500/10 blur-3xl' />
+        <div className='performance-blob absolute left-1/4 top-1/4 hidden h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl motion-safe:animate-float lg:block' />
         <div
-          className='absolute bottom-1/4 right-1/4 h-96 w-96 animate-float rounded-full bg-purple-500/10 blur-3xl'
+          className='performance-blob absolute bottom-1/4 right-1/4 hidden h-96 w-96 rounded-full bg-purple-500/10 blur-3xl motion-safe:animate-float lg:block'
           style={{ animationDelay: '2s' }}
         />
       </div>
@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
                   <a
                     href={post.downloadLinks.googlePlay}
                     target='_blank'
-                    rel='noreferrer'
+                    rel='noopener noreferrer'
                     className='group flex items-center gap-3 rounded-xl border border-white/20 bg-gradient-to-r from-green-500/10 to-green-600/10 px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:border-green-500/50 hover:bg-green-500/20 hover:shadow-lg hover:shadow-green-500/20 lg:text-base'
                   >
                     <svg className='size-6' viewBox='0 0 24 24' fill='currentColor'>
@@ -184,7 +184,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
                   <a
                     href={post.downloadLinks.appStore}
                     target='_blank'
-                    rel='noreferrer'
+                    rel='noopener noreferrer'
                     className='group flex items-center gap-3 rounded-xl border border-white/20 bg-gradient-to-r from-blue-500/10 to-blue-600/10 px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:border-blue-500/50 hover:bg-blue-500/20 hover:shadow-lg hover:shadow-blue-500/20 lg:text-base'
                   >
                     <svg className='size-6' viewBox='0 0 24 24' fill='currentColor'>

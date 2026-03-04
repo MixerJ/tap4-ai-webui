@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 import { Toaster } from '@/components/ui/sonner';
@@ -8,15 +9,13 @@ import Navigation from '@/components/home/Navigation';
 import './globals.css';
 
 import { Suspense } from 'react';
-import { Analytics } from '@vercel/analytics/react';
 
 import { SITE_NAME, SITE_TAGLINE } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
 import { buildMetadataBase, buildRobotsMeta } from '@/lib/seo';
-import ClarityScript from '@/components/analytics/ClarityScript';
-import SeoScript from '@/components/seo/SeoScript';
+import DeferredScripts from '@/components/analytics/DeferredScripts';
 import StructuredData from '@/components/seo/StructuredData';
-import { languages } from '@/i18n';
+import { getLanguageTagByLocale, languages } from '@/i18n';
 
 import Loading from './loading';
 
@@ -73,6 +72,7 @@ export default function RootLayout({
   const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const languageTags = languages.map((item) => item.code);
+  const htmlLang = getLanguageTagByLocale(locale);
 
   const websiteJsonLd = {
     '@context': 'https://schema.org',
@@ -102,14 +102,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning className='dark'>
+    <html lang={htmlLang} suppressHydrationWarning className='dark'>
       <head>
         {/* Google AdSense Account Meta Tag */}
         {adsenseEnabled && adsenseClientId && <meta name='google-adsense-account' content={adsenseClientId} />}
-        {/* Google AdSense - 直接在 head 中加载以确保优先级 */}
+        {/* Google AdSense - 延迟到交互后加载，减轻首屏主线程压力 */}
         {adsenseEnabled && adsenseClientId && (
-          <script
-            async
+          <Script
+            strategy='afterInteractive'
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
             crossOrigin='anonymous'
           />
@@ -135,11 +135,9 @@ export default function RootLayout({
           {process.env.NODE_ENV === 'development' && AdSenseDiagnostic && <AdSenseDiagnostic />}
           {process.env.NODE_ENV === 'development' && AdSenseDebug && <AdSenseDebug />}
         </NextIntlClientProvider>
-        <SeoScript />
         <StructuredData id='website-structured-data' data={websiteJsonLd} />
         <StructuredData id='organization-structured-data' data={organizationJsonLd} />
-        <Analytics />
-        <ClarityScript projectId={projectId} />
+        <DeferredScripts projectId={projectId} />
       </body>
     </html>
   );
