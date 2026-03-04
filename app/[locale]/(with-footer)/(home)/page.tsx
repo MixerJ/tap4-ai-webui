@@ -204,7 +204,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                         <div className='mb-4 flex flex-wrap items-center gap-3 text-xs text-white/60 lg:text-sm'>
                           <div className='flex items-center gap-1.5'>
                             <Calendar className='size-3.5' />
-                            <span>{new Date(post.date).toLocaleDateString(locale)}</span>
+                            <span>{post.date}</span>
                           </div>
                           <div className='rounded-lg border border-white/20 bg-white/5 px-2 py-0.5 text-white/70'>
                             {post.category}

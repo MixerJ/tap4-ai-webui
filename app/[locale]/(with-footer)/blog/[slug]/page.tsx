@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
           <div className='mb-6 flex flex-wrap items-center gap-4 text-sm text-white/60'>
             <div className='flex items-center gap-1.5'>
               <Calendar className='size-4' />
-              <span>{new Date(post.date).toLocaleDateString(locale)}</span>
+              <span>{post.date}</span>
             </div>
             <div className='flex items-center gap-1.5'>
               <User className='size-4' />

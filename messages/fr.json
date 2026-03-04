@@ -148,7 +148,8 @@
     "title": "Blog",
     "subTitle": "Perspectives, guides et mises à jour sur les outils IA et la technologie",
     "readMore": "Lire Plus",
-    "backToBlog": "Retour au Blog"
+    "backToBlog": "Retour au Blog",
+    "seoHeading": "Blog des outils IA : guides, comparatifs et cas d'usage"
   },
   "Category": {
     "home": "Accueil",
