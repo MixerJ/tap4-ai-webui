@@ -18,15 +18,13 @@
     "subTitle": "Descubra as melhores ferramentas de IA de 2025 com o Diretório de Ferramentas de IA do Toolsify!",
     "support": "Apoio",
     "info": "Informação",
-    "tap4": "Tap4 AI",
+    "tap4": "Toolsify AI",
     "tattoo": "Gerador de Tatuagens AI",
     "privacy": "Política de Privacidade",
     "termsConditions": "Termos e Condições",
     "contactUs": "Contate-nos"
   },
   "Faq": {
-    "title": "Perguntas Frequentes",
-    "subTitle": "Encontre respostas para perguntas comuns sobre nosso diretório de ferramentas de IA",
     "1": {
       "question": "O que é o Diretório de Ferramentas de IA do Toolsify?",
       "answer": "O Diretório de Ferramentas de IA do Toolsify - Toolsify.ai está construindo um diretório de ferramentas de IA que ajuda você a obter suas ferramentas de IA favoritas. Você pode obter ferramentas de escrita de IA, ferramentas de marketing de IA, ferramentas de parafraseamento de IA, ferramentas de SEO de IA, ferramentas de estudo de IA, ferramentas de geração de IA, ferramentas de pesquisa de IA, ferramentas de arte de IA, ferramentas de música de IA, ferramentas de vídeo de IA, ferramentas de codificação de IA, ferramentas de foto de IA e muito mais aqui."
@@ -69,7 +67,9 @@
     "10": {
       "question": "Quais são os direitos de uso das ferramentas de IA?",
       "answer": "O Diretório de Ferramentas de IA do Toolsify é apenas o Diretório de IA para ferramentas de IA. Os direitos de uso das ferramentas de IA são baseados no site das ferramentas de IA."
-    }
+    },
+    "title": "Perguntas Frequentes",
+    "subTitle": "Encontre respostas para perguntas comuns sobre nosso diretório de ferramentas de IA"
   },
   "FooterNavigation": {
     "privacyPolicy": {
@@ -168,7 +168,13 @@
     "add": "Adicionar",
     "text": "para a página inicial do seu site. Em seguida, você pode enviar seu site com sucesso gratuitamente!",
     "networkError": "Erro de rede",
-    "success": "sucesso"
+    "success": "sucesso",
+    "faqSubmitQ": "Como envio minha ferramenta de IA?",
+    "faqSubmitA": "Preencha o formulário com nome da ferramenta, URL, categoria e uma descrição clara, e envie para revisão.",
+    "faqReviewQ": "Quanto tempo leva a revisão?",
+    "faqReviewA": "A maioria dos envios é revisada em alguns dias úteis, dependendo do volume da fila.",
+    "faqRequirementsQ": "Quais são os requisitos para listagem?",
+    "faqRequirementsA": "Sua ferramenta deve estar acessível, bem descrita e ser relevante para casos de uso de IA."
   },
   "Startup": {
     "title": "Inicie o Lançamento da sua Startup",

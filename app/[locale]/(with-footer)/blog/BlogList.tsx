@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE } from '@/lib/constants';
+import { AD_SLOTS } from '@/lib/adsense-slots';
 import InFeedAd from '@/components/ads/InFeedAd';
 import BlogCard from '@/components/blog/BlogCard';
 import BasePagination from '@/components/page/BasePagination';
@@ -24,6 +25,7 @@ export default async function BlogList({ locale, pageNum }: BlogListProps) {
   const start = (currentPage - 1) * BLOG_PAGE_SIZE;
   const end = start + BLOG_PAGE_SIZE;
   const paginatedPosts = sortedPosts.slice(start, end);
+  const blogInFeedSlot = AD_SLOTS.blog.inFeed;
 
   return (
     <div className='w-full space-y-8 lg:space-y-12'>
@@ -38,8 +40,8 @@ export default async function BlogList({ locale, pageNum }: BlogListProps) {
               readMoreText={t('readMore', { defaultValue: 'Read More' })}
             />
             {/* 每 3 篇文章后插入广告 */}
-            {index % 3 === 0 && index !== paginatedPosts.length - 1 && (
-              <InFeedAd adSlot='5246701249' adLayout='in-article' adLayoutKey='-fb+5w+4e-db+86' />
+            {blogInFeedSlot && index % 3 === 0 && index !== paginatedPosts.length - 1 && (
+              <InFeedAd adSlot={blogInFeedSlot} adLayout='in-article' adLayoutKey='-fb+5w+4e-db+86' />
             )}
           </>
         ))}

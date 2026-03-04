@@ -2,7 +2,9 @@ import type { WebNavigation } from '@/db/supabase/types';
 
 import WebNavCard from './WebNavCard';
 
-export default function WebNavCardList({ dataList }: { dataList: WebNavigation[] }) {
+type WebNavCardItem = Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>;
+
+export default function WebNavCardList({ dataList }: { dataList: WebNavCardItem[] }) {
   return (
     <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5'>
       {dataList.map((item) => (

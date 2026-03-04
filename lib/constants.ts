@@ -312,8 +312,8 @@ export const STARTUP_LIST = [
   },
   {
     DA: 38,
-    Website: 'Tap4 AI',
-    URL: 'https://tap4.ai/submit',
+    Website: 'Toolsify AI',
+    URL: 'https://toolsify.ai/submit',
     Price: 'Free',
     Tag: 'AI',
   },

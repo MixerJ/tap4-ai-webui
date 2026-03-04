@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/db/supabase/client';
+import { createClient } from '@/db/supabase/server';
 
 import crawler from './crawler';
 
@@ -38,31 +38,33 @@ export async function POST(req: NextRequest) {
 
     const [{ data: categoryList, error: categoryListError }, { data: submitList, error: submitListError }] =
       await Promise.all([
-        supabase.from('navigation_category').select(),
+        supabase.from('navigation_category').select('name'),
         supabase
           .from('submit')
-          .select()
+          .select('url')
           .eq('status', 0)
           .order('is_feature', { ascending: false })
           .order('created_at', { ascending: true }),
       ]);
+    const categories = (categoryList ?? []) as unknown as Array<{ name: string }>;
+    const submits = (submitList ?? []) as unknown as Array<{ url: string | null }>;
 
     console.log('supabase get categoryList succeed!');
-    if (categoryListError || !categoryList) {
+    if (categoryListError || !categories.length) {
       return NextResponse.json({ error: 'Category is null' }, { status: 201 });
     }
 
-    if (submitListError || !submitList || !submitList[0]) {
+    if (submitListError || !submits[0]) {
       return NextResponse.json({ error: 'Submit list is null' }, { status: 202 });
     }
     console.log('supabase get submitList succeed!');
 
     const callbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/cron_callback`;
 
-    const firstSubmitData = submitList[0];
+    const firstSubmitData = submits[0];
     const res = await crawler({
       url: firstSubmitData.url!,
-      tags: categoryList!.map((item) => item.name),
+      tags: categories.map((item) => item.name),
       callback_url: callbackUrl,
       key: cronKey,
     });

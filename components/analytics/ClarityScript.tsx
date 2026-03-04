@@ -31,11 +31,8 @@ export default function ClarityScript({ projectId }: { projectId: string }) {
     try {
       // 初始化 Clarity
       Clarity.init(projectId);
-    } catch (error) {
+    } catch {
       // 静默处理 Clarity 初始化错误
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('Clarity 初始化失败:', error);
-      }
     }
 
     // 添加错误监听器（无论初始化是否成功）

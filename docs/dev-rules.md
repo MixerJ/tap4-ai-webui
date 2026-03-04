@@ -1,4 +1,4 @@
-# Tap4 AI WebUI 开发规则
+# Toolsify AI WebUI 开发规则
 
 ## 开发环境设置
 
@@ -10,10 +10,10 @@
 ### 开发环境配置
 ```bash
 # 克隆项目
-git clone https://github.com/6677-ai/tap4-ai-webui.git
+git clone https://github.com/6677-ai/toolsify-ai-webui.git
 
 # 进入项目目录
-cd tap4-ai-webui
+cd toolsify-ai-webui
 
 # 安装依赖
 pnpm install
@@ -29,7 +29,7 @@ pnpm dev
 ```env
 # 应用配置
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
-NEXT_PUBLIC_APP_NAME="Tap4 AI"
+NEXT_PUBLIC_APP_NAME="Toolsify AI"
 
 # Supabase 配置
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
