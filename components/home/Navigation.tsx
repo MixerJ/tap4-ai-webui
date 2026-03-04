@@ -66,8 +66,10 @@ export default function Navigation() {
           <div className='ml-auto flex h-full items-center gap-x-8'>
             <ul className='hidden h-full flex-1 lg:flex lg:gap-x-8'>
               {NavLinks.map((item) => (
-                <Link key={item.code} href={item.href} title={item.code}>
-                  <li
+                <li key={item.code}>
+                  <Link
+                    href={item.href}
+                    title={item.code}
                     className={cn(
                       'relative flex h-full items-center rounded-lg px-3 py-2 text-white/60 transition-all duration-300 hover:bg-white/5 hover:text-white',
                       pathname === item.href && 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-white',
@@ -81,8 +83,8 @@ export default function Navigation() {
                     {(pathname === item.href || (pathname.includes(item.href) && item.href !== '/')) && (
                       <div className='absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 transform rounded-full bg-gradient-to-r from-indigo-400 to-purple-400' />
                     )}
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               ))}
             </ul>
 
@@ -99,7 +101,7 @@ export default function Navigation() {
               <Link
                 href='https://ko-fi.com/C0C81N5Y9L'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='flex items-center gap-x-1.5 rounded-lg bg-orange-500 px-2 py-1.5 text-xs font-medium text-white transition-colors hover:bg-orange-600 sm:gap-x-2 sm:px-3 sm:py-2 sm:text-sm lg:gap-x-2 lg:px-3 lg:py-2 lg:text-sm'
                 title={t('buyMeCoffee')}
               >

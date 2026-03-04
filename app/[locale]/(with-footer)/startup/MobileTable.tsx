@@ -33,7 +33,7 @@ export default function MobileTable() {
             <a
               href={item.URL}
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='flex-center group h-[75px] w-9 rounded-lg border border-white/10 bg-white/5 transition-all duration-200 hover:border-indigo-500/50 hover:bg-indigo-500/10'
             >
               <SquareArrowOutUpRight className='text-white/60 transition-colors duration-200 group-hover:text-indigo-400' />

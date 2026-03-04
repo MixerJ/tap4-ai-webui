@@ -33,11 +33,11 @@ export default function PageHero({
         {!isCompact && (
           <>
             <div
-              className='absolute left-1/4 top-1/4 h-64 w-64 animate-float rounded-full bg-indigo-500/10 blur-3xl'
+              className='performance-blob absolute left-1/4 top-1/4 hidden h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl motion-safe:animate-float lg:block'
               style={{ animationDelay: '0s' }}
             />
             <div
-              className='absolute bottom-1/4 right-1/4 h-64 w-64 animate-float rounded-full bg-purple-500/10 blur-3xl'
+              className='performance-blob absolute bottom-1/4 right-1/4 hidden h-64 w-64 rounded-full bg-purple-500/10 blur-3xl motion-safe:animate-float lg:block'
               style={{ animationDelay: '2s' }}
             />
           </>
