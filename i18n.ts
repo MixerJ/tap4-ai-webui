@@ -51,6 +51,11 @@ export const languages = [
 
 export const locales = languages.map((lang) => lang.lang);
 
+export function getLanguageTagByLocale(locale: string): string {
+  const matched = languages.find((item) => item.lang === locale);
+  return matched?.code || 'en-US';
+}
+
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
