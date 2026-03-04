@@ -1,6 +1,6 @@
-# Tap4 AI WebUI 文档中心
+# Toolsify AI WebUI 文档中心
 
-欢迎来到 Tap4 AI WebUI 的文档中心！这里包含了项目的各种文档和指南。
+欢迎来到 Toolsify AI WebUI 的文档中心！这里包含了项目的各种文档和指南。
 
 ## 📚 文档列表
 

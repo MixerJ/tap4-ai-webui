@@ -30,7 +30,7 @@
 运行脚本自动添加翻译：
 
 ```bash
-cd /Users/mike/workspaces/tap4-ai-webui
+cd /Users/mike/workspaces/toolsify-ai-webui
 node scripts/add-consent-translations.js
 ```
 

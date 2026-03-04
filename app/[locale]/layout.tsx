@@ -15,6 +15,8 @@ import { BASE_URL } from '@/lib/env';
 import { buildMetadataBase, buildRobotsMeta } from '@/lib/seo';
 import ClarityScript from '@/components/analytics/ClarityScript';
 import SeoScript from '@/components/seo/SeoScript';
+import StructuredData from '@/components/seo/StructuredData';
+import { languages } from '@/i18n';
 
 import Loading from './loading';
 
@@ -69,6 +71,35 @@ export default function RootLayout({
   const projectId = 'lvebcp2gwg';
   const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true';
   const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const languageTags = languages.map((item) => item.code);
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Toolsify AI',
+    url: siteUrl,
+    inLanguage: languageTags,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteUrl}/query/{search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Toolsify AI',
+    url: siteUrl,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'contact@toolsify.ai',
+    },
+    areaServed: ['US', 'CN', 'JP', 'DE', 'FR', 'ES', 'PT', 'RU', 'TW'],
+    knowsLanguage: languageTags,
+  };
 
   return (
     <html lang={locale} suppressHydrationWarning className='dark'>
@@ -105,6 +136,8 @@ export default function RootLayout({
           {process.env.NODE_ENV === 'development' && AdSenseDebug && <AdSenseDebug />}
         </NextIntlClientProvider>
         <SeoScript />
+        <StructuredData id='website-structured-data' data={websiteJsonLd} />
+        <StructuredData id='organization-structured-data' data={organizationJsonLd} />
         <Analytics />
         <ClarityScript projectId={projectId} />
       </body>

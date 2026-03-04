@@ -1,6 +1,6 @@
 # Google AdSense 集成指南
 
-本文档说明如何在 Tap4 AI WebUI 中优雅地集成 Google AdSense，确保广告不会影响用户体验。
+本文档说明如何在 Toolsify AI WebUI 中优雅地集成 Google AdSense，确保广告不会影响用户体验。
 
 ## 设计原则
 
