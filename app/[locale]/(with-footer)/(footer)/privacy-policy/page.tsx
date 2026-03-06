@@ -1,4 +1,17 @@
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import { buildPageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'FooterNavigation.privacyPolicy' });
+  return buildPageMetadata({
+    locale,
+    path: '/privacy-policy',
+    title: t('1-title', { defaultValue: 'Privacy Policy' }),
+    description: t('1-subtitle', { defaultValue: 'How Toolsify AI collects and uses data.' }),
+  });
+}
 
 export default function Page() {
   const t = useTranslations('FooterNavigation.privacyPolicy');

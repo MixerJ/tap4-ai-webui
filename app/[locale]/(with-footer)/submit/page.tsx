@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { BASE_URL } from '@/lib/env';
 import StructuredData from '@/components/seo/StructuredData';
 import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+import { getLanguageTagByLocale } from '@/i18n';
 
 import SubmitForm from './SubmitForm';
 
@@ -24,6 +25,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('Submit');
   const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const languageTag = getLanguageTagByLocale(locale);
   const pageUrl = `${siteUrl}${getLocalizedPath(locale, '/submit')}`;
   const faqItems = [
     {
@@ -46,7 +48,7 @@ export default function Page({ params: { locale } }: { params: { locale: string 
     name: t('title'),
     description: t('subTitle'),
     url: pageUrl,
-    inLanguage: locale,
+    inLanguage: languageTag,
     isPartOf: {
       '@type': 'WebSite',
       name: 'Toolsify AI',

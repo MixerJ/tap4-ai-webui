@@ -4,6 +4,7 @@ import { WebNavigation } from '@/db/supabase/types';
 import { EXPLORE_PAGE_SIZE } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
 import { getLocalizedPath } from '@/lib/seo';
+import { getLanguageTagByLocale } from '@/i18n';
 import SearchForm from '@/components/home/SearchForm';
 import BasePagination from '@/components/page/BasePagination';
 import StructuredData from '@/components/seo/StructuredData';
@@ -30,6 +31,7 @@ export default async function ExploreList({ locale, pageNum }: { locale: string;
   const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
   const navItems = (navigationList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
   const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const languageTag = getLanguageTagByLocale(locale);
   const explorePath = currentPage > 1 ? `/explore/page/${currentPage}` : '/explore';
   const exploreUrl = `${siteUrl}${getLocalizedPath(locale, explorePath)}`;
   const itemListElement =
@@ -46,7 +48,7 @@ export default async function ExploreList({ locale, pageNum }: { locale: string;
     name: 'Explore AI Tools by Category',
     description: 'Browse curated AI tools by category, pricing model, and use case.',
     url: exploreUrl,
-    inLanguage: locale,
+    inLanguage: languageTag,
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: count || 0,

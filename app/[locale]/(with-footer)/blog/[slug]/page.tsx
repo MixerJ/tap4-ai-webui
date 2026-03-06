@@ -12,6 +12,7 @@ import MarkdownProse from '@/components/MarkdownProse';
 import StructuredData from '@/components/seo/StructuredData';
 import { BASE_URL } from '@/lib/env';
 import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+import { getLanguageTagByLocale } from '@/i18n';
 
 export async function generateMetadata({
   params: { locale, slug },
@@ -58,6 +59,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
   const articleEndAdSlot = AD_SLOTS.blog.articleEnd || AD_SLOTS.blog.inFeed;
   const sidebarAdSlot = AD_SLOTS.blog.sidebar;
   const siteUrl = BASE_URL || 'https://toolsify.ai';
+  const languageTag = getLanguageTagByLocale(locale);
   const articleUrl = `${siteUrl}${getLocalizedPath(locale, `/blog/${slug}`)}`;
   const articleImage = post.image ? `${siteUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}` : `${siteUrl}/images/toolsify-ai.png`;
   const articleJsonLd = {
@@ -71,7 +73,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
     },
     datePublished: post.date,
     dateModified: post.date,
-    inLanguage: locale,
+    inLanguage: languageTag,
     mainEntityOfPage: articleUrl,
     articleSection: post.category,
     keywords: post.tags.join(', '),

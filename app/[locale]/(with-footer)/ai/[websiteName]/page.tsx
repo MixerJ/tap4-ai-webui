@@ -11,6 +11,7 @@ import MarkdownProse from '@/components/MarkdownProse';
 import StructuredData from '@/components/seo/StructuredData';
 import { BASE_URL } from '@/lib/env';
 import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
+import { getLanguageTagByLocale } from '@/i18n';
 
 type WebsiteDetail = {
   name: string;
@@ -70,6 +71,7 @@ export default async function Page({
   }
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const appUrl = `${siteUrl}${getLocalizedPath(locale, `/ai/${websiteName}`)}`;
+  const languageTag = getLanguageTagByLocale(locale);
   const softwareJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -79,7 +81,7 @@ export default async function Page({
     url: appUrl,
     sameAs: data.url,
     image: data.thumbnail_url || undefined,
-    inLanguage: locale,
+    inLanguage: languageTag,
     provider: {
       '@type': 'Organization',
       name: 'Toolsify AI',
