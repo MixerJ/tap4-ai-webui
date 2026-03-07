@@ -44,7 +44,7 @@ CRON_AUTH_KEY=your_cron_auth_key
 SUBMIT_AUTH_KEY=your_submit_auth_key
 
 # 分析配置
-GOOGLE_TRACKING_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 GOOGLE_ADSENSE_URL=https://your-adsense-url
 
 # 联系信息
