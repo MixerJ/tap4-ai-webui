@@ -119,8 +119,8 @@
     "goHome": "回到首頁"
   },
   "Home": {
-    "title": "Toolsify AI - 探索最佳AI工具 {year}",
-    "subTitle": "在Toolsify AI工具目錄中獲取您喜歡的AI工具。AI工具列表由GPT-4o每天更新。現在免費提交以增強您的SEO。",
+    "title": "Toolsify AI - 探索最佳AI工具 {year}年{month}",
+    "subTitle": "發現{year}年{month}最佳AI工具，在Toolsify AI工具目錄中獲取您喜歡的AI工具。AI工具列表由GPT-4o每天更新。現在免費提交以增強您的SEO。",
     "heroTitle1": "探索AI",
     "heroTitle2": "卓越體驗",
     "heroSubtitle": "您通往世界最強大AI工具和技術的門戶",
@@ -216,8 +216,8 @@
     }
   },
   "Explore": {
-    "title": "發現{year}年最佳AI工具",
-    "subTitle": "在Toolsify AI工具目錄中找到您喜愛的AI工具。AI工具列表每天由GPT-4o更新。"
+    "title": "發現{year}年{month}最佳AI工具",
+    "subTitle": "發現{year}年{month}最佳AI工具，在Toolsify AI工具目錄中找到您喜愛的AI工具。AI工具列表每天由GPT-4o更新。"
   },
   "Metadata": {
     "home": {
@@ -229,7 +229,7 @@
       "titleSubfix": "Toolsify AI目錄"
     },
     "explore": {
-      "title": "{year}年最佳AI工具探索 | Toolsify AI目錄",
+      "title": "{year}年{month}最佳AI工具探索 | Toolsify AI目錄",
       "titlePrefix": "Toolsify AI目錄探索",
       "titleSuffix": "Toolsify AI目錄",
       "description": "Toolsify AI目錄是一款提供免費AI工具目錄的工具。通過Toolsify AI目錄獲取您喜愛的AI工具，Toolsify AI目錄旨在收集所有AI工具並為用戶提供最佳服務。",

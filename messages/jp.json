@@ -111,8 +111,8 @@
     "goHome": "ホームへ"
   },
   "Home": {
-    "title": "Toolsify AI - 最高のAIツールを発見 {year}",
-    "subTitle": "Toolsify AIツールディレクトリでお気に入りのAIツールを入手してください。AIツールリストはGPT-4oによって毎日更新されます。今すぐSEOを強化するためにここで無料で提出できます。",
+    "title": "Toolsify AI - {year}年{month}の最高のAIツールを発見",
+    "subTitle": "Toolsify AI ツールディレクトリで{year}年{month}のベストAIツールを発見。お気に入りのAIツールを入手してください。AIツールリストはGPT-4oによって毎日更新されます。今すぐSEOを強化するためにここで無料で提出できます。",
     "heroTitle1": "AIを発見",
     "heroTitle2": "卓越性",
     "heroSubtitle": "世界で最も強力なAIツールとテクノロジーへのゲートウェイ",
@@ -208,8 +208,8 @@
     }
   },
   "Explore": {
-    "title": "{year}年の最高のAIツールを発見する",
-    "subTitle": "Toolsify AIツールディレクトリ内のお気に入りのAIツールを見つける。 AIツールのリストはGPT-4oによって毎日更新されます。"
+    "title": "{year}年{month}の最高のAIツールを発見する",
+    "subTitle": "Toolsify AI ツールディレクトリで{year}年{month}のベストAIツールを発見。お気に入りのAIツールを見つける。AIツールのリストはGPT-4oによって毎日更新されます。"
   },
   "Metadata": {
     "home": {
@@ -221,7 +221,7 @@
       "titleSubfix": "Toolsify AIツールディレクトリ"
     },
     "explore": {
-      "title": "{year}年の最高のAIツールを発見する | Toolsify AIツールディレクトリ",
+      "title": "{year}年{month}の最高のAIツールを発見する | Toolsify AIツールディレクトリ",
       "titlePrefix": "Toolsify AIツールディレクトリを探検する",
       "titleSuffix": "Toolsify AIツールディレクトリ",
       "description": "Toolsify AIツールディレクトリは、無料のAIツールディレクトリを提供するツールです。 Toolsify AIツールディレクトリでお気に入りのAIツールを入手しましょう。このディレクトリはすべてのAIツールを収集し、ユーザーに最高のサービスを提供することを目指しています。",

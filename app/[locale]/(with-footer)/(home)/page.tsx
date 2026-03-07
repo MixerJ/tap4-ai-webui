@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { HOME_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 import { WebNavigation } from '@/db/supabase/types';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import SearchForm from '@/components/home/SearchForm';
@@ -26,11 +27,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.home',
   });
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
 
   return buildPageMetadata({
     locale,
     path: '',
-    title: t('title', { year: currentYear }),
+    title: t('title', { year: currentYear, month: currentMonth }),
     description: t('description'),
     keywords: t('keywords'),
   });
@@ -42,6 +44,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   const supabase = createClient();
   const t = await getTranslations('Home');
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
   const [{ data: categoryList }, { data: navigationList }] = await Promise.all([
     supabase.from('navigation_category').select('id, name'),
     supabase
@@ -101,13 +104,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
 
           <h1 className='gradient-text animate-slide-up bg-gradient-to-r from-white via-indigo-200 to-purple-200 text-3xl font-bold text-white lg:text-6xl'>
-            {t('title', { year: currentYear })}
+            {t('title', { year: currentYear, month: currentMonth })}
           </h1>
           <h2
             className='animate-slide-up text-balance text-sm font-medium text-white/80 lg:text-lg'
             style={{ animationDelay: '0.2s' }}
           >
-            {t('subTitle', { year: currentYear })}
+            {t('subTitle', { year: currentYear, month: currentMonth })}
           </h2>
 
           {/* 统计信息 */}

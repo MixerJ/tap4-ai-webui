@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { RevalidateOneHour } from '@/lib/constants';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 import { buildPageMetadata } from '@/lib/seo';
 
 import ExploreList from '../../ExploreList';
@@ -24,11 +25,12 @@ export async function generateMetadata({
     namespace: 'Metadata.explore',
   });
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
 
   return buildPageMetadata({
     locale,
     path: `/explore/page/${currentPage}`,
-    title: `${t('title', { year: currentYear })} - Page ${currentPage}`,
+    title: `${t('title', { year: currentYear, month: currentMonth })} - Page ${currentPage}`,
     description: t('description'),
     keywords: t('keywords'),
   });

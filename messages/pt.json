@@ -124,8 +124,8 @@
     "goHome": "ir para casa"
   },
   "Home": {
-    "title": "Toolsify AI - Descubra as melhores ferramentas de IA {year}",
-    "subTitle": "Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o. É grátis enviar aqui para melhorar seu SEO agora.",
+    "title": "Toolsify AI - Descubra as melhores ferramentas de IA {month} {year}",
+    "subTitle": "Descubra as melhores ferramentas de IA de {month} {year}. Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o. É grátis enviar aqui para melhorar seu SEO agora.",
     "heroTitle1": "Descubra IA",
     "heroTitle2": "Excelência",
     "heroSubtitle": "Seu portal para as ferramentas e tecnologias de IA mais poderosas do mundo",
@@ -221,8 +221,8 @@
     }
   },
   "Explore": {
-    "title": "Descubra as Melhores Ferramentas de IA {year}",
-    "subTitle": "Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA do Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o."
+    "title": "Descubra as Melhores Ferramentas de IA {month} {year}",
+    "subTitle": "Descubra as melhores ferramentas de IA de {month} {year}. Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA do Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o."
   },
   "Metadata": {
     "home": {
