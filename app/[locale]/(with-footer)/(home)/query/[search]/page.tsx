@@ -6,6 +6,7 @@ import { getTranslations } from 'next-intl/server';
 import { WebNavigation } from '@/db/supabase/types';
 
 import { RevalidateOneHour } from '@/lib/constants';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 import { Separator } from '@/components/ui/separator';
 import Empty from '@/components/Empty';
 import WebNavCardList from '@/components/webNav/WebNavCardList';
@@ -26,12 +27,13 @@ export async function generateMetadata({
     namespace: 'Metadata.home',
   });
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
   const keyword = decodeURIComponent(search || '');
 
   return buildPageMetadata({
     locale,
     path: `/query/${encodeURIComponent(keyword)}`,
-    title: `${t('title', { year: currentYear })} - ${keyword}`,
+    title: `${t('title', { year: currentYear, month: currentMonth })} - ${keyword}`,
     description: `${t('description')} - ${keyword}`,
     keywords: [t('keywords'), keyword],
     robots: {

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import Faq from '@/components/Faq';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 import StructuredData from '@/components/seo/StructuredData';
 import { buildPageMetadata } from '@/lib/seo';
 
@@ -11,11 +12,12 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.explore',
   });
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
 
   return buildPageMetadata({
     locale,
     path: '/explore',
-    title: t('title', { year: currentYear }),
+    title: t('title', { year: currentYear, month: currentMonth }),
     description: t('description'),
     keywords: t('keywords'),
   });
@@ -23,6 +25,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default async function Layout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: 'Explore' });
+  const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
   const faqT = await getTranslations({ locale, namespace: 'Faq' });
   const seoHeading = t('seoHeading', { defaultValue: 'Explore AI Tools by Category' });
   const faqData = [
@@ -78,7 +82,9 @@ export default async function Layout({ children, params: { locale } }: { childre
           <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
             {seoHeading}
           </h1>
-          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle')}</h2>
+          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>
+            {t('subTitle', { year: currentYear, month: currentMonth })}
+          </h2>
         </div>
         {children}
         <Faq />

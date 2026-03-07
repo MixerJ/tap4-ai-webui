@@ -119,8 +119,8 @@
     "goHome": "Zur Startseite"
   },
   "Home": {
-    "title": "Toolsify AI - Entdecken Sie die besten AI-Tools {year}",
-    "subTitle": "Holen Sie sich Ihre bevorzugten AI-Tools im Toolsify AI Tools Directory. AI-Toollisten werden täglich von GPT-4o aktualisiert. Es ist kostenlos, hier einzureichen, um Ihr SEO jetzt zu verbessern.",
+    "title": "Toolsify AI - Entdecken Sie die besten AI-Tools {month} {year}",
+    "subTitle": "Entdecken Sie die besten KI-Tools von {month} {year}. Holen Sie sich Ihre bevorzugten AI-Tools im Toolsify AI Tools Directory. AI-Toollisten werden täglich von GPT-4o aktualisiert. Es ist kostenlos, hier einzureichen, um Ihr SEO jetzt zu verbessern.",
     "heroTitle1": "Entdecken Sie AI",
     "heroTitle2": "Exzellenz",
     "heroSubtitle": "Ihr Tor zu den leistungsstärksten KI-Tools und Technologien der Welt",
@@ -216,8 +216,8 @@
     }
   },
   "Explore": {
-    "title": "Entdecken Sie die besten KI-Tools {year}",
-    "subTitle": "Holen Sie sich Ihre Lieblings-KI-Tools im Toolsify AI Tools Verzeichnis. Die Liste der KI-Tools wird täglich von GPT-4o aktualisiert."
+    "title": "Entdecken Sie die besten KI-Tools {month} {year}",
+    "subTitle": "Entdecken Sie die besten KI-Tools von {month} {year}. Holen Sie sich Ihre Lieblings-KI-Tools im Toolsify AI Tools Verzeichnis. Die Liste der KI-Tools wird täglich von GPT-4o aktualisiert."
   },
   "Metadata": {
     "home": {
@@ -229,7 +229,7 @@
       "titleSubfix": "Toolsify AI Verzeichnis"
     },
     "explore": {
-      "title": "Entdecken Sie die besten KI-Tools {year} | Toolsify AI Verzeichnis",
+      "title": "Entdecken Sie die besten KI-Tools {month} {year} | Toolsify AI Verzeichnis",
       "titlePrefix": "Erkunden Sie das Toolsify AI Verzeichnis",
       "titleSuffix": "Toolsify AI Verzeichnis",
       "description": "Das Toolsify AI Verzeichnis ist ein Werkzeug, das ein kostenloses Verzeichnis von KI-Tools bietet. Holen Sie sich Ihre Lieblings-KI-Tools mit dem Toolsify AI Verzeichnis, das darauf abzielt, alle KI-Tools zu sammeln und das Beste für die Benutzer bereitzustellen.",

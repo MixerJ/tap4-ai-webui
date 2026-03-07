@@ -1,11 +1,20 @@
 import { getTranslations } from 'next-intl/server';
 
 import SearchForm from '@/components/home/SearchForm';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 
-export default async function Layout({ children, params }: { children: React.ReactNode; params: { search?: string } }) {
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: string; search?: string };
+}) {
+  const { locale, search } = params ?? {};
   const t = await getTranslations('Home');
   const currentYear = new Date().getFullYear();
-  const searchQuery = params?.search ? decodeURIComponent(params.search) : '';
+  const currentMonth = formatCurrentMonth(locale ?? 'en');
+  const searchQuery = search ? decodeURIComponent(search) : '';
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -30,9 +39,9 @@ export default async function Layout({ children, params }: { children: React.Rea
             <div className='h-px w-12 bg-gradient-to-r from-indigo-500/50 via-indigo-500/50 to-transparent' />
           </div>
           <h1 className='bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent lg:text-6xl'>
-            {t('title', { year: currentYear })}
+            {t('title', { year: currentYear, month: currentMonth })}
           </h1>
-          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle', { year: currentYear })}</h2>
+          <h2 className='text-xs font-medium text-white/80 lg:text-lg'>{t('subTitle', { year: currentYear, month: currentMonth })}</h2>
         </div>
 
         {/* 搜索表单 */}
