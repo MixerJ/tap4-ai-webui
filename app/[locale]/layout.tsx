@@ -12,7 +12,7 @@ import { Suspense } from 'react';
 
 import { SITE_NAME, SITE_TAGLINE } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
-import { buildMetadataBase, buildRobotsMeta } from '@/lib/seo';
+import { buildMetadataBase, buildRobotsMeta, getLocalizedPath } from '@/lib/seo';
 import DeferredScripts from '@/components/analytics/DeferredScripts';
 import StructuredData from '@/components/seo/StructuredData';
 import { getLanguageTagByLocale, languages } from '@/i18n';
@@ -73,6 +73,7 @@ export default function RootLayout({
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const languageTags = languages.map((item) => item.code);
   const htmlLang = getLanguageTagByLocale(locale);
+  const searchPath = getLocalizedPath(locale, '/query/{search_term_string}');
 
   const websiteJsonLd = {
     '@context': 'https://schema.org',
@@ -82,7 +83,7 @@ export default function RootLayout({
     inLanguage: languageTags,
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${siteUrl}/query/{search_term_string}`,
+      target: `${siteUrl}${searchPath}`,
       'query-input': 'required name=search_term_string',
     },
   };

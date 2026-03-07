@@ -1,5 +1,18 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import { buildPageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'FooterNavigation.termsConditions' });
+  return buildPageMetadata({
+    locale,
+    path: '/terms-of-service',
+    title: t('1-title', { defaultValue: 'Terms of Service' }),
+    description: t('1-subtitle', { defaultValue: 'Terms for using Toolsify AI.' }),
+  });
+}
 
 export default function Page() {
   const t = useTranslations('FooterNavigation.termsConditions');

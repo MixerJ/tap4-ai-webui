@@ -9,6 +9,7 @@ type MetadataInput = {
   title: string;
   description: string;
   keywords?: string | string[];
+  robots?: Metadata['robots'];
   type?: 'website' | 'article';
   imagePath?: string;
 };
@@ -127,6 +128,7 @@ export function buildPageMetadata({
   title,
   description,
   keywords,
+  robots,
   type = 'website',
   imagePath = '/images/toolsify-ai.png',
 }: MetadataInput): Metadata {
@@ -138,6 +140,7 @@ export function buildPageMetadata({
     title,
     description,
     keywords,
+    robots,
     alternates: buildLocaleAlternates(locale, path),
     openGraph: {
       type,

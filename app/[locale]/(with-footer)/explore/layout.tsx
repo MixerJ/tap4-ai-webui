@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import Faq from '@/components/Faq';
+import StructuredData from '@/components/seo/StructuredData';
 import { buildPageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -21,9 +21,37 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   });
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const t = useTranslations('Explore');
+export default async function Layout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'Explore' });
+  const faqT = await getTranslations({ locale, namespace: 'Faq' });
   const seoHeading = t('seoHeading', { defaultValue: 'Explore AI Tools by Category' });
+  const faqData = [
+    { question: faqT('1.question'), answers: [faqT('1.answer')] },
+    {
+      question: faqT('2.question'),
+      answers: [faqT('2.answer-1'), faqT('2.answer-2'), faqT('2.answer-3')],
+    },
+    { question: faqT('3.question'), answers: [faqT('3.answer-1'), faqT('3.answer-2')] },
+    { question: faqT('4.question'), answers: [faqT('4.answer')] },
+    { question: faqT('5.question'), answers: [faqT('5.answer')] },
+    { question: faqT('6.question'), answers: [faqT('6.answer')] },
+    { question: faqT('7.question'), answers: [faqT('7.answer')] },
+    { question: faqT('8.question'), answers: [faqT('8.answer')] },
+    { question: faqT('9.question'), answers: [faqT('9.answer')] },
+    { question: faqT('10.question'), answers: [faqT('10.answer')] },
+  ];
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answers.join(' '),
+      },
+    })),
+  };
 
   return (
     <div className='relative min-h-screen w-full'>
@@ -55,6 +83,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <Faq />
       </div>
+      <StructuredData id='explore-faq-structured-data' data={faqJsonLd} />
     </div>
   );
 }

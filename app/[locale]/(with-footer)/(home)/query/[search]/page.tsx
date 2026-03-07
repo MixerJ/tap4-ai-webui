@@ -34,6 +34,14 @@ export async function generateMetadata({
     title: `${t('title', { year: currentYear })} - ${keyword}`,
     description: `${t('description')} - ${keyword}`,
     keywords: [t('keywords'), keyword],
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: false,
+        follow: true,
+      },
+    },
   });
 }
 
