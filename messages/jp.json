@@ -136,6 +136,33 @@
     "viewAllBlog": "すべての記事を見る",
     "readMore": "続きを読む"
   },
+  "Consent": {
+    "title": "プライバシーを尊重します",
+    "description": "当社およびパートナーは、サービスの提供、保護、改善、およびコンテンツと広告のパーソナライズのために、Cookieおよび類似の技術を使用しています。「すべて受け入れる」をクリックすると、これらの技術の使用に同意したことになります。",
+    "dismiss": "後で",
+    "learnMore": "詳細を見る",
+    "acceptAll": "すべて受け入れる",
+    "rejectAll": "すべて拒否",
+    "customize": "カスタマイズ",
+    "privacySettings": "プライバシー設定",
+    "functional": {
+      "title": "必須Cookie",
+      "description": "これらのCookieは、ウェブサイトの基本機能に不可欠であり、無効にすることはできません。"
+    },
+    "analytics": {
+      "title": "分析Cookie",
+      "description": "ユーザーエクスペリエンスを向上させるために、ウェブサイトの使用状況を理解するのに役立ちます。"
+    },
+    "advertising": {
+      "title": "広告Cookie",
+      "description": "より関連性の高いパーソナライズされた広告コンテンツを表示するために使用されます。"
+    },
+    "alwaysActive": "常に有効",
+    "savePreferences": "設定を保存",
+    "back": "戻る",
+    "policyText": "詳細については、",
+    "privacyPolicy": "プライバシーポリシー"
+  },
   "Blog": {
     "title": "ブログ",
     "subTitle": "AIツールとテクノロジーに関する洞察、ガイド、更新情報",

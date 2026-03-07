@@ -144,6 +144,33 @@
     "viewAllBlog": "查看所有文章",
     "readMore": "閱讀更多"
   },
+  "Consent": {
+    "title": "我們重視您的隱私",
+    "description": "我們和我們的合作夥伴使用 Cookie 和類似技術來提供、保護和改進我們的服務，以及個性化內容和廣告。點擊\"接受全部\"即表示您同意我們使用這些技術。",
+    "dismiss": "稍後再說",
+    "learnMore": "了解更多",
+    "acceptAll": "接受全部",
+    "rejectAll": "拒絕全部",
+    "customize": "自定義",
+    "privacySettings": "隱私設置",
+    "functional": {
+      "title": "必需的Cookie",
+      "description": "這些Cookie對於網站的基本功能是必需的，無法禁用。"
+    },
+    "analytics": {
+      "title": "分析Cookie",
+      "description": "幫助我們了解網站的使用情況，以改進用戶體驗。"
+    },
+    "advertising": {
+      "title": "廣告Cookie",
+      "description": "用於向您展示更相關的個性化廣告內容。"
+    },
+    "alwaysActive": "始終啟用",
+    "savePreferences": "保存設置",
+    "back": "返回",
+    "policyText": "了解更多信息，請查看我們的",
+    "privacyPolicy": "隱私政策"
+  },
   "Blog": {
     "title": "博客",
     "subTitle": "關於AI工具和技術的前沿見解、指南和更新",

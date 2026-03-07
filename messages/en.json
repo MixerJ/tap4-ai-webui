@@ -147,6 +147,7 @@
   "Consent": {
     "title": "We Value Your Privacy",
     "description": "We and our partners use cookies and similar technologies to provide, protect and improve our services, and to personalize content and ads. Click \"Accept All\" to consent to the use of these technologies.",
+    "dismiss": "Maybe Later",
     "learnMore": "Learn More",
     "acceptAll": "Accept All",
     "rejectAll": "Reject All",
