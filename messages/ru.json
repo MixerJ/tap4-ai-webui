@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify Справочник по инструментам ИИ",
-    "subTitle": "Откройте для себя лучшие инструменты ИИ {year} года с помощью справочника Toolsify AI Tools!",
+    "subTitle": "Откройте для себя лучшие инструменты ИИ {month} {year} года с помощью справочника Toolsify AI Tools!",
     "support": "Поддержка",
     "info": "Информация",
     "tap4": "Toolsify AI",
