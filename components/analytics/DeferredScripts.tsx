@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import ClarityScript from '@/components/analytics/ClarityScript';
 import SeoScript from '@/components/seo/SeoScript';
@@ -32,6 +33,7 @@ export default function DeferredScripts({ projectId }: { projectId: string }) {
       <SeoScript />
       <Analytics />
       <ClarityScript projectId={projectId} />
+      <SpeedInsights />
     </>
   );
 }
