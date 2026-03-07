@@ -10,6 +10,7 @@ const path = require('path');
 const translations = {
   tw: {
     title: '我們重視您的隱私',
+    dismiss: '稍後再說',
     description:
       '我們和我們的合作夥伴使用 Cookie 和類似技術來提供、保護和改進我們的服務，以及個性化內容和廣告。點擊"接受全部"即表示您同意我們使用這些技術。',
     learnMore: '了解更多',
@@ -37,6 +38,7 @@ const translations = {
   },
   de: {
     title: 'Wir schätzen Ihre Privatsphäre',
+    dismiss: 'Später',
     description:
       'Wir und unsere Partner verwenden Cookies und ähnliche Technologien, um unsere Dienste bereitzustellen, zu schützen und zu verbessern sowie Inhalte und Anzeigen zu personalisieren. Klicken Sie auf "Alle akzeptieren", um der Verwendung dieser Technologien zuzustimmen.',
     learnMore: 'Mehr erfahren',
@@ -65,6 +67,7 @@ const translations = {
   },
   es: {
     title: 'Valoramos su privacidad',
+    dismiss: 'Más tarde',
     description:
       'Nosotros y nuestros socios utilizamos cookies y tecnologías similares para proporcionar, proteger y mejorar nuestros servicios, así como para personalizar contenido y anuncios. Haga clic en "Aceptar todo" para consentir el uso de estas tecnologías.',
     learnMore: 'Más información',
@@ -92,6 +95,7 @@ const translations = {
   },
   fr: {
     title: 'Nous respectons votre vie privée',
+    dismiss: 'Plus tard',
     description:
       'Nous et nos partenaires utilisons des cookies et des technologies similaires pour fournir, protéger et améliorer nos services, ainsi que pour personnaliser le contenu et les publicités. Cliquez sur "Tout accepter" pour consentir à l\'utilisation de ces technologies.',
     learnMore: 'En savoir plus',
@@ -120,6 +124,7 @@ const translations = {
   },
   jp: {
     title: 'プライバシーを尊重します',
+    dismiss: '後で',
     description:
       '当社およびパートナーは、サービスの提供、保護、改善、およびコンテンツと広告のパーソナライズのために、Cookieおよび類似の技術を使用しています。「すべて受け入れる」をクリックすると、これらの技術の使用に同意したことになります。',
     learnMore: '詳細を見る',
@@ -147,6 +152,7 @@ const translations = {
   },
   pt: {
     title: 'Valorizamos sua privacidade',
+    dismiss: 'Mais tarde',
     description:
       'Nós e nossos parceiros usamos cookies e tecnologias semelhantes para fornecer, proteger e melhorar nossos serviços, bem como para personalizar conteúdo e anúncios. Clique em "Aceitar tudo" para consentir com o uso dessas tecnologias.',
     learnMore: 'Saiba mais',
@@ -174,6 +180,7 @@ const translations = {
   },
   ru: {
     title: 'Мы ценим вашу конфиденциальность',
+    dismiss: 'Позже',
     description:
       'Мы и наши партнеры используем файлы cookie и аналогичные технологии для предоставления, защиты и улучшения наших услуг, а также для персонализации контента и рекламы. Нажмите "Принять все", чтобы дать согласие на использование этих технологий.',
     learnMore: 'Подробнее',

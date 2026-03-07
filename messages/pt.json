@@ -149,6 +149,33 @@
     "viewAllBlog": "Ver Todos os Artigos",
     "readMore": "Ler Mais"
   },
+  "Consent": {
+    "title": "Valorizamos sua privacidade",
+    "description": "Nós e nossos parceiros usamos cookies e tecnologias semelhantes para fornecer, proteger e melhorar nossos serviços, bem como para personalizar conteúdo e anúncios. Clique em \"Aceitar tudo\" para consentir com o uso dessas tecnologias.",
+    "dismiss": "Mais tarde",
+    "learnMore": "Saiba mais",
+    "acceptAll": "Aceitar tudo",
+    "rejectAll": "Rejeitar tudo",
+    "customize": "Personalizar",
+    "privacySettings": "Configurações de privacidade",
+    "functional": {
+      "title": "Cookies necessários",
+      "description": "Esses cookies são essenciais para as funções básicas do site e não podem ser desativados."
+    },
+    "analytics": {
+      "title": "Cookies analíticos",
+      "description": "Ajudam-nos a entender como o site é usado para melhorar a experiência do usuário."
+    },
+    "advertising": {
+      "title": "Cookies de publicidade",
+      "description": "Usados para mostrar conteúdo publicitário personalizado mais relevante."
+    },
+    "alwaysActive": "Sempre ativo",
+    "savePreferences": "Salvar preferências",
+    "back": "Voltar",
+    "policyText": "Para mais informações, consulte nossa",
+    "privacyPolicy": "Política de Privacidade"
+  },
   "Blog": {
     "title": "Blog",
     "subTitle": "Insights, guias e atualizações sobre ferramentas de IA e tecnologia",
