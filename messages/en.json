@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify AI Tools Directory",
-    "subTitle": "Discover the best AI tools of April {year} with the Toolsify AI Tools Directory!",
+    "subTitle": "Discover the best AI tools of {month} {year} with the Toolsify AI Tools Directory!",
     "support": "Support",
     "info": "Information",
     "tap4": "Toolsify AI",

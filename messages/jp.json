@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify AI ツールディレクトリ",
-    "subTitle": "Toolsify AI ツールディレクトリで{year}年のベストAIツールを発見しましょう！",
+    "subTitle": "Toolsify AI ツールディレクトリで{year}年{month}のベストAIツールを発見しましょう！",
     "support": "サポート",
     "info": "情報",
     "tap4": "Toolsify AI",

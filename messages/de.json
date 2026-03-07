@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify AI Tools Verzeichnis",
-    "subTitle": "Entdecken Sie die besten KI-Tools von {year} mit dem Toolsify AI Tools Verzeichnis!",
+    "subTitle": "Entdecken Sie die besten KI-Tools von {month} {year} mit dem Toolsify AI Tools Verzeichnis!",
     "support": "Unterstützung",
     "info": "Informationen",
     "tap4": "Toolsify AI",

@@ -15,7 +15,7 @@
   },
   "Footer": {
     "title": "Toolsify AI工具目录",
-    "subTitle": "发现{year}年4月最佳AI工具，尽在Toolsify AI工具目录！",
+    "subTitle": "发现{year}年{month}最佳AI工具，尽在Toolsify AI工具目录！",
     "support": "支持",
     "info": "信息",
     "tap4": "Toolsify AI",

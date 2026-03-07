@@ -1,8 +1,9 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { CONTACT_US_EMAIL } from '@/lib/env';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 function InfoLink({
@@ -31,7 +32,9 @@ function InfoLink({
 
 export default function Footer() {
   const t = useTranslations('Footer');
+  const locale = useLocale();
   const currentYear = new Date().getFullYear();
+  const currentMonth = formatCurrentMonth(locale);
 
   const SupportLinks = [
     {
@@ -93,7 +96,7 @@ export default function Footer() {
               {t('title')}
             </h3>
             <p className='text-center text-xs leading-relaxed text-white/60 lg:text-left lg:text-sm'>
-              {t('subTitle', { year: currentYear })}
+              {t('subTitle', { year: currentYear, month: currentMonth })}
             </p>
           </div>
 
