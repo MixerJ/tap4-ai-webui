@@ -12,7 +12,7 @@ const AD_SLOT_IDS = {
     inFeed: '5358381886',
   },
   home: {
-    nativeCard: '',
+    nativeCard: '1329796757',
     bottom: '1041337705',
   },
   startup: {
