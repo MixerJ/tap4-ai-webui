@@ -2,20 +2,20 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { createClient } from '@/db/supabase/server';
+import { WebNavigation } from '@/db/supabase/types';
 import { Calendar, CircleChevronRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
+import { AD_SLOTS } from '@/lib/adsense-slots';
 import { BLOG_POSTS } from '@/lib/blog';
 import { HOME_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
+import { BASE_URL } from '@/lib/env';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 import { formatCurrentMonth } from '@/lib/utils/timeUtils';
-import { WebNavigation } from '@/db/supabase/types';
 import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import SearchForm from '@/components/home/SearchForm';
-import WebNavCardList from '@/components/webNav/WebNavCardList';
 import StructuredData from '@/components/seo/StructuredData';
-import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
-import { AD_SLOTS } from '@/lib/adsense-slots';
-import { BASE_URL } from '@/lib/env';
+import WebNavCardList from '@/components/webNav/WebNavCardList';
 
 import { TagList } from './Tag';
 
@@ -54,7 +54,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       .limit(HOME_PAGE_SIZE),
   ]);
   const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
-  const navItems = (navigationList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
+  const navItems = (navigationList ?? []) as unknown as Array<
+    Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>
+  >;
 
   // Get featured blog posts
   const featuredSlugs = ['cubesolver-ai-magic-cube-3d', 'introducing-toolsify-ai-directory'];
@@ -76,6 +78,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
     name: ['Explore', 'Startup', 'Blog', 'Submit'],
     url: ['/explore', '/startup', '/blog', '/submit'].map((path) => `${siteUrl}${getLocalizedPath(locale, path)}`),
   };
+  const homeNativeCardAdSlot = AD_SLOTS.home.nativeCard;
   const homeBottomAdSlot = AD_SLOTS.home.bottom;
 
   return (
@@ -159,7 +162,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             <p className='text-sm text-white/60 lg:text-base'>Discover the best AI tools for your needs</p>
           </div>
 
-          <WebNavCardList dataList={navItems} />
+          <WebNavCardList dataList={navItems} injectedAdSlot={homeNativeCardAdSlot} adInsertAfter={3} />
 
           {/* 探索更多按钮 - 现代化设计 */}
           <div className='mt-8 flex justify-center'>

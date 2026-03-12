@@ -257,6 +257,21 @@
   min-height: 280px;
 }
 
+.ad-shell-native-card {
+  height: 100%;
+  transform: none;
+}
+
+.ad-shell-native-card:hover {
+  transform: none;
+  border-color: rgb(255 255 255 / 0.14);
+}
+
+.ad-shell-native-card .adsense-container {
+  min-height: 100%;
+  height: 100%;
+}
+
 .ad-shell-skeleton .ad-shell-placeholder {
   height: 220px;
   border-radius: 12px;
