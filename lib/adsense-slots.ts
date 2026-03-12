@@ -32,6 +32,9 @@ export const AD_SLOTS = {
 
   // 首页相关广告
   home: {
+    // 首页原生卡片广告（推荐：展示广告 - 自适应）
+    nativeCard: AD_SLOT_IDS.home.nativeCard,
+
     // 首页底部广告（推荐：展示广告 - 横版）
     bottom: AD_SLOT_IDS.home.bottom,
   },
