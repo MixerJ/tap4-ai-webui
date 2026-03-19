@@ -22,7 +22,7 @@ const AD_SLOT_IDS = {
     bottom: '4679725038',
   },
   ai: {
-    middle: '',
+    middle: '8802016109',
   },
   explore: {
     bottom: '',
