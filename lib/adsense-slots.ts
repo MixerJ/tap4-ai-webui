@@ -51,6 +51,12 @@ export const AD_SLOTS = {
     bottom: AD_SLOT_IDS.category.bottom,
   },
 
+  // AI 详情页相关广告
+  ai: {
+    // AI 详情页中间广告
+    middle: AD_SLOT_IDS.ai.middle,
+  },
+
   // 探索页相关广告
   explore: {
     // 探索页底部广告（推荐：展示广告 - 自适应）
