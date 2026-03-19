@@ -21,6 +21,9 @@ const AD_SLOT_IDS = {
   category: {
     bottom: '4679725038',
   },
+  ai: {
+    middle: '',
+  },
   explore: {
     bottom: '',
   },

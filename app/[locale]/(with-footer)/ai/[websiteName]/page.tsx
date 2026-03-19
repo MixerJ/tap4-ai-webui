@@ -1,17 +1,19 @@
+import { cache } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/db/supabase/server';
+import { getLanguageTagByLocale } from '@/i18n';
 import { CircleArrowRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
-import { cache } from 'react';
 
+import { AD_SLOTS } from '@/lib/adsense-slots';
+import { BASE_URL } from '@/lib/env';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 import { Separator } from '@/components/ui/separator';
+import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import BaseImage from '@/components/image/BaseImage';
 import MarkdownProse from '@/components/MarkdownProse';
 import StructuredData from '@/components/seo/StructuredData';
-import { BASE_URL } from '@/lib/env';
-import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
-import { getLanguageTagByLocale } from '@/i18n';
 
 type WebsiteDetail = {
   name: string;
@@ -128,6 +130,7 @@ export default async function Page({
         </a>
       </div>
       <Separator className='bg-[#010101]' />
+      <ResponsiveAd adSlot={AD_SLOTS.ai.middle} className='my-5 flex justify-center lg:my-8' />
       <div className='mb-5 px-3 lg:px-0'>
         <h2 className='my-5 text-2xl text-white/40 lg:my-10'>{t('introduction')}</h2>
         <MarkdownProse markdown={data?.detail || ''} />
