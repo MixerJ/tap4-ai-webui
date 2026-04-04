@@ -347,7 +347,15 @@ As capacidades multimodais do Gemini 2.5 Pro não substituem engenheiros. Elas r
   author: 'Toolsify Editorial Team',
   date: '2026-02-28',
   category: 'Developer',
-  tags: ['Gemini 2.5 Pro', 'Multimodal', 'Full-Stack'],
+  tags: [
+    'Gemini 2.5 Pro',
+    'Multimodal',
+    'Full-Stack Development',
+    'Developer Workflow',
+    'Gemini 2.5 Pro multimodal API full stack tutorial',
+    'Gemini 2.5 Pro vs Claude 4 for full stack development',
+    'Gemini 2.5 Pro API image video text processing',
+  ],
 };
 
 export default postGemini25ProMultimodalDevWorkflows;

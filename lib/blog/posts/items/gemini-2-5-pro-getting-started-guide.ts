@@ -686,7 +686,14 @@ Google Search Grounding дополняет ответы результатами
   author: 'Toolsify Editorial Team',
   date: '2026-02-23',
   category: 'General User',
-  tags: ['Gemini 2.5 Pro', 'Beginner', 'AI Assistant'],
+  tags: [
+    'Gemini 2.5 Pro',
+    'Beginner Guide',
+    'AI Assistant',
+    'Gemini 2.5 Pro tutorial step by step',
+    'Gemini 2.5 Pro prompt guide best practices 2026',
+    'Gemini 2.5 Pro vs ChatGPT for beginners',
+  ],
 };
 
 export default postGemini25ProGettingStartedGuide;

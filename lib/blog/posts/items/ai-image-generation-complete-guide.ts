@@ -525,7 +525,16 @@ Stable Diffusion представляет принципиально иную ф
   author: 'Design Team',
   date: '2024-11-20',
   category: 'AI Tools',
-  tags: ['Image Generation', 'DALL-E', 'Midjourney', 'AI Art'],
+  tags: [
+    'AI Image Generation',
+    'Text to Image',
+    'Midjourney',
+    'DALL-E 3',
+    'Stable Diffusion',
+    'AI Art',
+    'best AI image generator free 2025',
+    'AI image prompts for photorealistic results',
+  ],
 };
 
 export default postAiImageGenerationCompleteGuide;

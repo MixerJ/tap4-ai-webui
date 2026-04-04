@@ -557,7 +557,16 @@ DeepSeek R1 спроектирован специально для chain-of-thou
   author: 'Open Source Team',
   date: '2024-11-08',
   category: 'AI Technology',
-  tags: ['Open Source', 'Llama', 'AI Models'],
+  tags: [
+    'Open Source AI',
+    'Llama 3',
+    'Mistral',
+    'Self-Hosted LLM',
+    'AI Models',
+    'best open source LLMs 2025',
+    'Llama 3 vs Mistral vs Qwen comparison',
+    'fine-tuning open source LLM guide',
+  ],
 };
 
 export default postOpenSourceAiModels2024;

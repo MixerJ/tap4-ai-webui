@@ -767,7 +767,16 @@ Claude занял уникальную нишу в написании текст
   author: 'Content Team',
   date: '2024-11-22',
   category: 'AI Tools',
-  tags: ['Writing Tools', 'Content Creation', 'AI'],
+  tags: [
+    'AI Writing Tools',
+    'Content Creation',
+    'AI Copywriting',
+    'ChatGPT Writing',
+    'best AI writing tools 2025',
+    'free AI writing assistant',
+    'AI content writer for SEO',
+    'ChatGPT vs Jasper vs Claude writing',
+  ],
 };
 
 export default postBestAiWritingTools2024;

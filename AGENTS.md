@@ -1,52 +1,97 @@
-# Repository Guidelines
+# AGENTS.md
 
-## Project Structure & Module Organization
-This project is a Next.js 14 + TypeScript app-router codebase.
+This file provides guidance to AI agents (Codex, Sisyphus, etc.) when working with code in this repository.
 
-- `app/`: route groups, pages, layouts, and API routes (`app/api/*`).
-- `components/`: reusable UI and feature components (`ads`, `home`, `ui`, etc.).
-- `lib/`: shared utilities, constants, data access helpers, styling helpers.
-- `messages/`: locale JSON files for `next-intl`.
-- `public/`: static assets (images, icons, `robots.txt`, `ads.txt`).
-- `db/supabase/`: SQL and Supabase client/types.
-- `docs/`: implementation notes and operational guides.
-- `scripts/`: small maintenance scripts.
+## Agent Discovery Mechanism
 
-## Build, Test, and Development Commands
-Use `pnpm` (required by `package.json` engines).
+AI agents discover and merge AGENTS.md files in this precedence order:
 
-- `pnpm i`: install dependencies.
-- `pnpm dev`: start local dev server on `0.0.0.0`.
-- `pnpm build`: production build validation.
-- `pnpm start`: run production server.
-- `pnpm lint`: run Next.js ESLint checks.
-- `pnpm lint:fix`: auto-fix lint issues.
-- `pnpm prettier`: format repository files.
+1. **Global scope**: Reads `~/.codex/AGENTS.override.md` if exists, otherwise `~/.codex/AGENTS.md` (Codex) or equivalent
+   global config
+2. **Project scope**: Starting from project root (Git root), walks down to current working directory. In each directory,
+   checks for `AGENTS.override.md` first, then `AGENTS.md`
+3. **Merge order**: Files closer to current directory override earlier guidance (appear later in combined prompt)
 
-## Coding Style & Naming Conventions
-- Language: TypeScript + React function components.
-- Formatting: Prettier (`tabWidth: 2`, single quotes, trailing commas, `printWidth: 120`).
-- Linting: ESLint (`next/core-web-vitals`, Airbnb, TypeScript rules).
-- Imports: sorted via `@ianvs/prettier-plugin-sort-imports`; Tailwind classes sorted automatically.
-- Naming: components in `PascalCase` (`HeroSection.tsx`), utility modules in `camelCase` (`stringUtils.ts`), route folders in Next.js conventions (`[param]`, `(group)`).
+Reference: [Project instructions discovery](https://codex.dev/codex/config-advanced#project-instructions-discovery)
 
-## Testing Guidelines
-There is currently no `pnpm test` script in this repository. For now, treat quality gates as:
+## Project Architecture
 
-1. `pnpm lint`
-2. `pnpm build`
+See [PROJECT.md](./PROJECT.md) for detailed project architecture, code conventions, and verification steps.
 
-When adding tests, colocate as `*.test.ts`/`*.test.tsx` or under `__tests__/`, and prefer React Testing Library for UI behavior.
+---
 
-## Commit & Pull Request Guidelines
-- Keep commits small and focused; use short, imperative subjects (history includes both Chinese and English).
-- Recommended pattern: `feat(scope): add startup mobile table sorting` (or concise non-prefixed equivalent).
-- PRs should include:
-  - what changed and why,
-  - linked issue (if any),
-  - screenshots/GIFs for UI changes,
-  - verification notes (`pnpm lint`, `pnpm build`).
+## Agent-Specific Features
 
-## Security & Configuration Tips
-- Copy `.env.example` and keep secrets in `.env.local`; never commit credentials.
-- Review ad/crawler keys carefully before deployment (`CRAWLER_API_KEY`, `CRON_AUTH_KEY`, `SUBMIT_AUTH_KEY`).
+### Worktrees
+
+Use worktrees for isolated feature work:
+
+```bash
+codex worktree create <branch-name>    # Create new worktree
+codex worktree list                     # List all worktrees
+codex worktree remove <branch-name>    # Remove worktree
+```
+
+### Skills
+
+AI agent skills are loaded based on task domain. Available skills in this project:
+
+- `seo-audit` — SEO diagnostics
+- `vue` / `vue-best-practices` — Vue.js development
+- `web-design-guidelines` — UI/UX compliance
+- `vercel-*` — Vercel deployment patterns
+
+### Subagents
+
+Use subagents for parallel independent tasks:
+
+- `explore` — Contextual code search within this repository
+- `librarian` — External documentation and reference search
+- `oracle` — High-level architecture consultation
+- `metis` — Pre-planning and ambiguity analysis
+- `momus` — Plan review and quality assurance
+
+---
+
+## Sisyphus-Specific Guidelines
+
+When working with Sisyphus (OhMyOpenCode), follow these rules:
+
+### Category + Skills Delegation
+
+| Task Domain                                     | Must Use Category    |
+| ----------------------------------------------- | -------------------- |
+| UI, styling, animations, layout, design         | `visual-engineering` |
+| Hard logic, architecture decisions, algorithms  | `ultrabrain`         |
+| Autonomous research + end-to-end implementation | `deep`               |
+| Single-file typo, trivial config change         | `quick`              |
+
+**Visual work = ALWAYS `visual-engineering`. NO EXCEPTIONS.**
+
+### Todo Management (MANDATORY)
+
+- Multi-step task (2+ steps) → ALWAYS create todos first
+- Before starting each step: mark `in_progress`
+- After completing each step: mark `completed` IMMEDIATELY
+- If scope changes: update todos before proceeding
+
+### Anti-Patterns (NEVER do)
+
+- **Type Safety**: `as any`, `@ts-ignore`, `@ts-expect-error`
+- **Error Handling**: Empty catch blocks `catch(e) {}`
+- **Testing**: Deleting failing tests to "pass"
+- **Debugging**: Shotgun debugging, random changes hoping something works
+
+### Verification Before Completion
+
+Before claiming work is complete, you MUST:
+
+1. Run `pnpm lint` — must pass
+2. Run `pnpm build` — must pass
+3. Verify all changed files have clean diagnostics
+
+### Background Task Policy
+
+- Use `run_in_background=true` for parallel exploration
+- DO NOT poll `background_output` — wait for notification
+- Cancel disposable tasks via `background_cancel(taskId="...")`

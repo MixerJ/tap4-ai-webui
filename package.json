@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint --cache",
     "blog:new": "node scripts/create-blog-post.js",
+    "seo:list": "tsx scripts/optimize-seo.ts list",
+    "seo:write": "tsx scripts/optimize-seo.ts write",
     "brand:check": "bash scripts/check-branding.sh",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --write .",
@@ -74,6 +76,7 @@
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "0.5.13",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   }
 }

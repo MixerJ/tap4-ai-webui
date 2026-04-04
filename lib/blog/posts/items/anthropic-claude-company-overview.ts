@@ -561,7 +561,15 @@ Google последовал с собственной инвестицией в 
   author: 'AI Research Team',
   date: '2024-11-10',
   category: 'Company',
-  tags: ['Anthropic', 'Claude', 'AI Safety'],
+  tags: [
+    'Anthropic',
+    'Claude',
+    'AI Safety',
+    'Constitutional AI',
+    'what is Anthropic AI company mission',
+    'Anthropic vs OpenAI what makes Claude different',
+    'Claude AI assistant use cases for developers',
+  ],
 };
 
 export default postAnthropicClaudeCompanyOverview;
