@@ -31,10 +31,22 @@ export async function POST(req: NextRequest) {
     }
 
     // get response data
-    const { description, detail, name, screenshot_data, screenshot_thumbnail_data, tags, title, url } =
+    const { description, detail, name, screenshot_data, screenshot_thumbnail_data, tags, title, url, keywords } =
       await req.json();
 
     const supabase = createClient();
+
+    // Build website_data with SEO keywords if available
+    let websiteDataStr: string | null = null;
+    if (keywords && Array.isArray(keywords) && keywords.length > 0) {
+      websiteDataStr = JSON.stringify({
+        seo: {
+          keywords,
+          generated_at: new Date().toISOString(),
+          model: 'crawler-groq-llama3',
+        },
+      });
+    }
 
     // Check if name already exists
     const { data: existingEntry, error: existingEntryError } = await supabase
@@ -62,6 +74,7 @@ export async function POST(req: NextRequest) {
           category_name: tags && tags.length ? tags[0] : 'other',
           title,
           url,
+          ...(websiteDataStr ? { website_data: websiteDataStr } : {}),
         } as any)
         .eq('id', existing.id);
 
@@ -82,6 +95,7 @@ export async function POST(req: NextRequest) {
         category_name: tags && tags.length ? tags[0] : 'other',
         title,
         url,
+        ...(websiteDataStr ? { website_data: websiteDataStr } : {}),
       } as any);
 
       if (insertWebNavigationError) {
@@ -92,7 +106,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Update submit table
-    const { error: updateSubmitError } = await supabase.from('submit').update({ status: 1 } as any).eq('url', url);
+    const { error: updateSubmitError } = await supabase
+      .from('submit')
+      .update({ status: 1 } as any)
+      .eq('url', url);
 
     if (updateSubmitError) {
       throw new Error(updateSubmitError.message);

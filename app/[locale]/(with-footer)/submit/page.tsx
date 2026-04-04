@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
+import { getLanguageTagByLocale } from '@/i18n';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+
 import { BASE_URL } from '@/lib/env';
-import StructuredData from '@/components/seo/StructuredData';
 import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
-import { getLanguageTagByLocale } from '@/i18n';
+import StructuredData from '@/components/seo/StructuredData';
 
 import SubmitForm from './SubmitForm';
 
@@ -18,7 +19,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     locale,
     path: '/submit',
     title: t('title'),
-    description: t('title'),
+    description: t('description'),
+    keywords: t('keywords'),
   });
 }
 

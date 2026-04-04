@@ -347,7 +347,15 @@ SaaS-клиент обнаружил, что ни один конкурент н
   author: 'Toolsify Editorial Team',
   date: '2026-02-18',
   category: 'Product & Ops',
-  tags: ['Gemini 2.5 Pro', 'Conversion Optimization', 'Growth'],
+  tags: [
+    'Gemini 2.5 Pro',
+    'Conversion Optimization',
+    'Multimodal AI',
+    'CRO',
+    'Gemini 2.5 Pro multimodal conversion rate optimization',
+    'AI-powered A/B testing with Gemini',
+    'multimodal AI tools for conversion optimization 2026',
+  ],
 };
 
 export default postGemini25ProMultimodalConversionOptimization;

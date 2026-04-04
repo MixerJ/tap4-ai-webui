@@ -1,18 +1,18 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getLanguageTagByLocale } from '@/i18n';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
-import { BLOG_POSTS } from '@/lib/blog';
 import { AD_SLOTS } from '@/lib/adsense-slots';
+import { BLOG_POSTS } from '@/lib/blog';
+import { BASE_URL } from '@/lib/env';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 import InFeedAd from '@/components/ads/InFeedAd';
 import SidebarAd from '@/components/ads/SidebarAd';
 import MarkdownProse from '@/components/MarkdownProse';
 import StructuredData from '@/components/seo/StructuredData';
-import { BASE_URL } from '@/lib/env';
-import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
-import { getLanguageTagByLocale } from '@/i18n';
 
 export async function generateMetadata({
   params: { locale, slug },
@@ -61,7 +61,9 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const languageTag = getLanguageTagByLocale(locale);
   const articleUrl = `${siteUrl}${getLocalizedPath(locale, `/blog/${slug}`)}`;
-  const articleImage = post.image ? `${siteUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}` : `${siteUrl}/images/toolsify-ai.png`;
+  const articleImage = post.image
+    ? `${siteUrl}${post.image.startsWith('/') ? post.image : `/${post.image}`}`
+    : `${siteUrl}/images/toolsify-ai.png`;
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -83,6 +85,31 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
       name: 'Toolsify AI',
       url: siteUrl,
     },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${siteUrl}${getLocalizedPath(locale, '/blog')}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: title,
+        item: articleUrl,
+      },
+    ],
   };
 
   return (
@@ -199,9 +226,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
             )}
           </article>
 
-          <aside className='hidden lg:block'>
-            {sidebarAdSlot && <SidebarAd adSlot={sidebarAdSlot} />}
-          </aside>
+          <aside className='hidden lg:block'>{sidebarAdSlot && <SidebarAd adSlot={sidebarAdSlot} />}</aside>
         </div>
 
         {/* 导航到其他文章 */}
@@ -216,6 +241,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
         </div>
       </div>
       <StructuredData id='blog-article-structured-data' data={articleJsonLd} />
+      <StructuredData id='blog-breadcrumb-structured-data' data={breadcrumbJsonLd} />
     </div>
   );
 }

@@ -615,7 +615,16 @@ Gemini 1.5 Pro от Google продемонстрировал это с нати
   author: 'AI Research Team',
   date: '2024-11-12',
   category: 'AI Trends',
-  tags: ['Future', 'Trends', 'AI Technology'],
+  tags: [
+    'AI Trends 2025',
+    'AI Predictions 2026',
+    'Future of AI',
+    'AI Agents',
+    'Agentic AI',
+    'AI trends that will dominate 2026',
+    'how AI agents will change the workplace',
+    'will AI replace developers by 2026',
+  ],
 };
 
 export default postFutureOfAiTools;

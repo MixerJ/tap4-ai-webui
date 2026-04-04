@@ -23,13 +23,16 @@ type WebsiteDetail = {
   thumbnail_url: string;
   detail: string;
   category_name: string;
+  star_rating: number | null;
+  collection_time: string | null;
+  website_data: string | null;
 };
 
 const getWebsiteDetail = cache(async (websiteName: string) => {
   const supabase = createClient();
   const { data } = await supabase
     .from('web_navigation')
-    .select('name,title,content,url,thumbnail_url,detail,category_name')
+    .select('name,title,content,url,thumbnail_url,detail,category_name,star_rating,collection_time,website_data')
     .eq('name', websiteName)
     .limit(1)
     .maybeSingle();
@@ -52,12 +55,30 @@ export async function generateMetadata({
     notFound();
   }
 
+  // Extract SEO data from website_data if available
+  let description = data.content;
+  let keywords: string | string[] = [data.title, data.category_name || '', 'AI tool', 'AI directory'].filter(Boolean);
+  if (data.website_data) {
+    try {
+      const parsed = JSON.parse(data.website_data);
+      if (parsed.seo?.optimized_description) {
+        description = parsed.seo.optimized_description;
+      }
+      if (parsed.seo?.keywords && Array.isArray(parsed.seo.keywords)) {
+        keywords = [...parsed.seo.keywords, data.title, data.category_name || ''].filter(Boolean);
+      }
+    } catch {
+      // website_data is not valid JSON, use defaults
+    }
+  }
+
   return buildPageMetadata({
     locale,
     path: `/ai/${websiteName}`,
     title: `${data.title} | ${t('titleSubfix')}`,
-    description: data.content,
-    keywords: [data.title, data.category_name || '', 'AI tool', 'AI directory'].filter(Boolean),
+    description,
+    keywords,
+    imagePath: data.thumbnail_url || undefined,
   });
 }
 
@@ -74,7 +95,7 @@ export default async function Page({
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const appUrl = `${siteUrl}${getLocalizedPath(locale, `/ai/${websiteName}`)}`;
   const languageTag = getLanguageTagByLocale(locale);
-  const softwareJsonLd = {
+  const softwareJsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: data.title,
@@ -92,13 +113,52 @@ export default async function Page({
     areaServed: 'Worldwide',
   };
 
+  if (data.star_rating && data.star_rating > 0) {
+    softwareJsonLd.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: data.star_rating,
+      bestRating: 5,
+      worstRating: 1,
+      ratingCount: 1,
+    };
+  }
+
+  if (data.collection_time) {
+    softwareJsonLd.datePublished = data.collection_time;
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: data.category_name || 'AI Tools',
+        item: `${siteUrl}${getLocalizedPath(locale, `/category/${data.category_name}`)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: data.title,
+        item: appUrl,
+      },
+    ],
+  };
+
   return (
     <div className='w-full'>
       <div className='flex flex-col px-6 py-5 lg:h-[323px] lg:flex-row lg:justify-between lg:px-0 lg:py-10'>
         <div className='flex flex-col items-center lg:items-start'>
           <div className='space-y-1 text-balance lg:space-y-3'>
             <h1 className='text-2xl lg:text-5xl'>{data.title}</h1>
-            <h2 className='text-xs lg:text-sm'>{data.content}</h2>
+            <p className='text-xs lg:text-sm'>{data.content}</p>
           </div>
           <a
             href={data.url}
@@ -136,6 +196,7 @@ export default async function Page({
         <MarkdownProse markdown={data?.detail || ''} />
       </div>
       <StructuredData id='ai-software-structured-data' data={softwareJsonLd} />
+      <StructuredData id='ai-breadcrumb-structured-data' data={breadcrumbJsonLd} />
     </div>
   );
 }

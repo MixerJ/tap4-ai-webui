@@ -291,7 +291,15 @@ GitHub сделал её доступной для подписчиков Copilo
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
   category: 'AI Models',
-  tags: ['GPT-5', 'GitHub Copilot', 'AI Coding', 'OpenAI'],
+  tags: [
+    'GPT-5',
+    'GitHub Copilot',
+    'AI Coding',
+    'OpenAI Codex',
+    'GPT-5.1 Codex Max vs GitHub Copilot comparison 2026',
+    'best AI coding assistant GPT-5.1 or GitHub Copilot',
+    'Codex Max cloud software engineering agent',
+  ],
 };
 
 export default postGpt51CodexMaxGithubCopilot;

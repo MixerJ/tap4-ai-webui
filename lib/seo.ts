@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-
 import { languages } from '@/i18n';
+
 import { BASE_URL } from '@/lib/env';
 
 type MetadataInput = {
@@ -133,7 +133,9 @@ export function buildPageMetadata({
   imagePath = '/images/toolsify-ai.png',
 }: MetadataInput): Metadata {
   const url = buildAbsoluteUrl(locale, path);
-  const imageUrl = `${normalizeBaseUrl(BASE_URL || 'https://toolsify.ai')}${normalizePath(imagePath)}`;
+  const imageUrl = imagePath.startsWith('http')
+    ? imagePath
+    : `${normalizeBaseUrl(BASE_URL || 'https://toolsify.ai')}${normalizePath(imagePath)}`;
 
   return {
     metadataBase: new URL(normalizeBaseUrl(BASE_URL || 'https://toolsify.ai')),

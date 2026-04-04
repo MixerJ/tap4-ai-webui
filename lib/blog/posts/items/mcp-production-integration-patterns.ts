@@ -456,7 +456,15 @@ MCP — правильная абстракция для интеграции AI
   author: 'Toolsify Editorial Team',
   date: '2026-03-01',
   category: 'Developer',
-  tags: ['MCP', 'Tool Calling', 'Integration'],
+  tags: [
+    'MCP',
+    'Model Context Protocol',
+    'Tool Calling',
+    'Integration',
+    'MCP server setup Claude tutorial',
+    'how to build MCP server for Claude desktop',
+    'MCP vs traditional API integration AI agents',
+  ],
 };
 
 export default postMcpProductionIntegrationPatterns;
