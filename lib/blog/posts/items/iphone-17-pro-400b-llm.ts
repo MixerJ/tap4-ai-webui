@@ -387,7 +387,7 @@ iPhone 17 Pro оснащён чипом A19 Pro от Apple и 16-ядерным 
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
   category: 'AI Hardware',
-  tags: ['iPhone', 'On-Device AI', 'LLM', 'Apple', 'Mobile AI'],
+  tags: ['iPhone', 'On-Device AI', 'LLM', 'Apple', 'Mobile AI', 'iphone 17 pro demonstrated running a 400b llm'],
 };
 
 export default postIphone17Pro400bLlm;

@@ -483,7 +483,14 @@ Separe planejamento de implementação. Use diferentes modelos para diferentes p
   author: 'Toolsify Editorial Team',
   date: '2026-03-25',
   category: 'AI Coding',
-  tags: ['LLM', 'Software Development', 'AI Coding', 'Developer Workflow'],
+  tags: [
+    'LLM',
+    'Software Development',
+    'AI Coding',
+    'Developer Workflow',
+    'how i write software with llms',
+    'llm software development guide',
+  ],
 };
 
 export default postHowIWriteSoftwareWithLlms;

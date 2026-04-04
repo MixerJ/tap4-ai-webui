@@ -407,7 +407,14 @@ OpenCode представляет сдвиг в том, как мы думаем
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
   category: 'Developer Tools',
-  tags: ['AI Coding', 'Open Source', 'Developer Tools', 'Code Assistant', 'OpenCode'],
+  tags: [
+    'AI Coding',
+    'Open Source',
+    'Developer Tools',
+    'Code Assistant',
+    'OpenCode',
+    'opencode the open source ai coding agent',
+  ],
 };
 
 export default postOpencodeTheOpenSourceAiCodingAgent;

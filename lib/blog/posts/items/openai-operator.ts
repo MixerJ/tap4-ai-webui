@@ -417,7 +417,7 @@ Operator особенно хорошо справляется с тремя ка
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
   category: 'AI Agents',
-  tags: ['AI Agents', 'OpenAI', 'Automation', 'Web Automation'],
+  tags: ['AI Agents', 'OpenAI', 'Automation', 'Web Automation', 'openai operator'],
 };
 
 export default postOpenaiOperator;

@@ -369,7 +369,14 @@ Este é um problema social, não técnico. Modelos melhores produzem output mais
   author: 'Toolsify Editorial Team',
   date: '2026-03-26',
   category: 'AI Culture',
-  tags: ['LLM', 'AI Trust', 'AI Ethics', 'Hacker News'],
+  tags: [
+    'LLM',
+    'AI Trust',
+    'AI Ethics',
+    'Hacker News',
+    'ask hn how do you deal with people who trust llms',
+    'ai trust in professional settings',
+  ],
 };
 
 export default postAskHnHowDoYouDealWithPeopleWhoTrustLlms;

@@ -419,7 +419,7 @@ A pasta .claude combina escopo, estrutura e comportamento. Uma vez internalizado
   author: 'Toolsify Editorial Team',
   date: '2026-03-28',
   category: 'Developer Tools',
-  tags: ['Claude Code', 'Developer Tools', 'AI Coding', 'Configuration'],
+  tags: ['Claude Code', 'Developer Tools', 'AI Coding', 'Configuration', 'anatomy of the claude folder'],
 };
 
 export default postAnatomyOfTheClaudeFolder;
