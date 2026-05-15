@@ -135,6 +135,19 @@ For importing source content:
 2. Rewrite into this site's editorial voice; do not paste or lightly paraphrase copyrighted content.
 3. Keep the final article original, practical, and source-faithful.
 
+## Content QA workflow
+
+Run this QA pass before integrating or reporting a post as complete:
+
+1. **Editorial QA:** Check that the article has a real hook, a clear reader problem, useful depth, concrete examples, honest trade-offs, and a non-generic ending. Remove filler, hype, repeated claims, and template-like transitions.
+2. **Fact QA:** Review every current factual claim, product capability, benchmark, price, release date, and quote. Keep the claim only if it is sourced, user-provided, or phrased cautiously enough to be defensible.
+3. **SEO QA:** Confirm the title, excerpt, headings, and tags match a real search intent without keyword stuffing. Check that the article does not cannibalize an existing post unless it has a clearly different angle.
+4. **Link QA:** Verify internal links point to relevant existing site pages and external links point to authoritative primary sources. Replace weak or generic anchors with descriptive anchor text.
+5. **Localization QA:** Spot-check all 9 languages for missing sections, malformed Markdown, untranslated English leftovers, and unnatural literal translations in titles/excerpts.
+6. **Technical QA:** Check TypeScript syntax, template literal safety, unique `id`/`slug`, export name consistency, and aggregator placement.
+
+When creating multiple posts in parallel, run a final cross-post QA pass to catch duplicate IDs, overlapping slugs, repeated intros, internal-link loops, and topic cannibalization.
+
 ## Quality checklist before reporting done
 
 - The post compiles as TypeScript.
