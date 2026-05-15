@@ -93,6 +93,9 @@ Every new or polished post should be useful for search without keyword stuffing:
 - Excerpt: 1-2 sentences, concrete value proposition, no vague hype.
 - Tags: include 4-8 core topical tags plus 3-8 natural long-tail search phrases when appropriate.
 - Include search-intent phrases in headings naturally.
+- Add 3-6 relevant internal links to existing blog posts, tool pages, category pages, or related site resources when they genuinely help the reader.
+- Add 2-5 authoritative external links for sources, product documentation, benchmarks, original announcements, or primary references.
+- Use descriptive anchor text; avoid vague anchors like "click here".
 - Cover comparison, use case, guide, benchmark, setup, migration, alternatives, or workflow angles when relevant.
 - Add current-year context only when it is truthful and useful.
 
@@ -103,6 +106,7 @@ Do not invent facts, prices, dates, benchmarks, quotes, product capabilities, le
 When writing about current products or recent events:
 
 - Use web/search tools or user-provided sources for current claims.
+- Link external references to primary or authoritative sources, not low-quality SEO rewrites.
 - Attribute uncertain claims cautiously or remove them.
 - Prefer verifiable specifics over decorative statistics.
 - If the user provides source material, preserve its claims accurately and flag gaps instead of filling them with guesses.
@@ -138,6 +142,8 @@ For importing source content:
 - Markdown headings are balanced and natural.
 - The article has concrete examples and honest trade-offs.
 - No unverified current factual claims remain.
+- Internal links point to relevant existing site pages and use natural anchor text.
+- External links point to authoritative sources and support factual claims.
 - Tags include both topical and long-tail SEO phrases.
 - The correct aggregator imports and includes the post.
 - There are no raw backticks or `${...}` sequences that break template literals.
