@@ -89,6 +89,10 @@ If a post does not clearly fit one of these, ask the user which audience to targ
 
 Every new or polished post should be useful for search without keyword stuffing:
 
+- Define a keyword map before drafting: 1 primary keyword, 3-6 secondary keywords/entities, 5-10 long-tail queries, and 3-5 reader questions.
+- Match the primary keyword naturally in the title/H1, excerpt, opening section, at least one useful H2/H3, and tags when it reads naturally.
+- Map secondary keywords and entities to specific sections so coverage is intentional, not sprinkled randomly.
+- Use long-tail phrases in headings, examples, FAQ-like sections, or practical takeaways only when they match real reader intent.
 - Title: clear topic + practical angle + year/version when useful.
 - Excerpt: 1-2 sentences, concrete value proposition, no vague hype.
 - Tags: include 4-8 core topical tags plus 3-8 natural long-tail search phrases when appropriate.
@@ -113,15 +117,26 @@ When writing about current products or recent events:
 
 ## Writing workflow
 
+Before drafting, create a short working brief in the conversation or your notes:
+
+- Target audience and aggregator.
+- Reader problem and why this post should exist now.
+- Search intent and keyword map: primary keyword, secondary keywords/entities, long-tail queries, and reader questions.
+- Differentiated angle versus existing posts and top search results.
+- Source plan: primary sources to cite and claims that need verification.
+- Internal link plan: existing posts/tool/category pages that genuinely help the reader.
+- Expected structured data inputs: final title, excerpt, author, date, category, tags, slug, and optional image.
+
 For a new blog post:
 
 1. Clarify topic, audience, and category if not obvious.
 2. Inspect similar existing posts and the target aggregator.
-3. Draft English canonical article first.
-4. Create localized titles, excerpts, and content for all 9 languages.
-5. Write the TypeScript post file under `lib/blog/posts/items/`.
-6. Add import and entry to the correct `hot*` aggregator.
-7. Run the project's available validation, normally `npx tsc --noEmit` or the repo's existing lint/typecheck command.
+3. Build the keyword map and source/link plan before drafting.
+4. Draft English canonical article first.
+5. Create localized titles, excerpts, and content for all 9 languages.
+6. Write the TypeScript post file under `lib/blog/posts/items/`.
+7. Add import and entry to the correct `hot*` aggregator.
+8. Run the project's available validation, normally `npx tsc --noEmit` or the repo's existing lint/typecheck command.
 
 For polishing an existing post:
 
@@ -140,11 +155,14 @@ For importing source content:
 Run this QA pass before integrating or reporting a post as complete:
 
 1. **Editorial QA:** Check that the article has a real hook, a clear reader problem, useful depth, concrete examples, honest trade-offs, and a non-generic ending. Remove filler, hype, repeated claims, and template-like transitions.
-2. **Fact QA:** Review every current factual claim, product capability, benchmark, price, release date, and quote. Keep the claim only if it is sourced, user-provided, or phrased cautiously enough to be defensible.
-3. **SEO QA:** Confirm the title, excerpt, headings, and tags match a real search intent without keyword stuffing. Check that the article does not cannibalize an existing post unless it has a clearly different angle.
-4. **Link QA:** Verify internal links point to relevant existing site pages and external links point to authoritative primary sources. Replace weak or generic anchors with descriptive anchor text.
-5. **Localization QA:** Spot-check all 9 languages for missing sections, malformed Markdown, untranslated English leftovers, and unnatural literal translations in titles/excerpts.
-6. **Technical QA:** Check TypeScript syntax, template literal safety, unique `id`/`slug`, export name consistency, and aggregator placement.
+2. **People-first QA:** Confirm the post is written for a specific reader need, adds original value beyond summarizing sources, stays within the site's AI/tool expertise, and is not chasing a trend purely for search traffic. Do not fake freshness by adding dates or updates that are not meaningful.
+3. **Fact QA:** Review every current factual claim, product capability, benchmark, price, release date, and quote. Keep the claim only if it is sourced, user-provided, or phrased cautiously enough to be defensible.
+4. **Keyword QA:** Confirm the primary keyword, secondary keywords/entities, long-tail queries, and reader questions are covered in the right places: title/H1, excerpt, opening, headings, body sections, tags, and anchor text. Remove unnatural repetition and add missing high-intent variants only where they improve the article.
+5. **SEO QA:** Confirm the title, excerpt, headings, and tags match a real search intent without keyword stuffing. Check that the article does not cannibalize an existing post unless it has a clearly different angle.
+6. **Link QA:** Verify internal links point to relevant existing site pages and external links point to authoritative primary sources. Replace weak or generic anchors with descriptive anchor text.
+7. **Structured Data QA:** The blog page template emits Article JSON-LD from `title`, `excerpt`, `author`, `date`, `category`, `tags`, `image`, and slug. Verify these fields are accurate, visible in the article, non-misleading, and suitable for Google's Article structured data guidance. If `image` is set, ensure it is relevant and crawlable; if omitted, confirm the default site image is acceptable. For important releases, validate the rendered page with Google's Rich Results Test after deployment.
+8. **Localization QA:** Spot-check all 9 languages for missing sections, malformed Markdown, untranslated English leftovers, unnatural literal translations in titles/excerpts, and localized keyword intent.
+9. **Technical QA:** Check TypeScript syntax, template literal safety, unique `id`/`slug`, export name consistency, and aggregator placement.
 
 When creating multiple posts in parallel, run a final cross-post QA pass to catch duplicate IDs, overlapping slugs, repeated intros, internal-link loops, and topic cannibalization.
 
@@ -155,8 +173,10 @@ When creating multiple posts in parallel, run a final cross-post QA pass to catc
 - Markdown headings are balanced and natural.
 - The article has concrete examples and honest trade-offs.
 - No unverified current factual claims remain.
+- A keyword map exists and the primary/secondary/long-tail keywords are naturally matched to title, excerpt, headings, body, tags, and anchors.
 - Internal links point to relevant existing site pages and use natural anchor text.
 - External links point to authoritative sources and support factual claims.
 - Tags include both topical and long-tail SEO phrases.
+- Article structured data inputs (`title`, `excerpt`, `author`, `date`, `category`, `tags`, `image`, slug) are accurate and consistent with visible content.
 - The correct aggregator imports and includes the post.
 - There are no raw backticks or `${...}` sequences that break template literals.
