@@ -17,7 +17,7 @@ pnpm lint       # ESLint checks
 pnpm lint:fix   # Auto-fix lint issues
 pnpm prettier   # Format all files
 pnpm blog:new   # Scaffold a new blog post
-pnpm brand:check # Check for legacy "tap4-ai" references (runs in pre-commit hook)
+pnpm brand:check # Check for legacy branding references (runs in pre-commit hook)
 ```
 
 No test runner is configured. Quality gates are `pnpm lint` and `pnpm build`.
@@ -77,8 +77,7 @@ Dynamic sitemap (`app/sitemap.ts`), robots.txt (`app/robots.ts`), JSON-LD struct
 
 ### Branding
 
-The project was renamed from "tap4-ai" to "toolsify-ai". The pre-commit hook runs `pnpm brand:check` to block any legacy
-`tap4-ai` references from entering the codebase.
+The project was renamed from its legacy brand to "toolsify-ai". The pre-commit hook runs `pnpm brand:check` to block any legacy branding references from entering the codebase.
 
 ## Code conventions
 
