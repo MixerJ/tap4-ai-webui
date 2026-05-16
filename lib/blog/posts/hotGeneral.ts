@@ -1,5 +1,6 @@
 import { BlogPost } from '../types';
 import postAiVideoImageToolsBeyondPromptDemos from './items/ai-video-image-tools-beyond-prompt-demos';
+import postChooseAiModelsWithPersonalEvals from './items/choose-ai-models-with-personal-evals';
 import postClaude4VsGpt5NonTechnicalGuide from './items/claude-4-vs-gpt-5-non-technical-guide';
 import postGemini25ProGettingStartedGuide from './items/gemini-2-5-pro-getting-started-guide';
 import postGpt5BestUseCasesEverydayUsers from './items/gpt-5-best-use-cases-everyday-users';
@@ -10,6 +11,7 @@ import postOpenaiOperator from './items/openai-operator';
 import postWhatAreAiAgentsPracticalGuide from './items/what-are-ai-agents-practical-guide';
 
 const BLOG_POSTS_HOT_GENERAL: BlogPost[] = [
+  postChooseAiModelsWithPersonalEvals,
   postLocalMultimodalAiWorkflows,
   postAiVideoImageToolsBeyondPromptDemos,
   postGpt5BestUseCasesEverydayUsers,
