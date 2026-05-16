@@ -1,7 +1,7 @@
 import { BlogPost } from '../../types';
 
 const postOpenaiOperator: BlogPost = {
-  id: '3105',
+  id: '3109',
   slug: 'openai-operator',
   title: {
     en: 'OpenAI Operator: The AI Agent That Browses the Web for You',

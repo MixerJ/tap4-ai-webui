@@ -1,7 +1,7 @@
 import { BlogPost } from '../../types';
 
 const postOpencodeTheOpenSourceAiCodingAgent: BlogPost = {
-  id: '3104',
+  id: '3108',
   slug: 'opencode-the-open-source-ai-coding-agent',
   title: {
     en: 'OpenCode: The Open Source AI Coding Agent That Actually Works',
