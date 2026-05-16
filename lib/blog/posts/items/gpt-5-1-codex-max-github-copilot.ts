@@ -76,217 +76,214 @@ GPT-5.1-Codex-Max's journey from preview to deprecation in four months isn't a f
 
 The Reddit thread from December 4, 2025, is still worth reading — not for the specific model details, but for the pattern it reveals. Developers asking practical questions. Comparing notes in real time. Refusing to accept marketing claims without testing them on real code. That skepticism is healthy, and it's exactly what this fast-moving field needs.
 
-If you're choosing a coding model today, don't chase the latest release. Test it against your workflows, measure the trade-offs, and stay ready to switch. The next model is probably already in preview.`,
-    cn: `# GPT-5.1 Codex Max 进入 GitHub Copilot：开发者的真实反馈
+If you're choosing a coding model today, don't chase the latest release. Test it against your workflows, measure the trade-offs, and stay ready to switch. The next model is probably already in preview.
 
-2025年12月4日，Reddit 的 r/GithubCopilot 版块出现了一个帖子，内容很简单：去看看你的模型选择器。GPT-5.1-Codex-Max 开始以公开预览的形式推送，如果还没看到，需要更新 Copilot Chat 扩展并重新加载 VS Code。没有发布会，没有主题演讲。只有一个更新日志条目，以及一波开发者在编译间隙尝试新东西。
+## How to test it in one afternoon
 
-这种低调的推送方式反而很有启发性。几小时内，帖子就充满了比任何基准测试图表都有用的使用感受。有人说这个模型更有条理。有人说几乎没感觉到区别。还有人抱怨它更慢了。这种分裂的反应不是失败。它恰恰是2026年初AI编码助手真实状态最诚实的信号。
+Pick three recent tasks from your own work: a bug with a failing test, a multi-file change with a clear acceptance criterion, and a review of a pull request you already understand. Run GPT-5.1 Codex Max and your current default model on the same branch. Do not let one model benefit from feedback you gave the other. Record time to first useful answer, number of corrections, tests suggested, files touched, and whether you trusted the reasoning.
 
-## GPT-5.1-Codex-Max 到底是什么
+Then make a model routing rule. For example: fast default model for completions, Codex Max for refactors and PR review, another model for long debugging sessions. GitHub’s [Copilot model guidance](https://docs.github.com/en/copilot/using-github-copilot/ai-models/choosing-the-right-ai-model-for-your-task) should be checked often because availability changes by plan and editor.
 
-先说基础。GPT-5.1-Codex-Max 是 OpenAI 的编码专用模型，专门为软件开发任务设计。它属于 Codex 系列，但"Max"这个标签暗示了扩展能力——可能是更大的上下文处理和更审慎的复杂代码库推理。
+## What not to over-optimize
 
-GitHub 向 Copilot Pro、Pro+、Business 和 Enterprise 订阅者开放了这个模型。你可以通过四个入口访问：VS Code 中的 Copilot Chat 模型选择器、github.com、GitHub Mobile 和 Copilot CLI。这种广泛的可用性很重要。它意味着开发者可以在实际工作流中测试模型，而不是在某个隔离的沙盒里。
+Do not rewrite your entire prompt style around one preview model. Do not make a team process depend on a model that only half the team can access. Do not treat a public benchmark as proof that it will understand your build system. Instead, keep prompts transferable: goal, constraints, relevant files, tests, and stop conditions.
 
-Reddit 讨论中有一个细节引起了注意：有用户在 GitHub 界面中发现了 258K 上下文窗口的数字。这个数字没有出现在官方公告中，所以把它当作观察到的说法而非保证的规格。但如果准确的话，它会让 Codex Max 在处理大型多文件重构任务时比小上下文模型更有优势。
+For more context, compare [Claude 4 vs GPT-5 for coding](/blog/claude-4-vs-gpt-5-code-benchmarks-2026), our [AI coding assistants review](/blog/ai-coding-assistants-review), and OpenAI’s [Codex overview](https://openai.com/index/introducing-codex/).
 
-## 分歧的反应才是真实的故事
+If your team is standardizing Copilot settings, pair this article with the [GPT-5 migration playbook](/blog/gpt-5-developer-migration-playbook), the [Claude 4 vs GPT-5 coding benchmark framework](/blog/claude-4-vs-gpt-5-code-benchmarks-2026), and the [AI coding assistants review](/blog/ai-coding-assistants-review). The safest decision usually combines model routing, local evals, and clear fallback rules.
+`,
+    cn: `# GPT-5.1 Codex Max 进入 GitHub Copilot：如何评估
 
-这个版本最有趣的地方在于：社区没有达成共识。而这种分歧比一致好评更有信息量。
+这篇更新版文章围绕一个很实际的问题：GitHub Copilot 中的 GPT-5.1 Codex Max不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
 
-一些开发者报告说 GPT-5.1-Codex-Max 对编码任务感觉更简洁、更可靠。有用户形容它更有"条理"——对问题采取结构化的方法，而不是急于给出解决方案。对于复杂的重构或架构决策，这种耐心可能是干净代码和技术债务之间的分水岭。
+## 先判断使用场景
 
-其他人则没那么印象深刻。一些评论指出这个模型比标准 GPT-5.1-Codex 更慢。在你需要在按键之间等待建议的工作流中，即使是半秒的延迟也会改变交互的感觉。一些开发者说他们更喜欢 Claude 或早期的 Codex 变体来处理某些任务，特别是需要在多次编辑中保持一致性的长会话工作。
+把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
 
-当你思考"更好"对编码模型意味着什么时，这种分歧就说得通了。速度对自动补全式建议很重要。深度对架构规划很重要。上下文窗口大小对大型代码库的重构很重要。没有一个模型能同时优化这三个方面，Reddit 帖子显示开发者根据他们最看重的权衡来做出选择。
+## 工作流建议
 
-## 没人预料到的时间线
+第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
 
-如果你在2026年3月读到这篇文章，故事有一个意想不到的转折。GPT-5.1-Codex-Max 从12月4日的公开预览到12月17日的正式发布只用了不到两周。这是一个快速的晋升，说明 GitHub 对模型的稳定性很有信心。
+## 选择标准
 
-但在2026年3月2日，GitHub 宣布整个 GPT-5.1 模型系列——包括 Codex Max——计划于2026年4月1日弃用。建议的替代品：GPT-5.3-Codex。
+评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
 
-从预览到弃用四个月。这个时间线说明了 Copilot 模型周期的速度。模型不再长期驻留。它们像快速迭代产品中的功能一样轮换，每一个都是下一个版本的垫脚石。
+## 常见失败模式
 
-## 这对你的模型选择意味着什么
+常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
 
-实用的结论不是"避开 GPT-5.1-Codex-Max"或"它是最好的模型"。比这更细致。
+## 下一步
 
-首先，在 Copilot 中选择模型正在成为工作流决策，而不是忠诚度决策。平台现在托管来自 OpenAI、Anthropic、Google 等公司的模型。开发者在同一个编辑器中、在同一个代码库上实时比较它们。这与"使用工具自带的任何东西"的时代有着根本不同的动态。
+如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+`,
+    tw: `# GPT-5.1 Codex Max 進入 GitHub Copilot：如何評估
 
-其次，对 Codex Max 的分歧反应突显了基准测试无法预测工作流适配度。在编码排行榜上得分更高的模型在你的特定环境中可能感觉更慢或更不直观。唯一可靠的测试是在你的实际代码上、用你的实际模式、进行完整的工作会话来尝试它。
+這篇更新版文章聚焦一個實務問題：GitHub Copilot 中的 GPT-5.1 Codex Max不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
 
-第三，快速的弃用周期意味着你应该投资于可转移的技能，而不是特定于模型的优化。学习写清晰的提示词。为 AI 可读性构建代码库。培养能经受模型轮换的习惯。在这个环境中脱颖而出的开发者不是掌握单一模型的人，而是能快速评估和适应下一个模型的人。
+## 先判斷使用場景
 
-GPT-5.1-Codex-Max 从预览到弃用的四个月旅程不是失败的故事。它是 AI 编码领域发展速度的快照。每个模型发布都教会社区一些关于什么有效、什么无效、以及接下来该期待什么的经验。`,
-    tw: `# GPT-5.1 Codex Max 進入 GitHub Copilot：開發者的真實回饋
+把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
 
-2025年12月4日，Reddit 的 r/GithubCopilot 版塊出現了一則貼文，內容很簡單：去看看你的模型選擇器。GPT-5.1-Codex-Max 開始以公開預覽的形式推送，如果還沒看到，需要更新 Copilot Chat 擴充功能並重新載入 VS Code。沒有發表會，沒有主題演講。只有一個更新日誌條目，以及一波開發者在編譯間隙嘗試新東西。
+## 工作流建議
 
-這種低調的推送方式反而很有啟發性。幾小時內，貼文就充滿了比任何基準測試圖表都有用的使用感受。有人說這個模型更有條理。有人說幾乎沒感覺到區別。還有人抱怨它更慢了。這種分裂的反應不是失敗。它恰恰是2026年初AI編碼輔助真實狀態最誠實的訊號。
+第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
 
-## GPT-5.1-Codex-Max 到底是什麼
+## 選擇標準
 
-先說基礎。GPT-5.1-Codex-Max 是 OpenAI 的編碼專用模型，專門為軟體開發任務設計。它屬於 Codex 系列，但「Max」這個標籤暗示了擴展能力——可能是更大的上下文處理和更審慎的複雜程式碼庫推理。
+不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
 
-GitHub 向 Copilot Pro、Pro+、Business 和 Enterprise 訂閱者開放了這個模型。你可以透過四個入口存取：VS Code 中的 Copilot Chat 模型選擇器、github.com、GitHub Mobile 和 Copilot CLI。這種廣泛的可用性很重要。它意味著開發者可以在實際工作流程中測試模型，而不是在某個隔離的沙盒裡。
+## 常見失敗模式
 
-Reddit 討論中有一個細節引起了注意：有用戶在 GitHub 介面中發現了 258K 上下文視窗的數字。這個數字沒有出現在官方公告中，所以把它當作觀察到的說法而非保證的規格。但如果準確的話，它會讓 Codex Max 在處理大型多檔案重構任務時比小上下文模型更有優勢。
+常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
 
-## 分歧的反應才是真實的故事
+## 下一步
 
-這個版本最有趣的地方在於：社群沒有達成共識。而這種分歧比一致好評更有資訊量。
+可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+`,
+    de: `# GPT-5.1 Codex Max in GitHub Copilot: richtig bewerten
 
-一些開發者報告說 GPT-5.1-Codex-Max 對編碼任務感覺更簡潔、更可靠。有用戶形容它更有「條理」——對問題採取結構化的方法，而不是急於給出解決方案。對於複雜的重構或架構決策，這種耐心可能是乾淨程式碼和技術債務之間的分水嶺。
+Diese Fassung beantwortet eine praktische Frage: GPT-5.1 Codex Max in GitHub Copilot sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
 
-其他人則沒那麼印象深刻。一些評論指出這個模型比標準 GPT-5.1-Codex 更慢。在你需要在按鍵之間等待建議的工作流程中，即使是半秒的延遲也會改變互動的感覺。一些開發者說他們更喜歡 Claude 或早期的 Codex 變體來處理某些任務，特別是需要在多次編輯中保持一致性的長工作階段。
+## Erst den Anwendungsfall klären
 
-當你思考「更好」對編碼模型意味著什麼時，這種分歧就說得通了。速度對自動補全式建議很重要。深度對架構規劃很重要。上下文視窗大小對大型程式碼庫的重構很重要。沒有一個模型能同時優化這三個方面，Reddit 貼文顯示開發者根據他們最看重的權衡來做出選擇。
+Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
 
-## 實用建議
+## Ein belastbarer Workflow
 
-如果你正在選擇編碼模型，不要追逐最新版本。針對你的工作流程進行測試，衡量權衡，並隨時準備切換。下一個模型可能已經在預覽中了。`,
-    de: `# GPT-5.1 Codex Max in GitHub Copilot: Was Entwickler wirklich gefunden haben
+Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
 
-Am 4. Dezember 2025 erschien ein Reddit-Post in r/GithubCopilot mit einer einfachen Nachricht: Schaut in euren Modell-Picker. GPT-5.1-Codex-Max hatte begonnen, im Public Preview ausgerollt zu werden, und wenn man es noch nicht sah, musste man die Copilot-Chat-Erweiterung aktualisieren und VS Code neu laden. Kein Tamtam, keine Keynote-Bühne. Nur ein Changelog-Eintrag und eine Welle von Entwicklern, die zwischen den Kompilierzyklen etwas Neues ausprobierten.
+## Auswahlkriterien
 
-Diese dezente Ausrollung erwies sich als aufschlussreich. Innerhalb von Stunden füllte sich der Thread mit Eindrücken, die nützlicher waren als jedes Benchmark-Diagramm. Einige Entwickler bezeichneten das Modell als methodischer. Andere sagten, sie bemerkten kaum einen Unterschied. Einige beschwerten sich, dass es langsamer war. Diese gespaltene Reaktion war kein Misserfolg. Es war das ehrlichste Signal darüber, wo KI-Coding-Assistenten Anfang 2026 tatsächlich stehen.
+Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
 
-## Was GPT-5.1-Codex-Max eigentlich ist
+## Häufige Fehler
 
-GPT-5.1-Codex-Max ist OpenAIs codingspezialisiertes Modell, das speziell für Softwareentwicklungsaufgaben entwickelt wurde. Es gehört zur Codex-Familie, aber das „Max"-Label deutet auf erweiterte Fähigkeiten hin — wahrscheinlich größere Kontextbehandlung und durchdachtere Reasoning bei komplexen Codebasen.
+Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
 
-GitHub machte es für Copilot Pro, Pro+, Business und Enterprise Abonnenten verfügbar. Man konnte es über vier Oberflächen zugreifen: den Copilot-Chat-Modell-Picker in VS Code, github.com, GitHub Mobile und die Copilot CLI. Diese Breite der Verfügbarkeit war wichtig. Entwickler konnten das Modell in ihrem tatsächlichen Workflow testen, nicht in einem isolierten Playground.
+## Nächster Schritt
 
-Ein Detail aus der Reddit-Diskussion fiel auf: Ein Benutzer entdeckte eine 258K-Kontextfenster-Zahl in der GitHub-Oberfläche. Diese Zahl stand nicht in der offiziellen Ankündigung, also sollte man sie als beobachtete Behauptung und nicht als garantierte Spezifikation behandeln. Aber wenn sie korrekt ist, würde sie Codex Max gut positionieren für große, mehrdateiige Refactoring-Aufgaben, mit denen kleinkontextige Modelle kämpfen.
+Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+`,
+    es: `# GPT-5.1 Codex Max en GitHub Copilot: cómo evaluarlo
 
-## Die gemischten Reaktionen erzählen die wahre Geschichte
+Esta versión revisada responde a una pregunta práctica: GPT-5.1 Codex Max en GitHub Copilot no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
 
-Das Interessanteste an dieser Veröffentlichung: Die Community war sich nicht einig. Und diese Uneinigkeit ist informativer als einstimmiges Lob.
+## Empieza por el caso de uso
 
-Einige Entwickler berichteten, dass GPT-5.1-Codex-Max für Coding-Aufgaben prägnanter und vertrauenswürdiger wirkte. Ein Benutzer beschrieb es als methodischer — einen strukturierten Ansatz für Probleme, anstatt hastig eine Lösung zu finden. Bei komplexem Refactoring oder architektonischen Entscheidungen kann diese Geduld den Unterschied zwischen sauberem Code und technischer Schuld ausmachen.
+Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
 
-Andere waren weniger beeindruckt. Einige Kommentare bemerkten, dass das Modell langsamer wirkte als Standard-GPT-5.1-Codex. In einem Workflow, in dem man zwischen Tastenanschlägen auf Vorschläge wartet, verändert selbst eine halbe Sekunde Verzögerung das Gefühl der Interaktion. Einige Entwickler sagten, sie bevorzugten Claude oder frühere Codex-Varianten für bestimmte Aufgaben, besonders bei langen Sitzungen.
+## Flujo recomendado
 
-## Praktische Empfehlungen
+Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
 
-Wenn Sie ein Coding-Modell wählen, jagen Sie nicht der neuesten Version hinter. Testen Sie es gegen Ihre Workflows, messen Sie die Kompromisse und bleiben Sie bereit zu wechseln. Das nächste Modell ist wahrscheinlich bereits in der Vorschau.`,
-    es: `# GPT-5.1 Codex Max en GitHub Copilot: Lo que realmente encontraron los desarrolladores
+## Criterios de decisión
 
-El 4 de diciembre de 2025, apareció un post en Reddit en r/GithubCopilot con un mensaje simple: revisen su selector de modelos. GPT-5.1-Codex-Max había comenzado a desplegarse en vista pública, y si aún no lo veías, necesitabas actualizar tu extensión de Copilot Chat y recargar VS Code. Sin bombo, sin escenario de keynote. Solo una entrada de changelog y una ola de desarrolladores probando algo nuevo entre ciclos de compilación.
+No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
 
-Ese despliegue discreto resultó ser revelador. En horas, el hilo se llenó de impresiones más útiles que cualquier gráfico de benchmark. Algunos desarrolladores llamaron al modelo más metódico. Otros dijeron que apenas notaron diferencia. Unos pocos se quejaron de que era más lento. La reacción dividida no fue un fracaso. Fue la señal más honesta sobre dónde están realmente los asistentes de código AI a principios de 2026.
+## Fallos habituales
 
-## Qué es GPT-5.1-Codex-Max realmente
+Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
 
-GPT-5.1-Codex-Max es el modelo especializado en código de OpenAI, diseñado específicamente para tareas de desarrollo de software. Pertenece a la familia Codex, pero la etiqueta "Max" sugiere capacidades expandidas — probablemente manejo de contexto más amplio y razonamiento más deliberado en bases de código complejas.
+## Siguiente paso
 
-GitHub lo hizo disponible para suscriptores de Copilot Pro, Pro+, Business y Enterprise. Podías acceder a él a través de cuatro superficies: el selector de modelos de Copilot Chat en VS Code, github.com, GitHub Mobile y Copilot CLI. Esa amplitud de disponibilidad importaba. Los desarrolladores podían probar el modelo en su flujo de trabajo real, no en algún playground aislado.
+Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+`,
+    fr: `# GPT-5.1 Codex Max dans GitHub Copilot : bien l’évaluer
 
-## Las reacciones mixtas cuentan la historia real
+Cette version enrichie répond à une question concrète : GPT-5.1 Codex Max dans GitHub Copilot doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
 
-Lo más interesante de este lanzamiento: la comunidad no estuvo de acuerdo. Y ese desacuerdo es más informativo que el elogio unánime.
+## Clarifier le cas d’usage
 
-Algunos desarrolladores reportaron que GPT-5.1-Codex-Max se sentía más conciso y confiable para tareas de código. Otro usuario lo describió como más metódico — tomando un enfoque estructurado a los problemas en lugar de apresurarse a una solución.
+Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
 
-Otros estuvieron menos impresionados. Varios comentarios notaron que el modelo se sentía más lento que el GPT-5.1-Codex estándar. En un flujo de trabajo donde esperas sugerencias entre pulsaciones de teclas, incluso medio segundo de retraso cambia la sensación de la interacción.
+## Méthode pratique
 
-## Recomendaciones prácticas
+Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
 
-Si estás eligiendo un modelo de código, no persigas el último lanzamiento. Pruébalo contra tus flujos de trabajo, mide los compromisos y mantente listo para cambiar. El siguiente modelo probablemente ya está en vista previa.`,
-    fr: `# GPT-5.1 Codex Max dans GitHub Copilot : ce que les développeurs ont vraiment constaté
+## Critères de choix
 
-Le 4 décembre 2025, un post Reddit est apparu dans r/GithubCopilot avec un message simple : vérifiez votre sélecteur de modèles. GPT-5.1-Codex-Max avait commencé à être déployé en aperçu public, et si vous ne le voyiez pas encore, il fallait mettre à jour l'extension Copilot Chat et recharger VS Code. Pas de fanfare, pas de scène de keynote. Juste une entrée de changelog et une vague de développeurs qui testaient quelque chose de nouveau entre les cycles de compilation.
+Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
 
-Ce déploiement discret s'est révélé révélateur. En quelques heures, le fil s'est rempli d'impressions plus utiles que n'importe quel graphique de benchmark. Certains développeurs ont décrit le modèle comme plus méthodique. D'autres ont dit qu'ils ne remarquaient guère de différence. Quelques-uns se sont plaints qu'il était plus lent. Cette réaction partagée n'était pas un échec. C'était le signal le plus honnête sur la position réelle des assistants de codage IA début 2026.
+## Échecs fréquents
 
-## Ce qu'est réellement GPT-5.1-Codex-Max
+Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
 
-GPT-5.1-Codex-Max est le modèle spécialisé en codage d'OpenAI, conçu spécifiquement pour les tâches de développement logiciel. Il fait partie de la famille Codex, mais l'étiquette « Max » suggère des capacités étendues — probablement un traitement de contexte plus large et un raisonnement plus délibéré sur les bases de code complexes.
+## Pour continuer
 
-GitHub l'a rendu disponible aux abonnés Copilot Pro, Pro+, Business et Enterprise. On pouvait y accéder via quatre interfaces : le sélecteur de modèles Copilot Chat dans VS Code, github.com, GitHub Mobile et Copilot CLI. Cette large disponibilité comptait. Les développeurs pouvaient tester le modèle dans leur flux de travail réel, pas dans un bac à sable isolé.
+À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+`,
+    jp: `# GitHub Copilot の GPT-5.1 Codex Max 評価法
 
-## Les réactions mitigées racontent la vraie histoire
+この記事の改訂版では、GitHub Copilot の GPT-5.1 Codex Maxを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
 
-Ce qu'il y a de plus intéressant dans cette sortie : la communauté n'était pas d'accord. Et ce désaccord est plus informatif que des louanges unanimes.
+## まず用途を分ける
 
-Certains développeurs ont rapporté que GPT-5.1-Codex-Max semblait plus concis et fiable pour les tâches de codage. Un utilisateur l'a décrit comme plus « méthodique » — adoptant une approche structurée des problèmes plutôt que de se précipiter vers une solution.
+タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
 
-D'autres étaient moins impressionnés. Plusieurs commentaires ont noté que le modèle semblait plus lent que le GPT-5.1-Codex standard. Dans un flux de travail où vous attendez des suggestions entre les frappes, même une demi-seconde de délai change la sensation de l'interaction.
+## 実務での進め方
 
-## Recommandations pratiques
+低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
 
-Si vous choisissez un modèle de codage, ne poursuivez pas la dernière sortie. Testez-le contre vos flux de travail, mesurez les compromis et restez prêt à changer. Le prochain modèle est probablement déjà en aperçu.`,
-    jp: `# GPT-5.1 Codex Max が GitHub Copilot に登場：開発者が実際に感じたこと
+## 選定基準
 
-2025年12月4日、Reddit の r/GithubCopilot にシンプルなメッセージの投稿が現れました：モデルピッカーを確認してください。GPT-5.1-Codex-Max がパブリックプレビューでロールアウトを開始し、まだ表示されていない場合は、Copilot Chat 拡張機能を更新して VS Code をリロードする必要がありました。華やかな発表もキーノートステージもありません。ただのチェンジログエントリと、コンパイルサイクルの合間に新しいものを試す開発者の波だけでした。
+単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
 
-この地味なロールアウトは意外な発見に満ちていました。数時間以内に、ベンチマークチャートよりも有用な感想がスレッドに溢れました。一部の開発者はこのモデルをより「体系的」と表現しました。他の人は違いをほとんど感じないと言いました。遅いと不満を言う人もいました。この分かれた反応は失敗ではありません。2026年初頭のAIコーディングアシスタントの現状について最も正直なシグナルでした。
+## よくある失敗
 
-## GPT-5.1-Codex-Max とは何か
+プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
 
-GPT-5.1-Codex-Max は OpenAI のコーディング特化モデルで、ソフトウェア開発タスク向けに特別に設計されています。Codex ファミリーに属しますが、「Max」というラベルは拡張された能力を示唆しています。おそらくより大きなコンテキスト処理と、複雑なコードベースに対するより慎重な推論です。
+## 次に読むもの
 
-GitHub は Copilot Pro、Pro+、Business、Enterprise のサブスクライバーに利用可能にしました。VS Code の Copilot Chat モデルピッカー、github.com、GitHub Mobile、Copilot CLI の4つのサーフェスからアクセスできました。この幅広い可用性は重要でした。開発者は隔離されたプレイグラウンドではなく、実際のワークフローでモデルをテストできたのです。
+[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+`,
+    pt: `# GPT-5.1 Codex Max no GitHub Copilot: como avaliar
 
-## 混ざった反応が本当の物語を語る
+Esta versão revisada olha para uma pergunta prática: GPT-5.1 Codex Max no GitHub Copilot deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
 
-このリリースで最も興味深いのは：コミュニティが同意しなかったということです。そしてその不一致は満場一致の賛辞よりも有益でした。
+## Comece pelo caso de uso
 
-一部の開発者は GPT-5.1-Codex-Max がコーディングタスクに対してより簡潔で信頼できると報告しました。あるユーザーは、解決策に急ぐのではなく、問題に対する構造化されたアプローチを取る「体系的」なモデルだと説明しました。
+Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
 
-他の人はそれほど感銘を受けませんでした。いくつかのコメントは、このモデルが標準の GPT-5.1-Codex より遅く感じられると指摘しました。キーの合間に提案を待つワークフローでは、たとえ0.5秒の遅延でもインタラクションの感覚が変わります。
+## Fluxo recomendado
 
-## 実用的なアドバイス
+Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
 
-コーディングモデルを選ぶなら、最新リリースを追いかけるのではなく、自分のワークフローでテストし、トレードオフを測り、切り替えの準備をしておきましょう。次のモデルはおそらくすでにプレビュー中です。`,
-    pt: `# GPT-5.1 Codex Max no GitHub Copilot: O que os desenvolvedores realmente descobriram
+## Critérios de escolha
 
-Em 4 de dezembro de 2025, um post no Reddit apareceu no r/GithubCopilot com uma mensagem simples: verifiquem seu seletor de modelos. GPT-5.1-Codex-Max havia começado a ser lançado em preview público, e se você ainda não o via, precisava atualizar a extensão Copilot Chat e recarregar o VS Code. Sem alarde, sem palco de keynote. Apenas uma entrada de changelog e uma onda de desenvolvedores testando algo novo entre ciclos de compilação.
+Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
 
-Esse lançamento discreto acabou sendo revelador. Em horas, a thread se encheu de impressões mais úteis que qualquer gráfico de benchmark. Alguns desenvolvedores chamaram o modelo de mais metódico. Outros disseram que mal notaram diferença. Alguns reclamaram que era mais lento. A reação dividida não foi um fracasso. Foi o sinal mais honesto sobre onde os assistentes de código com IA realmente estão no início de 2026.
+## Falhas comuns
 
-## O que GPT-5.1-Codex-Max realmente é
+Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
 
-GPT-5.1-Codex-Max é o modelo especializado em código da OpenAI, projetado especificamente para tarefas de desenvolvimento de software. Pertence à família Codex, mas o rótulo "Max" sugere capacidades expandidas — provavelmente tratamento de contexto maior e raciocínio mais deliberado em bases de código complexas.
+## Próximos passos
 
-O GitHub o disponibilizou para assinantes Copilot Pro, Pro+, Business e Enterprise. Era possível acessá-lo por quatro superfícies: o seletor de modelos do Copilot Chat no VS Code, github.com, GitHub Mobile e Copilot CLI. Essa amplitude de disponibilidade importava. Os desenvolvedores podiam testar o modelo em seu fluxo de trabalho real, não em algum playground isolado.
+Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+`,
+    ru: `# GPT-5.1 Codex Max в GitHub Copilot: как оценивать
 
-## As reações mistas contam a história real
+Обновленная версия статьи отвечает на практичный вопрос: GPT-5.1 Codex Max в GitHub Copilot нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
 
-O mais interessante sobre este lançamento: a comunidade não concordou. E esse desacordo é mais informativo do que elogios unânimes.
+## Начните со сценария
 
-Alguns desenvolvedores relataram que GPT-5.1-Codex-Max parecia mais conciso e confiável para tarefas de código. Um usuário o descreveu como mais metódico — tomando uma abordagem estruturada aos problemas em vez de correr para uma solução.
+Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
 
-Outros ficaram menos impressionados. Vários comentários notaram que o modelo parecia mais lento que o GPT-5.1-Codex padrão. Em um fluxo de trabalho onde você espera sugestões entre digitações, mesmo meio segundo de atraso muda a sensação da interação.
+## Рабочий процесс
 
-## Recomendações práticas
+Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
 
-Se você está escolhendo um modelo de código, não corra atrás do último lançamento. Teste-o contra seus fluxos de trabalho, meça os trade-offs e esteja pronto para trocar. O próximo modelo provavelmente já está em preview.`,
-    ru: `# GPT-5.1 Codex Max в GitHub Copilot: что на самом деле обнаружили разработчики
+## Как выбирать
 
-4 декабря 2025 года в r/GithubCopilot появился пост с простым сообщением: проверьте свой выбор моделей. GPT-5.1-Codex-Max начал появляться в публичном превью, и если вы его ещё не видели, нужно обновить расширение Copilot Chat и перезагрузить VS Code. Без помпы, без сцены кейнона. Только запись в чейнджлоге и волна разработчиков, пробующих что-то новое между циклами компиляции.
+Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
 
-Этот скромный релиз оказался показательным. За часы тред заполнился впечатлениями, которые были полезнее любого бенчмарка. Некоторые разработчики назвали модель более методичной. Другие сказали, что почти не заметили разницы. Несколько человек пожаловались, что она медленнее. Разделённая реакция — это не провал. Это самый честный сигнал о реальном положении AI-помощников по коду в начале 2026 года.
+## Типичные сбои
 
-## Что такое GPT-5.1-Codex-Max на самом деле
+Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
 
-GPT-5.1-Codex-Max — это специализированная модель OpenAI для кодинга, разработанная специально для задач разработки ПО. Она входит в семейство Codex, но метка «Max» намекает на расширенные возможности — вероятно, больший контекст и более вдумчивое рассуждение на сложных кодовых базах.
+## Что делать дальше
 
-GitHub сделал её доступной для подписчиков Copilot Pro, Pro+, Business и Enterprise. Доступ был через четыре поверхности: выбор моделей Copilot Chat в VS Code, github.com, GitHub Mobile и Copilot CLI. Широкая доступность важна: разработчики могли тестировать модель в реальном воркфлоу, а не в изолированной песочнице.
-
-## Смешанные реакции рассказывают настоящую историю
-
-Самое интересное в этом релизе: сообщество не пришло к согласию. И это разногласие информативнее единодушных похвал.
-
-Некоторые разработчики отметили, что GPT-5.1-Codex-Max казался более лаконичным и надёжным для задач кодинга. Один пользователь описал его как более «методичный» — принимающий структурированный подход к проблемам, вместо того чтобы спешить к решению.
-
-Другие были менее впечатлены. Несколько комментариев указали, что модель ощущалась медленнее стандартного GPT-5.1-Codex. В воркфлоу, где вы ждёте предложений между нажатиями клавиш, даже полсекунды задержки меняют ощущение от взаимодействия.
-
-## Практические рекомендации
-
-Если вы выбираете модель для кодинга, не гоняйтесь за последним релизом. Тестируйте на своих воркфлоу, измеряйте компромиссы и будьте готовы переключиться. Следующая модель, вероятно, уже в превью.`,
+Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',

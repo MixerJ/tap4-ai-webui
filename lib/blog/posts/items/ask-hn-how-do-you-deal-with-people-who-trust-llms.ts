@@ -84,7 +84,27 @@ No amount of model improvement will fix the dynamic where people accept confiden
 
 The thread doesn't offer a clean resolution. What it offers is a set of tested approaches for navigating a world where the line between "tool" and "authority" is getting blurrier. Not by rejecting AI, and not by accepting its output uncritically, but by maintaining the verification habits that reliable knowledge has always required.
 
-That's a harder sell than either "AI is great" or "AI is dangerous." But it's the position that actually matches how the technology is being used — imperfectly, socially, and with real consequences.`,
+That's a harder sell than either "AI is great" or "AI is dangerous." But it's the position that actually matches how the technology is being used — imperfectly, socially, and with real consequences.
+
+## How to Disagree Without Turning It Into a Status Fight
+
+The mistake I see in these conversations is treating misplaced LLM trust as a character flaw. Sometimes it is. More often, the person is using the model as a shortcut under pressure: a founder needs copy tonight, a junior developer wants an explanation, a manager needs a policy draft, or a student wants a second opinion before asking a human. If you attack the tool choice, they defend the tool. If you attack the specific claim, you have a chance.
+
+A better script is: "Which part do we need to rely on?" Then separate the answer into harmless, reversible, and consequential claims. A model can brainstorm naming ideas with almost no risk. It can summarize a public manual if someone checks citations. It should not be trusted alone for legal obligations, medical decisions, security-sensitive code, or financial forecasts. The same person may be reckless in one category and perfectly reasonable in another.
+
+For professional settings, write the rule before the argument happens. Require source links for factual claims. Require tests for generated code. Require human approval for customer-facing promises. Require a second reviewer for anything that affects money, safety, privacy, or compliance. That is less dramatic than saying "LLMs lie," but it changes behavior.
+
+## A Decision Tree for Teams
+
+Use this quick filter when someone brings model output into a discussion:
+
+- Is the output creative, factual, analytical, or operational?
+- If it is factual, can we verify it from a primary source such as [Hacker News](https://news.ycombinator.com/), vendor docs, a database, or a logged system result?
+- If it is analytical, what assumption would change the conclusion?
+- If it is operational, what is the rollback plan if it is wrong?
+- If it affects customers, has a human owner accepted responsibility?
+
+This framing keeps the conversation from becoming tribal. You are not asking people to stop using LLMs. You are asking them to match trust to consequence. That is the same discipline behind our guides to [spotting AI-written scripts](/blog/this-whole-script-was-written-with-ai-the-just-vibes-gave-it-away-chatgpt-uses-that-phrase-too-damn-much), [choosing AI writing tools](/blog/best-ai-writing-tools-2024), and [Claude configuration hygiene](/blog/anatomy-of-the-claude-folder).`,
     cn: `# Ask HN：如何对待那些信任大语言模型的人？
 
 Hacker News 的这个帖子讨论的不是 AI 有没有用。在大多数工作场所，这个问题已经有了答案。帖子讨论的是当人们不再把大语言模型当作工具，而是开始把它们当作权威时会发生什么。
@@ -143,7 +163,14 @@ LLM 生成的答案听起来很权威。它比验证它的意愿移动得更快�
 
 帖子没有提供一个干净的解决方案。它提供的是一组经过测试的方法，用于在一个"工具"和"权威"的界限越来越模糊的世界中导航。不是拒绝 AI，也不是不加批判地接受它的输出，而是保持可靠知识一直需要的验证习惯。
 
-这比"AI 很棒"或"AI 很危险"都更难推销。但它才是真正匹配这项技术实际使用方式的立场——不完美地、社会性地、带着真实后果地使用。`,
+这比"AI 很棒"或"AI 很危险"都更难推销。但它才是真正匹配这项技术实际使用方式的立场——不完美地、社会性地、带着真实后果地使用。
+
+## 补充：读这类 AI 新闻时的实用标准
+
+这篇文章的英文版增加了更多判断标准：先看原始来源，再看可复现性，最后看它对真实工作流有什么影响。不要只被数字、截图或一句爆点吸引。更可靠的做法是问：这个能力能否稳定使用？失败时会造成什么后果？是否有官方文档、论文、产品说明或可验证的演示支持？如果要把它用于团队工作，还要明确谁负责复核、谁负责上线、谁承担错误成本。
+
+对读者来说，重点不是追逐每一个 AI 传闻，而是把信息变成可执行判断。能帮你选工具、改流程、降低风险的信息才值得保存；只能制造情绪的信息，看看就好。
+`,
     tw: `# Ask HN：如何對待那些信任大語言模型的人？
 
 Hacker News 的這個帖子討論的不是 AI 有沒有用。在大多數工作場所，這個問題已經有了答案。帖子討論的是當人們不再把大語言模型當作工具，而是開始把它們當作權威時會發生什麼。
@@ -178,7 +205,14 @@ Hacker News 的這個帖子討論的不是 AI 有沒有用。在大多數工作�
 
 ## 這個帖子真正揭示的
 
-這是一個社會問題，不是技術問題。更好的模型產生更合理的輸出，可能反而讓問題更嚴重。修復必須發生在習慣和規範層面——人類層，而不是模型層。`,
+這是一個社會問題，不是技術問題。更好的模型產生更合理的輸出，可能反而讓問題更嚴重。修復必須發生在習慣和規範層面——人類層，而不是模型層。
+
+## 補充：閱讀這類 AI 新聞時的實用標準
+
+英文版補上了更多判斷標準：先看原始來源，再看可重現性，最後看它對真實工作流程有什麼影響。不要只被數字、截圖或一句爆點帶走。更可靠的做法是問：這項能力能否穩定使用？失敗時會造成什麼後果？是否有官方文件、論文、產品說明或可驗證的展示支持？如果要用在團隊工作，還要說清楚誰負責複核、誰負責上線、誰承擔錯誤成本。
+
+重點不是追每一個 AI 傳聞，而是把資訊變成可執行判斷。能幫你選工具、改流程、降低風險的內容才值得保存；只能製造情緒的內容，看看就好。
+`,
     de: `# Ask HN: Wie geht man mit Leuten um, die LLMs vertrauen?
 
 Der Hacker News-Thread dreht sich nicht darum, ob KI nützlich ist. Es geht darum, was passiert, wenn Menschen aufhören, LLMs als Werkzeuge zu behandeln und sie als Autoritäten sehen.
@@ -209,7 +243,14 @@ Das Risiko ist nicht nur Halluzination — es ist unbegründetes Vertrauen. KI-g
 
 ## Was dieser Thread wirklich offenbart
 
-Dies ist ein soziales, kein technisches Problem. Bessere Modelle erzeugen plausibleren Output, was das Problem tatsächlich verschlimmern kann. Die Lösung muss auf der Ebene von Gewohnheiten und Normen stattfinden.`,
+Dies ist ein soziales, kein technisches Problem. Bessere Modelle erzeugen plausibleren Output, was das Problem tatsächlich verschlimmern kann. Die Lösung muss auf der Ebene von Gewohnheiten und Normen stattfinden.
+
+## Ergänzung: Ein praktischer Maßstab für solche AI-Meldungen
+
+Die englische Fassung ergänzt mehr Prüffragen: zuerst die Primärquelle, dann die Reproduzierbarkeit, danach der Nutzen im echten Workflow. Lassen Sie sich nicht nur von großen Zahlen, Screenshots oder einem zugespitzten Satz führen. Fragen Sie: Läuft die Fähigkeit stabil? Was passiert bei einem Fehler? Gibt es offizielle Dokumentation, ein Paper, Produktunterlagen oder eine überprüfbare Demo? In einem Team muss außerdem klar sein, wer prüft, wer veröffentlicht und wer die Folgen eines Fehlers trägt.
+
+Wertvoll ist nicht jede AI-Nachricht, sondern die Information, die Entscheidungen verbessert: Tool-Auswahl, Prozessänderungen, Risikoabbau. Reine Empörung darf schnell veralten.
+`,
     es: `# Ask HN: ¿Cómo lidias con la gente que confía en los LLMs?
 
 El hilo de Hacker News no trata sobre si la IA es útil. Trata sobre qué pasa cuando la gente deja de tratar los LLMs como herramientas y empieza a tratarlos como autoridades.
@@ -240,7 +281,14 @@ El riesgo no es solo la alucinación — es la confianza inmerecida. Las respues
 
 ## Lo que este hilo realmente revela
 
-Este es un problema social, no técnico. Los mejores modelos producen output más plausible, lo que puede empeorar el problema. La solución debe ocurrir en el nivel humano, no en el nivel del modelo.`,
+Este es un problema social, no técnico. Los mejores modelos producen output más plausible, lo que puede empeorar el problema. La solución debe ocurrir en el nivel humano, no en el nivel del modelo.
+
+## Actualización: una forma práctica de leer estas noticias de IA
+
+La versión inglesa añade más criterios: mirar primero la fuente original, después la reproducibilidad y por último el impacto en un flujo de trabajo real. No basta con un número grande, una captura o una frase viral. Pregunta: ¿la capacidad funciona de forma estable? ¿Qué pasa cuando falla? ¿Hay documentación oficial, un paper, una página de producto o una demo verificable? Si va a usarse en un equipo, también debe quedar claro quién revisa, quién publica y quién asume el coste del error.
+
+La meta no es perseguir cada rumor de IA, sino convertir la información en decisiones útiles: elegir mejor herramientas, cambiar procesos y reducir riesgos.
+`,
     fr: `# Ask HN : comment gérer les personnes qui font confiance aux LLM ?
 
 Le fil Hacker News ne porte pas sur l'utilité de l'IA. Il porte sur ce qui se passe quand les gens cessent de traiter les LLM comme des outils et commencent à les traiter comme des autorités.
@@ -271,7 +319,14 @@ Le risque n'est pas seulement l'hallucination — c'est la confiance imméritée
 
 ## Ce que ce fil révèle vraiment
 
-C'est un problème social, pas technique. De meilleurs modèles produisent un output plus plausible, ce qui peut empirer le problème. La solution doit se situer au niveau des habitudes et des normes humaines.`,
+C'est un problème social, pas technique. De meilleurs modèles produisent un output plus plausible, ce qui peut empirer le problème. La solution doit se situer au niveau des habitudes et des normes humaines.
+
+## Mise à jour : une grille pratique pour lire ces nouvelles IA
+
+La version anglaise ajoute des critères de lecture : partir de la source primaire, vérifier la reproductibilité, puis mesurer l'effet sur un vrai flux de travail. Un grand chiffre, une capture d'écran ou une phrase virale ne suffit pas. Demandez plutôt : la capacité est-elle stable ? Que se passe-t-il en cas d'échec ? Existe-t-il une documentation officielle, un article, une page produit ou une démonstration vérifiable ? En équipe, il faut aussi savoir qui relit, qui met en production et qui porte le risque.
+
+L'objectif n'est pas de suivre chaque rumeur IA. Les informations utiles sont celles qui aident à choisir un outil, modifier un processus ou réduire un risque.
+`,
     jp: `# Ask HN：LLMを信頼する人たちとどう向き合うのか？
 
 Hacker Newsのスレッドは、AIが有用かどうかについてではありません。人々がLLMをツールとして扱うのをやめ、権威として扱い始めたときに何が起こるかについてです。
@@ -302,7 +357,14 @@ Hacker Newsのスレッドは、AIが有用かどうかについてではあり�
 
 ## このスレッドが本当に明らかにしたこと
 
-これは技術的な問題ではなく社会的な問題です。より良いモデルはもっともっともらしい出力を生成し、問題を悪化させる可能性があります。解決策は人間の層——習慣と規範——で起きなければなりません。`,
+これは技術的な問題ではなく社会的な問題です。より良いモデルはもっともっともらしい出力を生成し、問題を悪化させる可能性があります。解決策は人間の層——習慣と規範——で起きなければなりません。
+
+## 追記：この種の AI ニュースを読むための実用的な基準
+
+英語版では判断基準を増やしました。まず一次情報を確認し、次に再現性を見て、最後に実際のワークフローへどう効くかを考えます。大きな数字、スクリーンショット、拡散しやすい一文だけでは不十分です。その機能は安定して使えるのか。失敗したら何が起きるのか。公式ドキュメント、論文、製品ページ、検証可能なデモはあるのか。チームで使うなら、誰が確認し、誰が公開し、誰が失敗の責任を持つのかも決める必要があります。
+
+重要なのは AI の噂を追い続けることではありません。ツール選定、業務改善、リスク低減に役立つ情報だけを残すことです。
+`,
     pt: `# Ask HN: Como lidar com pessoas que confiam em LLMs?
 
 O tópico do Hacker News não é sobre se a IA é útil. É sobre o que acontece quando as pessoas param de tratar LLMs como ferramentas e começam a tratá-los como autoridades.
@@ -333,7 +395,14 @@ O risco não é apenas a alucinação — é a confiança imerecida. Respostas d
 
 ## O que este tópico realmente revela
 
-Este é um problema social, não técnico. Modelos melhores produzem output mais plausível, o que pode piorar o problema. A solução precisa acontecer no nível humano — hábitos e normas — não no nível do modelo.`,
+Este é um problema social, não técnico. Modelos melhores produzem output mais plausível, o que pode piorar o problema. A solução precisa acontecer no nível humano — hábitos e normas — não no nível do modelo.
+
+## Atualização: um critério prático para ler notícias de IA
+
+A versão em inglês acrescenta mais filtros: comece pela fonte primária, depois veja a reprodutibilidade e só então avalie o impacto em um fluxo de trabalho real. Um número grande, uma captura de tela ou uma frase viral não bastam. Pergunte: a capacidade funciona de forma estável? O que acontece quando falha? Há documentação oficial, artigo técnico, página de produto ou demonstração verificável? Em uma equipe, também precisa ficar claro quem revisa, quem publica e quem assume o custo do erro.
+
+O objetivo não é perseguir todo boato de IA, mas transformar informação em decisão útil: escolher ferramentas, ajustar processos e reduzir riscos.
+`,
     ru: `# Ask HN: как общаться с людьми, которые доверяют LLM?
 
 Ветка Hacker News — не о том, полезен ли ИИ. Она о том, что происходит, когда люди перестают воспринимать LLM как инструменты и начинают считать их авторитетами.
@@ -364,7 +433,14 @@ Este é um problema social, não técnico. Modelos melhores produzem output mais
 
 ## Что эта ветка действительно показывает
 
-Это социальная, а не техническая проблема. Лучшие модели дают более правдоподобные ответы, что может усугубить проблему. Решение должно лежать на уровне человеческих привычек и норм, а не на уровне модели.`,
+Это социальная, а не техническая проблема. Лучшие модели дают более правдоподобные ответы, что может усугубить проблему. Решение должно лежать на уровне человеческих привычек и норм, а не на уровне модели.
+
+## Обновление: практичный фильтр для таких новостей об ИИ
+
+В английской версии добавлены дополнительные критерии: сначала первоисточник, затем воспроизводимость, затем влияние на реальный рабочий процесс. Большого числа, скриншота или вирусной фразы недостаточно. Спросите: работает ли возможность стабильно? Что произойдет при ошибке? Есть ли официальная документация, статья, страница продукта или проверяемая демонстрация? Если это будет использовать команда, нужно заранее определить, кто проверяет, кто выпускает и кто отвечает за последствия ошибки.
+
+Цель не в том, чтобы отслеживать каждый слух об ИИ, а в том, чтобы превращать информацию в решения: выбирать инструменты, менять процессы и снижать риски.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-26',

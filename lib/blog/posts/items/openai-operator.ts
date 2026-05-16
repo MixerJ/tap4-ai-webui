@@ -1,7 +1,7 @@
 import { BlogPost } from '../../types';
 
 const postOpenaiOperator: BlogPost = {
-  id: '3105',
+  id: '3109',
   slug: 'openai-operator',
   title: {
     en: 'OpenAI Operator: The AI Agent That Browses the Web for You',
@@ -44,11 +44,11 @@ What makes it different from traditional automation tools like Selenium or Puppe
 
 Operator handles three categories of tasks particularly well.
 
-**Shopping and research.** Ask it to "find the best noise-canceling headphones under $300" and it'll search multiple retailers, compare prices, read reviews, and present options with direct purchase links. In my testing, it handled straightforward product research in 2-3 minutes — tasks that would take 15-20 minutes of manual browsing.
+**Shopping and research.** Ask it to "find the best noise-canceling headphones under $300" and it can search multiple retailers, compare prices, read reviews, and present options with direct purchase links. This is the right kind of task because the agent can gather information first and ask for confirmation before any purchase.
 
-**Form filling and applications.** Need to fill out a job application, register for an event, or complete an online form? Operator can handle structured data entry reliably. It reads form fields, maps your provided information to the correct inputs, and submits. The accuracy rate for simple forms is around 90% in my experience.
+**Form filling and applications.** Need to fill out a job application, register for an event, or complete an online form? Operator-style agents are strongest when fields are clearly labeled and the user provides the source information. They get weaker when forms hide conditional steps, upload rules, or legal confirmations.
 
-**Booking and reservations.** Restaurant reservations, hotel bookings, appointment scheduling — these are Operator's sweet spot. The structured nature of booking flows (select date, select time, enter party size, confirm) plays to its strengths. It successfully completed about 8 out of 10 booking tasks I tested.
+**Booking and reservations.** Restaurant reservations, hotel bookings, and appointment scheduling are good candidates when the steps are visible: select date, select time, enter party size, review, confirm. The review step matters. A browser agent should pause before committing money, changing an account, or sending a message on your behalf.
 
 ## The Real Limitations
 
@@ -78,341 +78,218 @@ Start with simple tasks: "Find me the best-rated coffee maker on Amazon under $1
 
 A practical tip: be specific in your instructions. "Book a restaurant" is too vague. "Book an Italian restaurant in downtown Seattle for 4 people this Saturday at 7pm, budget around $50 per person" gives Operator enough context to succeed.
 
-The technology is genuinely useful for specific use cases — repetitive web tasks, research across multiple sites, and structured data entry. It's not a replacement for human browsing, but it's a capable assistant for the right tasks. Whether that's worth $200/month depends entirely on how much web busywork you deal with daily.`,
+The technology is genuinely useful for specific use cases — repetitive web tasks, research across multiple sites, and structured data entry. It's not a replacement for human browsing, but it's a capable assistant for the right tasks. Whether that's worth $200/month depends entirely on how much web busywork you deal with daily.
+
+## A safer Operator workflow
+
+The best way to use Operator is to make the approval points explicit. Before it starts, tell it which sites are allowed, what information it may use, what it must not submit, and what a successful result looks like. For a travel search, that might be: compare three refundable hotels, exclude sponsored placements, show cancellation terms, and stop before payment. For procurement research, it might be: collect pricing pages, support docs, SOC 2 notes, and integration limits, then return the source URLs.
+
+OpenAI's own [Operator announcement](https://openai.com/index/introducing-operator/) is worth reading because it frames the product as supervised action, not invisible autonomy. The broader [OpenAI agents documentation](https://platform.openai.com/docs/guides/agents) is also useful if you are thinking about browser agents as part of a product workflow rather than a personal assistant.
+
+## Operator vs browser automation scripts
+
+Use scripts such as Playwright or Selenium when the flow is stable, high-volume, and easy to test. They are faster and cheaper once written. Use Operator-style browsing when the task changes often, involves judgment across unstructured pages, or would be too brittle to script. A weekly vendor comparison across ten websites is a better fit than a checkout regression test that runs 5,000 times per day.
+
+Open-source projects such as [browser-use](https://github.com/browser-use/browser-use) give technical teams more control over execution and logging, but they require setup and maintenance. Operator's advantage is convenience; its trade-off is vendor lock-in. If you need a deeper system view, read our [Operator web automation architecture guide](/blog/operator-agents-api-web-automation-architecture), the [practical AI agents guide](/blog/what-are-ai-agents-practical-guide), and [why AI agents need reliability more than capability](/blog/ai-agents-need-reliability-more-than-capability).
+
+## Decision checklist
+
+Use Operator for repetitive browser work with clear constraints, visible confirmation screens, and low to medium risk. Avoid it for banking, healthcare, regulated records, irreversible purchases, or anything where a hidden mistake is worse than doing the task manually. If login, CAPTCHA, or two-factor authentication appears, treat that as a handoff point rather than a challenge to beat.
+
+A good Operator prompt includes five lines: task goal, allowed websites, ranking criteria, forbidden actions, and required confirmation. That structure turns a flashy demo into a repeatable workflow. Browser agents will not win because they can click buttons. They will win when they stop at the right moment and make human review easy.
+`,
     cn: `# OpenAI Operator：帮你自动浏览网页的AI Agent
 
-上周二我试了用OpenAI Operator订晚餐。它在我办公室附近找到三家意大利餐厅，查了晚上7点的空位，对比了Google和Yelp的评价，然后完成了预订——整个过程大约90秒。我只输入了一句"帮我订明晚两个人的意大利餐厅"。这要么让人印象深刻，要么让人不安，取决于你怎么看。
+这篇更新版文章围绕一个很实际的问题：OpenAI Operator 这样的浏览器 Agent不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
 
-OpenAI在2026年1月推出Operator，这是他们第一个专门的网页浏览Agent。和ChatGPT不同——ChatGPT回答关于网页的问题，Operator真正使用网页——点击按钮、填写表单、浏览网站——来替你完成任务。这是一个重要的转变：从"谈论事情的AI"到"做事情的AI"。
+## 先判断使用场景
 
-## Operator到底是什么
+把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
 
-核心上，Operator是一个内置网页浏览器的AI Agent。当你给它一个任务时，它会打开虚拟浏览器窗口，浏览网站，像你一样与网站交互——点击链接、在搜索框输入、从下拉菜单选择选项、提交表单。
+## 工作流建议
 
-背后的技术结合了GPT-4o的视觉能力和浏览器自动化。Operator通过分析截图"看到"网页，识别按钮和输入框等可交互元素，根据你的指令决定点击或输入什么。本质上是给AI模型装上了网页的眼睛和手。
+第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
 
-它和Selenium或Puppeteer等传统自动化工具的区别在于，Operator不需要预先写好的脚本。你用自然语言描述想要什么，它自己弄清楚步骤。不需要XPath选择器、CSS查询、或者网站一改版就失效的脆弱脚本。
+## 选择标准
 
-## 实际使用体验
+评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
 
-Operator在三类任务上表现特别好。
+## 常见失败模式
 
-**购物和研究。** 让它"找300美元以下最好的降噪耳机"，它会搜索多个零售商、比价、读评论，然后呈现选项并附上购买链接。在我的测试中，它用2-3分钟完成了简单的产品研究——手动浏览需要15-20分钟。
+常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
 
-**填表和申请。** 需要填工作申请、活动注册或在线表格？Operator能处理结构化数据录入。它读取表单字段，把你提供的信息映射到正确的输入框，然后提交。简单表格的准确率大约90%。
+## 下一步
 
-**预订和预约。** 餐厅预订、酒店预约、日程安排——这是Operator的强项。预订流程的结构化特性（选日期、选时间、输入人数、确认）正好发挥它的优势。我测试的预订任务大约8成成功完成。
-
-## 真实的局限性
-
-让我直说Operator哪里不行。
-
-**登录墙是个问题。** 很多有用的网站需要认证。Operator能处理一些登录流程，但对双因素认证、验证码、以及主动阻止自动化访问的网站就力不从心了。如果你的任务需要登录银行门户或企业内网，Operator大概帮不上忙。
-
-**复杂多步骤工作流会崩溃。** 3步任务比如"搜机票、比价、订最便宜的"没问题。涉及多个网站、条件逻辑、步骤间数据传递的15步工作流？成功率明显下降。简单任务成功率90%以上，复杂工作流大约60%。
-
-**速度不算快。** Operator需要30-90秒完成你手动15-20秒就能搞定的任务（一旦你知道点哪里）。它在读取和解析每个页面元素，这需要时间。一次性任务，你是在用时间换便利。重复性任务，这笔账才划算。
-
-**成本不低。** ChatGPT Pro每月200美元（包含Operator权限），不便宜。你需要定期用于特定工作流才值得。偶尔用用，和自己动手或用免费替代品比，经济上不划算。
-
-## Operator vs 竞争对手
-
-OpenAI不是这个领域唯一的玩家。Anthropic的Claude通过computer use功能可以浏览网页。Google的Gemini有类似能力。Browser Use和Hyperbrowser等专业工具提供开源替代方案。
-
-Operator的优势是集成——它内置在ChatGPT里，数百万人已经在用。不用装单独的工具，不用管理API密钥，不用配置。你描述想要什么，它就去做。
-
-劣势是锁定。你的浏览Agent绑定在OpenAI的生态里，受他们的定价和决策约束。开源替代品给你更多控制权，但需要技术配置。
-
-## 入门指南
-
-想试Operator，需要ChatGPT Pro订阅（每月200美元）。订阅后，Operator直接在ChatGPT界面可用。
-
-从简单任务开始："在亚马逊上找100美元以下评分最高的咖啡机"或"帮我在时代广场附近订周五晚上7点两个人的意大利餐厅"。在尝试复杂工作流之前，先感受一下它能处理什么。
-
-实用建议：指令要具体。"订餐厅"太模糊。"这周六晚上7点，西雅图市中心，4个人，人均50美元左右的意大利餐厅"给了Operator足够的上下文来成功。
-
-这项技术对特定用例确实有用——重复性网页任务、跨多网站研究、结构化数据录入。它不是人类浏览的替代品，但对合适的任务来说是个能干的助手。值不值每月200美元，完全取决于你每天有多少网页杂活要处理。`,
+如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+`,
     tw: `# OpenAI Operator：幫你自動瀏覽網頁的AI Agent
 
-上週二我試了用OpenAI Operator訂晚餐。它在我辦公室附近找到三家義大利餐廳，查了晚上7點的空位，對比了Google和Yelp的評價，然後完成了預訂——整個過程大約90秒。我只輸入了一句「幫我訂明晚兩個人的義大利餐廳」。這要麼讓人印象深刻，要麼讓人不安，取決於你怎麼看。
+這篇更新版文章聚焦一個實務問題：OpenAI Operator 這樣的瀏覽器 Agent不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
 
-OpenAI在2026年1月推出Operator，這是他們第一個專門的網頁瀏覽Agent。和ChatGPT不同——ChatGPT回答關於網頁的問題，Operator真正使用網頁——點擊按鈕、填寫表單、瀏覽網站——來替你完成任務。這是一個重要的轉變：從「談論事情的AI」到「做事情的AI」。
+## 先判斷使用場景
 
-## Operator到底是什麼
+把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
 
-核心上，Operator是一個內建網頁瀏覽器的AI Agent。當你給它一個任務時，它會打開虛擬瀏覽器視窗，瀏覽網站，像你一樣與網站互動——點擊連結、在搜尋框輸入、從下拉選單選擇選項、提交表單。
+## 工作流建議
 
-背後的技術結合了GPT-4o的視覺能力和瀏覽器自動化。Operator透過分析截圖「看到」網頁，識別按鈕和輸入框等可互動元素，根據你的指令決定點擊或輸入什麼。本質上是給AI模型裝上了網頁的眼睛和手。
+第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
 
-## 實際使用體驗
+## 選擇標準
 
-Operator在三類任務上表現特別好。
+不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
 
-**購物和研究。** 讓它「找300美元以下最好的降噪耳機」，它會搜尋多個零售商、比價、讀評論，然後呈現選項並附上購買連結。在我的測試中，它用2-3分鐘完成了簡單的產品研究——手動瀏覽需要15-20分鐘。
+## 常見失敗模式
 
-**填表和申請。** 需要填工作申請、活動註冊或線上表格？Operator能處理結構化資料輸入。簡單表格的準確率大約90%。
+常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
 
-**預訂和預約。** 餐廳預訂、酒店預約、行程安排——這是Operator的強項。我測試的預訂任務大約8成成功完成。
+## 下一步
 
-## 真實的局限性
-
-讓我直說Operator哪裡不行。
-
-**登入牆是個問題。** 很多有用的網站需要認證。Operator能處理一些登入流程，但對雙因素認證、驗證碼、以及主動阻止自動化存取的網站就力不從心了。
-
-**複雜多步驟工作流會崩潰。** 簡單任務成功率90%以上，複雜工作流大約60%。
-
-**速度不算快。** Operator需要30-90秒完成你手動15-20秒就能搞定的任務。
-
-**成本不低。** ChatGPT Pro每月200美元，不便宜。
-
-## Operator vs 競爭對手
-
-OpenAI不是這個領域唯一的玩家。Anthropic的Claude透過computer use功能可以瀏覽網頁。Google的Gemini有類似能力。
-
-Operator的優勢是整合——它內建在ChatGPT裡。劣勢是鎖定——你的瀏覽Agent綁定在OpenAI的生態裡。
-
-## 入門指南
-
-想試Operator，需要ChatGPT Pro訂閱（每月200美元）。從簡單任務開始，感受一下它能處理什麼。
-
-實用建議：指令要具體。「訂餐廳」太模糊。「這週六晚上7點，西雅圖市中心，4個人，人均50美元左右的義大利餐廳」給了Operator足夠的上下文來成功。
-
-這項技術對特定用例確實有用——重複性網頁任務、跨多網站研究、結構化資料輸入。值不值每月200美元，完全取決於你每天有多少網頁雜活要處理。`,
+可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+`,
     de: `# OpenAI Operator: Der KI-Agent, der für dich im Web surft
 
-Letzten Dienstag habe ich versucht, über OpenAI Operator einen Dinner-Tisch zu reservieren. Es fand drei italienische Restaurants in der Nähe meines Büros, prüfte die Verfügbarkeit für 19 Uhr, verglich Bewertungen auf Google und Yelp und schloss die Reservierung ab — alles in etwa 90 Sekunden. Meine einzige Eingabe war: „Reserviere mir morgen Abend ein italienisches Restaurant für zwei Personen." Das ist entweder beeindruckend oder beunruhigend, je nach Perspektive.
+Diese Fassung beantwortet eine praktische Frage: Browser-Agenten wie OpenAI Operator sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
 
-OpenAI hat Operator im Januar 2026 als ersten dedizierten Web-Browsing-Agenten gestartet. Anders als ChatGPT, das Fragen über das Web beantwortet, nutzt Operator tatsächlich das Web — klickt auf Schaltflällen, füllt Formulare aus, navigiert durch Websites — um Aufgaben in deinem Namen zu erledigen.
+## Erst den Anwendungsfall klären
 
-## Was Operator wirklich ist
+Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
 
-Im Kern ist Operator ein KI-Agent mit einem eingebauten Webbrowser. Wenn du ihm eine Aufgabe gibst, öffnet es ein virtuelles Browserfenster, navigiert zu Websites und interagiert mit ihnen genauso wie du — klickt auf Links, tippt in Suchfelder, wählt Optionen aus Dropdown-Menüs und reicht Formulare ein.
+## Ein belastbarer Workflow
 
-Die dahinterstehende Technologie kombiniert die Vision-Fähigkeiten von GPT-4o mit Browser-Automatisierung. Operator „sieht" Webseiten durch die Analyse von Screenshots, identifiziert interaktive Elemente wie Schaltflächen und Eingabefelder und entscheidet basierend auf deinen Anweisungen, was geklickt oder eingegeben werden soll.
+Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
 
-## Wie es in der Praxis funktioniert
+## Auswahlkriterien
 
-Operator bewältigt drei Kategorien von Aufgaben besonders gut.
+Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
 
-**Einkaufen und Recherche.** Sage ihm „Finde die besten Noise-Cancelling-Kopfhörer unter 300$" und es durchsucht mehrere Händler, vergleicht Preise, liest Bewertungen und präsentiert Optionen mit direkten Kauf-Links. In meinen Tests brauchte es 2-3 Minuten für einfache Produktrecherche — manuelles Browsing hätte 15-20 Minuten gedauert.
+## Häufige Fehler
 
-**Formulare ausfüllen und Bewerbungen.** Operator kann strukturierte Dateneingabe zuverlässig handhaben. Die Genauigkeitsrate für einfache Formulare liegt bei etwa 90%.
+Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
 
-**Buchungen und Reservierungen.** Restaurantreservierungen, Hotelbuchungen, Terminplanung — das ist Operators Stärke. Etwa 8 von 10 Buchungsaufgaben in meinen Tests waren erfolgreich.
+## Nächster Schritt
 
-## Die echten Einschränkungen
+Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+`,
+    es: `# OpenAI Operator: el agente de IA que navega por ti
 
-**Login-Wände sind ein Problem.** Viele nützliche Websites erfordern Authentifizierung. Operator scheitert an Zwei-Faktor-Authentifizierung, CAPTCHAs und Sites, die automatisierten Zugang blockieren.
+Esta versión revisada responde a una pregunta práctica: agentes de navegador como OpenAI Operator no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
 
-**Komplexe Multi-Step-Workflows brechen zusammen.** Einfache Aufgaben: 90%+ Erfolgsrate. Komplexe Workflows: etwa 60%.
+## Empieza por el caso de uso
 
-**Geschwindigkeit ist nicht berauschend.** Operator braucht 30-90 Sekunden für Aufgaben, die du manuell in 15-20 Sekunden erledigen könntest.
+Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
 
-**Kosten summieren sich.** 200$/Monat für ChatGPT Pro ist nicht günstig.
+## Flujo recomendado
 
-## Erste Schritte
+Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
 
-Du brauchst ein ChatGPT Pro-Abo (200$/Monat). Beginne mit einfachen Aufgaben, um ein Gefühl dafür zu bekommen, was es bewältigen kann.
+## Criterios de decisión
 
-Praktischer Tipp: Sei spezifisch in deinen Anweisungen. „Restaurant buchen" ist zu vage. „Italienisches Restaurant in Downtown Seattle für 4 Personen diesen Samstag um 19 Uhr, Budget etwa 50$ pro Person" gibt Operator genug Kontext für Erfolg.
+No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
 
-Die Technologie ist für bestimmte Anwendungsfälle wirklich nützlich — wiederkehrende Web-Aufgaben, Recherche über mehrere Websites, strukturierte Dateneingabe. Ob das 200$/Monat wert ist, hängt davon ab, wie viel Web-Bürokratie du täglich bewältigen musst.`,
-    es: `# OpenAI Operator: El agente de IA que navega la web por ti
+## Fallos habituales
 
-El martes pasado intenté reservar una cena a través de OpenAI Operator. Encontró tres restaurantes italianos cerca de mi oficina, verificó disponibilidad para las 7pm, comparó reseñas en Google y Yelp, y completó la reserva — todo en unos 90 segundos. La única entrada que di fue "resérvame una cena italiana para dos mañana por la tarde." Eso es impresionante o inquietante, dependiendo de tu perspectiva.
+Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
 
-OpenAI lanzó Operator en enero de 2026 como su primer agente de navegación web dedicado. A diferencia de ChatGPT, que responde preguntas sobre la web, Operator realmente usa la web — hace clic en botones, llena formularios, navega por sitios — para completar tareas en tu nombre.
+## Siguiente paso
 
-## Qué es realmente Operator
+Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+`,
+    fr: `# OpenAI Operator : l’agent IA qui navigue pour vous
 
-En esencia, Operator es un agente de IA con un navegador web integrado. Cuando le das una tarea, abre una ventana de navegador virtual, navega a sitios web e interactúa con ellos igual que tú — hace clic en enlaces, escribe en campos de búsqueda, selecciona opciones de menús desplegables y envía formularios.
+Cette version enrichie répond à une question concrète : les agents de navigateur comme OpenAI Operator doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
 
-La tecnología detrás combina las capacidades de visión de GPT-4o con automatización del navegador. Operator "ve" las páginas web analizando capturas de pantalla, identifica elementos interactivos como botones y campos de entrada, y decide qué clickear o escribir según tus instrucciones.
+## Clarifier le cas d’usage
 
-## Cómo funciona en la práctica
+Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
 
-Operator maneja tres categorías de tareas particularmente bien.
+## Méthode pratique
 
-**Compras e investigación.** Pídele que "encuentre los mejores audífonos con cancelación de ruido por menos de $300" y buscará en múltiples minoristas, comparará precios, leerá reseñas y presentará opciones con enlaces de compra directos. En mis pruebas, manejó investigación simple de productos en 2-3 minutos — tareas que tomarían 15-20 minutos de navegación manual.
+Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
 
-**Llenado de formularios y solicitudes.** Operator puede manejar entrada de datos estructurada de manera confiable. La tasa de precisión para formularios simples es de alrededor del 90%.
+## Critères de choix
 
-**Reservas y citas.** Reservas de restaurantes, reservas de hoteles, programación de citas — este es el punto fuerte de Operator. Aproximadamente 8 de cada 10 tareas de reserva en mis pruebas se completaron con éxito.
+Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
 
-## Las limitaciones reales
+## Échecs fréquents
 
-**Los muros de login son un problema.** Muchos sitios útiles requieren autenticación. Operator falla con autenticación de dos factores, CAPTCHAs y sitios que bloquean acceso automatizado.
+Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
 
-**Los flujos de trabajo complejos de múltiples pasos se desmoronan.** Tareas simples: 90%+ de éxito. Flujos complejos: alrededor del 60%.
+## Pour continuer
 
-**La velocidad no es gran cosa.** Operator necesita 30-90 segundos para tareas que podrías hacer manualmente en 15-20 segundos.
+À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+`,
+    jp: `# OpenAI Operator：Web操作AIエージェント実践ガイド
 
-**El costo se acumula.** $200/mes por ChatGPT Pro no es barato.
+この記事の改訂版では、OpenAI Operator のようなブラウザーAgentを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
 
-## Primeros pasos
+## まず用途を分ける
 
-Necesitas una suscripción a ChatGPT Pro ($200/mes). Comienza con tareas simples para tener una idea de lo que puede manejar.
+タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
 
-Consejo práctico: sé específico en tus instrucciones. "Reservar un restaurante" es demasiado vago. "Restaurante italiano en el centro de Seattle para 4 personas este sábado a las 7pm, presupuesto de unos $50 por persona" le da a Operator suficiente contexto para tener éxito.
+## 実務での進め方
 
-La tecnología es genuinamente útil para casos de uso específicos — tareas web repetitivas, investigación en múltiples sitios, entrada de datos estructurada. Si vale $200/mes depende de cuánto trabajo web rutinario manejes diariamente.`,
-    fr: `# OpenAI Operator : L'agent IA qui navigue sur le web pour vous
+低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
 
-J'ai essayé de réserver un dîner via OpenAI Operator mardi dernier. Il a trouvé trois restaurants italiens près de mon bureau, vérifié la disponibilité pour 19h, comparé les avis sur Google et Yelp, et complété la réservation — tout en environ 90 secondes. Ma seule instruction était « Réserve-moi un restaurant italien pour deux demain soir. » C'est soit impressionnant soit déstabilisant, selon votre perspective.
+## 選定基準
 
-OpenAI a lancé Operator en janvier 2026 comme premier agent de navigation web dédié. Contrairement à ChatGPT, qui répond aux questions sur le web, Operator utilise réellement le web — clique sur des boutons, remplit des formulaires, navigue sur les sites — pour accomplir des tâches en votre nom.
+単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
 
-## Ce qu'est vraiment Operator
+## よくある失敗
 
-Au cœur, Operator est un agent IA avec un navigateur web intégré. Quand vous lui donnez une tâche, il ouvre une fenêtre de navigateur virtuelle, navigue vers des sites web et interagit avec eux comme vous le feriez — clique sur des liens, tape dans des champs de recherche, sélectionne des options dans des menus déroulants et soumet des formulaires.
+プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
 
-La technologie derrière combine les capacités de vision de GPT-4o avec l'automatisation du navigateur. Operator « voit » les pages web en analysant des captures d'écran, identifie les éléments interactifs comme les boutons et champs de saisie, et décide quoi cliquer ou taper selon vos instructions.
+## 次に読むもの
 
-## Comment ça fonctionne en pratique
+[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+`,
+    pt: `# OpenAI Operator: o agente de IA que navega por você
 
-Operator gère trois catégories de tâches particulièrement bien.
+Esta versão revisada olha para uma pergunta prática: agentes de navegador como o OpenAI Operator deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
 
-**Achats et recherche.** Demandez-lui de « trouver les meilleurs casques à réduction de bruit sous 300 $ » et il cherchera chez plusieurs détaillants, comparera les prix, lira les avis et présentera des options avec des liens d'achat directs. Dans mes tests, il a géré une recherche produit simple en 2-3 minutes — des tâches qui auraient pris 15-20 minutes de navigation manuelle.
+## Comece pelo caso de uso
 
-**Remplissage de formulaires et candidatures.** Operator peut gérer la saisie de données structurées de manière fiable. Le taux de précision pour les formulaires simples est d'environ 90%.
+Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
 
-**Réservations et rendez-vous.** Réservations de restaurants, réservations d'hôtels, planification de rendez-vous — c'est le point fort d'Operator. Environ 8 tâches de réservation sur 10 dans mes tests ont été complétées avec succès.
+## Fluxo recomendado
 
-## Les vraies limites
+Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
 
-**Les murs de connexion sont un problème.** De nombreux sites utiles nécessitent une authentification. Operator échoue avec l'authentification à deux facteurs, les CAPTCHAs et les sites qui bloquent l'accès automatisé.
+## Critérios de escolha
 
-**Les workflows complexes multi-étapes se cassent.** Tâches simples : 90%+ de succès. Workflows complexes : environ 60%.
+Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
 
-**La vitesse n'est pas géniale.** Operator a besoin de 30-90 secondes pour des tâches que vous pourriez faire manuellement en 15-20 secondes.
+## Falhas comuns
 
-**Le coût s'additionne.** 200 $/mois pour ChatGPT Pro, ce n'est pas donné.
+Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
 
-## Premiers pas
+## Próximos passos
 
-Vous avez besoin d'un abonnement ChatGPT Pro (200 $/mois). Commencez par des tâches simples pour avoir une idée de ce qu'il peut gérer.
+Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+`,
+    ru: `# OpenAI Operator: AI-агент для работы в браузере
 
-Conseil pratique : soyez spécifique dans vos instructions. « Réserver un restaurant » est trop vague. « Restaurant italien à Downtown Seattle pour 4 personnes ce samedi à 19h, budget environ 50 $ par personne » donne à Operator assez de contexte pour réussir.
+Обновленная версия статьи отвечает на практичный вопрос: браузерные агенты вроде OpenAI Operator нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
 
-La technologie est vraiment utile pour des cas d'usage spécifiques — tâches web répétitives, recherche sur plusieurs sites, saisie de données structurée. Si ça vaut 200 $/mois dépend de la quantité de bureaucratie web que vous gérez quotidiennement.`,
-    jp: `# OpenAI Operator：あなたのためにWebを閲覧するAIエージェント
+## Начните со сценария
 
-先週の火曜日、OpenAI Operatorでディナーの予約を試してみました。オフィス近くのイタリアンレストラン3軒を見つけ、19時の空席を確認し、GoogleとYelpのレビューを比較して、予約を完了しました——すべて約90秒で。私が入力したのは「明日の夜、2人分のイタリアンレストランを予約して」だけです。これは印象的でもあれば不安でもあります。視点によります。
+Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
 
-OpenAIは2026年1月にOperatorを初の専用Webブラウジングエージェントとしてリリースしました。Webに関する質問に答えるChatGPTとは異なり、Operatorは実際にWebを使用します——ボタンをクリックし、フォームに記入し、サイトをナビゲートして——あなたの代わりにタスクを完了します。
+## Рабочий процесс
 
-## Operatorとは何か
+Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
 
-コア部分では、Operatorは組み込みWebブラウザを持つAIエージェントです。タスクを与えると、仮想ブラウザウィンドウを開き、Webサイトにナビゲートし、あなたと同じようにサイトと相互作用します——リンクをクリックし、検索ボックスに入力し、ドロップダウンからオプションを選択し、フォームを送信します。
+## Как выбирать
 
-背後にある技術はGPT-4oのビジョン機能とブラウザ自動化を組み合わせています。Operatorはスクリーンショットを分析してWebページを「見て」、ボタンや入力フィールドなどのインタラクティブ要素を識別し、指示に基づいて何をクリックまたは入力するかを決定します。
+Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
 
-## 実際の使い心地
+## Типичные сбои
 
-Operatorは3つのカテゴリのタスクを特に得意としています。
+Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
 
-**ショッピングとリサーチ。** 「300ドル以下の最高のノイズキャンセリングヘッドフォンを見つけて」と頼むと、複数の小売店を検索し、価格を比較し、レビューを読み、直接購入リンク付きでオプションを提示します。私のテストでは、簡単な製品リサーチを2〜3分で処理しました——手動ブラウジングなら15〜20分かかるタスクです。
+## Что делать дальше
 
-**フォーム記入と申請。** Operatorは構造化データ入力を確実に処理できます。簡単なフォームの精度率は約90%です。
-
-**予約とアポイントメント。** レストラン予約、ホテル予約、スケジューリング——これはOperatorの得意分野です。私のテストでは予約タスクの約8割が成功しました。
-
-## 実際の制限
-
-**ログイン壁は問題です。** 多くの便利なWebサイトは認証を必要とします。Operatorは二要素認証、CAPTCHA、自動化アクセスをブロックするサイトには対応できません。
-
-**複雑なマルチステップワークフローは崩壊します。** 簡単なタスク：成功率90%以上。複雑なワークフロー：約60%。
-
-**速度はあまり良くありません。** Operatorは手動で15〜20秒でできるタスクに30〜90秒かかります。
-
-**コストがかさみます。** ChatGPT Proは月額200ドルと安くありません。
-
-## はじめに
-
-Operatorを試すには、ChatGPT Proサブスクリプション（月額200ドル）が必要です。簡単なタスクから始めて、何が処理できるかを感じてみてください。
-
-実用的なアドバイス：指示は具体的に。「レストランを予約」は曖昧すぎます。「今週土曜日19時、シアトルダウンタウン、4人、1人あたり50ドル程度のイタリアンレストラン」はOperatorに成功するのに十分なコンテキストを与えます。
-
-この技術は特定のユースケース——繰り返しのWebタスク、複数サイトにわたるリサーチ、構造化データ入力——には本当に有用です。月額200ドルの価値があるかどうかは、あなたが毎日処理するWeb雑用の量に完全に依存します。`,
-    pt: `# OpenAI Operator: O agente de IA que navega na web por você
-
-Tentei reservar um jantar pelo OpenAI Operator na terça passada. Ele encontrou três restaurantes italianos perto do meu escritório, verificou disponibilidade para as 19h, comparou avaliações no Google e Yelp, e completou a reserva — tudo em cerca de 90 segundos. Minha única entrada foi "reserve um jantar italiano para dois amanhã à noite." Isso é impressionante ou perturbador, dependendo da sua perspectiva.
-
-A OpenAI lançou o Operator em janeiro de 2026 como seu primeiro agente dedicado de navegação web. Diferente do ChatGPT, que responde perguntas sobre a web, o Operator realmente usa a web — clica em botões, preenche formulários, navega por sites — para completar tarefas em seu nome.
-
-## O que o Operator realmente é
-
-No cerne, o Operator é um agente de IA com um navegador web embutido. Quando você dá uma tarefa, ele abre uma janela de navegador virtual, navega até sites e interage com eles da mesma forma que você — clica em links, digita em campos de busca, seleciona opções em menus suspensos e submete formulários.
-
-A tecnologia por trás combina as capacidades de visão do GPT-4o com automação de navegador. O Operator "vê" páginas web analisando capturas de tela, identifica elementos interativos como botões e campos de entrada, e decide o que clicar ou digitar com base nas suas instruções.
-
-## Como funciona na prática
-
-O Operator lida com três categorias de tarefas particularmente bem.
-
-**Compras e pesquisa.** Peça para "encontrar os melhores fones com cancelamento de ruído abaixo de $300" e ele pesquisará em vários varejistas, comparará preços, lerá avaliações e apresentará opções com links de compra diretos. Nos meus testes, lidou com pesquisa simples de produtos em 2-3 minutos — tarefas que levariam 15-20 minutos de navegação manual.
-
-**Preenchimento de formulários e inscrições.** O Operator pode lidar com entrada de dados estruturada de forma confiável. A taxa de precisão para formulários simples é de cerca de 90%.
-
-**Reservas e agendamentos.** Reservas de restaurantes, reservas de hotéis, agendamento de compromissos — esse é o ponto forte do Operator. Aproximadamente 8 em cada 10 tarefas de reserva nos meus testes foram completadas com sucesso.
-
-## As limitações reais
-
-**Barreiras de login são um problema.** Muitos sites úteis exigem autenticação. O Operator falha com autenticação de dois fatores, CAPTCHAs e sites que bloqueiam acesso automatizado.
-
-**Workflows complexos de múltiplos passos quebram.** Tarefas simples: 90%+ de sucesso. Workflows complexos: cerca de 60%.
-
-**Velocidade não é grande coisa.** O Operator leva 30-90 segundos para tarefas que você poderia fazer manualmente em 15-20 segundos.
-
-**Custo se acumula.** $200/mês pelo ChatGPT Pro não é barato.
-
-## Primeiros passos
-
-Você precisa de uma assinatura do ChatGPT Pro ($200/mês). Comece com tarefas simples para ter uma ideia do que ele pode lidar.
-
-Dica prática: seja específico nas suas instruções. "Reservar um restaurante" é vago demais. "Restaurante italiano no centro de Seattle para 4 pessoas neste sábado às 19h, orçamento de cerca de $50 por pessoa" dá ao Operator contexto suficiente para ter sucesso.
-
-A tecnologia é genuinamente útil para casos de uso específicos — tarefas web repetitivas, pesquisa em vários sites, entrada de dados estruturada. Se vale $200/mês depende de quanto trabalho web rotineiro você lida diariamente.`,
-    ru: `# OpenAI Operator: AI-агент, который серфит в интернете за вас
-
-На прошлой вторник я попробовал забронировать ужин через OpenAI Operator. Он нашёл три итальянских ресторана рядом с офисом, проверил доступность на 19:00, сравнил отзывы на Google и Yelp и завершил бронирование — всё примерно за 90 секунд. Мой единственный ввод: «Забронируй мне итальянский ресторан на двоих на завтра вечером.» Это либо впечатляет, либо настораживает — зависит от точки зрения.
-
-OpenAI запустил Operator в январе 2026 года как первого специализированного веб-браузинг-агента. В отличие от ChatGPT, который отвечает на вопросы о вебе, Operator реально использует веб — нажимает кнопки, заполняет формы, навигирует по сайтам — выполняя задачи от вашего имени.
-
-## Что такое Operator на самом деле
-
-По сути, Operator — это AI-агент со встроенным веб-браузером. Когда вы даёте ему задачу, он открывает виртуальное окно браузера, переходит на сайты и взаимодействует с ними так же, как вы — кликает по ссылкам, вводит текст в поисковые строки, выбирает опции из выпадающих меню и отправляет формы.
-
-Технология сочетает возможности зрения GPT-4o с автоматизацией браузера. Operator «видит» веб-страницы, анализируя скриншоты, идентифицирует интерактивные элементы — кнопки, поля ввода — и решает, что кликнуть или ввести на основе ваших инструкций.
-
-## Как это работает на практике
-
-Operator особенно хорошо справляется с тремя категориями задач.
-
-**Покупки и исследования.** Попросите «найти лучшие наушники с шумоподавлением до $300» — он будет искать по нескольким магазинам, сравнивать цены, читать отзывы и представлять варианты с прямыми ссылками на покупку. В моих тестах простое исследование продукта занимало 2-3 минуты — ручной браузинг занял бы 15-20 минут.
-
-**Заполнение форм и заявок.** Operator может надёжно обрабатывать структурированный ввод данных. Точность для простых форм — около 90%.
-
-**Бронирование и записи.** Бронирование ресторанов, отелей, расписание встреч — это сильная сторона Operator. Примерно 8 из 10 задач бронирования в моих тестах были успешно выполнены.
-
-## Реальные ограничения
-
-**Стены логина — проблема.** Многие полезные сайты требуют аутентификации. Operator не справляется с двухфакторной аутентификацией, CAPTCHA и сайтами, блокирующими автоматизированный доступ.
-
-**Сложные многошаговые воркфлоу ломаются.** Простые задачи: 90%+ успеха. Сложные воркфлоу: около 60%.
-
-**Скорость не впечатляет.** Operator тратит 30-90 секунд на задачи, которые вы могли бы сделать вручную за 15-20 секунд.
-
-**Стоимость накапливается.** $200/месяц за ChatGPT Pro — недёшево.
-
-## Первые шаги
-
-Нужна подписка ChatGPT Pro ($200/месяц). Начните с простых задач, чтобы понять, что он может обработать.
-
-Практический совет: будьте конкретны в инструкциях. «Забронировать ресторан» — слишком расплывчато. «Итальянский ресторан в центре Сиэтла на 4 человек в эту субботу в 19:00, бюджет около $50 на человека» даёт Operator достаточно контекста для успеха.
-
-Технология действительно полезна для конкретных сценариев — повторяющиеся веб-задачи, исследование по нескольким сайтам, структурированный ввод данных. Стоит ли $200/месяц — зависит от того, сколько веб-рутинной работы вы обрабатываете ежедневно.`,
+Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',

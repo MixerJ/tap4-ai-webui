@@ -103,7 +103,7 @@ pnpm dev
 | `pnpm lint:fix` | Auto-fix lint issues |
 | `pnpm prettier` | Format all files |
 | `pnpm blog:new` | Scaffold a new blog post |
-| `pnpm brand:check` | Check for legacy "tap4-ai" references |
+| `pnpm brand:check` | Check for legacy branding references |
 | `pnpm seo:list` | List unoptimized tools from Supabase |
 | `pnpm seo:write` | Write SEO data back to Supabase |
 
@@ -612,10 +612,10 @@ Examples:
 
 ## 15. Branding Rules
 
-The project was renamed from "tap4-ai" to "toolsify-ai".
+The project was renamed from its legacy brand to "toolsify-ai".
 
-- **Pre-commit hook** runs `pnpm brand:check` to block any legacy `tap4-ai` references.
-- Never use `tap4-ai` in code, comments, filenames, or commit messages.
+- **Pre-commit hook** runs `pnpm brand:check` to block any legacy branding references.
+- Never use legacy branding tokens in code, comments, filenames, or commit messages.
 - GitHub org is `6677-ai`, product name is "Toolsify AI".
 
 ---
@@ -652,7 +652,7 @@ The project was renamed from "tap4-ai" to "toolsify-ai".
 No test runner is configured. Quality is enforced through:
 
 1. **Pre-commit hook** (`husky`):
-   - `pnpm brand:check` — blocks legacy "tap4-ai" references
+   - `pnpm brand:check` — blocks legacy branding references
    - `lint-staged` — ESLint + Prettier on staged files
 
 2. **Before claiming work complete**:
@@ -679,7 +679,7 @@ pnpm build
 
 ```bash
 pnpm brand:check
-# Find and replace any "tap4-ai" references with "toolsify-ai"
+# Find and replace any legacy branding references with "toolsify-ai"
 ```
 
 ### Crawler not processing submissions
