@@ -94,315 +94,216 @@ The project's rapid growth — from a niche CLI tool to a platform with desktop 
 
 Whether OpenCode becomes the standard or inspires competitors to adopt similar workflows, the direction is clear: AI coding tools need to understand context, respect developer control, and integrate with existing workflows rather than replacing them.
 
-If you're tired of AI coding tools that promise autonomy but deliver chaos, OpenCode is worth a serious look. Just be prepared to invest time learning its workflow — the payoff is worth it.`,
-    cn: `# OpenCode：真正可用的开源AI编程代理
+If you're tired of AI coding tools that promise autonomy but deliver chaos, OpenCode is worth a serious look. Just be prepared to invest time learning its workflow — the payoff is worth it.
 
-过去一年我测试了几十个AI编程工具。大多数承诺很多，实际交付的只是多了几个步骤的自动补全。OpenCode引起了我的注意，因为它做了不同的事情——它把编程当作工作流问题来处理，而不仅仅是文本生成问题。
+## A sharper evaluation checklist
 
-拥有超过13.1万GitHub星标和500万月活开发者，OpenCode显然触动了开发者的痛点。但流行度不总是等于质量。所以我花了两周时间把它作为主要编程助手来测试。
+If you are testing OpenCode against Claude Code, Codex, or an IDE-native assistant, use the same branch and the same task. Ask each tool to fix a failing test, implement a small feature, and review a risky pull request. Score the result on five things: correctness, diff size, test choice, explanation quality, and rollback friction. The tool that produces the most impressive patch is not always the one you want on a team laptop. The tool that leaves the smallest safe diff often wins.
 
-## OpenCode的不同之处
+Also check boring operational details. Can you pin provider defaults per repository? Can you prevent edits to generated files? Does the agent show commands before running them? Can a senior engineer understand why it changed a file? These details determine whether OpenCode becomes part of daily engineering or remains a weekend experiment.
 
-你首先注意到的是，OpenCode不是在尝试成为另一个聊天机器人包装器。当你在项目中运行\`opencode\`并输入\`/init\`时，有趣的事情发生了：它分析你的代码库并在仓库根目录创建一个\`AGENTS.md\`文件。
+## Practical prompt examples
 
-这个文件教会代理你项目的结构、编码模式和约定。这是个小细节，但它传递了一个重要信号——OpenCode把上下文收集当作一等公民问题来处理，而不是事后补充。
+For investigation: “Find the root cause of this failing test. Read before editing. Show the likely file and the smallest fix.” For implementation: “Add this feature behind existing patterns. Do not introduce a new dependency. Run the narrowest relevant test.” For review: “Look for behavior changes, missing tests, and security-sensitive assumptions. Do not rewrite the patch.”
 
-多模型支持是另一个亮点。不像那些把你锁定在单一模型的工具，OpenCode通过AI SDK和Models.dev支持75+个LLM提供商。你可以用Claude做复杂推理，用GPT做快速编辑，甚至运行本地模型处理敏感代码。
+Those prompts are plain on purpose. OpenCode works best when you give it the same instructions you would give a careful teammate: context, boundary, acceptance test, and permission level.
 
-## 真正有效的工作流
+For adjacent reading, use the official [OpenCode documentation](https://opencode.ai/docs/), the [OpenCode GitHub repository](https://github.com/sst/opencode), our [AI for developers guide](/blog/ai-for-developers-guide), and the workflow comparison in [OpenCode vs Claude Code vs Codex](/blog/opencode-vs-claude-code-vs-codex-ai-coding-workflow).
 
-这是OpenCode真正有趣的地方。工具有两种模式：规划模式和构建模式。
+For adjacent decisions, compare OpenCode with the broader [AI coding assistants review](/blog/ai-coding-assistants-review), the tactical [AI for developers guide](/blog/ai-for-developers-guide), and our [Claude 4 vs GPT-5 coding benchmark framework](/blog/claude-4-vs-gpt-5-code-benchmarks-2026). Those three articles help separate model quality, agent workflow, and team adoption risk.
+`,
+    cn: `# OpenCode：开源 AI 编程代理实战
 
-在规划模式下，OpenCode分析你的请求，将其分解为步骤，并在编写任何代码之前呈现方案。你可以批准、修改或拒绝这个计划。这听起来简单，但它防止了常见的AI编程问题——工具偏离主题，写出500行你没要求的代码。
+这篇更新版文章围绕一个很实际的问题：OpenCode 这样的开源 AI 编程代理不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
 
-构建模式是执行发生的地方。但关键是——即使在构建模式下，OpenCode也保持类似对话的流程。你可以在执行过程中说"实际上，用不同的方法"，它会适应。\`/undo\`和\`/redo\`命令按预期工作，让你在不丢失上下文的情况下回滚更改。
+## 先判断使用场景
 
-## 隐私和企业功能
+把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
 
-OpenCode的隐私故事令人耳目一新地具体。首页声明它不存储你的代码或上下文数据。处理在本地或通过直接API调用你选择的提供商进行。
+## 工作流建议
 
-但有一个重要注意事项：\`/share\`功能。如果你使用它，你的对话数据会被上传以创建公开分享链接。文档明确建议为敏感工作禁用分享。这种有文档记录的权衡比模糊的"隐私优先"声明更可信。
+第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
 
-## LSP集成：秘密武器
+## 选择标准
 
-将OpenCode与更简单的编程助手区分开的一个功能是它的语言服务器协议集成。该工具使用LSP诊断在更深层次理解你的代码库——捕获类型错误、理解导入和导航代码结构。
+评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
 
-这很重要，因为AI编程工具的好坏取决于它们能收集的上下文。一个不能理解你项目类型系统或依赖图的工具会给出看起来正确但在编译时失败的建议。
+## 常见失败模式
 
-## 入门指南
+常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
 
-如果你想尝试OpenCode，这里是实用路径：
+## 下一步
 
-通过你喜欢的方法安装——项目脚本、Homebrew、Docker或包管理器都可以。在项目目录运行\`opencode\`，然后用\`/init\`设置上下文。用\`/connect\`连接提供商，然后开始一个简单任务。
+如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+`,
+    tw: `# OpenCode：開源 AI 編程代理實戰
 
-我建议在前几次会话中启用规划模式。它帮助你理解代理如何思考问题，然后再让它自由运行。
+這篇更新版文章聚焦一個實務問題：OpenCode 這樣的開源 AI 編程代理不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
 
-## 未来展望
+## 先判斷使用場景
 
-OpenCode代表了我们如何看待AI编程工具的转变。它不是把代码生成当作文本补全问题，而是把它当作包含规划、执行、验证和回滚的工作流问题。
+把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
 
-如果你厌倦了那些承诺自主性但带来混乱的AI编程工具，OpenCode值得认真看看。只是要准备好投入时间学习它的工作流——回报是值得的。`,
-    tw: `# OpenCode：真正可用的開源AI編程代理
+## 工作流建議
 
-過去一年我測試了幾十個AI編程工具。大多數承諾很多，實際交付的只是多了幾個步驟的自動補全。OpenCode引起了我的注意，因為它做了不同的事情——它把編程當作工作流問題來處理，而不僅僅是文本生成問題。
+第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
 
-擁有超過13.1萬GitHub星標和500萬月活開發者，OpenCode顯然觸動了開發者的痛點。但流行度不總是等於質量。所以我花了兩週時間把它作為主要編程助手來測試。
+## 選擇標準
 
-## OpenCode的不同之處
+不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
 
-你首先注意到的是，OpenCode不是在嘗試成為另一個聊天機器人包裝器。當你在項目中運行\`opencode\`並輸入\`/init\`時，有趣的事情發生了：它分析你的代碼庫並在倉庫根目錄創建一個\`AGENTS.md\`文件。
+## 常見失敗模式
 
-這個文件教會代理你項目的結構、編碼模式和約定。這是個小細節，但它傳遞了一個重要信號——OpenCode把上下文收集當作一等公民問題來處理，而不是事後補充。
+常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
 
-多模型支持是另一個亮點。不像那些把你鎖定在單一模型的工具，OpenCode通過AI SDK和Models.dev支持75+個LLM提供商。你可以用Claude做複雜推理，用GPT做快速編輯，甚至運行本地模型處理敏感代碼。
+## 下一步
 
-## 真正有效的工作流
+可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+`,
+    de: `# OpenCode: Open-Source-KI-Coding-Agent in der Praxis
 
-這是OpenCode真正有趣的地方。工具有兩種模式：規劃模式和構建模式。
+Diese Fassung beantwortet eine praktische Frage: Open-Source-Coding-Agenten wie OpenCode sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
 
-在規劃模式下，OpenCode分析你的請求，將其分解為步驟，並在編寫任何代碼之前呈現方案。你可以批准、修改或拒絕這個計劃。這聽起來簡單，但它防止了常見的AI編程問題——工具偏離主題，寫出500行你沒要求的代碼。
+## Erst den Anwendungsfall klären
 
-構建模式是執行發生的地方。但關鍵是——即使在構建模式下，OpenCode也保持類似對話的流程。你可以在執行過程中說「實際上，用不同的方法」，它會適應。\`/undo\`和\`/redo\`命令按預期工作，讓你在不丟失上下文的情況下回滾更改。
+Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
 
-## 隱私和企業功能
+## Ein belastbarer Workflow
 
-OpenCode的隱私故事令人耳目一新地具體。首頁聲明它不存儲你的代碼或上下文數據。處理在本地或通過直接API調用你選擇的提供商進行。
+Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
 
-但有一個重要注意事項：\`/share\`功能。如果你使用它，你的對話數據會被上傳以創建公開分享鏈接。文檔明確建議為敏感工作禁用分享。這種有文檔記錄的權衡比模糊的「隱私優先」聲明更可信。
+## Auswahlkriterien
 
-## LSP集成：秘密武器
+Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
 
-將OpenCode與更簡單的編程助手區分開的一個功能是它的語言服務器協議集成。該工具使用LSP診斷在更深層次理解你的代碼庫——捕獲類型錯誤、理解導入和導航代碼結構。
+## Häufige Fehler
 
-這很重要，因為AI編程工具的好壞取決於它們能收集的上下文。一個不能理解你項目類型系統或依賴圖的工具會給出看起來正確但在編譯時失敗的建議。
+Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
 
-## 入門指南
+## Nächster Schritt
 
-如果你想嘗試OpenCode，這裡是實用路徑：
+Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+`,
+    es: `# OpenCode: agente de código IA open source
 
-通過你喜歡的方法安裝——項目腳本、Homebrew、Docker或包管理器都可以。在項目目錄運行\`opencode\`，然後用\`/init\`設置上下文。用\`/connect\`連接提供商，然後開始一個簡單任務。
+Esta versión revisada responde a una pregunta práctica: agentes de código open source como OpenCode no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
 
-我建議在前幾次會話中啟用規劃模式。它幫助你理解代理如何思考問題，然後再讓它自由運行。
+## Empieza por el caso de uso
 
-## 未來展望
+Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
 
-OpenCode代表了我們如何看待AI編程工具的轉變。它不是把代碼生成當作文本補全問題，而是把它當作包含規劃、執行、驗證和回滾的工作流問題。
+## Flujo recomendado
 
-如果你厭倦了那些承諾自主性但帶來混亂的AI編程工具，OpenCode值得認真看看。只是要準備好投入時間學習它的工作流——回報是值得的。`,
-    de: `# OpenCode: Der Open-Source-KI-Coding-Agent, der wirklich funktioniert
+Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
 
-Ich habe im vergangenen Jahr Dutzende von KI-Coding-Tools getestet. Die meisten versprechen viel und liefern Autocomplete mit zusätzlichen Schritten. OpenCode hat meine Aufmerksamkeit erregt, weil es etwas anderes macht — es behandelt Coding als Workflow-Problem, nicht nur als Textgenerierungsproblem.
+## Criterios de decisión
 
-Mit über 131.000 GitHub-Sternen und 5 Millionen monatlichen Entwicklern hat OpenCode offensichtlich einen Nerv getroffen. Aber Popularität bedeutet nicht immer Qualität. Also habe ich zwei Wochen damit verbracht, es als meinen primären Coding-Assistenten zu testen.
+No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
 
-## Was OpenCode anders macht
+## Fallos habituales
 
-Das Erste, was Ihnen auffällt, ist, dass OpenCode nicht versucht, ein weiterer Chatbot-Wrapper zu sein. Wenn Sie \`opencode\` in Ihrem Projekt ausführen und \`/init\` eingeben, passiert etwas Interessantes: Es analysiert Ihre Codebasis und erstellt eine \`AGENTS.md\`-Datei im Repository-Stammverzeichnis.
+Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
 
-Diese Datei lehrt den Agenten die Struktur, Coding-Muster und Konventionen Ihres Projekts. Es ist ein kleines Detail, aber es signalisiert etwas Wichtiges — OpenCode betrachtet die Kontextsammlung als First-Class-Problem, nicht als Nachgedanken.
+## Siguiente paso
 
-Die Multi-Provider-Unterstützung ist ein weiteres herausragendes Feature. Im Gegensatz zu Tools, die Sie an ein einzelnes Modell binden, unterstützt OpenCode über 75 LLM-Provider über AI SDK und Models.dev.
+Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+`,
+    fr: `# OpenCode : agent de code IA open source
 
-## Der Workflow, der wirklich funktioniert
+Cette version enrichie répond à une question concrète : les agents de code open source comme OpenCode doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
 
-Hier wird OpenCode wirklich interessant. Das Tool hat zwei Modi: Planung und Build.
+## Clarifier le cas d’usage
 
-Im Planungsmodus analysiert OpenCode Ihre Anfrage, zerlegt sie in Schritte und präsentiert einen Ansatz, bevor Code geschrieben wird. Das klingt einfach, aber es verhindert das häufige KI-Coding-Problem, bei dem das Tool abschweift und 500 Zeilen Code schreibt, die Sie nicht angefordert haben.
+Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
 
-## Datenschutz und Enterprise-Funktionen
+## Méthode pratique
 
-OpenCode's Datenschutz-Geschichte ist erfrischend spezifisch. Die Homepage besagt, dass es Ihren Code oder Kontextdaten nicht speichert. Die Verarbeitung erfolgt lokal oder über direkte API-Aufrufe an Ihren gewählten Provider.
+Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
 
-## LSP-Integration: Die Geheimwaffe
+## Critères de choix
 
-Ein Feature, das OpenCode von einfacheren Coding-Assistenten abhebt, ist seine Language Server Protocol-Integration. Das Tool verwendet LSP-Diagnosen, um Ihre Codebasis auf einer tieferen Ebene zu verstehen.
+Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
 
-## Erste Schritte
+## Échecs fréquents
 
-Wenn Sie OpenCode ausprobieren möchten, ist hier der praktische Weg:
+Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
 
-Installieren Sie es über Ihre bevorzugte Methode — das Projekt-Skript, Homebrew, Docker oder Paketmanager funktionieren alle. Führen Sie \`opencode\` in Ihrem Projektverzeichnis aus, dann \`/init\` zum Einrichten des Kontexts.
+## Pour continuer
 
-## Ausblick
+À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+`,
+    jp: `# OpenCode：オープンソースAIコーディングエージェント
 
-OpenCode repräsentiert eine Verschiebung in der Art, wie wir über KI-Coding-Tools denken. Anstatt Codegenerierung als Textvervollständigungsproblem zu behandeln, behandelt es sie als Workflow-Problem mit Planung, Ausführung, Verifizierung und Rollback.`,
-    es: `# OpenCode: El agente de codificación de IA de código abierto que realmente funciona
+この記事の改訂版では、OpenCode のようなオープンソースAIコーディングAgentを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
 
-He probado docenas de herramientas de codificación con IA en el último año. La mayoría promete mucho y entrega autocompletado con pasos adicionales. OpenCode captó mi atención porque hace algo diferente — trata la codificación como un problema de flujo de trabajo, no solo como un problema de generación de texto.
+## まず用途を分ける
 
-Con más de 131,000 estrellas en GitHub y 5 millones de desarrolladores mensuales, OpenCode claramente ha tocado una fibra sensible. Pero la popularidad no siempre significa calidad. Así que pasé dos semanas usándolo como mi asistente de codificación principal.
+タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
 
-## Qué hace diferente a OpenCode
+## 実務での進め方
 
-Lo primero que notas es que OpenCode no intenta ser otro chatbot envolvente. Cuando ejecutas \`opencode\` en tu proyecto y escribes \`/init\`, algo interesante sucede: analiza tu base de código y crea un archivo \`AGENTS.md\` en la raíz del repositorio.
+低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
 
-Ese archivo enseña al agente sobre la estructura, patrones de codificación y convenciones de tu proyecto. Es un pequeño detalle, pero señala algo importante — OpenCode piensa en la recopilación de contexto como un problema de primera clase.
+## 選定基準
 
-## El flujo de trabajo que realmente funciona
+単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
 
-Aquí es donde OpenCode se vuelve genuinamente interesante. La herramienta tiene dos modos: planificación y construcción.
+## よくある失敗
 
-En modo planificación, OpenCode analiza tu solicitud, la divide en pasos y presenta un enfoque antes de escribir cualquier código. Esto suena simple, pero previene el problema común de codificación con IA donde la herramienta se desvía y escribe 500 líneas de código que no pediste.
+プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
 
-## Privacidad y funciones empresariales
+## 次に読むもの
 
-La historia de privacidad de OpenCode es refrescantemente específica. La página principal afirma que no almacena tu código ni datos de contexto. El procesamiento ocurre localmente o a través de llamadas API directas a tu proveedor elegido.
+[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+`,
+    pt: `# OpenCode: agente de código IA open source
 
-## Integración LSP: El arma secreta
+Esta versão revisada olha para uma pergunta prática: agentes de código open source como OpenCode deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
 
-Una característica que separa a OpenCode de asistentes de codificación más simples es su integración con Language Server Protocol. La herramienta usa diagnósticos LSP para entender tu base de código a un nivel más profundo.
+## Comece pelo caso de uso
 
-## Primeros pasos
+Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
 
-Si quieres probar OpenCode, aquí está el camino práctico:
+## Fluxo recomendado
 
-Instálalo a través de tu método preferido — el script del proyecto, Homebrew, Docker o gestores de paquetes funcionan. Ejecuta \`opencode\` en tu directorio de proyecto, luego \`/init\` para configurar el contexto.
+Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
 
-## Hacia dónde va esto
+## Critérios de escolha
 
-OpenCode representa un cambio en cómo pensamos sobre las herramientas de codificación con IA. En lugar de tratar la generación de código como un problema de completado de texto, lo trata como un problema de flujo de trabajo con planificación, ejecución, verificación y rollback.`,
-    fr: `# OpenCode : L'agent de codage IA open source qui fonctionne vraiment
+Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
 
-J'ai testé des dizaines d'outils de codage IA au cours de l'année dernière. La plupart promettent beaucoup et livrent l'autocomplétion avec des étapes supplémentaires. OpenCode a attiré mon attention parce qu'il fait quelque chose de différent — il traite le codage comme un problème de workflow, pas seulement comme un problème de génération de texte.
+## Falhas comuns
 
-Avec plus de 131 000 étoiles GitHub et 5 millions de développeurs mensuels, OpenCode a clairement touché une corde sensible. Mais la popularité ne signifie pas toujours la qualité. J'ai donc passé deux semaines à l'utiliser comme mon assistant de codage principal.
+Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
 
-## Ce qui rend OpenCode différent
+## Próximos passos
 
-La première chose que vous remarquez est qu'OpenCode n'essaie pas d'être un autre chatbot enveloppé. Quand vous exécutez \`opencode\` dans votre projet et tapez \`/init\`, quelque chose d'intéressant se passe : il analyse votre base de code et crée un fichier \`AGENTS.md\` à la racine du dépôt.
+Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+`,
+    ru: `# OpenCode: open source AI-агент для кода
 
-Ce fichier enseigne à l'agent la structure, les modèles de codage et les conventions de votre projet. C'est un petit détail, mais il signale quelque chose d'important — OpenCode considère la collecte de contexte comme un problème de premier ordre.
+Обновленная версия статьи отвечает на практичный вопрос: open source AI-агенты для кода вроде OpenCode нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
 
-## Le workflow qui fonctionne vraiment
+## Начните со сценария
 
-C'est là qu'OpenCode devient vraiment intéressant. L'outil a deux modes : planification et construction.
+Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
 
-En mode planification, OpenCode analyse votre demande, la décompose en étapes et présente une approche avant d'écrire du code. Cela semble simple, mais cela prévient le problème courant du codage IA où l'outil part dans une tangente et écrit 500 lignes de code que vous n'avez pas demandées.
+## Рабочий процесс
 
-## Confidentialité et fonctionnalités entreprise
+Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
 
-L'histoire de confidentialité d'OpenCode est rafraîchissante dans sa spécificité. La page d'accueil indique qu'il ne stocke pas votre code ni vos données de contexte. Le traitement se fait localement ou via des appels API directs à votre fournisseur choisi.
+## Как выбирать
 
-## Intégration LSP : L'arme secrète
+Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
 
-Une fonctionnalité qui distingue OpenCode des assistants de codage plus simples est son intégration Language Server Protocol. L'outil utilise les diagnostics LSP pour comprendre votre base de code à un niveau plus profond.
+## Типичные сбои
 
-## Pour commencer
+Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
 
-Si vous voulez essayer OpenCode, voici le chemin pratique :
+## Что делать дальше
 
-Installez-le via votre méthode préférée — le script du projet, Homebrew, Docker ou les gestionnaires de paquets fonctionnent tous. Exécutez \`opencode\` dans votre répertoire de projet, puis \`/init\` pour configurer le contexte.
-
-## Perspectives
-
-OpenCode représente un changement dans la façon dont nous pensons les outils de codage IA. Au lieu de traiter la génération de code comme un problème de complétion de texte, il le traite comme un problème de workflow avec planification, exécution, vérification et rollback.`,
-    jp: `# OpenCode：実際に機能するオープンソースAIコーディングエージェント
-
-過去1年間で数十のAIコーディングツールをテストしました。ほとんどのものは約束多く、追加ステップ付きのオートコンプリートを提供します。OpenCodeは私の注意を引きました。なぜなら、それは異なるアプローチを取っているからです——コーディングをテキスト生成の問題ではなく、ワークフローの問題として扱っています。
-
-13.1万以上のGitHubスターと月間500万人の開発者を持つOpenCodeは、明らかに開発者の痛点を捉えています。しかし、人気は常に品質を意味するわけではありません。そこで、私は2週間かけて主要なコーディングアシスタントとしてテストしました。
-
-## OpenCodeの違い
-
-最初に気づくのは、OpenCodeが別のチャットボットラッパーになろうとしていないことです。プロジェクトで\`opencode\`を実行し、\`/init\`と入力すると、面白いことが起こります：コードベースを分析し、リポジトリのルートに\`AGENTS.md\`ファイルを作成します。
-
-このファイルは、プロジェクトの構造、コーディングパターン、規約についてエージェントに教えます。これは小さな detail ですが、重要なことを示しています——OpenCodeはコンテキスト収集を後付けではなく、第一級の問題として考えています。
-
-マルチプロバイダー対応はもう一つの際立った機能です。単一のモデルにロックするツールとは異なり、OpenCodeはAI SDKとModels.devを通じて75以上のLLMプロバイダーをサポートしています。
-
-## 実際に機能するワークフロー
-
-ここがOpenCodeが本当に興味深いところです。ツールには2つのモードがあります：計画モードとビルドモード。
-
-計画モードでは、OpenCodeはリクエストを分析し、ステップに分解し、コードを書く前にアプローチを提示します。これは簡単そうに聞こえますが、ツールが横道に逸れて頼まれていない500行のコードを書くという一般的なAIコーディングの問題を防ぎます。
-
-## プライバシーとエンタープライズ機能
-
-OpenCodeのプライバシーに関する話は、具体的で新鮮です。ホームページは、コードやコンテキストデータを保存しないと述べています。処理はローカルで、または選択したプロバイダーへの直接API呼び出しで行われます。
-
-## LSP統合：秘密の武器
-
-OpenCodeをよりシンプルなコーディングアシスタントと差別化する機能の一つは、Language Server Protocolの統合です。このツールはLSP診断を使用して、コードベースをより深いレベルで理解します。
-
-## はじめに
-
-OpenCodeを試したい場合は、実用的なパスがあります：
-
-好みの方法でインストール——プロジェクトスクリプト、Homebrew、Docker、またはパッケージマネージャーがすべて機能します。プロジェクトディレクトリで\`opencode\`を実行し、次に\`/init\`でコンテキストを設定します。
-
-## 今後の展望
-
-OpenCodeは、AIコーディングツールに対する考え方の変化を表しています。コード生成をテキスト補完の問題として扱うのではなく、計画、実行、検証、ロールバックを含むワークフローの問題として扱います。`,
-    pt: `# OpenCode: O agente de codificação de IA de código aberto que realmente funciona
-
-Testei dezenas de ferramentas de codificação com IA no último ano. A maioria promete muito e entrega autocompletar com etapas extras. O OpenCode chamou minha atenção porque faz algo diferente — trata a codificação como um problema de fluxo de trabalho, não apenas como um problema de geração de texto.
-
-Com mais de 131.000 estrelas no GitHub e 5 milhões de desenvolvedores mensais, o OpenCode claramente tocou uma fibra sensível. Mas popularidade nem sempre significa qualidade. Então passei duas semanas usando-o como meu assistente de codificação principal.
-
-## O que torna o OpenCode diferente
-
-A primeira coisa que você nota é que o OpenCode não está tentando ser outro chatbot wrapper. Quando você executa \`opencode\` em seu projeto e digita \`/init\`, algo interessante acontece: ele analisa sua base de código e cria um arquivo \`AGENTS.md\` na raiz do repositório.
-
-Esse arquivo ensina o agente sobre a estrutura, padrões de codificação e convenções do seu projeto. É um pequeno detalhe, mas sinaliza algo importante — o OpenCode pensa na coleta de contexto como um problema de primeira classe.
-
-## O fluxo de trabalho que realmente funciona
-
-Aqui é onde o OpenCode se torna genuinamente interessante. A ferramenta tem dois modos: planejamento e build.
-
-No modo de planejamento, o OpenCode analisa sua solicitação, divide em etapas e apresenta uma abordagem antes de escrever qualquer código. Isso parece simples, mas previne o problema comum de codificação com IA onde a ferramenta se desvia e escreve 500 linhas de código que você não pediu.
-
-## Privacidade e recursos empresariais
-
-A história de privacidade do OpenCode é refrescantemente específica. A página inicial afirma que ele não armazena seu código ou dados de contexto. O processamento acontece localmente ou através de chamadas API diretas ao seu provedor escolhido.
-
-## Integração LSP: A arma secreta
-
-Um recurso que separa o OpenCode de assistentes de codificação mais simples é sua integração com Language Server Protocol. A ferramenta usa diagnósticos LSP para entender sua base de código em um nível mais profundo.
-
-## Primeiros passos
-
-Se você quer experimentar o OpenCode, aqui está o caminho prático:
-
-Instale-o através do seu método preferido — o script do projeto, Homebrew, Docker ou gerenciadores de pacotes funcionam. Execute \`opencode\` em seu diretório de projeto, depois \`/init\` para configurar o contexto.
-
-## Para onde isso vai
-
-O OpenCode representa uma mudança em como pensamos sobre ferramentas de codificação com IA. Em vez de tratar a geração de código como um problema de completamento de texto, ele a trata como um problema de fluxo de trabalho com planejamento, execução, verificação e rollback.`,
-    ru: `# OpenCode: Open Source AI-агент для кодирования, который действительно работает
-
-За последний год я протестировал десятки инструментов для AI-кодирования. Большинство обещают многое, но дают автодополнение с дополнительными шагами. OpenCode привлёк моё внимание тем, что делает что-то другое — он рассматривает кодирование как проблему рабочего процесса, а не просто как проблему генерации текста.
-
-Имея более 131 000 звёзд на GitHub и 5 миллионов разработчиков ежемесячно, OpenCode явно затронул больную точку. Но популярность не всегда означает качество. Поэтому я потратил две недели, используя его в качестве основного ассистента по кодированию.
-
-## Что делает OpenCode другим
-
-Первое, что вы замечаете — OpenCode не пытается быть ещё одной обёрткой чат-бота. Когда вы запускаете \`opencode\` в своём проекте и вводите \`/init\`, происходит кое-что интересное: он анализирует вашу кодовую базу и создаёт файл \`AGENTS.md\` в корне репозитория.
-
-Этот файл учит агента структуре проекта, паттернам кодирования и соглашениям. Это небольшая деталь, но она сигнализирует о чём-то важном — OpenCode рассматривает сбор контекста как проблему первого класса.
-
-## Рабочий процесс, который действительно работает
-
-Именно здесь OpenCode становится по-настоящему интересным. У инструмента есть два режима: планирование и сборка.
-
-В режиме планирования OpenCode анализирует ваш запрос, разбивает его на шаги и представляет подход перед написанием любого кода. Это звучит просто, но предотвращает распространённую проблему AI-кодирования, когда инструмент уходит в сторону и пишет 500 строк кода, которые вы не запрашивали.
-
-## Конфиденциальность и корпоративные функции
-
-История конфиденциальности OpenCode освежающе конкретна. На главной странице указано, что он не хранит ваш код или данные контекста. Обработка происходит локально или через прямые API-вызовы к выбранному провайдеру.
-
-## Интеграция LSP: Секретное оружие
-
-Одна функция, которая отличает OpenCode от более простых ассистентов кодирования — это интеграция с Language Server Protocol. Инструмент использует LSP-диагностику для понимания вашей кодовой базы на более глубоком уровне.
-
-## Начало работы
-
-Если вы хотите попробовать OpenCode, вот практический путь:
-
-Установите его через предпочтительный метод — скрипт проекта, Homebrew, Docker или менеджеры пакетов работают. Запустите \`opencode\` в директории проекта, затем \`/init\` для настройки контекста.
-
-## Куда это движется
-
-OpenCode представляет сдвиг в том, как мы думаем об инструментах AI-кодирования. Вместо того чтобы рассматривать генерацию кода как проблему автодополнения текста, он рассматривает её как проблему рабочего процесса с планированием, выполнением, проверкой и откатом.`,
+Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',

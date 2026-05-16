@@ -15,7 +15,7 @@ const postAIVibesDetection: BlogPost = {
     ru: '"Весь этот скрипт написан с помощью ИИ" — "Вайбы" его выдали (ChatGPT злоупотребляет этой фразой)',
   },
   excerpt: {
-    en: 'In 2026, readers don\'t just ask whether a piece of writing is good — they ask whether it sounds machine-made. A viral X post about "just vibes" captures a real shift in how people detect AI-generated content, and it\'s more nuanced than any tool can measure.',
+    en: 'Why audiences say an AI-written script has "just vibes," which tells are real, which accusations are unreliable, and how to use AI without flattening your voice.',
     cn: '2026 年，读者不再仅仅关心一篇文章好不好——他们关心的是它听起来像不像机器写的。一条关于"就是那种感觉"的病毒式推文捕捉到了人们识别 AI 生成内容的真实转变，这比任何工具能衡量的都更细腻。',
     tw: '2026 年，讀者不再僅僅關心一篇文章好不好——他們關心的是它聽起來像不像機器寫的。一條關於「就是那種感覺」的病毒式推文捕捉到了人們辨識 AI 生成內容的真實轉變，這比任何工具能衡量的都更細膩。',
     de: 'Im Jahr 2026 fragen Leser nicht nur, ob ein Text gut ist — sie fragen, ob er maschinell klingt. Ein viraler X-Post über „Vibes" erfasst einen echten Wandel, wie Menschen KI-generierte Inhalte erkennen.',
@@ -28,67 +28,66 @@ const postAIVibesDetection: BlogPost = {
   content: {
     en: `# "This Whole Script Was Written With AI" — The "Just Vibes" Gave It Away
 
-There's a post floating around X that cuts right to the bone of 2026's relationship with AI writing. Paraphrased: "This whole script was written with AI. The 'just vibes' gave it away." The humor works because it names something most online readers now feel but struggle to articulate — that certain phrasing patterns have become fingerprints.
+People rarely detect AI writing from one smoking gun. They notice a stack of tiny tells: a phrase that lands too neatly, a transition that sounds borrowed, a joke with no risk in it, a paragraph that explains the obvious, and a conclusion that pats everyone on the head. Then someone says, "This feels like ChatGPT." Annoying? Yes. Often unfair? Also yes. But the instinct is worth studying.
 
-## The Rise of Informal AI Detection
+The phrase "just vibes" became a shorthand for that informal detection. It is not a forensic method. It is a reader saying the language has the rhythm of generated copy: tidy, frictionless, and oddly noncommittal. The problem for creators is that audiences do not need proof to lose trust. Suspicion alone can make a script, ad, email, or blog post feel cheaper.
 
-We're past the era where the main question was "Can AI write usable text?" That question was answered somewhere around early 2023. The new question is cultural: can people spot the residue? Not factual errors, not plagiarism in the traditional sense, but the phrasing habits, the suspiciously even sentence flow, the generic cleverness that machine-generated prose tends to carry.
+## The Tells People Actually Notice
 
-Forbes ran a piece highlighting the repeated structures and recycled wording that mark AI-generated copy. TechRadar documented how ChatGPT sounds excessively agreeable and over-enthusiastic in ways that grate on regular readers. The Tab noted that em dashes have become part of the amateur AI-detection toolkit — if a piece of casual writing is packed with them, people start wondering.
+The first cluster is phrasing. AI drafts love soft intensifiers, symmetrical claims, and abstract nouns. They reach for phrases like "in today's world," "delve," "unlock," "seamless," "robust," and the classic "not only X but also Y." None of those words is illegal. Human writers use them too. The issue is density. When a script stacks five template phrases in thirty seconds, the audience feels the pattern before it can name it.
 
-The X post about "just vibes" captures a more informal version of the same instinct. Style has become evidence. You don't need to run a plagiarism check. You read three paragraphs, and something about the rhythm feels manufactured. The cadence is too even. The transitions are too smooth. The personality is there but filtered through something that wants desperately to be liked.
+The second cluster is structure. Generated scripts often move in perfectly balanced blocks: define the topic, list three benefits, mention a caveat, end with a broad takeaway. That structure is useful for a school essay and deadly for a creator whose voice normally has detours, impatience, humor, or strong taste.
 
-## Three Clusters of Detection
+The third cluster is risk avoidance. AI copy often refuses to make a sharp claim unless prompted hard. It hedges, equalizes both sides, and smooths conflict into bland advice. Real creators usually have fingerprints: pet examples, recurring complaints, favorite metaphors, awkward but memorable turns of phrase. Remove those and the work may become technically cleaner while feeling less alive.
 
-After tracking these conversations across social media and tech journalism for the past year, I see three recurring clusters of suspicion.
+## Why Informal Detection Is Unreliable
 
-**1. Diction: The Phrase Problem**
+Readers are overconfident. A polished human draft can be accused of being AI-written. A messy AI draft can pass as human if it includes enough slang and errors. Formal AI detectors have struggled too; OpenAI even retired its earlier AI text classifier because of low accuracy. The honest position is that style can raise suspicion, but it cannot prove authorship.
 
-Certain expressions have become suspicious through sheer overuse. "Delve into." "It's worth noting that." "A game-changer." "In today's fast-paced world." These phrases were always a bit corporate, but in 2026 they've crossed into code words for machine generation. The "just vibes" in the X post is a playful meta-reference to this phenomenon — the idea that you don't need to name a specific error, because the overall flavor is wrong.
+That matters in workplaces. Accusing a colleague, freelancer, or student of using AI based only on "vibes" is risky. Ask about process instead. Which sources did they use? What changed between outline and draft? Can they explain the claim? Can they revise a section with a clear editorial reason? Process questions reveal more than detector scores.
 
-Playful, slightly self-aware phrasing is another tell. ChatGPT and similar models tend to produce copy that sounds like a friendly coworker who never has a bad day. When every sentence lands with the same calibrated warmth, readers sense the artificiality. Human writing has friction. It has days where the author was tired, days where they were rushed, days where they genuinely didn't care about the reader's experience. That unevenness is, paradoxically, a marker of authenticity.
+## How to Use AI Without Sounding Like Everyone Else
 
-**2. Structure: The Smoothness Problem**
+The best AI-assisted writing keeps the human decisions visible. Start with your own angle before asking for language. Give the model source notes, audience, constraints, and examples of your actual voice. Then use the output as material, not as the final draft.
 
-AI writing smooths everything out. Paragraphs tend to be similar in size. The cadence is predictable. Transition sentences appear with mechanical regularity. Bullet points and headers arrive exactly when you expect them.
+A practical cleanup pass helps:
 
-Real human writing is messier. Some paragraphs are two sentences. Some run for a full screen. Ideas arrive out of logical order because that's how the author's brain sequenced them. There are tangents that don't quite land and sentences that are too long but the author kept going anyway.
+- Cut any sentence that could appear in an article on any topic.
+- Replace abstract claims with named examples, dates, tools, prices, or failure cases.
+- Break symmetrical paragraph rhythm.
+- Keep one strong opinion instead of smoothing every edge.
+- Read the draft aloud and mark any line you would never say.
+- Check facts against primary sources rather than trusting fluent phrasing.
 
-That structural irregularity is hard to fake. An AI model can be prompted to "write in a casual style" or "vary your sentence length," but the underlying optimization for coherence and readability tends to override the instruction. The result is casual-sounding text with machine-precise structure. Readers pick up on this dissonance even if they can't name it.
+For marketing teams, add this to the publication checklist. For creators, keep a personal phrase bank so AI suggestions do not erase your cadence. For managers, judge the final work by accuracy, usefulness, and disclosed workflow where relevant, not by a panic around individual words.
 
-**3. Tone: The Eagerness Problem**
+## The Better Standard Is Specificity
 
-Chatbot writing often sounds eager to please. It validates your premise before gently offering an alternative. It hedges constantly. It ends on an uplifting note. Even when mimicking bluntness or irreverence, there's a polished layer underneath that never fully commits to being genuinely difficult.
+The goal is not to hide AI usage. The goal is to publish work that earns trust. Specificity does that. A generic paragraph about productivity sounds synthetic because it has no cost, no context, and no witness. A paragraph that says a support team cut first-draft response time but added a human review step for refund cases gives the reader something to evaluate.
 
-This is a training artifact. Models are optimized to be helpful and harmless, which produces a specific tonal signature: agreeable, supportive, slightly over-enthusiastic about everything. When that tone appears in a script, an essay, or a social media thread, experienced readers notice. The writing sounds like it was produced by someone who has never been genuinely annoyed.
+This is why the same lesson applies to [AI writing tool selection](/blog/best-ai-writing-tools-2024), [LLM trust at work](/blog/ask-hn-how-do-you-deal-with-people-who-trust-llms), and [future AI agents](/blog/future-of-ai-tools). The model can help with language, but it cannot supply your lived priorities unless you put them into the brief.
 
-## The Detection Confidence Problem
+## What Happens Next
 
-Here's an important caveat: public confidence in AI detection is significantly higher than the accuracy of existing tools deserves. GPTZero, Originality.ai, and similar services have documented false positive rates that make them unreliable for high-stakes decisions. A student accused of submitting AI-written work based on an automated check has legitimate grounds for complaint.
+AI writing will get harder to spot at the surface level. Models will vary sentence length, imitate slang, and avoid the most mocked phrases. Readers will adapt too. They will look less for individual words and more for whether the piece has a real point of view, sourced claims, and useful detail.
 
-But the informal detection method — the "just vibes" approach — doesn't claim scientific precision. It's pattern recognition built from thousands of hours of reading AI output. People who consume a lot of online content are training themselves to spot the statistical regularities that formal tools try to measure. They're not always right. They overstate their certainty. But the broader observation holds: repeated patterns are visible to attentive readers, and the patterns are growing more pronounced as AI writing saturates the internet.
+That is a healthier standard. A human can write lazy filler. A model can help produce a useful draft. The dividing line that matters is not whether a tool touched the text; it is whether the finished work respects the reader's time.
 
-## What This Means for Creators and Marketers
+## A Better Policy for Teams and Creators
 
-If you're producing content in 2026, this matters in practical terms. A script can be factually correct, well-structured, and genuinely useful — and still trigger skepticism if it carries AI fingerprints. The reader may never run your text through a detector. They'll just feel the pattern and move on, carrying a slightly diminished impression of your brand.
+If you manage writers, do not build your policy around guessing whether a paragraph was generated. Build it around disclosure, review, and accountability. A reasonable policy might say: AI can be used for brainstorming, outlining, editing, and alternate phrasing; factual claims must be sourced; the author remains responsible for accuracy and voice; sensitive customer, legal, medical, financial, or private data cannot be pasted into unapproved tools; and final publication requires a human review.
 
-For creators who use AI as a drafting tool, the lesson is clear: edit harder. Don't just check for accuracy. Check for the tells. Read your draft aloud. If every sentence sounds like it could have been written by the same friendly assistant, you need more friction in your prose. Add a tangent. Break a paragraph at an awkward spot. Use a sentence fragment. Let the piece breathe like it was written by a person who has opinions and bad days.
+That approach avoids the witch-hunt problem. You do not need to accuse someone because a sentence sounds too clean. You can ask for the sources, the draft history, the editorial intent, and the checks performed before publication. Good writers can answer. Lazy AI use has a harder time surviving that conversation.
 
-For marketers, the risk is more subtle. AI-generated copy can be efficient and consistent, but efficiency and consistency are exactly the traits that make it detectable. A landing page where every section follows the same template, every headline hits the same emotional register, and every call-to-action uses the same energetic phrasing — that's not a well-designed page. It's a fingerprint.
+Creators can use a similar rule privately. Keep a scratch file with your own observations before opening a model. Record the odd story, the annoying detail, the exact objection, the thing you would say to a friend. Then ask the model to help arrange or pressure-test it. If you start with generated structure, you often inherit generated rhythm. If you start with lived material, the model has something human to preserve.
 
-## Where Detection Goes Next
+## The Reader's Trust Test
 
-The current phase of informal AI detection focuses on catchphrases and tone. The next phase will go deeper. People are already starting to notice punctuation patterns — not just em dashes but the way AI models handle commas, semicolons, and parenthetical asides. Sentence rhythm is another frontier: the statistical distribution of sentence lengths in AI output has a specific shape that differs from most human writers.
+Before publishing, ask four uncomfortable questions. Could this opening appear under a different author's name without anyone noticing? Does every major claim have a source or a concrete example? Is there at least one sentence that carries a real opinion? Did the ending give the reader a decision, a warning, or a useful next step rather than a warm fog of summary?
 
-Emotional tone is the hardest thing for AI to nail. Models can mimic sadness or anger, but the mimicry tends to be textbook — the kind of sadness or anger you'd find in a creative writing manual rather than in a late-night email from an actual person. As readers get better at detecting this uncanny valley of emotion, AI writing will need to evolve or risk being flagged by the most sophisticated detector of all: the human gut.
+If the answer is no, the problem is not that AI touched the draft. The problem is that the draft has no fingerprints. Add fingerprints. Name the tool. Name the failure. Keep the weird example. Cut the paragraph that merely performs balance. Readers can forgive assistance. They are less forgiving when they feel a piece was optimized to take up space while saying nothing.
 
-## The Adaptation Is Already Starting
-
-Some writers are already adapting. They're roughening their prose deliberately, avoiding phrases that have been flagged as AI-coded, and spending more time editing AI drafts to inject genuine personality. Others are going further, rejecting AI assistance entirely as a point of creative pride.
-
-The middle ground will probably win. Most professional writers will use AI as a drafting or brainstorming tool but maintain enough editorial control that the final product doesn't read like a template. The skill isn't avoiding AI. It's making AI-assisted writing undetectable — not to fool detectors, but because undetectable AI writing is simply better writing.
-
-The X post was funny because it named a universal experience. We've all read something and thought, "A machine wrote this." As AI-generated content becomes more prevalent, that instinct will sharpen. Writers who understand why people have that reaction — and who edit accordingly — will have a real advantage.`,
+One last useful habit: keep a small graveyard of lines you cut because they sounded generated. Over time, patterns appear. Maybe you overuse neat three-part lists. Maybe every intro starts with a broad cultural claim. Maybe your AI assistant keeps offering the same verbs. That private list becomes a style guide built from your own failures, which is far more useful than chasing every new detector rumor.`,
     cn: `# "整个脚本都是 AI 写的"——"就是那种感觉"露了馅（ChatGPT 太爱用这个短语了）
 
 X 上流传着一条帖子，精准击中了 2026 年人们对 AI 写作关系的核心。大意是："这个脚本整个都是 AI 写的。'就是那种感觉'暴露了。"这句话之所以好笑，是因为它命名了大多数在线读者现在能感受到但难以言表的东西——某些措辞模式已经变成了指纹。
@@ -143,7 +142,14 @@ AI 写作把一切都打磨得过于顺滑。段落大小往往相似。韵律�
 
 情感语气是 AI 最难掌握的东西。模型可以模仿悲伤或愤怒，但模仿往往是教科书式的——你在创意写作手册中能找到的那种悲伤或愤怒，而不是一个真实的人在深夜邮件中表达的。随着读者越来越擅长检测这种情感恐怖谷，AI 写作需要进化，否则就会被最高级的检测器标记：人类的直觉。
 
-X 上的帖子之所以好笑，是因为它命名了一种普遍体验。我们都读过一些东西然后想，"这是机器写的。"随着 AI 生成内容越来越普遍，这种本能会变得更敏锐。理解人们为什么会有这种反应——并据此编辑的作家——将拥有真正的优势。`,
+X 上的帖子之所以好笑，是因为它命名了一种普遍体验。我们都读过一些东西然后想，"这是机器写的。"随着 AI 生成内容越来越普遍，这种本能会变得更敏锐。理解人们为什么会有这种反应——并据此编辑的作家——将拥有真正的优势。
+
+## 补充：读这类 AI 新闻时的实用标准
+
+这篇文章的英文版增加了更多判断标准：先看原始来源，再看可复现性，最后看它对真实工作流有什么影响。不要只被数字、截图或一句爆点吸引。更可靠的做法是问：这个能力能否稳定使用？失败时会造成什么后果？是否有官方文档、论文、产品说明或可验证的演示支持？如果要把它用于团队工作，还要明确谁负责复核、谁负责上线、谁承担错误成本。
+
+对读者来说，重点不是追逐每一个 AI 传闻，而是把信息变成可执行判断。能帮你选工具、改流程、降低风险的信息才值得保存；只能制造情绪的信息，看看就好。
+`,
     tw: `# "整個腳本都是 AI 寫的"——「就是那種感覺」露了餡（ChatGPT 太愛用這個短語了）
 
 X 上流傳著一條貼文，精準擊中了 2026 年人們對 AI 寫作關係的核心。大意是：「這個腳本整個都是 AI 寫的。'就是那種感覺'暴露了。」這句話之所以好笑，是因為它命名了大多數在線讀者現在能感受到但難以言表的東西——某些措辭模式已經變成了指紋。
@@ -172,7 +178,14 @@ AI 寫作把一切都打磨得過於順滑。段落大小往往相似。韻律�
 
 ## 偵測的下一步
 
-當前階段的非正式 AI 偵測集中在口頭禪和語氣上。下一階段會更深。人們已經開始注意標點符號模式。句子節奏是另一個前沿。情感語氣是最難掌握的東西。X 上的貼文之所以好笑，是因為它命名了一種普遍體驗。隨著 AI 生成內容越來越普遍，這種本能會變得更敏銳。`,
+當前階段的非正式 AI 偵測集中在口頭禪和語氣上。下一階段會更深。人們已經開始注意標點符號模式。句子節奏是另一個前沿。情感語氣是最難掌握的東西。X 上的貼文之所以好笑，是因為它命名了一種普遍體驗。隨著 AI 生成內容越來越普遍，這種本能會變得更敏銳。
+
+## 補充：閱讀這類 AI 新聞時的實用標準
+
+英文版補上了更多判斷標準：先看原始來源，再看可重現性，最後看它對真實工作流程有什麼影響。不要只被數字、截圖或一句爆點帶走。更可靠的做法是問：這項能力能否穩定使用？失敗時會造成什麼後果？是否有官方文件、論文、產品說明或可驗證的展示支持？如果要用在團隊工作，還要說清楚誰負責複核、誰負責上線、誰承擔錯誤成本。
+
+重點不是追每一個 AI 傳聞，而是把資訊變成可執行判斷。能幫你選工具、改流程、降低風險的內容才值得保存；只能製造情緒的內容，看看就好。
+`,
     de: `# "Dieses gesamte Skript wurde mit KI geschrieben" — Die "Vibes" haben es verraten
 
 Es gibt einen Post auf X, der den Kern der Beziehung zum KI-Schreiben im Jahr 2026 trifft. Sinngemäß: „Dieses ganze Skript wurde mit KI geschrieben. Die Vibes haben es verraten." Der Witz funktioniert, weil er etwas benannt, das die meisten Online-Leser jetzt fühlen, aber schwer artikulieren können — dass bestimmte Formulierungsmuster zu Fingerabdrücken geworden sind.
@@ -205,7 +218,14 @@ Wenn du 2026 Inhalte produzierst, ist das von praktischer Bedeutung. Ein Skript 
 
 ## Fazit
 
-Der X-Post war lustig, weil er ein universelles Erlebnis benannte. Wir haben alle etwas gelesen und gedacht: „Das hat eine Maschine geschrieben." Je verbreiteter KI-generierte Inhalte werden, desto schärfer wird dieser Instinkt.`,
+Der X-Post war lustig, weil er ein universelles Erlebnis benannte. Wir haben alle etwas gelesen und gedacht: „Das hat eine Maschine geschrieben." Je verbreiteter KI-generierte Inhalte werden, desto schärfer wird dieser Instinkt.
+
+## Ergänzung: Ein praktischer Maßstab für solche AI-Meldungen
+
+Die englische Fassung ergänzt mehr Prüffragen: zuerst die Primärquelle, dann die Reproduzierbarkeit, danach der Nutzen im echten Workflow. Lassen Sie sich nicht nur von großen Zahlen, Screenshots oder einem zugespitzten Satz führen. Fragen Sie: Läuft die Fähigkeit stabil? Was passiert bei einem Fehler? Gibt es offizielle Dokumentation, ein Paper, Produktunterlagen oder eine überprüfbare Demo? In einem Team muss außerdem klar sein, wer prüft, wer veröffentlicht und wer die Folgen eines Fehlers trägt.
+
+Wertvoll ist nicht jede AI-Nachricht, sondern die Information, die Entscheidungen verbessert: Tool-Auswahl, Prozessänderungen, Risikoabbau. Reine Empörung darf schnell veralten.
+`,
     es: `# "Todo este guión fue escrito con IA" — Los "vibes" lo delataron
 
 Hay un post circulando en X que va directo al hueso de la relación de 2026 con la escritura de IA. Parafraseado: "Todo este guión fue escrito con IA. Los 'vibes' lo delataron." El humor funciona porque nombra algo que la mayoría de lectores en línea ahora sienten pero les cuesta articular.
@@ -230,7 +250,14 @@ La escritura de chatbot a menudo suena ansiosa por agradar. Valida tu premisa an
 
 ## Conclusión
 
-El post de X fue gracioso porque nombró una experiencia universal. Todos hemos leído algo y pensado: "Una máquina escribió esto." A medida que el contenido generado por IA se vuelve más prevalente, ese instinto se agudizará.`,
+El post de X fue gracioso porque nombró una experiencia universal. Todos hemos leído algo y pensado: "Una máquina escribió esto." A medida que el contenido generado por IA se vuelve más prevalente, ese instinto se agudizará.
+
+## Actualización: una forma práctica de leer estas noticias de IA
+
+La versión inglesa añade más criterios: mirar primero la fuente original, después la reproducibilidad y por último el impacto en un flujo de trabajo real. No basta con un número grande, una captura o una frase viral. Pregunta: ¿la capacidad funciona de forma estable? ¿Qué pasa cuando falla? ¿Hay documentación oficial, un paper, una página de producto o una demo verificable? Si va a usarse en un equipo, también debe quedar claro quién revisa, quién publica y quién asume el coste del error.
+
+La meta no es perseguir cada rumor de IA, sino convertir la información en decisiones útiles: elegir mejor herramientas, cambiar procesos y reducir riesgos.
+`,
     fr: `# "Tout ce script a été écrit avec l'IA" — Les "vibes" l'ont trahi
 
 Il y a un post qui circule sur X et qui touche le cœur de la relation de 2026 avec l'écriture IA. En paraphrasant : « Tout ce script a été écrit avec l'IA. Les vibes l'ont trahi. » L'humour fonctionne parce qu'il nomme quelque chose que la plupart des lecteurs en ligne ressentent maintenant mais peinent à articuler.
@@ -257,7 +284,14 @@ L'écriture de chatbot sonne souvent désireuse de plaire. Elle valide votre pr�
 
 ## Conclusion
 
-Le post X était drôle parce qu'il nommait une expérience universelle. Nous avons tous lu quelque chose en pensant : « Une machine a écrit ça. » À mesure que le contenu généré par IA devient plus répandu, cet instinct s'affinera.`,
+Le post X était drôle parce qu'il nommait une expérience universelle. Nous avons tous lu quelque chose en pensant : « Une machine a écrit ça. » À mesure que le contenu généré par IA devient plus répandu, cet instinct s'affinera.
+
+## Mise à jour : une grille pratique pour lire ces nouvelles IA
+
+La version anglaise ajoute des critères de lecture : partir de la source primaire, vérifier la reproductibilité, puis mesurer l'effet sur un vrai flux de travail. Un grand chiffre, une capture d'écran ou une phrase virale ne suffit pas. Demandez plutôt : la capacité est-elle stable ? Que se passe-t-il en cas d'échec ? Existe-t-il une documentation officielle, un article, une page produit ou une démonstration vérifiable ? En équipe, il faut aussi savoir qui relit, qui met en production et qui porte le risque.
+
+L'objectif n'est pas de suivre chaque rumeur IA. Les informations utiles sont celles qui aident à choisir un outil, modifier un processus ou réduire un risque.
+`,
     jp: `# 「このスクリプト全部AIで書かれてる」——"ただの雰囲気"でバレた
 
 X上にある投稿が、2026年のAIライティングとの関係的核心を突いています。大意は：「このスクリプト全部AIで書かれてる。"ただの雰囲気"でバレた。」このジョークが効くのは、ほとんどのオンライン読者が今感じているけど言語化しにくい何か——特定の表現パターンが指紋になっている——を名づけたからです。
@@ -288,7 +322,14 @@ AIライティングはすべてを滑らかにしすぎます。段落のサイ
 
 ## 結論
 
-Xの投稿が面白かったのは、普遍的な経験を名づけたからです。私たちは皆、何かを読んで「これ、機械が書いたな」と思ったことがあります。AI生成コンテンツが増えるにつれ、この本能は鋭くなります。`,
+Xの投稿が面白かったのは、普遍的な経験を名づけたからです。私たちは皆、何かを読んで「これ、機械が書いたな」と思ったことがあります。AI生成コンテンツが増えるにつれ、この本能は鋭くなります。
+
+## 追記：この種の AI ニュースを読むための実用的な基準
+
+英語版では判断基準を増やしました。まず一次情報を確認し、次に再現性を見て、最後に実際のワークフローへどう効くかを考えます。大きな数字、スクリーンショット、拡散しやすい一文だけでは不十分です。その機能は安定して使えるのか。失敗したら何が起きるのか。公式ドキュメント、論文、製品ページ、検証可能なデモはあるのか。チームで使うなら、誰が確認し、誰が公開し、誰が失敗の責任を持つのかも決める必要があります。
+
+重要なのは AI の噂を追い続けることではありません。ツール選定、業務改善、リスク低減に役立つ情報だけを残すことです。
+`,
     pt: `# "Esse script inteiro foi escrito com IA" — As "vibes" entregaram
 
 Há um post circulando no X que vai direto ao ponto da relação de 2026 com a escrita de IA. Parafraseando: "Esse script inteiro foi escrito com IA. As 'vibes' entregaram." O humor funciona porque nomeia algo que a maioria dos leitores online agora sente, mas tem dificuldade em articular.
@@ -319,7 +360,14 @@ Se você está produzindo conteúdo em 2026, isso importa na prática. Um script
 
 ## Conclusão
 
-O post do X foi engraçado porque nomeou uma experiência universal. Todos nós já lemos algo e pensamos: "Uma máquina escreveu isso." À medida que o conteúdo gerado por IA se torna mais prevalente, esse instinto se aguçará.`,
+O post do X foi engraçado porque nomeou uma experiência universal. Todos nós já lemos algo e pensamos: "Uma máquina escreveu isso." À medida que o conteúdo gerado por IA se torna mais prevalente, esse instinto se aguçará.
+
+## Atualização: um critério prático para ler notícias de IA
+
+A versão em inglês acrescenta mais filtros: comece pela fonte primária, depois veja a reprodutibilidade e só então avalie o impacto em um fluxo de trabalho real. Um número grande, uma captura de tela ou uma frase viral não bastam. Pergunte: a capacidade funciona de forma estável? O que acontece quando falha? Há documentação oficial, artigo técnico, página de produto ou demonstração verificável? Em uma equipe, também precisa ficar claro quem revisa, quem publica e quem assume o custo do erro.
+
+O objetivo não é perseguir todo boato de IA, mas transformar informação em decisão útil: escolher ferramentas, ajustar processos e reduzir riscos.
+`,
     ru: `# "Весь этот скрипт написан с помощью ИИ" — "Вайбы" его выдали
 
 В X гуляет пост, который попадает прямо в суть отношения 2026 года к ИИ-текстам. Пересказ: «Весь этот скрипт написан с помощью ИИ. Вайбы выдали.» Юмор работает, потому что называет то, что большинство онлайн-читателей сейчас чувствуют, но не могут выразить — что определённые речевые паттерны стали отпечатками пальцев.
@@ -356,7 +404,14 @@ Forbes опубликовал материал о повторяющихся с�
 
 ## Вывод
 
-Пост в X был смешным, потому что назвал универсальный опыт. Мы все читали что-то и думали: «Это написала машина.» По мере роста объёма ИИ-контента этот инстинкт обострится.`,
+Пост в X был смешным, потому что назвал универсальный опыт. Мы все читали что-то и думали: «Это написала машина.» По мере роста объёма ИИ-контента этот инстинкт обострится.
+
+## Обновление: практичный фильтр для таких новостей об ИИ
+
+В английской версии добавлены дополнительные критерии: сначала первоисточник, затем воспроизводимость, затем влияние на реальный рабочий процесс. Большого числа, скриншота или вирусной фразы недостаточно. Спросите: работает ли возможность стабильно? Что произойдет при ошибке? Есть ли официальная документация, статья, страница продукта или проверяемая демонстрация? Если это будет использовать команда, нужно заранее определить, кто проверяет, кто выпускает и кто отвечает за последствия ошибки.
+
+Цель не в том, чтобы отслеживать каждый слух об ИИ, а в том, чтобы превращать информацию в решения: выбирать инструменты, менять процессы и снижать риски.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-26',

@@ -30,7 +30,7 @@ const postGemini25ProGettingStartedGuide: BlogPost = {
 
 ## Your First Hour with Gemini 2.5 Pro
 
-If you've got 60 minutes and want to go from zero to a working Gemini 2.5 Pro integration, this guide is for you. I've walked about 300 developers through this process at workshops and meetups over the past two months, and the pattern that works best is: get something running first, then understand why it works.
+If you've got 60 minutes and want to go from zero to a working Gemini 2.5 Pro integration, this guide is for you. The fastest path is not reading every API page first. It is getting one small request working, then understanding the pieces you just used.
 
 I'm not going to bury you in theory. We'll get an API key, make our first call, build something useful, and handle the gotchas that trip up most newcomers. By the end, you'll have a working project and enough understanding to start building your own ideas.
 
@@ -48,7 +48,7 @@ Store your API key in an environment variable, not in your code. This isn't opti
 GEMINI_API_KEY=your_key_here
 \`\`\`
 
-And add \`.env\` to your \`.gitignore\`. I've seen three separate developers push API keys to public repos in the last month alone. Google rotates compromised keys automatically, but the hassle of updating your configuration isn't worth the 10 seconds you save by hardcoding.
+And add \`.env\` to your \`.gitignore\`. API keys end up in public repos more often than teams want to admit. Google may rotate compromised keys, but the hassle of updating your configuration isn't worth the 10 seconds you save by hardcoding.
 
 ## Step 2: Your First API Call (10 minutes)
 
@@ -88,7 +88,7 @@ response = client.models.generate_content(
 print(response.text)
 \`\`\`
 
-One thing to notice: the response includes not just the text but metadata about token usage. Gemini 2.5 Pro charges $1.25 per million input tokens and $5 per million output tokens. A typical query like this uses about 150 input tokens and 200 output tokens — roughly $0.001 per call. You'd need to make a thousand calls to spend a dollar.
+One thing to notice: the response includes the generated text plus metadata about token usage. Gemini 2.5 Pro charges $1.25 per million input tokens and $5 per million output tokens. A typical query like this uses about 150 input tokens and 200 output tokens — roughly $0.001 per call. You'd need to make a thousand calls to spend a dollar.
 
 ## Step 3: Building a Document Analyzer (25 minutes)
 
@@ -191,11 +191,11 @@ The grounding metadata tells you which search results informed the response. Thi
 
 One gotcha: search grounding adds latency (typically 1-3 extra seconds) because the model needs to perform the search, process results, and synthesize a response. For real-time applications, consider caching search-grounded responses for 15-30 minutes.
 
-Another gotcha: search grounding isn't available in all regions. If you're building for international users, test with VPN endpoints in your target countries. We found it unavailable in about 8 countries during our testing in February 2026.
+Another gotcha: search grounding may not be available in every region or account setup. If you're building for international users, test from the countries you actually support instead of assuming one successful local request proves global availability.
 
 ## Step 5: Error Handling and Rate Limits (10 minutes)
 
-The API will fail. Plan for it. Here's a robust error handling pattern:
+The API will fail. Plan for it. Here's an error handling pattern that covers the common cases:
 
 \`\`\`javascript
 async function generateWithRetry(prompt, maxRetries = 3) {
@@ -229,7 +229,7 @@ async function generateWithRetry(prompt, maxRetries = 3) {
 }
 \`\`\`
 
-The 429 (rate limit) and 500/503 (server errors) are the most common transient failures. The SDK doesn't include built-in retry logic, so you need to handle this yourself. Exponential backoff for rate limits, linear backoff for server errors — that pattern works well across all the Gemini endpoints I've tested.
+The 429 (rate limit) and 500/503 (server errors) are the common transient failures worth handling first. The SDK may not cover every retry policy your product needs, so decide what your application should retry, what it should surface to the user, and what it should log for debugging.
 
 ## What to Build Next
 
@@ -243,445 +243,220 @@ You've got the basics. Here are three project ideas that build on what we covere
 
 Each of these projects exercises different parts of the API — multimodal input, structured output, search grounding, or combinations of all three. Start with whichever excites you most.
 
-The Gemini 2.5 Pro API is stable enough for production use as of March 2026, and the pricing is competitive. Don't overthink the setup — just start building. You'll learn more from one working prototype than from ten documentation pages.`,
+The Gemini 2.5 Pro API is stable enough for production use as of March 2026, and the pricing is competitive. Don't overthink the setup — just start building. You'll learn more from one working prototype than from ten documentation pages.
 
-    cn: `# Gemini 2.5 Pro 上手指南：搜索、创作与数据分析实战
+## A practical troubleshooting checklist
 
-## 与 Gemini 2.5 Pro 共度的第一个小时
+When your first Gemini integration misbehaves, check the boring things first. Is the API key loaded from the environment you are actually running? Are you sending the same model name in development and staging? Did the request exceed file, context, or rate limits? Are you asking for JSON without validating the JSON? Did search grounding add latency that your UI was not designed to show?
 
-如果你有 60 分钟，想从零到跑通 Gemini 2.5 Pro 集成，这篇指南适合你。过去两个月我在工作坊和 Meetup 中带约 300 位开发者走完了这个过程，最有效的模式是：先跑通，再理解。
+For a first production feature, use a narrow task such as document triage, source-grounded release-note summaries, or support ticket classification. Keep a cheaper model for routing and reserve Gemini 2.5 Pro for long-context reasoning or multimodal input. Display sources when using [Google Search grounding](https://ai.google.dev/gemini-api/docs/grounding), validate structured output, and log failures without storing unnecessary user data.
 
-## 第一步：获取 API 密钥（5 分钟）
+One final habit helps more than any prompt template: save bad examples. Keep five prompts that produced weak answers, five files that were too large, and five user requests that needed clarification. Re-run them whenever you change the model, safety settings, or retrieval layer. A small regression set catches problems that a polished demo will hide.
 
-前往 Google AI Studio（aistudio.google.com）。用 Google 账号登录后，点击左侧栏"Get API Key"，再点"Create API Key"。
+Helpful references include [Google AI Studio](https://aistudio.google.com/), the [Gemini API docs](https://ai.google.dev/gemini-api/docs), the [Google Gen AI SDK docs](https://ai.google.dev/gemini-api/docs/sdks), our [Gemini multimodal developer workflow guide](/blog/gemini-2-5-pro-multimodal-dev-workflows), and the broader [GPT-4 vs Claude vs Gemini comparison](/blog/gpt-4-vs-claude-vs-gemini-comparison).
 
-几个容易踩的坑：免费层提供每分钟 60 次 Gemini 2.5 Pro 请求，开发阶段足够用。除非上生产或测试时触发限制，否则不需要绑定账单。但如果你在做正经项目，尽早关联账单——免费层有不太文档化的每日请求上限，在调试过程中撞上限很烦。
+If your next step is model comparison, pair this tutorial with [Claude 4 vs GPT-5 for coding](/blog/claude-4-vs-gpt-5-code-benchmarks-2026) before you standardize on a single provider.
+`,
 
-把 API 密钥存到环境变量里，不要写在代码中。这不是建议，是必须：
+    cn: `# Gemini 2.5 Pro 上手指南：搜索、创作与分析
 
-\`\`\`
-GEMINI_API_KEY=your_key_here
-\`\`\`
+这篇更新版文章围绕一个很实际的问题：Gemini 2.5 Pro API 的入门与落地不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
 
-把 \`.env\` 加到 \`.gitignore\`。上个月我亲眼见过三个开发者把密钥推到了公开仓库。
+## 先判断使用场景
 
-## 第二步：第一次 API 调用（10 分钟）
+把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
 
-安装 SDK：
+## 工作流建议
 
-\`\`\`bash
-npm install @google/genai
-\`\`\`
+第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
 
-第一个脚本：
+## 选择标准
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
+评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+## 常见失败模式
 
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "用两段话解释 REST 和 GraphQL 的区别。",
-});
+常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
 
-console.log(response.text);
-\`\`\`
+## 下一步
 
-用 \`node --env-file=.env index.mjs\` 运行，大约 2-4 秒出结果。注意 token 用量元数据：输入 $1.25/百万 token，输出 $5/百万 token。一个典型查询约 150 输入 token + 200 输出 token，每次约 $0.001。
+如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+`,
 
-## 第三步：构建文档分析器（25 分钟）
+    tw: `# Gemini 2.5 Pro 上手指南：搜尋、創作與分析
 
-做点真正有用的。创建一个工具：接收 PDF，提取内容，生成结构化摘要。
+這篇更新版文章聚焦一個實務問題：Gemini 2.5 Pro API 的入門與落地不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-import { fromPath } from "pdf2pic";
-import fs from "fs";
+## 先判斷使用場景
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
 
-async function analyzeDocument(pdfPath) {
-  const converter = fromPath(pdfPath, {
-    density: 150,
-    saveFilename: "page",
-    format: "png",
-  });
+## 工作流建議
 
-  const images = [];
-  for (let i = 1; i <= 5; i++) {
-    const result = await converter(i);
-    const imageData = fs.readFileSync(result.path, { encoding: "base64" });
-    images.push({
-      inlineData: { mimeType: "image/png", data: imageData },
-    });
-  }
+第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-pro",
-    contents: [
-      ...images,
-      { text: "分析这个文档。返回 JSON：title, summary, keyPoints (数组), documentType。" },
-    ],
-    config: { responseMimeType: "application/json" },
-  });
+## 選擇標準
 
-  return JSON.parse(response.text);
-}
-\`\`\`
+不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
 
-关键点：用 \`responseMimeType: "application/json"\` 强制结构化输出，这是 Gemini 特有的功能，保证返回合法 JSON。不用的话，大约 80% 的情况会返回被 markdown 包裹的 JSON。
+## 常見失敗模式
 
-## 第四步：添加搜索增强（10 分钟）
+常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
 
-Gemini 2.5 Pro 的亮点之一是 Google Search grounding——用实时搜索结果增强回复。
+## 下一步
 
-\`\`\`javascript
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "React 19 最新特性有哪些？",
-  config: { tools: [{ googleSearch: {} }] },
-});
-\`\`\`
-
-注意：搜索增强会增加 1-3 秒延迟，且并非所有地区都可用。在我们的测试中，约 8 个国家不支持。对国际化应用，建议用 VPN 测试目标国家。
-
-## 第五步：错误处理与速率限制（10 分钟）
-
-API 会失败。提前准备。用指数退避处理 429 限流，用线性退避处理 500/503 服务错误。SDK 不自带重试逻辑，需要自己实现。
-
-## 接下来可以做什么
-
-三个项目想法：会议纪要摘要器、截图转代码工具、内容质量分析器。每个都练习 API 的不同部分——多模态输入、结构化输出、搜索增强，或三者组合。Gemini 2.5 Pro API 在 2026 年 3 月已经足够稳定用于生产环境，价格也很有竞争力。不要过度思考，直接开始构建。`,
-
-    tw: `# Gemini 2.5 Pro 上手指南：搜尋、創作與資料分析實戰
-
-## 與 Gemini 2.5 Pro 共度的第一個小時
-
-如果你有 60 分鐘，想從零到跑通 Gemini 2.5 Pro 整合，這篇指南適合你。過去兩個月我在工作坊和 Meetup 中帶約 300 位開發者走完了這個過程，最有效的模式是：先跑通，再理解。
-
-## 第一步：取得 API 金鑰（5 分鐘）
-
-前往 Google AI Studio（aistudio.google.com）。用 Google 帳號登入後，點擊左側欄「Get API Key」，再點「Create API Key」。
-
-幾個容易踩的坑：免費層提供每分鐘 60 次 Gemini 2.5 Pro 請求，開發階段夠用。把 API 金鑰存到環境變數裡，不要寫在程式碼中：
-
-\`\`\`
-GEMINI_API_KEY=your_key_here
-\`\`\`
-
-把 \`.env\` 加到 \`.gitignore\`。上個月我親眼見過三個開發者把金鑰推到了公開倉庫。
-
-## 第二步：第一次 API 呼叫（10 分鐘）
-
-安裝 SDK：
-
-\`\`\`bash
-npm install @google/genai
-\`\`\`
-
-第一個腳本：
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "用兩段話解釋 REST 和 GraphQL 的差異。",
-});
-
-console.log(response.text);
-\`\`\`
-
-用 \`node --env-file=.env index.mjs\` 執行，大約 2-4 秒出結果。Token 費用：輸入 $1.25/百萬 token，輸出 $5/百萬 token。典型查詢約 $0.001/次。
-
-## 第三步：建構文件分析器（25 分鐘）
-
-做點真正有用的。建立一個工具：接收 PDF，擷取內容，生成結構化摘要。使用 \`responseMimeType: "application/json"\` 強制結構化輸出，確保回傳合法 JSON。
-
-## 第四步：新增搜尋增強（10 分鐘）
-
-Gemini 2.5 Pro 的亮點之一是 Google Search grounding——用即時搜尋結果增強回覆。搜尋增強會增加 1-3 秒延遲，且並非所有地區都可用。
-
-## 第五步：錯誤處理與速率限制（10 分鐘）
-
-用指數退避處理 429 限流，用線性退避處理 500/503 服務錯誤。SDK 不自帶重試邏輯，需要自己實作。
-
-## 接下來可以做什麼
-
-三個專案想法：會議紀要摘要器、截圖轉程式碼工具、內容品質分析器。Gemini 2.5 Pro API 在 2026 年 3 月已經夠穩定用於生產環境，價格也很有競爭力。不要過度思考，直接開始建構。`,
+可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+`,
 
     de: `# Gemini 2.5 Pro Einstieg: Suchen, Erstellen und Analysieren
 
-## Ihre erste Stunde mit Gemini 2.5 Pro
+Diese Fassung beantwortet eine praktische Frage: den Einstieg in die Gemini 2.5 Pro API sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
 
-Wenn Sie 60 Minuten haben und von null zu einer funktionierenden Gemini 2.5 Pro-Integration gelangen möchten, ist dieser Leitfaden für Sie. Ich habe in den letzten zwei Monaten大约 300 Entwickler durch diesen Prozess begleitet. Das beste Muster: Erst etwas zum Laufen bringen, dann verstehen, warum es funktioniert.
+## Erst den Anwendungsfall klären
 
-## Schritt 1: API-Schlüssel erhalten (5 Minuten)
+Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
 
-Gehen Sie zu Google AI Studio (aistudio.google.com). Die kostenlose Stufe bietet 60 Anfragen pro Minute für Gemini 2.5 Pro — ausreichend für die Entwicklung. Speichern Sie den API-Schlüssel in einer Umgebungsvariable, nicht im Code. Fügen Sie \`.env\` zu \`.gitignore\` hinzu.
+## Ein belastbarer Workflow
 
-## Schritt 2: Ihr erster API-Aufruf (10 Minuten)
+Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
 
-\`\`\`bash
-npm install @google/genai
-\`\`\`
+## Auswahlkriterien
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Erkläre den Unterschied zwischen REST und GraphQL in zwei Absätzen.",
-});
-console.log(response.text);
-\`\`\`
+Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
 
-Token-Kosten: Eingabe $1,25/Million Tokens, Ausgabe $5/Million Tokens. Eine typische Abfrage kostet etwa $0,001.
+## Häufige Fehler
 
-## Schritt 3: Einen Dokumentenanalysator erstellen (25 Minuten)
+Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
 
-Ein nützliches Tool bauen: PDF entgegennehmen, Inhalt extrahieren, strukturierte Zusammenfassung generieren. Verwenden Sie \`responseMimeType: "application/json"\` für garantiert gültiges JSON. Ohne diese Einstellung erhalten Sie etwa 80% der Zeit JSON in Markdown-Blöcken.
+## Nächster Schritt
 
-## Schritt 4: Search Grounding hinzufügen (10 Minuten)
+Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+`,
 
-Google Search Grounding ist ein herausragendes Feature — Echtzeit-Suchergebnisse zur Erweiterung von Antworten. Beachten Sie: Die Suche fügt 1-3 Sekunden Latenz hinzu und ist nicht in allen Regionen verfügbar.
+    es: `# Guía de Gemini 2.5 Pro: buscar, crear y analizar
 
-## Schritt 5: Fehlerbehandlung und Ratenlimits (10 Minuten)
+Esta versión revisada responde a una pregunta práctica: la adopción práctica de la API de Gemini 2.5 Pro no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
 
-Exponentielles Backoff für 429-Ratenlimits, lineares Backoff für 500/503-Serverfehler. Das SDK hat keine eingebaute Retry-Logik.
+## Empieza por el caso de uso
 
-## Was Sie als nächstes bauen können
+Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
 
-Drei Projektideen: Meeting-Notizen-Summarizer, Screenshot-zu-Code-Konverter, Inhaltsqualitätsanalysator. Die Gemini 2.5 Pro API ist ab März 2026 produktionsreif und preislich wettbewerbsfähig. Fangen Sie einfach an.`,
+## Flujo recomendado
 
-    es: `# Guía de inicio de Gemini 2.5 Pro: buscar, crear y analizar
+Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
 
-## Tu primera hora con Gemini 2.5 Pro
+## Criterios de decisión
 
-Si tienes 60 minutos y quieres pasar de cero a una integración funcional de Gemini 2.5 Pro, esta guía es para ti. He guiado a unos 300 desarrolladores por este proceso en los últimos dos meses. El mejor patrón: hacer que algo funcione primero, luego entender por qué funciona.
+No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
 
-## Paso 1: Obtener tu clave API (5 minutos)
+## Fallos habituales
 
-Ve a Google AI Studio (aistudio.google.com). El nivel gratuito da 60 solicitudes por minuto para Gemini 2.5 Pro. Almacena tu clave API en una variable de entorno, no en el código. Agrega \`.env\` a \`.gitignore\`.
+Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
 
-## Paso 2: Tu primera llamada API (10 minutos)
+## Siguiente paso
 
-\`\`\`bash
-npm install @google/genai
-\`\`\`
+Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+`,
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Explica la diferencia entre REST y GraphQL en dos párrafos.",
-});
-console.log(response.text);
-\`\`\`
+    fr: `# Guide Gemini 2.5 Pro : recherche, création et analyse
 
-Costos de tokens: entrada $1.25/millón de tokens, salida $5/millón. Una consulta típica cuesta unos $0.001.
+Cette version enrichie répond à une question concrète : la prise en main de l’API Gemini 2.5 Pro doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
 
-## Paso 3: Construir un analizador de documentos (25 minutos)
+## Clarifier le cas d’usage
 
-Crea una herramienta útil: recibir PDF, extraer contenido, generar resumen estructurado. Usa \`responseMimeType: "application/json"\` para forzar salida estructurada — una función específica de Gemini que garantiza JSON válido.
+Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
 
-## Paso 4: Agregar search grounding (10 minutos)
+## Méthode pratique
 
-Google Search Grounding complementa respuestas con resultados de búsqueda en tiempo real. Añade 1-3 segundos de latencia y no está disponible en todas las regiones.
+Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
 
-## Paso 5: Manejo de errores y límites de tasa (10 minutos)
+## Critères de choix
 
-Backoff exponencial para 429, backoff lineal para 500/503. El SDK no tiene lógica de reintento incorporada.
+Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
 
-## Qué construir después
+## Échecs fréquents
 
-Tres ideas: resumidor de notas de reuniones, convertidor de capturas a código, analizador de calidad de contenido. La API de Gemini 2.5 Pro es estable para producción desde marzo de 2026. No lo pienses demasiado — empieza a construir.`,
+Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
 
-    fr: `# Guide de démarrage Gemini 2.5 Pro : rechercher, créer et analyser
+## Pour continuer
 
-## Votre première heure avec Gemini 2.5 Pro
+À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+`,
 
-Si vous avez 60 minutes et voulez passer de zéro à une intégration Gemini 2.5 Pro fonctionnelle, ce guide est pour vous. J'ai accompagné environ 300 développeurs dans ce processus ces deux derniers mois. Le meilleur schéma : faire fonctionner quelque chose d'abord, comprendre pourquoi ensuite.
+    jp: `# Gemini 2.5 Pro 入門：検索・作成・分析
 
-## Étape 1 : Obtenir votre clé API (5 minutes)
+この記事の改訂版では、Gemini 2.5 Pro API の導入と実装を発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
 
-Allez sur Google AI Studio (aistudio.google.com). Le niveau gratuit offre 60 requêtes par minute pour Gemini 2.5 Pro. Stockez votre clé API dans une variable d'environnement, pas dans le code. Ajoutez \`.env\` à \`.gitignore\`.
+## まず用途を分ける
 
-## Étape 2 : Votre premier appel API (10 minutes)
+タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
 
-\`\`\`bash
-npm install @google/genai
-\`\`\`
+## 実務での進め方
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Explique la différence entre REST et GraphQL en deux paragraphes.",
-});
-console.log(response.text);
-\`\`\`
+低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
 
-Coûts tokens : entrée 1,25 $/million, sortie 5 $/million. Une requête typique coûte environ 0,001 $.
+## 選定基準
 
-## Étape 3 : Créer un analyseur de documents (25 minutes)
+単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
 
-Construire un outil utile : recevoir un PDF, extraire le contenu, générer un résumé structuré. Utilisez \`responseMimeType: "application/json"\` pour forcer une sortie structurée — une fonctionnalité spécifique Gemini qui garantit du JSON valide.
+## よくある失敗
 
-## Étape 4 : Ajouter le search grounding (10 минут)
+プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
 
-Le Google Search Grounding complète les réponses avec des résultats de recherche en temps réel. Ajoute 1-3 secondes de latence et n'est pas disponible dans toutes les régions.
+## 次に読むもの
 
-## Étape 5 : Gestion des erreurs et limites de débit (10 minutes)
+[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+`,
 
-Backoff exponentiel pour 429, backoff linéaire pour 500/503. Le SDK n'a pas de logique de retry intégrée.
+    pt: `# Guia Gemini 2.5 Pro: pesquisa, criação e análise
 
-## Que construire ensuite
+Esta versão revisada olha para uma pergunta prática: a adoção prática da API Gemini 2.5 Pro deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
 
-Trois idées : résumeur de notes de réunion, convertisseur de captures en code, analyseur de qualité de contenu. L'API Gemini 2.5 Pro est stable pour la production depuis mars 2026. Ne réfléchissez pas trop — commencez à construire.`,
+## Comece pelo caso de uso
 
-    jp: `# Gemini 2.5 Pro入門ガイド：検索、作成、分析の実践
+Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
 
-## Gemini 2.5 Proとの最初の1時間
+## Fluxo recomendado
 
-60分あって、ゼロから動作するGemini 2.5 Pro統合に行きたいなら、このガイドはあなたのためのものだ。過去2ヶ月で約300人の開発者にこのプロセスを案内した。最も効果的なパターン：まず動かす、それから理解する。
+Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
 
-## ステップ1：APIキーの取得（5分）
+## Critérios de escolha
 
-Google AI Studio（aistudio.google.com）へ。無料枠ではGemini 2.5 Proで毎分60リクエストが可能。APIキーは環境変数に保存し、コードには書かない。
+Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
 
-\`\`\`
-GEMINI_API_KEY=your_key_here
-\`\`\`
+## Falhas comuns
 
-\`.env\`を\`.gitignore\`に追加。過去1ヶ月に3人の開発者がキーを公開リポジトリにプッシュするのを目撃した。
+Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
 
-## ステップ2：最初のAPIコール（10分）
+## Próximos passos
 
-\`\`\`bash
-npm install @google/genai
-\`\`\`
+Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+`,
 
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "RESTとGraphQLの違いを2つの段落で説明してください。",
-});
-console.log(response.text);
-\`\`\`
+    ru: `# Gemini 2.5 Pro: поиск, создание и анализ
 
-トークン費用：入力$1.25/百万トークン、出力$5/百万トークン。典型的なクエリで約$0.001/回。
+Обновленная версия статьи отвечает на практичный вопрос: практическое внедрение API Gemini 2.5 Pro нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
 
-## ステップ3：ドキュメントアナライザーの構築（25分）
+## Начните со сценария
 
-実際に役立つものを作る：PDFを受け取り、コンテンツを抽出し、構造化された要約を生成。\`responseMimeType: "application/json"\`を使って構造化出力を強制——Gemini固有の機能で有効なJSONを保証。
+Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
 
-## ステップ4：サーチグラウンディングの追加（10分）
+## Рабочий процесс
 
-Google Search Groundingはリアルタイムのウェブ検索結果で回答を補強。1〜3秒のレイテンシーが追加され、すべての地域で利用できるわけではない。
+Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
 
-## ステップ5：エラーハンドリングとレート制限（10分）
+## Как выбирать
 
-429には指数バックオフ、500/503には線形バックオフ。SDKには組み込みのリトライロジックがない。
+Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
 
-## 次に何を構築するか
+## Типичные сбои
 
-3つのプロジェクトアイデア：会議メモ要約ツール、スクリーンショット-to-コード変換ツール、コンテンツ品質アナライザー。Gemini 2.5 Pro APIは2026年3月時点で本番環境に十分安定し、価格も競争力がある。考えすぎるな——とにかく構築を始めよう。`,
+Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
 
-    pt: `# Guia inicial Gemini 2.5 Pro: pesquisar, criar e analisar
+## Что делать дальше
 
-## Sua primeira hora com Gemini 2.5 Pro
-
-Se você tem 60 minutos e quer ir do zero a uma integração funcional do Gemini 2.5 Pro, este guia é para você. Acompanhei cerca de 300 desenvolvedores nesse processo nos últimos dois meses. O melhor padrão: fazer algo funcionar primeiro, depois entender por quê.
-
-## Passo 1: Obter sua chave API (5 minutos)
-
-Vá ao Google AI Studio (aistudio.google.com). O nível gratuito oferece 60 requisições por minuto para Gemini 2.5 Pro. Armazene a chave API em uma variável de ambiente, não no código. Adicione \`.env\` ao \`.gitignore\`.
-
-## Passo 2: Sua primeira chamada API (10 minutos)
-
-\`\`\`bash
-npm install @google/genai
-\`\`\`
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Explique a diferença entre REST e GraphQL em dois parágrafos.",
-});
-console.log(response.text);
-\`\`\`
-
-Custos de tokens: entrada $1.25/milhão, saída $5/milhão. Uma consulta típica custa cerca de $0.001.
-
-## Passo 3: Construir um analisador de documentos (25 minutos)
-
-Construir algo útil: receber PDF, extrair conteúdo, gerar resumo estruturado. Use \`responseMimeType: "application/json"\` para forçar saída estruturada — um recurso específico do Gemini que garante JSON válido.
-
-## Passo 4: Adicionar search grounding (10 minutos)
-
-O Google Search Grounding complementa respostas com resultados de busca em tempo real. Adiciona 1-3 segundos de latência e não está disponível em todas as regiões.
-
-## Passo 5: Tratamento de erros e limites de taxa (10 minutos)
-
-Backoff exponencial para 429, backoff linear para 500/503. O SDK não tem lógica de retry embutida.
-
-## O que construir depois
-
-Três ideias: resumidor de notas de reunião, conversor de capturas de tela para código, analisador de qualidade de conteúdo. A API do Gemini 2.5 Pro está estável para produção desde março de 2026. Não pense demais — comece a construir.`,
-
-    ru: `# Руководство по началу работы с Gemini 2.5 Pro: поиск, создание и анализ
-
-## Ваш первый час с Gemini 2.5 Pro
-
-Если у вас есть 60 минут и вы хотите пройти путь от нуля до работающей интеграции с Gemini 2.5 Pro, это руководство для вас. За последние два месяца я провёл через этот процесс около 300 разработчиков. Лучший паттерн: сначала заставить что-то работать, потом понять почему.
-
-## Шаг 1: Получение API-ключа (5 минут)
-
-Перейдите в Google AI Studio (aistudio.google.com). Бесплатный уровень даёт 60 запросов в минуту для Gemini 2.5 Pro. Храните ключ API в переменной окружения, а не в коде. Добавьте \`.env\` в \`.gitignore\`.
-
-## Шаг 2: Первый вызов API (10 минут)
-
-\`\`\`bash
-npm install @google/genai
-\`\`\`
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Объясните разницу между REST и GraphQL в двух абзацах.",
-});
-console.log(response.text);
-\`\`\`
-
-Стоимость токенов: ввод $1.25/млн, вывод $5/млн. Типичный запрос стоит около $0.001.
-
-## Шаг 3: Создание анализатора документов (25 минут)
-
-Постройте полезный инструмент: принять PDF, извлечь содержимое, сгенерировать структурированное резюме. Используйте \`responseMimeType: "application/json"\` для принудительного структурированного вывода — функция, специфичная для Gemini, гарантирующая валидный JSON.
-
-## Шаг 4: Добавление search grounding (10 минут)
-
-Google Search Grounding дополняет ответы результатами поиска в реальном времени. Добавляет 1-3 секунды задержки и доступен не во всех регионах.
-
-## Шаг 5: Обработка ошибок и лимиты (10 минут)
-
-Экспоненциальный backoff для 429, линейный для 500/503. SDK не имеет встроенной логики повторных попыток.
-
-## Что строить дальше
-
-Три идеи: конспектёр встреч, конвертер скриншотов в код, анализатор качества контента. API Gemini 2.5 Pro стабильно работает в продакшене с марта 2026 года. Не думайте слишком много — просто начните строить.`,
+Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-02-23',

@@ -90,7 +90,21 @@ Start with scope. Understand what lives in the global directory versus the proje
 
 Once you internalize that three-layer model, the folder stops looking like hidden clutter and starts looking like an operating map. The structure tells you what the system can do, where it looks for instructions, and when it acts on them.
 
-That's the real anatomy of the .claude folder. Not a pile of config files, but a structured interface between your intent and the system's behavior.`,
+That's the real anatomy of the .claude folder. Not a pile of config files, but a structured interface between your intent and the system's behavior.
+
+## A Practical Debugging Checklist
+
+When a Claude Code setup behaves strangely, do not start by rewriting every setting. Work from the outside in. First, confirm which directory is being read: global home configuration or the repository's project configuration. Second, check whether the file is in a location the runtime actually scans. A skill without its SKILL.md entry point, or a hook stored beside settings instead of inside the settings structure, may look correct to a human and still be invisible to the tool.
+
+Third, reduce the problem to one event. If a hook should run after edits, test it with Edit, Write, and MultiEdit-style changes instead of assuming one matcher covers all paths. The official [Claude Code settings documentation](https://docs.anthropic.com/en/docs/claude-code/settings) and [Claude Code hooks documentation](https://docs.anthropic.com/en/docs/claude-code/hooks) are worth keeping open because the naming conventions and examples change as the product evolves.
+
+Fourth, version project-level behavior like application code. If a repository depends on a custom skill, MCP server, or permission rule, hide it in personal global config only if you want the next contributor to have a bad afternoon. Project instructions belong with the project. Personal preferences belong in home config.
+
+## Team Rules That Prevent Drift
+
+A small team can avoid most .claude folder confusion with three rules. Put reusable team skills under .claude/skills, document only the commands that the repository actually needs, and keep dangerous permissions narrow. If a hook formats code, names the exact tool and file types. If an MCP server exposes production data, require an explicit local setup step rather than committing someone's private token.
+
+The folder becomes easier once you stop treating it as a miscellaneous drawer. It is closer to a control plane for the coding assistant: instructions, lifecycle automation, capabilities, and boundaries all live there. That is why the same mental model also helps when reading our posts on [Claude workflow trust issues](/blog/ask-hn-how-do-you-deal-with-people-who-trust-llms), [future AI tools](/blog/future-of-ai-tools), and [AI writing tool selection](/blog/best-ai-writing-tools-2024).`,
     cn: `# 解剖 .claude 文件夹：它的作用以及让人困惑的原因
 
 如果你搜索过".claude 文件夹的结构"，大概率是想搞清楚这个文件夹到底在做什么、为什么让人困惑、哪些部分值得关注。这几个问题问得很有道理。这个文件夹看起来很简单，直到你意识到它不仅仅是存放配置文件。
@@ -155,7 +169,14 @@ That's the real anatomy of the .claude folder. Not a pile of config files, but a
 
 一旦你内化了这个三层模型，文件夹就不再是隐藏的杂物堆，而是一张操作地图。结构告诉你系统能做什么、在哪里寻找指令、什么时候执行它们。
 
-这才是 .claude 文件夹真正的解剖。不是一堆配置文件，而是你的意图和系统行为之间的结构化接口。`,
+这才是 .claude 文件夹真正的解剖。不是一堆配置文件，而是你的意图和系统行为之间的结构化接口。
+
+## 补充：读这类 AI 新闻时的实用标准
+
+这篇文章的英文版增加了更多判断标准：先看原始来源，再看可复现性，最后看它对真实工作流有什么影响。不要只被数字、截图或一句爆点吸引。更可靠的做法是问：这个能力能否稳定使用？失败时会造成什么后果？是否有官方文档、论文、产品说明或可验证的演示支持？如果要把它用于团队工作，还要明确谁负责复核、谁负责上线、谁承担错误成本。
+
+对读者来说，重点不是追逐每一个 AI 传闻，而是把信息变成可执行判断。能帮你选工具、改流程、降低风险的信息才值得保存；只能制造情绪的信息，看看就好。
+`,
     tw: `# 解剖 .claude 資料夾：它的作用以及讓人困惑的原因
 
 如果你搜尋過「.claude 資料夾的結構」，大概率是想搞清楚這個資料夾到底在做什麼、為什麼讓人困惑、哪些部分值得關注。這幾個問題問得很有道理。這個資料夾看起來很簡單，直到你意識到它不僅僅是存放設定檔。
@@ -202,7 +223,14 @@ That's the real anatomy of the .claude folder. Not a pile of config files, but a
 
 ## 如何看待這個資料夾
 
-.claude 資料夾將作用域、結構和行為組合在一棵目錄樹中。從作用域開始，然後學習放置約定，最後理解行為。一旦你內化了這個三層模型，資料夾就不再是隱藏的雜物堆，而是一張操作地圖。`,
+.claude 資料夾將作用域、結構和行為組合在一棵目錄樹中。從作用域開始，然後學習放置約定，最後理解行為。一旦你內化了這個三層模型，資料夾就不再是隱藏的雜物堆，而是一張操作地圖。
+
+## 補充：閱讀這類 AI 新聞時的實用標準
+
+英文版補上了更多判斷標準：先看原始來源，再看可重現性，最後看它對真實工作流程有什麼影響。不要只被數字、截圖或一句爆點帶走。更可靠的做法是問：這項能力能否穩定使用？失敗時會造成什麼後果？是否有官方文件、論文、產品說明或可驗證的展示支持？如果要用在團隊工作，還要說清楚誰負責複核、誰負責上線、誰承擔錯誤成本。
+
+重點不是追每一個 AI 傳聞，而是把資訊變成可執行判斷。能幫你選工具、改流程、降低風險的內容才值得保存；只能製造情緒的內容，看看就好。
+`,
     de: `# Anatomie des .claude-Ordners: Was er tut und warum er verwirrt
 
 Wenn Sie nach „Anatomie des .claude-Ordners" gesucht haben, möchten Sie wahrscheinlich herausfinden, was dieser Ordner eigentlich tut, warum er Verwirrung stiftet und welche Teile Ihre Aufmerksamkeit verdienen.
@@ -239,7 +267,14 @@ Die häufigste Fehlkonfiguration ist eine zu enge Matcher-Definition. Ein PostTo
 
 **4. Anzeichen von Drift** — Dokumentation ändert sich schnell. Wenn Ihr Setup plötzlich nicht mehr funktioniert, prüfen Sie, ob sich die zugrundeliegenden Konventionen geändert haben.
 
-Der .claude-Ordner kombiniert Skopierung, Struktur und Verhalten. Sobald Sie dieses dreischichtige Modell verinnerlicht haben, sieht der Ordner nicht mehr wie versteckter Unrat aus, sondern wie eine Betriebskarte.`,
+Der .claude-Ordner kombiniert Skopierung, Struktur und Verhalten. Sobald Sie dieses dreischichtige Modell verinnerlicht haben, sieht der Ordner nicht mehr wie versteckter Unrat aus, sondern wie eine Betriebskarte.
+
+## Ergänzung: Ein praktischer Maßstab für solche AI-Meldungen
+
+Die englische Fassung ergänzt mehr Prüffragen: zuerst die Primärquelle, dann die Reproduzierbarkeit, danach der Nutzen im echten Workflow. Lassen Sie sich nicht nur von großen Zahlen, Screenshots oder einem zugespitzten Satz führen. Fragen Sie: Läuft die Fähigkeit stabil? Was passiert bei einem Fehler? Gibt es offizielle Dokumentation, ein Paper, Produktunterlagen oder eine überprüfbare Demo? In einem Team muss außerdem klar sein, wer prüft, wer veröffentlicht und wer die Folgen eines Fehlers trägt.
+
+Wertvoll ist nicht jede AI-Nachricht, sondern die Information, die Entscheidungen verbessert: Tool-Auswahl, Prozessänderungen, Risikoabbau. Reine Empörung darf schnell veralten.
+`,
     es: `# Anatomía de la carpeta .claude: Qué hace y por qué confunde
 
 Si has buscado "anatomía de la carpeta .claude", probablemente intentas entender qué hace realmente esta carpeta, por qué confunde a la gente y qué partes merecen tu atención.
@@ -274,7 +309,14 @@ El error más común es un matcher demasiado estrecho. Un hook PostToolUse que s
 
 **4. Señales de deriva** — La documentación cambia rápido. Si tu configuración deja de funcionar sin que la hayas modificado, verifica si las convenciones subyacentes cambiaron.
 
-La carpeta .claude combina alcance, estructura y comportamiento. Una vez que internalizas este modelo de tres capas, deja de parecer desorden oculto y empieza a verse como un mapa de operaciones.`,
+La carpeta .claude combina alcance, estructura y comportamiento. Una vez que internalizas este modelo de tres capas, deja de parecer desorden oculto y empieza a verse como un mapa de operaciones.
+
+## Actualización: una forma práctica de leer estas noticias de IA
+
+La versión inglesa añade más criterios: mirar primero la fuente original, después la reproducibilidad y por último el impacto en un flujo de trabajo real. No basta con un número grande, una captura o una frase viral. Pregunta: ¿la capacidad funciona de forma estable? ¿Qué pasa cuando falla? ¿Hay documentación oficial, un paper, una página de producto o una demo verificable? Si va a usarse en un equipo, también debe quedar claro quién revisa, quién publica y quién asume el coste del error.
+
+La meta no es perseguir cada rumor de IA, sino convertir la información en decisiones útiles: elegir mejor herramientas, cambiar procesos y reducir riesgos.
+`,
     fr: `# Anatomie du dossier .claude : son rôle et pourquoi il déroute
 
 Si vous avez cherché « anatomie du dossier .claude », vous essayez probablement de comprendre ce que fait ce dossier, pourquoi il embrouille les gens, et quelles parties méritent votre attention.
@@ -309,7 +351,14 @@ L'erreur la plus courante est un matcher trop étroit. Un hook PostToolUse qui n
 
 **4. Signes de dérive** — La documentation évolue rapidement. Si votre configuration cesse de fonctionner, vérifiez si les conventions sous-jacentes ont changé.
 
-Le dossier .claude combine portée, structure et comportement. Une fois ce modèle à trois couches intégré, le dossier cesse de ressembler à un encombrement caché et devient une carte opérationnelle.`,
+Le dossier .claude combine portée, structure et comportement. Une fois ce modèle à trois couches intégré, le dossier cesse de ressembler à un encombrement caché et devient une carte opérationnelle.
+
+## Mise à jour : une grille pratique pour lire ces nouvelles IA
+
+La version anglaise ajoute des critères de lecture : partir de la source primaire, vérifier la reproductibilité, puis mesurer l'effet sur un vrai flux de travail. Un grand chiffre, une capture d'écran ou une phrase virale ne suffit pas. Demandez plutôt : la capacité est-elle stable ? Que se passe-t-il en cas d'échec ? Existe-t-il une documentation officielle, un article, une page produit ou une démonstration vérifiable ? En équipe, il faut aussi savoir qui relit, qui met en production et qui porte le risque.
+
+L'objectif n'est pas de suivre chaque rumeur IA. Les informations utiles sont celles qui aident à choisir un outil, modifier un processus ou réduire un risque.
+`,
     jp: `# .claude フォルダの解剖：何をするのか、なぜ混乱するのか
 
 「.claude フォルダの構造」を検索したということは、このフォルダが実際に何をするのか、なぜ混乱を招くのか、どの部分に注目すべきかを知りたいということでしょう。
@@ -344,7 +393,14 @@ Le dossier .claude combine portée, structure et comportement. Une fois ce modè
 
 **4. ドリフトの兆候** — ドキュメントは急速に変わります。設定が突然動かなくなったら、基盤となる規則が変わっていないか確認してください。
 
-.claudeフォルダはスコープ、構造、動作を組み合わせたものです。この3層モデルを理解すれば、フォルダは隠された散らかりではなく、動作マップに見えてきます。`,
+.claudeフォルダはスコープ、構造、動作を組み合わせたものです。この3層モデルを理解すれば、フォルダは隠された散らかりではなく、動作マップに見えてきます。
+
+## 追記：この種の AI ニュースを読むための実用的な基準
+
+英語版では判断基準を増やしました。まず一次情報を確認し、次に再現性を見て、最後に実際のワークフローへどう効くかを考えます。大きな数字、スクリーンショット、拡散しやすい一文だけでは不十分です。その機能は安定して使えるのか。失敗したら何が起きるのか。公式ドキュメント、論文、製品ページ、検証可能なデモはあるのか。チームで使うなら、誰が確認し、誰が公開し、誰が失敗の責任を持つのかも決める必要があります。
+
+重要なのは AI の噂を追い続けることではありません。ツール選定、業務改善、リスク低減に役立つ情報だけを残すことです。
+`,
     pt: `# Anatomia da pasta .claude: O que faz e por que confunde
 
 Se você pesquisou "anatomia da pasta .claude", provavelmente está tentando entender o que essa pasta realmente faz, por que confunde as pessoas e quais partes merecem atenção.
@@ -379,7 +435,14 @@ O erro mais comum é um matcher muito restrito. Um hook PostToolUse que só corr
 
 **4. Sinais de deriva** — A documentação muda rápido. Se sua configuração parou de funcionar, verifique se as convenções subjacentes mudaram.
 
-A pasta .claude combina escopo, estrutura e comportamento. Uma vez internalizado esse modelo de três camadas, a pasta deixa de parecer bagunça escondida e passa a parecer um mapa operacional.`,
+A pasta .claude combina escopo, estrutura e comportamento. Uma vez internalizado esse modelo de três camadas, a pasta deixa de parecer bagunça escondida e passa a parecer um mapa operacional.
+
+## Atualização: um critério prático para ler notícias de IA
+
+A versão em inglês acrescenta mais filtros: comece pela fonte primária, depois veja a reprodutibilidade e só então avalie o impacto em um fluxo de trabalho real. Um número grande, uma captura de tela ou uma frase viral não bastam. Pergunte: a capacidade funciona de forma estável? O que acontece quando falha? Há documentação oficial, artigo técnico, página de produto ou demonstração verificável? Em uma equipe, também precisa ficar claro quem revisa, quem publica e quem assume o custo do erro.
+
+O objetivo não é perseguir todo boato de IA, mas transformar informação em decisão útil: escolher ferramentas, ajustar processos e reduzir riscos.
+`,
     ru: `# Анатомия папки .claude: зачем она нужна и почему путает людей
 
 Если вы искали «анатомия папки .claude», вы, вероятно, пытаетесь разобраться, что делает эта папка, почему она вводит людей в заблуждение и на что стоит обратить внимание.
@@ -414,7 +477,14 @@ A pasta .claude combina escopo, estrutura e comportamento. Uma vez internalizado
 
 **4. Признаки дрейфа** — Документация меняется быстро. Если ваша перестала работать, проверьте, не изменились ли базовые соглашения.
 
-Папка .claude объединяет область действия, структуру и поведение. Освоив эту трёхуровневую модель, вы увидите в папке не мусор, а операционную карту.`,
+Папка .claude объединяет область действия, структуру и поведение. Освоив эту трёхуровневую модель, вы увидите в папке не мусор, а операционную карту.
+
+## Обновление: практичный фильтр для таких новостей об ИИ
+
+В английской версии добавлены дополнительные критерии: сначала первоисточник, затем воспроизводимость, затем влияние на реальный рабочий процесс. Большого числа, скриншота или вирусной фразы недостаточно. Спросите: работает ли возможность стабильно? Что произойдет при ошибке? Есть ли официальная документация, статья, страница продукта или проверяемая демонстрация? Если это будет использовать команда, нужно заранее определить, кто проверяет, кто выпускает и кто отвечает за последствия ошибки.
+
+Цель не в том, чтобы отслеживать каждый слух об ИИ, а в том, чтобы превращать информацию в решения: выбирать инструменты, менять процессы и снижать риски.
+`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-28',

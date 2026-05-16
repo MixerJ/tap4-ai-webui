@@ -38,7 +38,7 @@ If you are building AI features in 2026, evals should sit beside analytics, QA, 
 
 Traditional software QA asks whether the system returned the expected output for a known input. LLM products are trickier because the correct answer may be a range of acceptable behaviors. A support assistant can phrase a reply in ten good ways. A code-review assistant can catch one severe bug and miss a stylistic nit. A research agent may be useful even when it stops and asks for missing context.
 
-That does not mean evals should be vague. It means the rubric has to match the product risk. For a summarizer, you may grade factual consistency, completeness, tone, and refusal behavior. For an agent that can call tools, you need task success, tool selection, permission safety, recovery behavior, and whether the model stopped when it should have stopped. Our earlier post on [why AI agents need reliability more than raw capability](/blog/ai-agents-need-reliability-more-than-capability) makes the same operational point: the product is not just the model output, but the controls around it.
+That does not mean evals should be vague. It means the rubric has to match the product risk. For a summarizer, you may grade factual consistency, completeness, tone, and refusal behavior. For an agent that can call tools, you need task success, tool selection, permission safety, recovery behavior, and whether the model stopped when it should have stopped. Our earlier post on [why AI agents need reliability more than raw capability](/blog/ai-agents-need-reliability-more-than-capability) makes the same operational point: users experience the model output and the controls around it as one product.
 
 The first mistake teams make is evaluating only happy-path examples. The second mistake is treating an aggregate score as launch approval. A feature that passes 92 percent of a generic test set can still be unsafe if the failing 8 percent includes refunds, medical advice, legal commitments, account deletion, or customer data exposure. Practical LLM evals should make that risk visible.
 
@@ -76,7 +76,7 @@ For agentic systems, borrow patterns from [production MCP integration](/blog/mcp
 
 No eval suite stays good by itself. Users change behavior. Policies change. Models change. Product surfaces change. A useful review loop turns production observations into new test cases.
 
-Create a weekly or biweekly review of sampled AI outputs, user complaints, thumbs-down feedback, escalations, and near misses. Ask reviewers to label not just “good” or “bad,” but the failure type: missing context, wrong tool, unsupported claim, bad tone, unsafe action, stale source, over-refusal, under-refusal, or confusing UX. Then promote the best examples into the golden dataset.
+Create a weekly or biweekly review of sampled AI outputs, user complaints, thumbs-down feedback, escalations, and near misses. Ask reviewers to label the failure type instead of stopping at “good” or “bad”: missing context, wrong tool, unsupported claim, bad tone, unsafe action, stale source, over-refusal, under-refusal, or confusing UX. Then promote the best examples into the golden dataset.
 
 Human review is also where PMs and domain experts belong. Engineers can test schemas and tool calls, but product owners often know whether an answer would actually satisfy a customer. Legal, support, sales, or clinical experts may be needed for high-risk domains. The point is not to make every reviewer read every output forever. The point is to keep the eval set aligned with real product judgment.
 
