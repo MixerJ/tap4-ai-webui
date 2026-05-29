@@ -11,9 +11,11 @@ import postLocalMultimodalAiWorkflows from './items/local-multimodal-ai-workflow
 import postXiaomiMimoV25ModelGuide from './items/xiaomi-mimo-v2-5-model-guide';
 import postMcpExplainedForEverydayUsers from './items/mcp-explained-for-everyday-users';
 import postOpenaiOperator from './items/openai-operator';
+import postClaudeOpus48RealWorldWorkflows from './items/claude-opus-4-8-real-world-workflows';
 import postWhatAreAiAgentsPracticalGuide from './items/what-are-ai-agents-practical-guide';
 
 const BLOG_POSTS_HOT_GENERAL: BlogPost[] = [
+  postClaudeOpus48RealWorldWorkflows,
   postChineseAiModels2026Comparison,
   postXiaomiMimoV25ModelGuide,
   postGlm51ModelGuide,
