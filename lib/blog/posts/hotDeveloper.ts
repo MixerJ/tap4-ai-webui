@@ -12,9 +12,11 @@ import postMcpProductionIntegrationPatterns from './items/mcp-production-integra
 import postOpencodeTheOpenSourceAiCodingAgent from './items/opencode-the-open-source-ai-coding-agent';
 import postOpencodeVsClaudeCodeVsCodexAiCodingWorkflow from './items/opencode-vs-claude-code-vs-codex-ai-coding-workflow';
 import postOperatorAgentsApiWebAutomationArchitecture from './items/operator-agents-api-web-automation-architecture';
+import postClaudeOpus48DeveloperGuide from './items/claude-opus-4-8-developer-guide';
 import postRealtimeVoiceAiStackBeyondChatbots from './items/realtime-voice-ai-stack-beyond-chatbots';
 
 const BLOG_POSTS_HOT_DEVELOPER: BlogPost[] = [
+  postClaudeOpus48DeveloperGuide,
   postRealtimeVoiceAiStackBeyondChatbots,
   postLowResourceLanguageAiDataProblem,
   postOpencodeVsClaudeCodeVsCodexAiCodingWorkflow,
