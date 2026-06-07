@@ -18,5 +18,12 @@ export default function BaseImage(props: ImageProps) {
     shouldUnoptimized = true;
   }
 
-  return <Image {...props} alt={props.alt || (props.title as string)} unoptimized={shouldUnoptimized} />;
+  return (
+    <Image
+      {...props}
+      alt={props.alt || (props.title as string)}
+      unoptimized={shouldUnoptimized}
+      loading={props.priority ? 'eager' : 'lazy'}
+    />
+  );
 }
