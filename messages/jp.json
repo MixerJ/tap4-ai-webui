@@ -208,6 +208,7 @@
     }
   },
   "Explore": {
+    "seoHeading": "カテゴリ別に AI ツールを探す",
     "title": "{year}年{month}の最高のAIツールを発見する",
     "subTitle": "Toolsify AI ツールディレクトリで{year}年{month}のベストAIツールを発見。お気に入りのAIツールを見つける。AIツールのリストはGPT-4oによって毎日更新されます。"
   },

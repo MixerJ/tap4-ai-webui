@@ -216,6 +216,7 @@
     }
   },
   "Explore": {
+    "seoHeading": "依類別探索 AI 工具",
     "title": "發現{year}年{month}最佳AI工具",
     "subTitle": "發現{year}年{month}最佳AI工具，在Toolsify AI工具目錄中找到您喜愛的AI工具。AI工具列表每天由GPT-4o更新。"
   },

@@ -13,6 +13,7 @@ await Promise.all(
     const { response, html } = await read(`${locale}/explore`);
     assert.equal(response.status, 200, `${locale} explore status`);
     assert.ok(!html.includes('<title>Metadata.'), `${locale} translated title`);
+    assert.ok(!html.includes('>Explore.seoHeading<'), `${locale} translated heading`);
     assert.ok(!noindex(html), `${locale} explore indexable`);
     assert.ok(html.includes(`href="${locale}/explore/page/2"`), `${locale} canonical pagination link`);
     assert.ok(html.includes('hrefLang="zh-CN"') || html.includes('hreflang="zh-CN"'), 'standard language tag');
