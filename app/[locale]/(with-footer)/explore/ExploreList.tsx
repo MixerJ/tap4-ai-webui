@@ -44,7 +44,9 @@ export default async function ExploreList({ locale, pageNum }: { locale: string;
         .order('collection_time', { ascending: false })
         .range(start, end),
     ]);
-  if (categoryError || navigationError) throw new Error('Unable to load AI tools');
+  if (categoryError || navigationError) {
+    throw new Error('Unable to load AI tools', { cause: categoryError || navigationError });
+  }
   if (currentPage > 1 && currentPage > Math.ceil((count || 0) / EXPLORE_PAGE_SIZE)) notFound();
   const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
   const navItems = (navigationList ?? []) as unknown as Array<
