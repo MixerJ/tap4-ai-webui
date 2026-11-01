@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { RevalidateOneHour } from '@/lib/constants';
+import parsePageNumber from '@/lib/pagination';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 import { formatCurrentMonth } from '@/lib/utils/timeUtils';
-import { buildPageMetadata } from '@/lib/seo';
 
-import ExploreList from '../../ExploreList';
+import ExploreList, { validateExplorePage } from '../../ExploreList';
 
 export const revalidate = RevalidateOneHour * 6;
 
@@ -15,10 +16,12 @@ export async function generateMetadata({
 }: {
   params: { locale: string; pageNum: string };
 }): Promise<Metadata> {
-  const currentPage = Number(pageNum);
-  if (Number.isNaN(currentPage) || currentPage < 1) {
+  const currentPage = parsePageNumber(pageNum);
+  if (currentPage === null) {
     notFound();
   }
+  if (currentPage === 1) permanentRedirect(getLocalizedPath(locale, '/explore'));
+  await validateExplorePage(currentPage);
 
   const t = await getTranslations({
     locale,
@@ -36,15 +39,17 @@ export async function generateMetadata({
   });
 }
 
-export default function Page({
+export default async function Page({
   params: { locale, pageNum },
 }: {
   params: { locale: string; pageNum: string | undefined };
 }) {
-  const currentPage = Number(pageNum);
-  if (Number.isNaN(currentPage) || currentPage < 1) {
+  const currentPage = parsePageNumber(pageNum);
+  if (currentPage === null) {
     notFound();
   }
+  if (currentPage === 1) permanentRedirect(getLocalizedPath(locale, '/explore'));
+  await validateExplorePage(currentPage);
 
   return <ExploreList locale={locale} pageNum={pageNum} />;
 }

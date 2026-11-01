@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import isAdConfigured from '@/lib/adsense-config';
+
 import AdSense from './AdSense';
 
 interface LazyAdProps {
@@ -14,7 +16,10 @@ export default function LazyAd({ adSlot, className = '', minHeight = '250px' }: 
   const [isVisible, setIsVisible] = useState(false);
   const adRef = useRef<HTMLDivElement>(null);
 
+  const configured = isAdConfigured(adSlot);
+
   useEffect(() => {
+    if (!configured || !adRef.current) return undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -30,7 +35,9 @@ export default function LazyAd({ adSlot, className = '', minHeight = '250px' }: 
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [configured]);
+
+  if (!configured) return null;
 
   return (
     <div ref={adRef} style={{ minHeight }} className={className}>

@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { buildPageMetadata } from '@/lib/seo';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE, RevalidateOneHour } from '@/lib/constants';
+import parsePageNumber from '@/lib/pagination';
+import { buildPageMetadata, getLocalizedPath } from '@/lib/seo';
 
 import BlogList from '../../BlogList';
 
@@ -20,10 +21,13 @@ export async function generateMetadata({
     namespace: 'Metadata.blog',
   });
 
-  const currentPage = Number(pageNum);
-  if (Number.isNaN(currentPage) || currentPage < 1) {
+  const currentPage = parsePageNumber(pageNum);
+  if (currentPage === null) {
     notFound();
   }
+  if (currentPage === 1) permanentRedirect(getLocalizedPath(locale, '/blog'));
+
+  if (currentPage > Math.ceil(BLOG_POSTS.length / BLOG_PAGE_SIZE)) notFound();
 
   return buildPageMetadata({
     locale,
@@ -45,11 +49,12 @@ export default async function BlogPagePage({
   params: { locale: string; pageNum: string };
 }) {
   const t = await getTranslations('Blog');
-  const currentPage = Number(pageNum);
+  const currentPage = parsePageNumber(pageNum);
 
-  if (Number.isNaN(currentPage) || currentPage < 1) {
+  if (currentPage === null) {
     notFound();
   }
+  if (currentPage === 1) permanentRedirect(getLocalizedPath(locale, '/blog'));
 
   // Check if page exists
   const total = BLOG_POSTS.length;

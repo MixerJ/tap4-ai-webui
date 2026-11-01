@@ -4,6 +4,18 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    // Redirect before App Router streaming can turn a redirect into a meta refresh.
+    return ['explore', 'blog', 'category/:code'].flatMap((path) => [
+      { source: `/${path}/page/1`, destination: `/${path}`, permanent: true },
+      { source: `/en/${path}/page/1`, destination: `/${path}`, permanent: true },
+      {
+        source: `/:locale(cn|tw|jp|de|es|fr|pt|ru)/${path}/page/1`,
+        destination: `/:locale/${path}`,
+        permanent: true,
+      },
+    ]);
+  },
   env: {
     NEXT_BASE_API: process.env.NEXT_BASE_API,
   },

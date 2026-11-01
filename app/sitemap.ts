@@ -1,15 +1,18 @@
 import { type MetadataRoute } from 'next';
-import { createClient } from '@supabase/supabase-js';
+import type { Database } from '@/db/supabase/types';
 import { locales } from '@/i18n';
+import { createClient } from '@supabase/supabase-js';
 
 import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE, EXPLORE_PAGE_SIZE, InfoPageSize } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
-import type { Database } from '@/db/supabase/types';
+import fetchAllRows from '@/lib/fetch-all-rows';
+
+export const revalidate = 3600;
 
 type RouteConfig = {
   path: string;
-  lastModified: Date;
+  lastModified?: Date;
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority: number;
 };
@@ -20,13 +23,13 @@ function normalizeUrl(baseUrl: string, locale: string, path: string): string {
   return `${baseUrl}${localePath}${routePath}`.replace(/([^:]\/)\/+/g, '$1');
 }
 
-function safeDate(value?: string | null, fallback?: Date): Date {
-  if (!value) return fallback || new Date();
+function safeDate(value?: string | null): Date | undefined {
+  if (!value) return undefined;
   const parsed = new Date(value);
-  return Number.isNaN(parsed.getTime()) ? fallback || new Date() : parsed;
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed;
 }
 
-function buildStaticRoutes(now: Date): RouteConfig[] {
+function buildStaticRoutes(): RouteConfig[] {
   const latestBlogModified = BLOG_POSTS.length
     ? new Date(
         Math.max(
@@ -36,21 +39,21 @@ function buildStaticRoutes(now: Date): RouteConfig[] {
           }),
         ),
       )
-    : now;
+    : undefined;
 
   const baseRoutes: RouteConfig[] = [
-    { path: '', lastModified: now, changeFrequency: 'daily', priority: 1 },
-    { path: 'explore', lastModified: now, changeFrequency: 'daily', priority: 1 },
-    { path: 'submit', lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { path: 'startup', lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    { path: '', changeFrequency: 'daily', priority: 1 },
+    { path: 'explore', changeFrequency: 'daily', priority: 1 },
+    { path: 'submit', changeFrequency: 'monthly', priority: 0.8 },
+    { path: 'startup', changeFrequency: 'daily', priority: 0.8 },
     { path: 'blog', lastModified: latestBlogModified, changeFrequency: 'weekly', priority: 0.9 },
-    { path: 'privacy-policy', lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
-    { path: 'terms-of-service', lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { path: 'privacy-policy', changeFrequency: 'yearly', priority: 0.3 },
+    { path: 'terms-of-service', changeFrequency: 'yearly', priority: 0.3 },
   ];
 
   const blogPostRoutes: RouteConfig[] = BLOG_POSTS.map((post) => ({
     path: `blog/${post.slug}`,
-    lastModified: safeDate(post.date, latestBlogModified),
+    lastModified: safeDate(post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
@@ -87,89 +90,60 @@ function toSitemap(routes: RouteConfig[], baseUrl: string): MetadataRoute.Sitema
   return Array.from(unique.values()).sort((a, b) => a.url.localeCompare(b.url));
 }
 
-async function fetchDynamicRoutes(now: Date): Promise<RouteConfig[]> {
+async function fetchDynamicRoutes(): Promise<RouteConfig[]> {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
   if (!supabaseUrl || !supabaseAnonKey) {
-    return [];
+    throw new Error('Sitemap requires Supabase configuration');
   }
 
+  // Refresh source data along with the hourly sitemap snapshot.
   const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-    },
+    auth: { autoRefreshToken: false, persistSession: false },
+    global: { fetch: (input, init) => fetch(input, { ...init, next: { revalidate: 3600 } }) },
   });
 
-  const [{ data: webNames }, { data: categories }, { count: totalWebCount }] = await Promise.all([
-    supabase.from('web_navigation').select('name,collection_time').neq('name', ''),
-    supabase.from('navigation_category').select('name,create_time').neq('name', ''),
-    supabase.from('web_navigation').select('*', { count: 'exact', head: true }),
+  const [tools, categories] = await Promise.all([
+    fetchAllRows((from, to) =>
+      supabase.from('web_navigation').select('name,category_name', { count: 'exact' }).order('id').range(from, to),
+    ),
+    fetchAllRows((from, to) =>
+      supabase.from('navigation_category').select('name', { count: 'exact' }).order('id').range(from, to),
+    ),
   ]);
 
-  const aiRoutes: RouteConfig[] =
-    webNames?.map((item) => ({
-      path: `ai/${encodeURIComponent(item.name)}`,
-      lastModified: safeDate(item.collection_time, now),
+  const routes: RouteConfig[] = tools
+    .filter((tool) => tool.name)
+    .map((tool) => ({
+      path: `ai/${encodeURIComponent(tool.name)}`,
       changeFrequency: 'weekly',
       priority: 0.7,
-    })) || [];
+    }));
+  const categoryCounts = new Map<string, number>();
+  tools.forEach((tool) => {
+    if (tool.category_name) categoryCounts.set(tool.category_name, (categoryCounts.get(tool.category_name) || 0) + 1);
+  });
 
-  const categoryRoutes: RouteConfig[] =
-    categories?.map((item) => ({
-      path: `category/${encodeURIComponent(item.name)}`,
-      lastModified: safeDate(item.create_time, now),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    })) || [];
-
-  const categoryPaginationBatches = await Promise.all(
-    (categories || []).map(async (category) => {
-      const { count } = await supabase
-        .from('web_navigation')
-        .select('*', { count: 'exact', head: true })
-        .eq('category_name', category.name);
-
-      const totalPages = Math.ceil((count || 0) / InfoPageSize);
-      const pages: RouteConfig[] = [];
-      for (let i = 2; i <= totalPages; i += 1) {
-        pages.push({
-          path: `category/${encodeURIComponent(category.name)}/page/${i}`,
-          lastModified: now,
-          changeFrequency: 'daily',
-          priority: 0.6,
-        });
+  categories
+    .filter((category) => category.name)
+    .forEach((category) => {
+      const path = `category/${encodeURIComponent(category.name)}`;
+      routes.push({ path, changeFrequency: 'daily', priority: 0.8 });
+      const totalPages = Math.ceil((categoryCounts.get(category.name) || 0) / InfoPageSize);
+      for (let page = 2; page <= totalPages; page += 1) {
+        routes.push({ path: `${path}/page/${page}`, changeFrequency: 'daily', priority: 0.6 });
       }
-      return pages;
-    }),
-  );
-
-  const categoryPaginationRoutes = categoryPaginationBatches.flat();
-
-  const explorePaginationRoutes: RouteConfig[] = [];
-  const totalExplorePages = Math.ceil((totalWebCount || 0) / EXPLORE_PAGE_SIZE);
-  for (let i = 2; i <= totalExplorePages; i += 1) {
-    explorePaginationRoutes.push({
-      path: `explore/page/${i}`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.7,
     });
-  }
 
-  return [...aiRoutes, ...categoryRoutes, ...categoryPaginationRoutes, ...explorePaginationRoutes];
+  const totalExplorePages = Math.ceil(tools.length / EXPLORE_PAGE_SIZE);
+  for (let page = 2; page <= totalExplorePages; page += 1) {
+    routes.push({ path: `explore/page/${page}`, changeFrequency: 'daily', priority: 0.7 });
+  }
+  return routes;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-  const baseUrl = BASE_URL || 'https://toolsify.ai';
-  const staticRoutes = buildStaticRoutes(now);
-
-  try {
-    const dynamicRoutes = await fetchDynamicRoutes(now);
-    return toSitemap([...staticRoutes, ...dynamicRoutes], baseUrl);
-  } catch {
-    return toSitemap(staticRoutes, baseUrl);
-  }
+  // Throw on failures so ISR retains its last successful snapshot, never a partial sitemap.
+  const dynamicRoutes = await fetchDynamicRoutes();
+  return toSitemap([...buildStaticRoutes(), ...dynamicRoutes], BASE_URL);
 }

@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { RevalidateOneHour } from '@/lib/constants';
 import { buildPageMetadata } from '@/lib/seo';
+import { formatCurrentMonth } from '@/lib/utils/timeUtils';
 
 import ExploreList from './ExploreList';
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return buildPageMetadata({
     locale,
     path: '/explore',
-    title: t('title'),
+    title: t('title', { year: new Date().getFullYear(), month: formatCurrentMonth(locale) }),
     description: t('description'),
     keywords: t('keywords'),
   });

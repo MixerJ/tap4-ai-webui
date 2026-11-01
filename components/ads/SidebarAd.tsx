@@ -1,5 +1,7 @@
 'use client';
 
+import isAdConfigured from '@/lib/adsense-config';
+
 import AdSense from './AdSense';
 
 interface SidebarAdProps {
@@ -8,6 +10,8 @@ interface SidebarAdProps {
 }
 
 export default function SidebarAd({ adSlot, className = '' }: SidebarAdProps) {
+  if (!isAdConfigured(adSlot)) return null;
+
   return (
     <div className={`ad-shell ad-shell-sidebar sticky top-24 ${className}`}>
       <div className='ad-shell-label'>Advertisement</div>

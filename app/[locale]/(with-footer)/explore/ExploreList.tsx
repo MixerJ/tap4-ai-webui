@@ -1,10 +1,13 @@
+import { cache } from 'react';
+import { notFound } from 'next/navigation';
 import { createClient } from '@/db/supabase/server';
 import { WebNavigation } from '@/db/supabase/types';
+import { getLanguageTagByLocale } from '@/i18n';
 
 import { EXPLORE_PAGE_SIZE } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
+import parsePageNumber from '@/lib/pagination';
 import { getLocalizedPath } from '@/lib/seo';
-import { getLanguageTagByLocale } from '@/i18n';
 import SearchForm from '@/components/home/SearchForm';
 import BasePagination from '@/components/page/BasePagination';
 import StructuredData from '@/components/seo/StructuredData';
@@ -12,24 +15,41 @@ import WebNavCardList from '@/components/webNav/WebNavCardList';
 
 import { TagList } from '../(home)/Tag';
 
+// Shared by metadata and rendering so invalid pages fail before streaming starts.
+export const validateExplorePage = cache(async (currentPage: number) => {
+  const supabase = createClient();
+  const { count, error } = await supabase.from('web_navigation').select('*', { count: 'exact', head: true });
+  if (error || count === null) throw new Error('Unable to count AI tools');
+  if (currentPage > Math.ceil(count / EXPLORE_PAGE_SIZE)) notFound();
+  return count;
+});
+
 export default async function ExploreList({ locale, pageNum }: { locale: string; pageNum?: string }) {
   const supabase = createClient();
-  const currentPage = pageNum ? Number(pageNum) : 1;
+  const currentPage = pageNum === undefined ? 1 : parsePageNumber(pageNum);
+  if (currentPage === null) notFound();
+
+  if (currentPage > 1) await validateExplorePage(currentPage);
 
   // start and end
   const start = (currentPage - 1) * EXPLORE_PAGE_SIZE;
   const end = start + EXPLORE_PAGE_SIZE - 1;
 
-  const [{ data: categoryList }, { data: navigationList, count }] = await Promise.all([
-    supabase.from('navigation_category').select('id, name'),
-    supabase
-      .from('web_navigation')
-      .select('id, name, thumbnail_url, title, url, content', { count: 'exact' })
-      .order('collection_time', { ascending: false })
-      .range(start, end),
-  ]);
+  const [{ data: categoryList, error: categoryError }, { data: navigationList, count, error: navigationError }] =
+    await Promise.all([
+      supabase.from('navigation_category').select('id, name'),
+      supabase
+        .from('web_navigation')
+        .select('id, name, thumbnail_url, title, url, content', { count: 'exact' })
+        .order('collection_time', { ascending: false })
+        .range(start, end),
+    ]);
+  if (categoryError || navigationError) throw new Error('Unable to load AI tools');
+  if (currentPage > 1 && currentPage > Math.ceil((count || 0) / EXPLORE_PAGE_SIZE)) notFound();
   const categories = (categoryList ?? []) as unknown as Array<{ id: number; name: string }>;
-  const navItems = (navigationList ?? []) as unknown as Array<Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>>;
+  const navItems = (navigationList ?? []) as unknown as Array<
+    Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>
+  >;
   const siteUrl = BASE_URL || 'https://toolsify.ai';
   const languageTag = getLanguageTagByLocale(locale);
   const explorePath = currentPage > 1 ? `/explore/page/${currentPage}` : '/explore';

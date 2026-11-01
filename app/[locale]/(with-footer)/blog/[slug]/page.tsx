@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
       <div className='relative mx-auto w-full max-w-[1320px] px-5 py-10 lg:px-6 lg:py-16'>
         {/* 返回链接 */}
         <Link
-          href='/blog'
+          href={getLocalizedPath(locale, '/blog')}
           className='mb-8 inline-flex items-center gap-2 text-sm text-white/60 transition-colors duration-200 hover:text-white lg:text-base'
         >
           <ArrowLeft className='size-4' />
@@ -181,7 +181,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
 
             {/* 文章内容 */}
             <div className='prose prose-lg prose-invert max-w-none'>
-              <MarkdownProse markdown={content} className='text-white/80' />
+              <MarkdownProse locale={locale} markdown={content} className='text-white/80' />
             </div>
 
             {articleEndAdSlot && (
@@ -232,7 +232,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
         {/* 导航到其他文章 */}
         <div className='mt-12'>
           <Link
-            href='/blog'
+            href={getLocalizedPath(locale, '/blog')}
             className='inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-white/70 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white lg:text-base'
           >
             <ArrowLeft className='size-4' />
