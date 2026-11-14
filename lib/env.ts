@@ -1,4 +1,5 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || `https://${process.env.VERCEL_URL}`;
+// Deployment hostnames must never become the public canonical domain by accident.
+export const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://toolsify.ai').replace(/\/+$/, '');
 
 export const { GOOGLE_ADSENSE_URL, CONTACT_US_EMAIL } = process.env as Record<string, string>;
 

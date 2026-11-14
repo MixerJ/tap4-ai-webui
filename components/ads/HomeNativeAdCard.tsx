@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import isAdConfigured from '@/lib/adsense-config';
+
 import AdSense from './AdSense';
 
 interface HomeNativeAdCardProps {
@@ -12,8 +14,10 @@ export default function HomeNativeAdCard({ adSlot }: HomeNativeAdCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isUnfilled, setIsUnfilled] = useState(false);
 
+  const configured = isAdConfigured(adSlot);
+
   useEffect(() => {
-    if (!containerRef.current) {
+    if (!configured || !containerRef.current) {
       return undefined;
     }
 
@@ -34,9 +38,9 @@ export default function HomeNativeAdCard({ adSlot }: HomeNativeAdCardProps) {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [configured]);
 
-  if (!adSlot || isUnfilled) {
+  if (!configured || isUnfilled) {
     return null;
   }
 

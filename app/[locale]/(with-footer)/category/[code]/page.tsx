@@ -17,7 +17,11 @@ export const revalidate = RevalidateOneHour * 6;
 
 export async function generateMetadata({ params }: { params: { locale: string; code: string } }): Promise<Metadata> {
   const supabase = createClient();
-  const { data: categoryList } = await supabase.from('navigation_category').select('title').eq('name', params.code);
+  const { data: categoryList, error: categoryError } = await supabase
+    .from('navigation_category')
+    .select('title')
+    .eq('name', params.code);
+  if (categoryError) throw new Error('Unable to load AI tool category');
   const category = categoryList?.[0] as unknown as { title: string } | undefined;
 
   if (!category) {
@@ -35,19 +39,22 @@ export async function generateMetadata({ params }: { params: { locale: string; c
 
 export default async function Page({ params }: { params: { locale: string; code: string } }) {
   const supabase = createClient();
-  const [{ data: categoryList }, { data: navigationList, count }] = await Promise.all([
-    supabase.from('navigation_category').select('title').eq('name', params.code),
-    supabase
-      .from('web_navigation')
-      .select('id, name, thumbnail_url, title, url, content', { count: 'exact' })
-      .eq('category_name', params.code)
-      .range(0, InfoPageSize - 1),
-  ]);
+  const [{ data: categoryList, error: categoryError }, { data: navigationList, count, error: navigationError }] =
+    await Promise.all([
+      supabase.from('navigation_category').select('title').eq('name', params.code),
+      supabase
+        .from('web_navigation')
+        .select('id, name, thumbnail_url, title, url, content', { count: 'exact' })
+        .eq('category_name', params.code)
+        .range(0, InfoPageSize - 1),
+    ]);
+  if (categoryError) throw new Error('Unable to load AI tool category');
   const category = categoryList?.[0] as unknown as { title: string } | undefined;
 
   if (!category) {
     notFound();
   }
+  if (navigationError) throw new Error('Unable to load AI tools');
   const navItems = (navigationList ?? []) as unknown as Array<
     Pick<WebNavigation, 'id' | 'name' | 'thumbnail_url' | 'title' | 'url' | 'content'>
   >;

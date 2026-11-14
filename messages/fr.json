@@ -216,6 +216,7 @@
     }
   },
   "Explore": {
+    "seoHeading": "Explorez les outils d’IA par catégorie",
     "title": "Découvrez les meilleurs outils AI de {month} {year}",
     "subTitle": "Découvrez les meilleurs outils AI de {month} {year}. Trouvez vos outils AI préférés dans le Répertoire des outils AI de Toolsify. La liste des outils AI est mise à jour quotidiennement par GPT-4o."
   },

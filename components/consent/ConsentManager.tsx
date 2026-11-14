@@ -51,6 +51,7 @@ export default function ConsentManager() {
       preferences: prefs,
     };
     localStorage.setItem(CONSENT_COOKIE_NAME, JSON.stringify(consentData));
+    window.dispatchEvent(new Event('toolsify:consent-change'));
   };
 
   useEffect(() => {

@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import Pagination from 'rc-pagination';
 
+import { getLocalizedPath } from '@/lib/seo';
 import { cn } from '@/lib/utils';
 import { objToQueryStr } from '@/lib/utils/stringUtils';
 
@@ -103,6 +105,7 @@ export default function BasePagination({
   className,
 }: BasePaginationProps) {
   const searchParams = useSearchParams();
+  const locale = useLocale();
 
   const getRoute = (nextNum: number): string => {
     let routeStr = `${route}${subRoute}/${nextNum}`;
@@ -116,7 +119,7 @@ export default function BasePagination({
       searchParamsObj[key] = searchParams.get(key);
     });
 
-    return objToQueryStr(routeStr, searchParamsObj);
+    return objToQueryStr(getLocalizedPath(locale, routeStr), searchParamsObj);
   };
 
   return (

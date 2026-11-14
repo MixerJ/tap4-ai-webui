@@ -30,12 +30,14 @@ type WebsiteDetail = {
 
 const getWebsiteDetail = cache(async (websiteName: string) => {
   const supabase = createClient();
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from('web_navigation')
     .select('name,title,content,url,thumbnail_url,detail,category_name,star_rating,collection_time,website_data')
     .eq('name', websiteName)
     .limit(1)
     .maybeSingle();
+
+  if (error) throw new Error('Unable to load the requested tool', { cause: error });
 
   return data as unknown as WebsiteDetail | null;
 });
@@ -105,23 +107,8 @@ export default async function Page({
     sameAs: data.url,
     image: data.thumbnail_url || undefined,
     inLanguage: languageTag,
-    provider: {
-      '@type': 'Organization',
-      name: 'Toolsify AI',
-      url: siteUrl,
-    },
     areaServed: 'Worldwide',
   };
-
-  if (data.star_rating && data.star_rating > 0) {
-    softwareJsonLd.aggregateRating = {
-      '@type': 'AggregateRating',
-      ratingValue: data.star_rating,
-      bestRating: 5,
-      worstRating: 1,
-      ratingCount: 1,
-    };
-  }
 
   if (data.collection_time) {
     softwareJsonLd.datePublished = data.collection_time;

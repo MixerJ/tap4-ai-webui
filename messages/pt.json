@@ -221,6 +221,7 @@
     }
   },
   "Explore": {
+    "seoHeading": "Explore ferramentas de IA por categoria",
     "title": "Descubra as Melhores Ferramentas de IA {month} {year}",
     "subTitle": "Descubra as melhores ferramentas de IA de {month} {year}. Obtenha suas ferramentas de IA favoritas no Diretório de Ferramentas de IA do Toolsify. A lista de ferramentas de IA é atualizada diariamente pelo GPT-4o."
   },
