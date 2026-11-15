@@ -76,7 +76,7 @@ async function main() {
   const original = await read('/cn/ai/toolify-ai');
   assert.ok(original.html.includes('该工具介绍目前以原文显示。'));
   assert.ok(original.html.includes('rel="canonical" href="https://toolsify.ai/ai/toolify-ai"'));
-  assert.ok(!/hreflang=/i.test(original.html), 'no invented translation alternates');
+  assert.ok(!/<link\b[^>]*hreflang=/i.test(original.html), 'no invented translation alternates');
   assert.equal(original.schemas.find((s) => s['@type'] === 'SoftwareApplication').inLanguage, undefined);
   const sitemapResponse = await fetch(new URL('/sitemap.xml', base));
   assert.equal(sitemapResponse.status, 200);

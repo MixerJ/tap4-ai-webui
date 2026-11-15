@@ -16,6 +16,7 @@ import ResponsiveAd from '@/components/ads/ResponsiveAd';
 import BaseImage from '@/components/image/BaseImage';
 import MarkdownProse from '@/components/MarkdownProse';
 import StructuredData from '@/components/seo/StructuredData';
+import { Link } from '@/app/navigation';
 
 type WebsiteDetail = {
   name: string;
@@ -141,9 +142,9 @@ export default async function Page({
       {content.isFallback && locale !== 'en' && (
         <p className='px-6 pt-5 text-sm text-white/70'>
           {t('originalLanguageNotice')}{' '}
-          <a className='underline' href={getLocalizedPath('en', `/ai/${websiteName}`)}>
+          <Link className='underline' href={`/ai/${websiteName}`} locale='en'>
             {t('viewOriginal')}
-          </a>
+          </Link>
         </p>
       )}
       <div className='flex flex-col px-6 py-5 lg:h-[323px] lg:flex-row lg:justify-between lg:px-0 lg:py-10'>
