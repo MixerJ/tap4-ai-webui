@@ -4,462 +4,239 @@ const postGemini25ProGettingStartedGuide: BlogPost = {
   id: '3105',
   slug: 'gemini-2-5-pro-getting-started-guide',
   title: {
-    en: 'Gemini 2.5 Pro Beginner Guide: Search, Create, and Analyze',
-    cn: 'Gemini 2.5 Pro 上手指南：搜索、创作与数据分析实战',
-    tw: 'Gemini 2.5 Pro 上手指南：搜尋、創作與資料分析實戰',
-    de: 'Gemini 2.5 Pro Einstieg: Suchen, Erstellen und Analysieren',
-    es: 'Guía de inicio de Gemini 2.5 Pro: buscar, crear y analizar',
-    fr: 'Guide de démarrage Gemini 2.5 Pro : rechercher, créer et analyser',
-    jp: 'Gemini 2.5 Pro入門ガイド：検索、作成、分析の実践',
-    pt: 'Guia inicial Gemini 2.5 Pro: pesquisar, criar e analisar',
-    ru: 'Руководство по началу работы с Gemini 2.5 Pro: поиск, создание и анализ',
+    en: 'Gemini 2.5 Pro: Historical Guide and Migration Checks',
+    cn: 'Gemini 2.5 Pro 历史入门与迁移检查',
+    tw: 'Gemini 2.5 Pro 歷史入門與遷移檢查',
+    de: 'Gemini 2.5 Pro: Historischer Einstieg und Migrationsprüfung',
+    es: 'Gemini 2.5 Pro: guía histórica y revisión de migración',
+    fr: 'Gemini 2.5 Pro : guide historique et vérifications de migration',
+    jp: 'Gemini 2.5 Pro の旧ガイドと移行時の確認事項',
+    pt: 'Gemini 2.5 Pro: guia histórico e revisão de migração',
+    ru: 'Gemini 2.5 Pro: историческое руководство и проверка миграции',
   },
   excerpt: {
-    en: 'A practical developer advocate walkthrough for getting started with the Gemini 2.5 Pro API — from key setup to your first working project, with code samples and troubleshooting tips.',
-    cn: '开发者布道师视角的 Gemini 2.5 Pro API 上手教程：从密钥配置到第一个可运行项目，附代码示例和排错技巧。',
-    tw: '開發者布道師視角的 Gemini 2.5 Pro API 上手教程：從密鑰配置到第一個可運行專案，附程式碼範例和排錯技巧。',
-    de: 'Ein praktischer Developer-Advocate-Leitfaden für den Einstieg in die Gemini 2.5 Pro API — mit Code-Beispielen und Fehlerbehebungstipps.',
-    es: 'Guía práctica de un developer advocate para empezar con la API de Gemini 2.5 Pro — con ejemplos de código y consejos de solución de problemas.',
-    fr: "Guide pratique d'un developer advocate pour débuter avec l'API Gemini 2.5 Pro — avec exemples de code et conseils de dépannage.",
-    jp: 'デベロッパーアドボケイトによるGemini 2.5 Pro API入門：キーセットアップから最初のプロジェクトまで。コードサンプルとトラブルシューティング付き。',
-    pt: 'Guia prático de um developer advocate para começar com a API do Gemini 2.5 Pro — com exemplos de código e dicas de solução de problemas.',
-    ru: 'Практическое руководство от developer advocate по началу работы с API Gemini 2.5 Pro — с примерами кода и советами по устранению неполадок.',
+    en: 'Gemini 2.5 Pro is deprecated. Learn how to review an older integration and evaluate an available replacement with document, table, and grounding tests.',
+    cn: 'Gemini 2.5 Pro 已弃用。通过文档摘要、表格计算与来源核验，评估旧集成并选择当前可用的替代模型。',
+    tw: 'Gemini 2.5 Pro 已棄用。利用文件摘要、表格計算與來源核驗，評估舊整合並選擇目前可用的替代模型。',
+    de: 'Die ältere Gemini-2.5-Pro-Integration anhand von Dokumenten, Berechnungen und Quellen prüfen und einen verfügbaren Nachfolger bewerten.',
+    es: 'Revisa una integración antigua de Gemini 2.5 Pro y evalúa un sustituto disponible mediante documentos, cálculos y comprobación de fuentes.',
+    fr: 'Évaluer une ancienne intégration Gemini 2.5 Pro et un remplacement disponible avec des documents, des calculs et une vérification des sources.',
+    jp: '非推奨となった Gemini 2.5 Pro の既存連携を見直し、文書、表計算、出典確認で代替モデルを評価します。',
+    pt: 'Revise uma integração antiga do Gemini 2.5 Pro e avalie um substituto disponível com documentos, cálculos e verificação de fontes.',
+    ru: 'Как оценить старую интеграцию Gemini 2.5 Pro и доступную замену с помощью документов, расчётов и проверки источников.',
   },
   content: {
-    en: `# Gemini 2.5 Pro Beginner Guide: Search, Create, and Analyze
+    en: `# Gemini 2.5 Pro: Historical Guide and Migration Checks
 
-## Your First Hour with Gemini 2.5 Pro
+## Start with availability, not an old tutorial
 
-If you've got 60 minutes and want to go from zero to a working Gemini 2.5 Pro integration, this guide is for you. The fastest path is not reading every API page first. It is getting one small request working, then understanding the pieces you just used.
+Gemini 2.5 Pro is deprecated; new projects should choose an available model after checking Google's deprecation notice. This page remains a guide to evaluating an older integration, not an instruction to select 2.5 Pro in AI Studio. Record the date, project, model identifier, and API used by the existing application. A successful historical example does not establish access for a new account. Keep model selection in configuration so testing a replacement does not require rewriting the application.
 
-I'm not going to bury you in theory. We'll get an API key, make our first call, build something useful, and handle the gotchas that trip up most newcomers. By the end, you'll have a working project and enough understanding to start building your own ideas.
+## Establish a small document baseline
 
-## Step 1: Getting Your API Key (5 minutes)
+Begin with a document you can inspect manually: a short report with dated claims and a clearly labelled table. Ask for a summary that separates supplied facts from missing information and identifies the supporting section for each conclusion. Save the input and a human-written reference answer. Repeat with one page deliberately omitted. A useful system should acknowledge the gap rather than silently reconstruct missing material. Do not upload confidential files merely to reproduce a public tutorial.
 
-Head to Google AI Studio at aistudio.google.com. If you've got a Google account, you're already halfway there. Click "Get API Key" in the left sidebar, then "Create API Key." You can either create a new Google Cloud project or use an existing one.
+## Separate analysis from verification
 
-A few things that trip people up at this stage:
+For a spreadsheet task, request column definitions and a proposed calculation before asking for a conclusion. Compute totals and percentages in your own code, then compare the generated explanation with those verified values. For research questions, check whether the configured request actually uses a supported search or grounding feature. Inspect cited pages yourself: a citation can be irrelevant or outdated even when it opens successfully. Neither confident wording nor a plausible URL proves that a claim was checked.
 
-The free tier gives you 60 requests per minute for Gemini 2.5 Pro, which is plenty for development. You won't need to set up billing unless you're going to production or hitting rate limits during testing. That said, if you're building something serious, link a billing account early — the free tier has a daily request cap that isn't well documented, and hitting it mid-debug is frustrating.
+## Test the replacement as a new dependency
 
-Store your API key in an environment variable, not in your code. This isn't optional advice — it's the difference between a secure project and a leaked credential in your GitHub history. Create a \`.env\` file:
+Use the current official setup instructions for authentication and SDK usage instead of copying an obsolete model example. Keep credentials on the server and test one non-sensitive request first. Evaluate the replacement with the same document, omitted-page case, arithmetic checks, and follow-up questions. Log errors, output validity, latency, and actual usage. Set acceptance criteria for your application; this article does not promise a free quota, a fixed response time, or benchmark superiority. Preserve the original fixtures and document the chosen replacement before switching production traffic.
 
-\`\`\`
-GEMINI_API_KEY=your_key_here
-\`\`\`
+## Sources
 
-And add \`.env\` to your \`.gitignore\`. API keys end up in public repos more often than teams want to admit. Google may rotate compromised keys, but the hassle of updating your configuration isn't worth the 10 seconds you save by hardcoding.
-
-## Step 2: Your First API Call (10 minutes)
-
-Let's keep it simple. We'll use Node.js with the official SDK, though Python works just as well. Install the package:
-
-\`\`\`bash
-npm install @google/genai
-\`\`\`
-
-Here's your first script — save it as \`index.mjs\`:
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "Explain the difference between REST and GraphQL in two paragraphs.",
-});
-
-console.log(response.text);
-\`\`\`
-
-Run it with \`node --env-file=.env index.mjs\` and you should see a coherent explanation within about 2-4 seconds. If you get an authentication error, double-check your API key and make sure the \`.env\` file is loading correctly — \`--env-file\` requires Node.js 20.6+.
-
-If you're using Python instead, the equivalent is:
-
-\`\`\`python
-from google import genai
-
-client = genai.Client(api_key="your_key_here")
-response = client.models.generate_content(
-    model="gemini-2.5-pro",
-    contents="Explain the difference between REST and GraphQL in two paragraphs."
-)
-print(response.text)
-\`\`\`
-
-One thing to notice: the response includes the generated text plus metadata about token usage. Gemini 2.5 Pro charges $1.25 per million input tokens and $5 per million output tokens. A typical query like this uses about 150 input tokens and 200 output tokens — roughly $0.001 per call. You'd need to make a thousand calls to spend a dollar.
-
-## Step 3: Building a Document Analyzer (25 minutes)
-
-Let's build something actually useful. We'll create a tool that takes a PDF document, extracts its content, and generates a structured summary with key points. This uses Gemini 2.5 Pro's multimodal capabilities — specifically, its ability to process images (PDF pages rendered as images).
-
-First, install the PDF rendering library:
-
-\`\`\`bash
-npm install pdf2pic
-\`\`\`
-
-Here's the complete analyzer:
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-import { fromPath } from "pdf2pic";
-import fs from "fs";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-async function analyzeDocument(pdfPath) {
-  // Convert PDF pages to images
-  const converter = fromPath(pdfPath, {
-    density: 150,
-    saveFilename: "page",
-    format: "png",
-  });
-
-  const pageCount = 5; // adjust based on your document
-  const images = [];
-
-  for (let i = 1; i <= pageCount; i++) {
-    const result = await converter(i);
-    const imageData = fs.readFileSync(result.path, { encoding: "base64" });
-    images.push({
-      inlineData: {
-        mimeType: "image/png",
-        data: imageData,
-      },
-    });
-  }
-
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-pro",
-    contents: [
-      ...images,
-      {
-        text: "Analyze this document. Return a JSON object with: title, summary (2-3 sentences), keyPoints (array of strings), and documentType (one of: report, proposal, manual, article, other).",
-      },
-    ],
-    config: {
-      responseMimeType: "application/json",
-    },
-  });
-
-  const parsed = JSON.parse(response.text);
-  console.log(JSON.stringify(parsed, null, 2));
-  return parsed;
-}
-
-analyzeDocument("./sample.pdf");
-\`\`\`
-
-A few things worth noting about this code. We're using \`responseMimeType: "application/json"\` to force structured output — this is a Gemini-specific feature that guarantees valid JSON. Without it, you'd get JSON wrapped in markdown code blocks about 80% of the time, with the other 20% being free-form text that happens to mention JSON-like structures.
-
-The \`pdf2pic\` library converts PDF pages to PNG images. We're rendering at 150 DPI, which provides a good balance between image quality and API token cost. Higher DPI means more tokens consumed per page. For text-heavy documents, 150 DPI is sufficient. For documents with fine print or complex diagrams, bump it to 200.
-
-The base64 encoding increases the payload size, but Gemini handles the internal image processing efficiently. A typical A4 page at 150 DPI produces about 1-2K tokens of processed image data.
-
-## Step 4: Adding Search Grounding (10 minutes)
-
-One of Gemini 2.5 Pro's standout features is Google Search grounding — the ability to augment responses with real-time web search results. This is incredibly useful for keeping information current.
-
-Here's how to enable it:
-
-\`\`\`javascript
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-const response = await ai.models.generateContent({
-  model: "gemini-2.5-pro",
-  contents: "What are the latest features in React 19?",
-  config: {
-    tools: [{ googleSearch: {} }],
-  },
-});
-
-console.log(response.text);
-
-// Check grounding metadata
-if (response.candidates?.[0]?.groundingMetadata) {
-  const sources = response.candidates[0].groundingMetadata
-    .searchEntryPoint?.renderedContent;
-  console.log("\\nSources:", sources);
-}
-\`\`\`
-
-The grounding metadata tells you which search results informed the response. This is critical for trust — you can verify the sources rather than taking the model's word at face value. I recommend always displaying grounding sources to end users when using search-augmented responses.
-
-One gotcha: search grounding adds latency (typically 1-3 extra seconds) because the model needs to perform the search, process results, and synthesize a response. For real-time applications, consider caching search-grounded responses for 15-30 minutes.
-
-Another gotcha: search grounding may not be available in every region or account setup. If you're building for international users, test from the countries you actually support instead of assuming one successful local request proves global availability.
-
-## Step 5: Error Handling and Rate Limits (10 minutes)
-
-The API will fail. Plan for it. Here's an error handling pattern that covers the common cases:
-
-\`\`\`javascript
-async function generateWithRetry(prompt, maxRetries = 3) {
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-pro",
-        contents: prompt,
-      });
-      return response.text;
-    } catch (error) {
-      if (error.status === 429) {
-        // Rate limited — exponential backoff
-        const delay = Math.pow(2, attempt) * 1000;
-        console.log(\`Rate limited. Waiting \${delay}ms before retry \${attempt}...\`);
-        await new Promise((r) => setTimeout(r, delay));
-        continue;
-      }
-      if (error.status === 500 || error.status === 503) {
-        // Server error — retry with linear backoff
-        const delay = attempt * 2000;
-        console.log(\`Server error. Retrying in \${delay}ms...\`);
-        await new Promise((r) => setTimeout(r, delay));
-        continue;
-      }
-      // Non-retryable error
-      throw error;
-    }
-  }
-  throw new Error(\`Failed after \${maxRetries} retries\`);
-}
-\`\`\`
-
-The 429 (rate limit) and 500/503 (server errors) are the common transient failures worth handling first. The SDK may not cover every retry policy your product needs, so decide what your application should retry, what it should surface to the user, and what it should log for debugging.
-
-## What to Build Next
-
-You've got the basics. Here are three project ideas that build on what we covered:
-
-**Meeting notes summarizer.** Record a meeting as audio, transcribe it with Gemini's audio understanding, then generate structured notes with action items. Use the JSON output mode to get machine-parseable action items.
-
-**Screenshot-to-code converter.** Feed UI screenshots to Gemini 2.5 Pro and ask for React/Tailwind implementations. It won't be pixel-perfect, but it gets you 70-80% of the way there, which is a great starting point for refinement.
-
-**Content quality analyzer.** Build a tool that analyzes blog posts or marketing copy for readability, SEO structure, and tone consistency. Use search grounding to compare against top-ranking content for the same topic.
-
-Each of these projects exercises different parts of the API — multimodal input, structured output, search grounding, or combinations of all three. Start with whichever excites you most.
-
-The Gemini 2.5 Pro API is stable enough for production use as of March 2026, and the pricing is competitive. Don't overthink the setup — just start building. You'll learn more from one working prototype than from ten documentation pages.
-
-## A practical troubleshooting checklist
-
-When your first Gemini integration misbehaves, check the boring things first. Is the API key loaded from the environment you are actually running? Are you sending the same model name in development and staging? Did the request exceed file, context, or rate limits? Are you asking for JSON without validating the JSON? Did search grounding add latency that your UI was not designed to show?
-
-For a first production feature, use a narrow task such as document triage, source-grounded release-note summaries, or support ticket classification. Keep a cheaper model for routing and reserve Gemini 2.5 Pro for long-context reasoning or multimodal input. Display sources when using [Google Search grounding](https://ai.google.dev/gemini-api/docs/grounding), validate structured output, and log failures without storing unnecessary user data.
-
-One final habit helps more than any prompt template: save bad examples. Keep five prompts that produced weak answers, five files that were too large, and five user requests that needed clarification. Re-run them whenever you change the model, safety settings, or retrieval layer. A small regression set catches problems that a polished demo will hide.
-
-Helpful references include [Google AI Studio](https://aistudio.google.com/), the [Gemini API docs](https://ai.google.dev/gemini-api/docs), the [Google Gen AI SDK docs](https://ai.google.dev/gemini-api/docs/sdks), our [Gemini multimodal developer workflow guide](/blog/gemini-2-5-pro-multimodal-dev-workflows), and the broader [GPT-4 vs Claude vs Gemini comparison](/blog/gpt-4-vs-claude-vs-gemini-comparison).
-
-If your next step is model comparison, pair this tutorial with [Claude 4 vs GPT-5 for coding](/blog/claude-4-vs-gpt-5-code-benchmarks-2026) before you standardize on a single provider.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    cn: `# Gemini 2.5 Pro 历史入门与迁移检查
 
-    cn: `# Gemini 2.5 Pro 上手指南：搜索、创作与分析
+## 先确认可用性，再看旧教程
 
-这篇更新版文章围绕一个很实际的问题：Gemini 2.5 Pro API 的入门与落地不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+Gemini 2.5 Pro 已弃用，新项目应查看 Google 官方弃用说明后选择可用模型。本文保留的是旧集成的评估方法，不再指导新用户在 AI Studio 中选择 2.5 Pro。记录现有应用所用项目、模型标识、API 及检查日期。过去成功运行的示例，并不能证明新账号仍有权限。把模型选择放进配置，避免更换候选模型时必须重写应用。
 
-## 先判断使用场景
+## 用可人工核对的文档建立基线
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+先选择一份短报告，其中包含带日期的事实与清晰标注的表格。要求模型在摘要中区分原文事实和缺失信息，并给每个结论标出支持它的章节。保存输入，同时由人工撰写参考答案。随后故意删除一页，再执行相同任务。理想结果应明确说明缺少的材料，而不是默默补出内容。无需为了复现公开教程而上传客户文件；用脱敏样例即可检查主要流程。
 
-## 工作流建议
+## 将分析与核验分开
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+处理表格时，先让模型解释列含义和计划使用的计算，再要求结论。总额与百分比由自己的代码计算，然后核对生成说明是否与数值一致。处理资料检索时，应确认请求是否真的配置了受支持的搜索或来源关联功能。逐个打开引用页面，检查内容、日期和结论之间的关系。页面能够打开，也可能支持不了那句话；流畅表达和看似合理的网址都不能代替事实核验。
 
-## 选择标准
+## 把替代模型当作新依赖测试
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+鉴权和 SDK 使用以当前官方入门文档为准，不复制已经过时的模型示例。密钥保存在服务端，先跑一条不含敏感信息的请求。对候选模型重复同一份文档、缺页测试、算术核验及追问，记录错误、输出格式、延迟与实际用量。根据自己的应用要求设定验收标准。本文不承诺固定免费额度、响应速度或榜单优势。保存测试样例并记录选择依据，再切换生产流量。
 
-## 常见失败模式
+## 官方资料
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
-
-## 下一步
-
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    tw: `# Gemini 2.5 Pro 歷史入門與遷移檢查
 
-    tw: `# Gemini 2.5 Pro 上手指南：搜尋、創作與分析
+## 先確認可用性
 
-這篇更新版文章聚焦一個實務問題：Gemini 2.5 Pro API 的入門與落地不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+Gemini 2.5 Pro 已棄用，新專案應查閱 Google 官方棄用說明後選擇可用模型。本頁保留舊整合的評估方法，不再引導新使用者在 AI Studio 選擇 2.5 Pro。記錄現有應用程式使用的專案、模型識別碼、API 與查核日期。過去能執行的範例，不代表新帳號仍有相同權限。將模型選擇保存在設定中，讓更換候選模型不必重寫整個應用程式。
 
-## 先判斷使用場景
+## 建立可人工驗證的文件基準
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+選一份篇幅短、包含日期與明確表格標題的報告。要求摘要區分文件事實與缺少的資訊，並為各項結論指出對應章節。保存輸入，另外人工撰寫參考答案。接著刻意移除其中一頁，再執行同樣的任務。系統應指出缺漏，而不是自行補齊不存在的內容。使用去識別化資料即可驗證流程，不需要為了重現公開教學上傳客戶的機密文件。
 
-## 工作流建議
+## 分開分析和事實查核
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+表格任務先要求說明欄位與預計採用的計算方式，再產生結論。總額和百分比由自己的程式計算，並檢查生成文字是否符合已驗證的數字。研究問題則要確認請求是否實際設定了支援的搜尋或來源連結功能。逐一開啟引用資料，核對日期與內容是否支持結論。連結能正常開啟並不代表引用正確，自信的語氣也不等於已查證。
 
-## 選擇標準
+## 將替代模型當作新依賴驗收
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+驗證身分與使用 SDK 的方式以最新官方入門文件為準，避免直接照搬過時範例。金鑰放在伺服器，先執行不含敏感資料的小型請求。用相同文件、缺頁情境、算術檢查和追問評估替代模型，記錄錯誤、格式正確性、延遲及實際用量。驗收門檻來自自己的應用需求；本文不保證免費額度、固定速度或評測優勢。保留樣例與選型紀錄，再切換正式流量。
 
-## 常見失敗模式
+## 官方資料
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
-
-## 下一步
-
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    de: `# Gemini 2.5 Pro: Historischer Einstieg und Migrationsprüfung
 
-    de: `# Gemini 2.5 Pro Einstieg: Suchen, Erstellen und Analysieren
+## Zuerst die Verfügbarkeit prüfen
 
-Diese Fassung beantwortet eine praktische Frage: den Einstieg in die Gemini 2.5 Pro API sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+Gemini 2.5 Pro ist abgekündigt; neue Projekte sollten nach Prüfung von Googles Abkündigungshinweisen ein verfügbares Modell wählen. Dieser Artikel dient zur Bewertung älterer Integrationen und fordert nicht dazu auf, 2.5 Pro in AI Studio auszuwählen. Notieren Sie Datum, Projekt, Modellkennung und verwendete API. Ein früher funktionierendes Beispiel belegt keinen Zugang für ein neues Konto. Halten Sie die Modellwahl konfigurierbar, damit ein Ersatz ohne Umbau der Anwendung getestet werden kann.
 
-## Erst den Anwendungsfall klären
+## Einen Dokumentvergleich vorbereiten
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+Verwenden Sie einen kurzen Bericht mit datierten Aussagen und einer klar beschrifteten Tabelle. Lassen Sie eine Zusammenfassung erstellen, die belegte Fakten von fehlenden Angaben trennt und für jede Schlussfolgerung einen Abschnitt nennt. Speichern Sie die Eingabe und eine selbst verfasste Referenzantwort. Entfernen Sie anschließend absichtlich eine Seite. Das System sollte die Lücke erkennen, statt fehlenden Inhalt unbemerkt zu ergänzen. Für diesen Test reichen anonymisierte Unterlagen; vertrauliche Kundendokumente sind nicht erforderlich.
 
-## Ein belastbarer Workflow
+## Analyse und Überprüfung trennen
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+Bei Tabellen soll das Modell zunächst Spalten und geplante Rechenwege erläutern. Berechnen Sie Summen und Prozentwerte selbst im Programm und vergleichen Sie die Erklärung mit diesen Ergebnissen. Prüfen Sie bei Recherchefragen, ob die Anfrage tatsächlich eine unterstützte Such- oder Quellenfunktion verwendet. Öffnen Sie zitierte Seiten und kontrollieren Sie Aussage, Datum und Zusammenhang. Ein erreichbarer Link kann trotzdem irrelevant sein. Sprachliche Sicherheit ersetzt keinen Beleg.
 
-## Auswahlkriterien
+## Den Ersatz kontrolliert einführen
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+Verwenden Sie aktuelle offizielle Anleitungen für Authentifizierung und SDK, keine veraltete Modellvorlage. Bewahren Sie Zugangsdaten serverseitig auf und beginnen Sie mit einer unkritischen Anfrage. Testen Sie denselben Bericht, fehlende Seiten, Berechnungen und Rückfragen mit dem Ersatzmodell. Erfassen Sie Fehler, Ausgabeformat, Laufzeit und tatsächlichen Verbrauch. Legen Sie eigene Abnahmekriterien fest; kostenlose Kontingente oder feste Antwortzeiten werden hier nicht zugesichert. Bewahren Sie Testfälle und Auswahlbegründung auf, bevor Produktionsverkehr umgestellt wird.
 
-## Häufige Fehler
+## Offizielle Quellen
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
-
-## Nächster Schritt
-
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    es: `# Gemini 2.5 Pro: guía histórica y revisión de migración
 
-    es: `# Guía de Gemini 2.5 Pro: buscar, crear y analizar
+## Comprobar la disponibilidad primero
 
-Esta versión revisada responde a una pregunta práctica: la adopción práctica de la API de Gemini 2.5 Pro no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+Gemini 2.5 Pro está obsoleto; los proyectos nuevos deben consultar el aviso de retirada de Google y elegir un modelo disponible. Esta página explica cómo evaluar una integración antigua, no cómo seleccionar 2.5 Pro en AI Studio. Registra la fecha, el proyecto, el identificador del modelo y la API utilizada. Un ejemplo que funcionó antes no demuestra acceso para una cuenta nueva. Mantén la selección del modelo en la configuración para probar sustitutos sin rehacer la aplicación.
 
-## Empieza por el caso de uso
+## Crear una referencia documental
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+Elige un informe breve con afirmaciones fechadas y una tabla bien rotulada. Pide un resumen que separe hechos proporcionados de información ausente y señale la sección que respalda cada conclusión. Guarda la entrada y escribe una respuesta de referencia. Después elimina una página deliberadamente y repite la tarea. El sistema debería reconocer la ausencia en lugar de inventar el contenido. Utiliza documentos anonimizados; no hace falta subir material confidencial para reproducir un tutorial público.
 
-## Flujo recomendado
+## Separar análisis y comprobación
 
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
+Para una hoja de cálculo, solicita primero la definición de columnas y el cálculo propuesto. Calcula totales y porcentajes con tu propio código y contrasta la explicación con esos resultados. En preguntas de investigación, confirma que la solicitud utiliza realmente una función de búsqueda o fundamentación admitida. Abre las páginas citadas y revisa fecha, contenido y relación con la afirmación. Un enlace accesible puede ser irrelevante; un tono convincente tampoco constituye una verificación.
 
-## Criterios de decisión
+## Evaluar el sustituto
 
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
+Sigue las instrucciones oficiales actuales para autenticación y SDK, evitando copiar ejemplos obsoletos. Guarda las credenciales en el servidor y prueba una solicitud sin datos sensibles. Evalúa el nuevo modelo con el mismo documento, la página omitida, las operaciones y las preguntas de seguimiento. Registra errores, formato, latencia y consumo real. Establece criterios propios: aquí no se prometen cuotas gratuitas, tiempos fijos ni superioridad en benchmarks. Conserva los casos y documenta la elección antes de cambiar el tráfico de producción.
 
-## Fallos habituales
+## Fuentes oficiales
 
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
-
-## Siguiente paso
-
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    fr: `# Gemini 2.5 Pro : guide historique et vérifications de migration
 
-    fr: `# Guide Gemini 2.5 Pro : recherche, création et analyse
+## Vérifier d’abord la disponibilité
 
-Cette version enrichie répond à une question concrète : la prise en main de l’API Gemini 2.5 Pro doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
+Gemini 2.5 Pro est déprécié ; un nouveau projet doit consulter l’avis de Google et choisir un modèle disponible. Cette page sert à évaluer une ancienne intégration, pas à sélectionner 2.5 Pro dans AI Studio. Notez la date, le projet, l’identifiant du modèle et l’API utilisée. Un exemple autrefois fonctionnel ne prouve pas l’accès pour un nouveau compte. Gardez le modèle dans la configuration afin de tester un remplacement sans réécrire l’application.
 
-## Clarifier le cas d’usage
+## Construire une référence documentaire
 
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
+Choisissez un rapport court contenant des affirmations datées et un tableau clairement légendé. Demandez un résumé séparant les faits fournis des informations manquantes et indiquant la section qui soutient chaque conclusion. Conservez l’entrée et rédigez une réponse de référence. Retirez ensuite volontairement une page. Le système devrait signaler le manque plutôt que reconstruire silencieusement le contenu. Des documents anonymisés suffisent ; inutile de transmettre des fichiers confidentiels pour reproduire un tutoriel public.
 
-## Méthode pratique
+## Distinguer analyse et vérification
 
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
+Pour un tableur, demandez d’abord la définition des colonnes et la méthode de calcul envisagée. Calculez totaux et pourcentages dans votre propre code, puis comparez l’explication aux valeurs vérifiées. Pour une recherche, contrôlez que la requête utilise réellement une fonction de recherche ou d’ancrage prise en charge. Ouvrez les pages citées et vérifiez leur date et leur rapport avec l’affirmation. Un lien accessible peut être sans pertinence ; un ton assuré ne constitue pas une preuve.
 
-## Critères de choix
+## Tester le remplacement
 
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
+Suivez les instructions officielles actuelles pour l’authentification et le SDK plutôt qu’un ancien exemple de modèle. Gardez les identifiants côté serveur et commencez par une requête non sensible. Réutilisez le document, la page manquante, les calculs et les relances pour évaluer le candidat. Mesurez erreurs, validité du format, latence et consommation réelle. Définissez vos critères : ce guide ne garantit ni quota gratuit, ni délai fixe, ni supériorité mesurée. Conservez les cas et la justification du choix avant de basculer la production.
 
-## Échecs fréquents
+## Sources officielles
 
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
-
-## Pour continuer
-
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    jp: `# Gemini 2.5 Pro の旧ガイドと移行時の確認事項
 
-    jp: `# Gemini 2.5 Pro 入門：検索・作成・分析
+## 古い手順より先に利用可否を確認する
 
-この記事の改訂版では、Gemini 2.5 Pro API の導入と実装を発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
+Gemini 2.5 Pro は非推奨となっているため、新規プロジェクトは Google の廃止案内を確認し、利用可能なモデルを選んでください。本稿は既存連携を評価するためのガイドであり、AI Studio で 2.5 Pro を選ぶ手順ではありません。確認日、プロジェクト、モデル ID、使用 API を記録します。過去に動いた例が、新しいアカウントでの利用を保証するわけではありません。モデルは設定で切り替えられるようにします。
 
-## まず用途を分ける
+## 文書による比較基準を作る
 
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
+日付のある記述と明確な見出し付きの表を含む、短い報告書を用意します。要約では、本文にある事実と不足情報を分け、結論ごとに根拠となる節を示すよう依頼してください。入力と人が作成した参照回答を保存します。次に一ページを意図的に除いて同じ課題を実行します。不足を説明できるか、勝手に内容を補わないかが確認点です。公開チュートリアルの再現に顧客の機密文書を使う必要はありません。
 
-## 実務での進め方
+## 分析と検証を別の作業にする
 
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
+表計算では、まず列の意味と計算方法を説明させ、その後で結論を求めます。合計や割合は自分のコードで計算し、生成された説明と照合してください。調査の質問では、実際のリクエストで対応する検索や根拠付け機能を利用しているか確認します。引用先を開き、日付と記載内容が主張を支持するか調べます。開ける URL でも無関係な場合があり、自信のある文体も検証の証拠にはなりません。
 
-## 選定基準
+## 代替モデルを新しい依存先として評価する
 
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
+認証と SDK の使い方は現行の公式ガイドに従い、古いモデル例をそのまま流用しないでください。鍵をサーバーに保管し、機密性のない小さなリクエストから始めます。同じ文書、欠落ページ、計算結果、追加質問で候補を比較し、エラー、形式、遅延、実際の使用量を記録します。無料枠や固定応答時間を前提にせず、自分のサービスで合格条件を決めます。判断理由と検証データを残してから本番を切り替えます。
 
-## よくある失敗
+## 公式資料
 
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
-
-## 次に読むもの
-
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    pt: `# Gemini 2.5 Pro: guia histórico e revisão de migração
 
-    pt: `# Guia Gemini 2.5 Pro: pesquisa, criação e análise
+## Conferir primeiro a disponibilidade
 
-Esta versão revisada olha para uma pergunta prática: a adoção prática da API Gemini 2.5 Pro deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
+O Gemini 2.5 Pro foi descontinuado para suporte; novos projetos devem consultar o aviso de depreciação do Google e escolher um modelo disponível. Esta página orienta a avaliação de integrações antigas, não a seleção do 2.5 Pro no AI Studio. Registre data, projeto, identificador do modelo e API utilizada. Um exemplo que funcionava antes não comprova acesso para uma conta nova. Mantenha o modelo na configuração para testar alternativas sem reescrever a aplicação.
 
-## Comece pelo caso de uso
+## Preparar uma referência documental
 
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
+Escolha um relatório curto com afirmações datadas e uma tabela bem identificada. Peça um resumo que separe fatos fornecidos de informações ausentes e indique a seção que sustenta cada conclusão. Salve a entrada e escreva uma resposta de referência. Depois remova uma página deliberadamente e repita a tarefa. O sistema deve reconhecer a lacuna, sem reconstruir silenciosamente o conteúdo. Documentos anonimizados bastam; não é necessário enviar arquivos confidenciais para reproduzir um tutorial público.
 
-## Fluxo recomendado
+## Separar análise de verificação
 
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
+Para uma planilha, solicite primeiro as definições das colunas e o cálculo proposto. Calcule totais e porcentagens no seu código e compare a explicação com esses valores. Em pesquisas, confira se a solicitação realmente utiliza um recurso de busca ou fundamentação compatível. Abra as páginas citadas e verifique data, conteúdo e relação com a afirmação. Um link acessível ainda pode ser irrelevante, e linguagem confiante não substitui evidência.
 
-## Critérios de escolha
+## Testar o substituto
 
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
+Use as instruções oficiais atuais para autenticação e SDK, evitando copiar exemplos antigos de modelo. Guarde credenciais no servidor e comece com uma solicitação sem dados sensíveis. Avalie o candidato com o mesmo documento, a página ausente, os cálculos e as perguntas complementares. Registre erros, formato, latência e consumo real. Defina critérios próprios: este guia não promete cota gratuita, tempo fixo ou superioridade em testes. Preserve os casos e a justificativa da escolha antes de mudar o tráfego de produção.
 
-## Falhas comuns
+## Fontes oficiais
 
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
-
-## Próximos passos
-
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
+    ru: `# Gemini 2.5 Pro: историческое руководство и проверка миграции
 
-    ru: `# Gemini 2.5 Pro: поиск, создание и анализ
+## Сначала проверьте доступность
 
-Обновленная версия статьи отвечает на практичный вопрос: практическое внедрение API Gemini 2.5 Pro нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
+Gemini 2.5 Pro объявлен устаревшим; для нового проекта следует проверить уведомление Google и выбрать доступную модель. Эта страница помогает оценить прежнюю интеграцию, а не предлагает выбрать 2.5 Pro в AI Studio. Запишите дату проверки, проект, идентификатор модели и используемый API. Ранее работавший пример не подтверждает доступ для нового аккаунта. Храните выбор модели в конфигурации, чтобы проверка замены не требовала переписывать приложение.
 
-## Начните со сценария
+## Подготовьте документ для сравнения
 
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
+Возьмите короткий отчёт с датированными утверждениями и ясно подписанной таблицей. Попросите составить резюме, отделяющее приведённые факты от отсутствующей информации, и указать раздел для каждого вывода. Сохраните входные данные и вручную подготовленный эталонный ответ. Затем намеренно удалите одну страницу и повторите задание. Система должна обозначить пробел, а не незаметно восстановить отсутствующий текст. Для такой проверки достаточно обезличенных материалов; загружать конфиденциальные документы клиентов ради публичного урока не нужно.
 
-## Рабочий процесс
+## Отделите анализ от проверки
 
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
+Для таблицы сначала запросите описание столбцов и предлагаемый способ расчёта. Самостоятельно вычислите суммы и проценты в коде, затем сопоставьте объяснение с проверенными значениями. Для исследовательского вопроса убедитесь, что запрос действительно использует поддерживаемую функцию поиска или привязки к источникам. Откройте ссылки и проверьте дату, содержание и связь с утверждением. Доступная страница может оказаться нерелевантной, а уверенная формулировка не доказывает проверку фактов.
 
-## Как выбирать
+## Испытайте замену отдельно
 
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
+Используйте актуальные официальные инструкции по авторизации и SDK вместо устаревшего примера модели. Храните ключи на сервере и начните с запроса без чувствительных данных. Сравните замену на том же документе, пропущенной странице, арифметических задачах и уточняющих вопросах. Записывайте ошибки, корректность формата, задержку и фактическое потребление. Критерии должны соответствовать вашему приложению: бесплатная квота, фиксированное время ответа и превосходство в тестах здесь не обещаются. Сохраните примеры и обоснование выбора перед переключением рабочего трафика, чтобы последующие изменения оценивались по воспроизводимой базе.
 
-## Типичные сбои
+## Официальные источники
 
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
-
-## Что делать дальше
-
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+- [Google — Gemini deprecations](https://aistudio.google.com/docs/deprecations)
+- [Google — Getting started](https://aistudio.google.com/docs/get-started)
 `,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-02-23',
+  updatedAt: '2026-11-15',
   category: 'General User',
   tags: [
     'Gemini 2.5 Pro',

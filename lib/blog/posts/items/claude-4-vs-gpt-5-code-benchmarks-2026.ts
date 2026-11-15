@@ -4,301 +4,248 @@ const postClaude4VsGpt5CodeBenchmarks2026: BlogPost = {
   id: '3002',
   slug: 'claude-4-vs-gpt-5-code-benchmarks-2026',
   title: {
-    en: 'Claude 4 vs GPT-5 for Coding: What Actually Wins in 2026',
-    cn: 'Claude 4 vs GPT-5 编码对比：2026 实测怎么选',
-    tw: 'Claude 4 vs GPT-5 編碼對比：2026 實測怎麼選',
-    de: 'Claude 4 vs GPT-5 beim Programmieren: Was gewinnt wirklich 2026?',
-    es: 'Claude 4 vs GPT-5 para programar: ¿qué gana realmente en 2026?',
-    fr: 'Claude 4 vs GPT-5 pour le code : qui gagne vraiment en 2026 ?',
-    jp: 'Claude 4 vs GPT-5 コーディング比較：2026年、本当に勝つのはどちらか',
-    pt: 'Claude 4 vs GPT-5 para programação: o que realmente vence em 2026?',
-    ru: 'Claude 4 vs GPT-5 для программирования: кто реально побеждает в 2026?',
+    en: 'Claude 4 vs GPT-5 for Coding: A Reproducible Evaluation Guide',
+    cn: 'Claude 4 vs GPT-5 编码对比：可复现的评估方法',
+    tw: 'Claude 4 vs GPT-5 程式開發比較：可重現的評估方法',
+    de: 'Claude 4 vs GPT-5 beim Programmieren: reproduzierbar vergleichen',
+    es: 'Claude 4 vs GPT-5 para programar: una evaluación reproducible',
+    fr: 'Claude 4 ou GPT-5 pour coder : une évaluation reproductible',
+    jp: 'Claude 4 と GPT-5 のコーディング比較：再現可能な評価方法',
+    pt: 'Claude 4 vs GPT-5 para programar: uma avaliação reproduzível',
+    ru: 'Claude 4 и GPT-5 для программирования: воспроизводимое сравнение',
   },
   excerpt: {
-    en: "We ran both models through 12 real-world coding benchmarks. The results are more nuanced than you'd expect — and the winner depends entirely on what kind of code you write.",
-    cn: '我们把两个模型放进了 12 个真实编码基准测试。结果比你想的更微妙——而赢家完全取决于你写什么样的代码。',
-    tw: '我們把兩個模型放進了 12 個真實編碼基準測試。結果比你想的更微妙——而贏家完全取決於你寫什麼樣的程式碼。',
-    de: 'Wir haben beide Modelle durch 12 realitätsnahe Coding-Benchmarks gejagt. Die Ergebnisse sind nuancierter als erwartet — und der Gewinner hängt ganz davon ab, welche Art von Code man schreibt.',
-    es: 'Ejecutamos ambos modelos en 12 benchmarks de programación del mundo real. Los resultados son más matizados de lo esperado — y el ganador depende completamente del tipo de código que escribas.',
-    fr: "Nous avons fait passer les deux modèles à travers 12 benchmarks de codage réels. Les résultats sont plus nuancés qu'on ne le pense — et le gagnant dépend entièrement du type de code que vous écrivez.",
-    jp: '両モデルを 12 の実世界コーディングベンチマークにかけました。結果は予想以上に微妙で——勝者は書くコードの種類に完全に依存します。',
-    pt: 'Executamos ambos os modelos em 12 benchmarks de programação do mundo real. Os resultados são mais matizados do que você esperaria — e o vencedor depende totalmente do tipo de código que você escreve.',
-    ru: 'Мы запустили обе модели через 12 реальных бенчмарков по программированию. Результаты более тонкие, чем можно было ожидать — и победитель полностью зависит от того, какой код вы пишете.',
+    en: 'A practical protocol for comparing exact model versions on repository fixes, refactoring and UI work, with reproducible inputs, review criteria and honest limits.',
+    cn: '用固定版本、相同代码仓库和明确验收条件，比较缺陷修复、重构与界面任务；给出可复现实验流程，衡量测试通过率、审阅成本和结果的不确定性。',
+    tw: '以固定版本、相同程式庫與明確驗收條件，比較錯誤修復、重構及介面任務；提供可重現的實驗流程，衡量測試通過率、審閱成本與結果的不確定性。',
+    de: 'Ein Verfahren mit festen Modellversionen, identischen Repositorys und klaren Prüfkriterien für Fehlerbehebung, Refactoring und Oberflächen.',
+    es: 'Un protocolo con versiones concretas, el mismo repositorio y criterios claros para comparar correcciones, refactorización e interfaces sin inventar resultados.',
+    fr: 'Un protocole fondé sur des versions précises, un dépôt identique et des critères explicites pour comparer corrections, refactorisation et interfaces.',
+    jp: 'モデルの版、リポジトリ、合格条件を固定し、バグ修正・リファクタリング・UI実装を比較する手順。裏付けのない実測値は掲載しません。',
+    pt: 'Um protocolo com versões exatas, o mesmo repositório e critérios claros para comparar correções, refatoração e interfaces sem inventar resultados.',
+    ru: 'Методика сравнения конкретных версий на исправлении ошибок, рефакторинге и интерфейсах: одинаковые условия, критерии проверки и честные ограничения.',
   },
   content: {
-    en: `# Claude 4 vs GPT-5 for Coding: What Actually Wins in 2026
+    en: `# Claude 4 vs GPT-5 for Coding: A Reproducible Evaluation Guide
 
-I've been testing coding assistants professionally for three years now, and I've learned to distrust anyone who declares a definitive winner in the AI model wars. The reality is messier — and more interesting. After running Claude 4 (specifically claude-4-opus-20260215) and GPT-5 through 12 carefully constructed benchmarks over two weeks, I can tell you this: the answer to "which is better?" starts with "better at what?"
+A useful coding comparison needs a runnable experiment. This article provides a protocol, not results from a benchmark we conducted. It does not establish a winner or claim measured speed, price or accuracy. The historical model names remain useful search terms, but an evaluation in 2026 must begin by checking which versions are still available.
 
-## Our Testing Methodology
+## Define the comparison precisely
 
-Before we get to results, let me be transparent about how we tested. We used a mix of established benchmarks and custom real-world tasks that reflect what working developers actually do day to day.
+“Claude 4” is ambiguous: Anthropic introduced both Opus 4 and Sonnet 4 in its [Claude 4 announcement](https://www.anthropic.com/news/claude-4). Record the exact model identifier returned by your provider, the test date, agent version and enabled tools. Check the [GPT-5 model documentation](https://developers.openai.com/api/docs/models/gpt-5) before choosing an endpoint. If an old version is unavailable, label the replacement clearly; its results cannot stand in for the original model.
 
-Our benchmark suite included:
-- **HumanEval+** (164 problems, Python): Extended version of the standard HumanEval with edge cases
-- **SWE-bench Verified** (500 issues): Real GitHub issues from popular open-source repos
-- **WebApp Arena** (80 tasks): Building full-stack web components from specifications
-- **Legacy Code Refactor** (45 tasks): Modernizing old codebases while preserving behavior
-- **API Integration** (60 tasks): Writing integration code for third-party APIs with documentation
-- **Debug Challenge** (100 tasks): Finding and fixing intentionally planted bugs
+## Build a task set from your repository
 
-We ran each test three times per model, took the median score, and verified results both programmatically (unit tests) and through manual code review by senior engineers.
+Use three separate categories: a defect with a failing regression test, a behavior-preserving refactor, and a UI change with explicit interaction requirements. For example, a pagination fix must handle an empty result and retain the selected filter; a refactor must preserve the public API. Write the acceptance checks before generating patches.
 
-## Where GPT-5 Wins
+Give each run the same base commit, dependency lockfile, documentation and prompt. Start from a clean worktree and a fresh conversation. Set equal limits for time, tool access and retries. Keep a small held-out set for the final comparison so that prompt tuning does not consume every test case.
 
-GPT-5 took the lead in four of our six benchmark categories, and the margins were meaningful.
+## Measure more than a passing build
 
-**HumanEval+: GPT-5 scores 91.5% vs Claude 4's 87.3%.** This was the closest category. GPT-5's advantage came primarily from handling edge cases better — specifically around empty inputs, type coercion, and boundary values. In problems requiring recursive solutions, GPT-5 was more likely to include proper base cases without being prompted.
+Repeat tasks and retain every attempt, including failures. Record test outcomes, unrelated edits, reviewer corrections, elapsed time and actual billed usage. Separate model errors from broken fixtures or unavailable services. Review patches without model labels when possible. A build success alone cannot demonstrate that behavior survived a refactor.
 
-**WebApp Arena: GPT-5 scores 82.1% vs Claude 4's 74.6%.** This is where GPT-5's native multimodal capabilities really shine. When given a screenshot of a UI component and asked to build it, GPT-5 produced pixel-accurate implementations about 68% of the time versus Claude 4's 52%. GPT-5 was also better at handling CSS edge cases — flexbox wrapping, responsive breakpoints, and browser-specific quirks.
+[SWE-bench documentation](https://www.swebench.com/SWE-bench/) provides a public issue-to-patch evaluation reference. If using its harness, publish the dataset revision, task IDs and harness configuration. Do not mix a public leaderboard score with your local pass rate.
 
-**API Integration: GPT-5 scores 88.3% vs Claude 4's 81.7%.** Given API documentation, GPT-5 produced more robust integration code. It consistently included retry logic, proper error handling for rate limits, and type-safe response parsing. Claude 4's code was cleaner stylistically but missed edge cases more often.
+## Report a decision with its limits
 
-**Debug Challenge: GPT-5 scores 79.2% vs Claude 4's 73.8%.** GPT-5 found bugs faster, particularly in concurrent code and off-by-one errors. Its debugging explanations were also more thorough — it didn't just identify the bug but traced through the execution path that caused the failure.
-
-## Where Claude 4 Wins
-
-Claude 4 dominated in two categories, and one of them matters more than the raw scores suggest.
-
-**SWE-bench Verified: Claude 4 scores 71.4% vs GPT-5's 66.8%.** This is the benchmark that most closely mirrors real-world software engineering — taking a GitHub issue, understanding the codebase, and producing a fix that passes the project's test suite. Claude 4's advantage came from better codebase comprehension. When navigating large, unfamiliar repositories, Claude 4 maintained context across more files and was less likely to introduce regressions in unrelated code. It also produced more focused, minimal diffs — changing only what was necessary rather than refactoring surrounding code unnecessarily.
-
-**Legacy Code Refactor: Claude 4 scores 78.9% vs GPT-5's 71.2%.** This surprised us. When tasked with modernizing old JavaScript to modern ES2026 patterns or converting a jQuery codebase to React, Claude 4 produced cleaner, more maintainable results. GPT-5 tended to over-engineer the refactoring, introducing unnecessary abstractions. Claude 4 was more pragmatic — it modernized the code without redesigning the architecture unless explicitly asked.
-
-## The Nuances That Matter
-
-Raw scores don't tell the full story. Here are three observations that changed how we think about these models.
-
-**Code style and readability.** Claude 4 consistently produces more readable code. When we had our senior engineers review outputs blind (without knowing which model produced which code), they rated Claude 4's code 15% higher on readability metrics. The variable names were more descriptive, the function decomposition was more logical, and the comments were more useful. GPT-5's code works, but it often feels like it was written by someone optimizing for cleverness over clarity.
-
-**Consistency across languages.** GPT-5 has a clear edge in Python and JavaScript/TypeScript — the two languages it seems to have the most training data for. But the gap narrows significantly in Go, Rust, and C++. In Rust specifically, Claude 4 actually matched GPT-5's performance, which we attribute to Anthropic's focus on systems programming use cases.
-
-**Conversation and iteration.** When building features iteratively — writing code, getting feedback, refining — Claude 4 handled the back-and-forth better. It was more likely to remember constraints mentioned 15 messages ago and less likely to "forget" a requirement when you asked it to add a new feature to existing code. GPT-5 was better for one-shot completions where you give a detailed spec and expect a finished product.
-
-## Cost and Speed Comparison
-
-GPT-5 is roughly 30% more expensive per token than Claude 4 at comparable tiers. Input tokens run $5/M versus Claude 4's $3.75/M, and output tokens are $15/M versus $11/M. For teams processing millions of tokens per day, that adds up.
-
-Speed is a closer race. GPT-5 averages 1.9 seconds for first-token latency versus Claude 4's 1.5 seconds. But GPT-5 generates tokens faster once streaming begins — about 85 tokens/second versus Claude 4's 70. For short completions, Claude 4 feels snappier. For long code generation, GPT-5 finishes sooner despite the slower start.
-
-## Our Recommendation
-
-Stop looking for a single winner. Use both.
-
-For greenfield development, UI work, API integrations, and debugging — GPT-5 is the stronger choice. Its multimodal capabilities, edge case handling, and debugging thoroughness give it a real advantage for building new things from scratch.
-
-For working in existing codebases, refactoring legacy code, and iterative feature development in large repositories — Claude 4 is the better pick. Its code comprehension, minimal diff approach, and superior readability make it the more productive choice for the kind of work most professional developers spend most of their time doing.
-
-The smartest teams we've talked to are already doing this: GPT-5 for prototyping and new features, Claude 4 for production code maintenance and review. It's not about picking a side — it's about matching the tool to the task.
-
-## Add a reviewer-model pass
-
-One pattern that works well in serious teams is two-model review. Let one model write the patch and another model review it with a skeptical prompt: “Find behavior changes, missing tests, security assumptions, and unnecessary edits. Do not praise the code.” This catches a surprising number of issues because the reviewing model is not invested in defending its own choices.
-
-For example, GPT-5 may draft an API adapter quickly, while Claude 4 reviews whether the diff fits the existing architecture. Or Claude 4 may produce a minimal legacy-code fix, while GPT-5 checks edge cases and test coverage. The point is not model fandom. The point is reducing blind spots.
-
-## A lightweight scoring sheet
-
-Use this sheet for every eval task: did tests pass, did the diff stay focused, did the model explain assumptions, did it preserve public behavior, did it add or update tests, and how many minutes did review take? Add cost and latency, but keep them separate from correctness.
-
-Public references such as [SWE-bench](https://www.swebench.com/), [HumanEval](https://github.com/openai/human-eval), [Anthropic documentation](https://docs.anthropic.com/), and the [OpenAI API docs](https://platform.openai.com/docs) are useful starting points. Your final decision should come from your repository. If you are also changing production model calls, read the [GPT-5 migration playbook](/blog/gpt-5-developer-migration-playbook) before you touch config.
-
-For tool-level context, add the [OpenCode open-source coding agent guide](/blog/opencode-the-open-source-ai-coding-agent), the [GitHub Copilot Codex Max analysis](/blog/gpt-5-1-codex-max-github-copilot), and the [AI for developers guide](/blog/ai-for-developers-guide) to your reading list. They cover workflow fit beyond raw model scores.
+Publish per-category outcomes and the number of attempts, not only an overall average. Preserve prompts, patches and test logs after removing secrets. Choose a model for the task category where it meets your acceptance criteria at an acceptable review cost. If outcomes are close or the sample is small, report that uncertainty instead of declaring a universal winner.
 `,
-    cn: `# Claude 4 vs GPT-5 编码对比：2026 怎么测
+    cn: `# Claude 4 vs GPT-5 编码对比：可复现的评估方法
 
-这篇更新版文章围绕一个很实际的问题：Claude 4 与 GPT-5 的编码对比不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+有价值的编码对比必须能重跑。本文提供的是评估流程，并非本站已经完成的基准测试；不公布未经证实的准确率、速度、价格或胜者。旧型号名称仍有检索价值，但在 2026 年启动实验前，应先确认目标版本能否实际调用。
 
-## 先判断使用场景
+## 先明确比较对象
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+“Claude 4”并不是单一型号：Anthropic 的 [Claude 4 发布说明](https://www.anthropic.com/news/claude-4)同时介绍了 Opus 4 与 Sonnet 4。记录供应商返回的准确模型标识、实验日期、Agent 版本和开放的工具。选择接口前核对 [GPT-5 模型文档](https://developers.openai.com/api/docs/models/gpt-5)。如果原版本已不可用，应单独注明替代型号，不能把替代者的结果当成原模型的成绩。
 
-## 工作流建议
+## 从代码仓库构造任务
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+分别测试三类工作：有失败回归用例的缺陷修复、保持行为不变的重构、带有交互要求的界面修改。例如，分页修复必须处理空列表并保留筛选条件；重构必须保持公开 API。先写验收条件，再让模型生成补丁，避免看到答案后移动标准。
 
-## 选择标准
+每次运行都使用相同的基础提交、依赖锁文件、文档和提示词，从干净的 worktree 与新会话开始。统一时间、工具权限和重试次数。保留一小组未参与提示词调优的任务，作为最终对照；否则模型看似进步，也可能只是提示词适应了已知题目。
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+## 构建成功不等于正确
 
-## 常见失败模式
+重复运行并保留所有尝试，包括失败。分别记录测试结果、无关改动、审阅者修正、总耗时与实际账单用量。环境故障和模型错误分开标记，不把依赖下载失败误判为编码能力不足。条件允许时隐藏模型标签进行审阅。对于重构，仅通过构建仍不足以证明原有行为没有变化。
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
+[SWE-bench 文档](https://www.swebench.com/SWE-bench/)可作为从真实问题到补丁的公开评估参考。若采用它的测试框架，应公布数据集版本、任务编号和配置；不要把公开榜单分数与本地任务通过率混成一张成绩表。
 
-## 下一步
+## 给出有边界的结论
 
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+按任务类别公布结果和尝试次数，而不是只提供总平均值。移除密钥后保存提示词、补丁与测试日志。选择能在相应任务中满足验收要求、且审阅成本可接受的模型。如果样本太少或表现接近，应明确说明不确定性，而不是宣布一个适用于所有项目的赢家。
 `,
-    tw: `# Claude 4 vs GPT-5 編碼對比：2026 怎麼測
+    tw: `# Claude 4 vs GPT-5 程式開發比較：可重現的評估方法
 
-這篇更新版文章聚焦一個實務問題：Claude 4 與 GPT-5 的編碼對比不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+有用的程式開發比較，必須讓其他人能依相同條件重跑。本文是一套評估流程，並不是本站已完成的基準測試；不提供沒有證據的準確率、速度、價格或優勝結論。歷史型號仍有查詢價值，但在 2026 年進行實驗之前，應先確認指定版本是否仍可使用。
 
-## 先判斷使用場景
+## 明確界定比較對象
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+「Claude 4」涵蓋不同型號：Anthropic 的 [Claude 4 發表說明](https://www.anthropic.com/news/claude-4)同時介紹 Opus 4 與 Sonnet 4。請記錄供應商回傳的確切模型識別碼、測試日期、Agent 版本及可用工具。選擇介接方式前，先閱讀 [GPT-5 模型文件](https://developers.openai.com/api/docs/models/gpt-5)。若舊版本已無法呼叫，必須註明替代型號，不能將新版本的表現算在舊模型名下。
 
-## 工作流建議
+## 從專案建立測試題目
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+將工作分成三類：具備失敗回歸測試的錯誤修復、維持既有行為的重構，以及具有明確操作要求的介面修改。例如分頁修正必須涵蓋空清單，並保留篩選條件；重構則須維持對外 API。驗收條件要在模型產生修改之前訂好，避免依答案調整標準。
 
-## 選擇標準
+所有執行都使用相同的基礎提交、相依套件鎖定檔、文件與提示詞，從乾淨的 worktree 和新對話開始。給予相同的時間、工具權限及重試額度。另保留一小組未用來調整提示詞的題目作最終評估，以免只量到對已知題目的適應程度。
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+## 分開檢查正確性與成本
 
-## 常見失敗模式
+重複執行並保留所有嘗試，失敗也要留下。記錄測試結果、不相關的修改、審閱後的修正、耗時和實際計費用量。將環境故障與模型錯誤分開，例如下載相依套件失敗不等於修復能力不足。可行時隱藏模型名稱再審閱。建置成功只能證明部分條件成立，無法保證重構保留了所有行為。
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
+[SWE-bench 文件](https://www.swebench.com/SWE-bench/)提供從真實議題產生修補程式的公開評估參考。採用其測試框架時，應公開資料集版本、題目識別碼及設定，不要混用公開排行榜與本地測試的通過率。
 
-## 下一步
+## 讓結論保留適用範圍
 
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+依工作類型呈現結果與嘗試次數，不只列出總平均。清除機密資訊後保存提示詞、修改內容及測試紀錄。選擇在該類工作中符合驗收要求、審閱成本也合理的模型。樣本不足或差距很小時，應明白寫出不確定性，而非宣布適用所有專案的贏家。
 `,
-    de: `# Claude 4 vs GPT-5 fürs Coding: Benchmark 2026
+    de: `# Claude 4 vs GPT-5 beim Programmieren: reproduzierbar vergleichen
 
-Diese Fassung beantwortet eine praktische Frage: den Coding-Vergleich zwischen Claude 4 und GPT-5 sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+Ein brauchbarer Vergleich braucht ein wiederholbares Experiment. Dieser Beitrag beschreibt ein Verfahren; er enthält keine von uns erhobenen Benchmark-Ergebnisse und behauptet weder einen Sieger noch gemessene Kosten oder Geschwindigkeiten. Historische Modellnamen bleiben als Suchbegriffe relevant. Prüfen Sie jedoch vor einem Versuch im Jahr 2026, welche Versionen tatsächlich erreichbar sind.
 
-## Erst den Anwendungsfall klären
+## Den Versuchsgegenstand festlegen
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+„Claude 4“ ist nicht eindeutig: Die [Ankündigung von Anthropic](https://www.anthropic.com/news/claude-4) umfasst Opus 4 und Sonnet 4. Dokumentieren Sie die genaue Modellkennung des Anbieters, Datum, Agent-Version und freigegebene Werkzeuge. Prüfen Sie vor der Auswahl eines Endpunkts die [GPT-5-Dokumentation](https://developers.openai.com/api/docs/models/gpt-5). Ist eine alte Version nicht verfügbar, kennzeichnen Sie ihren Ersatz ausdrücklich. Dessen Ergebnisse beschreiben nicht das ursprüngliche Modell.
 
-## Ein belastbarer Workflow
+## Aufgaben aus dem eigenen Repository verwenden
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+Trennen Sie Fehlerbehebung mit einem scheiternden Regressionstest, verhaltenserhaltendes Refactoring und Oberflächenänderungen mit konkreten Interaktionsanforderungen. Eine Paginierung muss beispielsweise leere Ergebnisse behandeln und gesetzte Filter erhalten; ein Refactoring darf die öffentliche API nicht verändern. Schreiben Sie Abnahmekriterien vor der Patch-Erzeugung auf.
 
-## Auswahlkriterien
+Jeder Lauf erhält denselben Basis-Commit, dieselbe Lockdatei, Dokumentation und Aufgabenstellung. Beginnen Sie mit einem sauberen Worktree und einer neuen Unterhaltung. Begrenzen Sie Zeit, Werkzeugzugriff und Wiederholungen einheitlich. Reservieren Sie unbekannte Aufgaben für die Abschlussbewertung, damit Prompt-Anpassungen nicht sämtliche Testfälle vorwegnehmen.
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+## Korrektheit und Aufwand getrennt messen
 
-## Häufige Fehler
+Wiederholen Sie Aufgaben und bewahren Sie auch gescheiterte Versuche auf. Erfassen Sie Testergebnisse, sachfremde Änderungen, Korrekturen durch Reviewer, Laufzeit und abgerechneten Verbrauch. Markieren Sie defekte Testumgebungen getrennt von Modellfehlern. Prüfen Sie Patches möglichst ohne sichtbaren Modellnamen. Ein erfolgreicher Build belegt allein keinen Verhaltenserhalt.
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
+Die [SWE-bench-Dokumentation](https://www.swebench.com/SWE-bench/) bietet eine öffentliche Referenz für die Bewertung von Fehlerberichten und Patches. Bei Nutzung des Testsystems gehören Datensatzrevision, Aufgabenkennungen und Konfiguration in den Bericht. Vermischen Sie keine Bestenlistenwerte mit lokalen Erfolgsquoten.
 
-## Nächster Schritt
+## Eine begrenzte Entscheidung veröffentlichen
 
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+Berichten Sie Ergebnisse und Versuchszahlen pro Kategorie statt nur eines Gesamtmittels. Bewahren Sie Prompts, Patches und Testprotokolle nach Entfernung vertraulicher Daten auf. Wählen Sie für eine Aufgabenklasse das Modell, das die Abnahmekriterien bei vertretbarem Prüfaufwand erfüllt. Bei kleinen Stichproben oder knappen Unterschieden bleibt die Schlussfolgerung ausdrücklich unsicher.
 `,
-    es: `# Claude 4 vs GPT-5 para programar: benchmark 2026
+    es: `# Claude 4 vs GPT-5 para programar: una evaluación reproducible
 
-Esta versión revisada responde a una pregunta práctica: la comparación de programación entre Claude 4 y GPT-5 no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+Una comparación útil necesita un experimento que se pueda repetir. Este artículo propone un protocolo, no resultados de pruebas realizadas por nosotros. No establece un ganador ni presenta mediciones de velocidad, precio o precisión. Los nombres históricos siguen siendo términos de búsqueda útiles, pero una evaluación en 2026 debe comprobar primero qué versiones siguen disponibles.
 
-## Empieza por el caso de uso
+## Define exactamente qué comparas
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+“Claude 4” es ambiguo: el [anuncio de Anthropic](https://www.anthropic.com/news/claude-4) incluye Opus 4 y Sonnet 4. Anota el identificador exacto devuelto por el proveedor, la fecha, la versión del agente y sus herramientas. Consulta la [documentación de GPT-5](https://developers.openai.com/api/docs/models/gpt-5) antes de elegir el endpoint. Si una versión antigua ya no está disponible, identifica su sustituta; sus resultados no representan al modelo original.
 
-## Flujo recomendado
+## Diseña tareas de tu repositorio
 
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
+Separa tres categorías: corregir un defecto con una prueba de regresión que falle, refactorizar sin alterar el comportamiento y modificar una interfaz con requisitos de interacción concretos. Por ejemplo, una corrección de paginación debe contemplar resultados vacíos y conservar los filtros; una refactorización debe mantener la API pública. Redacta los criterios antes de generar los parches.
 
-## Criterios de decisión
+Usa el mismo commit inicial, archivo de dependencias bloqueadas, documentación y prompt. Inicia cada intento en un worktree limpio y una conversación nueva. Iguala los límites de tiempo, herramientas y reintentos. Reserva tareas que no hayas utilizado para ajustar los prompts y empléalas en la evaluación final.
 
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
+## Mide corrección y esfuerzo por separado
 
-## Fallos habituales
+Repite las tareas y conserva todos los intentos, incluidos los fallidos. Registra pruebas, cambios ajenos al objetivo, correcciones del revisor, tiempo total y consumo facturado. Distingue fallos del modelo de problemas en el entorno. Revisa los parches ocultando su procedencia cuando sea posible. Compilar correctamente no demuestra que una refactorización conserve el comportamiento.
 
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
+La [documentación de SWE-bench](https://www.swebench.com/SWE-bench/) ofrece una referencia pública para evaluar soluciones a incidencias. Si utilizas su sistema, publica la revisión del conjunto de datos, los identificadores de las tareas y la configuración. No mezcles puntuaciones públicas con tasas de éxito locales.
 
-## Siguiente paso
+## Presenta una decisión acotada
 
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+Publica resultados e intentos por categoría, no solo una media general. Guarda prompts, parches y registros tras eliminar secretos. Elige el modelo que cumpla los criterios de esa categoría con un coste de revisión aceptable. Si la muestra es pequeña o las diferencias son estrechas, explica la incertidumbre en lugar de proclamar un ganador universal.
 `,
-    fr: `# Claude 4 vs GPT-5 pour coder : benchmark 2026
+    fr: `# Claude 4 ou GPT-5 pour coder : une évaluation reproductible
 
-Cette version enrichie répond à une question concrète : la comparaison de codage entre Claude 4 et GPT-5 doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
+Une comparaison utile exige une expérience que l'on puisse reproduire. Cet article propose un protocole, pas les résultats d'un benchmark que nous aurions réalisé. Il ne désigne aucun vainqueur et ne présente aucune mesure de vitesse, de prix ou de précision. Les noms historiques restent recherchés, mais une évaluation en 2026 commence par vérifier les versions encore accessibles.
 
-## Clarifier le cas d’usage
+## Définir précisément les modèles
 
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
+« Claude 4 » est ambigu : [l'annonce d'Anthropic](https://www.anthropic.com/news/claude-4) présente Opus 4 et Sonnet 4. Consignez l'identifiant exact renvoyé par le fournisseur, la date, la version de l'agent et les outils autorisés. Consultez la [documentation de GPT-5](https://developers.openai.com/api/docs/models/gpt-5) avant de choisir un point d'accès. Si une ancienne version est indisponible, nommez clairement son remplacement : ses résultats ne décrivent pas le modèle d'origine.
 
-## Méthode pratique
+## Construire des tâches issues du dépôt
 
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
+Séparez trois catégories : corriger un défaut accompagné d'un test de régression en échec, refactoriser sans changer le comportement et modifier une interface selon des exigences d'interaction explicites. Une pagination doit, par exemple, gérer une liste vide et conserver les filtres ; une refactorisation doit préserver l'API publique. Fixez les critères avant la génération des correctifs.
 
-## Critères de choix
+Utilisez le même commit initial, fichier de verrouillage des dépendances, contexte documentaire et prompt. Chaque essai commence dans un worktree propre et une conversation neuve. Imposez les mêmes limites de temps, d'outils et de tentatives. Réservez quelques tâches à l'évaluation finale sans les employer pour ajuster les prompts.
 
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
+## Distinguer justesse et effort
 
-## Échecs fréquents
+Répétez les tâches et conservez aussi les échecs. Relevez les tests, modifications hors sujet, corrections du relecteur, durées et consommations facturées. Séparez les erreurs du modèle des pannes de l'environnement. Examinez les correctifs sans afficher le nom du modèle lorsque c'est possible. Une compilation réussie ne prouve pas qu'une refactorisation préserve le comportement.
 
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
+La [documentation de SWE-bench](https://www.swebench.com/SWE-bench/) fournit une référence publique pour évaluer des correctifs d'incidents. Si vous utilisez son environnement, publiez la révision du jeu de données, les identifiants des tâches et la configuration. Ne mélangez pas classement public et taux de réussite local.
 
-## Pour continuer
+## Donner une conclusion circonscrite
 
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+Présentez résultats et nombres de tentatives par catégorie, plutôt qu'une simple moyenne. Archivez prompts, correctifs et journaux après retrait des secrets. Retenez le modèle qui satisfait les critères du travail concerné avec un effort de relecture acceptable. Si les écarts ou l'échantillon sont faibles, indiquez cette incertitude au lieu de proclamer un vainqueur universel.
 `,
-    jp: `# Claude 4 vs GPT-5 コーディング比較 2026
+    jp: `# Claude 4 と GPT-5 のコーディング比較：再現可能な評価方法
 
-この記事の改訂版では、Claude 4 と GPT-5 のコーディング比較を発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
+役立つ比較には、同じ条件で実行し直せる実験が必要です。本稿は評価の手順を示すもので、当サイトが実施したベンチマークの結果ではありません。根拠のない精度、料金、速度や勝者は提示しません。過去のモデル名は検索には有用ですが、2026年に評価するなら、対象の版が今も利用可能かを最初に確認します。
 
-## まず用途を分ける
+## 比較対象を正確に指定する
 
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
+「Claude 4」だけでは対象が曖昧です。[Anthropic の発表](https://www.anthropic.com/news/claude-4)には Opus 4 と Sonnet 4 が含まれています。提供元が返した正確なモデル識別子、実施日、エージェントの版、使用できるツールを記録します。接続先を決める前に [GPT-5 のモデル資料](https://developers.openai.com/api/docs/models/gpt-5)も確認してください。旧版が使えない場合は代替の名前を明記し、その成績を元のモデルの結果として扱わないことが必要です。
 
-## 実務での進め方
+## 自分のリポジトリから課題を作る
 
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
+課題を、失敗する回帰テスト付きのバグ修正、動作を維持するリファクタリング、操作要件が明確な UI 変更に分けます。例えばページ送りの修正なら、空の一覧とフィルターの維持を確認します。リファクタリングなら公開 API を変えないことが条件です。合格基準はパッチ生成より先に定めます。
 
-## 選定基準
+ベースコミット、依存関係のロックファイル、資料、プロンプトは統一し、毎回クリーンな worktree と新しい会話から始めます。制限時間、ツール権限、再試行回数もそろえます。一部の課題はプロンプト調整に使わず、最終評価用に残してください。既知の問題への最適化だけを測ることを防げます。
 
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
+## ビルド以外の結果も記録する
 
-## よくある失敗
+課題を繰り返し、失敗を含む全試行を保存します。テスト結果、無関係な変更、レビュー後の修正、経過時間、実際の課金使用量を別々に記録します。環境の故障とモデルの誤りは区別し、可能ならモデル名を隠してレビューします。ビルドが通るだけでは、元の振る舞いを維持できたとは証明できません。
 
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
+[SWE-bench の資料](https://www.swebench.com/SWE-bench/)は、課題からパッチを作る公開評価の参考になります。実行基盤を利用する場合は、データセットの版、課題 ID、設定を公開します。公開ランキングの点数と独自課題の合格率を混同しないでください。
 
-## 次に読むもの
+## 結論の適用範囲を示す
 
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+総平均だけでなく、課題の種類ごとの結果と試行数を示します。機密を除いたプロンプト、パッチ、テストログを保存し、各分野で合格条件とレビュー負担を満たすモデルを選びます。差が小さい場合やサンプルが少ない場合は、不確実性を明記し、あらゆる開発で勝つモデルとは結論づけないことが大切です。
 `,
-    pt: `# Claude 4 vs GPT-5 para programação em 2026
+    pt: `# Claude 4 vs GPT-5 para programar: uma avaliação reproduzível
 
-Esta versão revisada olha para uma pergunta prática: a comparação de programação entre Claude 4 e GPT-5 deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
+Uma comparação útil precisa de um experimento que possa ser repetido. Este artigo apresenta um protocolo, não resultados de um benchmark que realizamos. Não declara um vencedor nem medições de velocidade, preço ou precisão. Nomes históricos continuam úteis nas buscas, mas uma avaliação em 2026 deve começar verificando quais versões ainda estão disponíveis.
 
-## Comece pelo caso de uso
+## Defina exatamente os modelos
 
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
+“Claude 4” é ambíguo: o [anúncio da Anthropic](https://www.anthropic.com/news/claude-4) apresenta Opus 4 e Sonnet 4. Registre o identificador exato retornado pelo provedor, a data, a versão do agente e as ferramentas habilitadas. Consulte a [documentação do GPT-5](https://developers.openai.com/api/docs/models/gpt-5) antes de escolher o endpoint. Se uma versão antiga estiver indisponível, identifique sua substituta; os resultados dela não representam o modelo original.
 
-## Fluxo recomendado
+## Monte tarefas do seu repositório
 
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
+Separe três categorias: corrigir um defeito com teste de regressão falhando, refatorar preservando o comportamento e alterar uma interface com requisitos explícitos de interação. Uma correção de paginação, por exemplo, precisa tratar uma lista vazia e preservar filtros; uma refatoração deve manter a API pública. Escreva os critérios de aceitação antes de gerar os patches.
 
-## Critérios de escolha
+Use o mesmo commit inicial, arquivo de dependências travadas, documentação e prompt. Comece cada execução em um worktree limpo e uma conversa nova. Iguale limites de tempo, acesso a ferramentas e tentativas. Reserve algumas tarefas para a comparação final sem usá-las no ajuste de prompts.
 
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
+## Meça correção e esforço separadamente
 
-## Falhas comuns
+Repita as tarefas e preserve todas as tentativas, inclusive as falhas. Registre testes, alterações fora do escopo, correções do revisor, tempo total e consumo faturado. Diferencie erros do modelo de problemas no ambiente. Quando possível, revise os patches sem mostrar o nome do modelo. Um build bem-sucedido não comprova que uma refatoração manteve o comportamento.
 
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
+A [documentação do SWE-bench](https://www.swebench.com/SWE-bench/) oferece uma referência pública para avaliar correções de problemas. Ao usar seu ambiente, publique a revisão do conjunto de dados, os identificadores das tarefas e a configuração. Não misture pontuações de rankings públicos com taxas de sucesso locais.
 
-## Próximos passos
+## Apresente uma decisão com limites
 
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+Publique resultados e quantidade de tentativas por categoria, não apenas uma média geral. Guarde prompts, patches e logs após remover segredos. Escolha, para cada tipo de tarefa, o modelo que atenda aos critérios com um esforço de revisão aceitável. Se a amostra for pequena ou as diferenças forem estreitas, registre essa incerteza em vez de anunciar um vencedor universal.
 `,
-    ru: `# Claude 4 vs GPT-5 для кода: сравнение 2026
+    ru: `# Claude 4 и GPT-5 для программирования: воспроизводимое сравнение
 
-Обновленная версия статьи отвечает на практичный вопрос: сравнение Claude 4 и GPT-5 для кода нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
+Полезное сравнение требует эксперимента, который можно повторить. Здесь описана методика, а не результаты проведённого нами бенчмарка. Мы не объявляем победителя и не приводим неподтверждённых измерений точности, скорости или стоимости. Исторические названия помогают найти информацию, но перед оценкой в 2026 году нужно проверить доступность конкретных версий.
 
-## Начните со сценария
+## Уточните предмет сравнения
 
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
+Название Claude 4 неоднозначно: в [анонсе Anthropic](https://www.anthropic.com/news/claude-4) представлены Opus 4 и Sonnet 4. Запишите точный идентификатор модели, возвращённый провайдером, дату, версию агента и разрешённые инструменты. Перед выбором конечной точки изучите [документацию GPT-5](https://developers.openai.com/api/docs/models/gpt-5). Если старая версия недоступна, явно назовите замену: её показатели нельзя приписывать исходной модели.
 
-## Рабочий процесс
+## Подготовьте задания из своего репозитория
 
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
+Разделите работу на три категории: исправление ошибки с падающим регрессионным тестом, рефакторинг без изменения поведения и доработку интерфейса с конкретными требованиями к взаимодействию. Например, исправление пагинации должно учитывать пустой список и сохранять фильтры, а рефакторинг — публичный API. Установите критерии приёмки до генерации патчей.
 
-## Как выбирать
+Используйте одинаковые базовый коммит, файл фиксации зависимостей, документацию и запрос. Каждый запуск начинайте в чистом worktree и новом диалоге. Уравняйте ограничения по времени, инструментам и повторным попыткам. Оставьте часть задач для итоговой оценки, не используя их при настройке запросов. Это уменьшит риск подгонки процесса под уже знакомые примеры.
 
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
+## Разделяйте правильность и затраты
 
-## Типичные сбои
+Повторяйте задания и сохраняйте все попытки, включая неудачные. Фиксируйте результаты тестов, посторонние изменения, замечания проверяющего, время выполнения и фактически оплаченный расход. Отделяйте ошибки модели от неисправностей окружения. По возможности проверяйте патчи, скрыв название модели. Успешная сборка сама по себе не доказывает сохранение поведения после рефакторинга.
 
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
+[Документация SWE-bench](https://www.swebench.com/SWE-bench/) служит открытым ориентиром для оценки исправлений реальных задач. Если используете её инфраструктуру, публикуйте ревизию набора данных, идентификаторы заданий и настройки. Не объединяйте баллы публичного рейтинга с долей успешных локальных испытаний.
 
-## Что делать дальше
+## Ограничьте вывод областью проверки
 
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+Показывайте результаты и число попыток по категориям, а не только среднее значение. Сохраняйте запросы, патчи и журналы тестов после удаления секретов. Выбирайте модель для той категории, где она выполняет критерии при приемлемых затратах на проверку. Если выборка мала или результаты близки, укажите неопределённость вместо объявления универсального победителя.
 `,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-03',
+  updatedAt: '2026-11-15',
   category: 'Developer',
   tags: [
     'Claude 4',

@@ -4,299 +4,187 @@ const postGpt51CodexMaxGithubCopilot: BlogPost = {
   id: '3106',
   slug: 'gpt-5-1-codex-max-github-copilot',
   title: {
-    en: 'GPT-5.1 Codex Max in GitHub Copilot: What Developers Actually Found',
-    cn: 'GPT-5.1 Codex Max 进入 GitHub Copilot：开发者的真实反馈',
-    tw: 'GPT-5.1 Codex Max 進入 GitHub Copilot：開發者的真實回饋',
-    de: 'GPT-5.1 Codex Max in GitHub Copilot: Was Entwickler wirklich gefunden haben',
-    es: 'GPT-5.1 Codex Max en GitHub Copilot: Lo que realmente encontraron los desarrolladores',
-    fr: 'GPT-5.1 Codex Max dans GitHub Copilot : ce que les développeurs ont vraiment constaté',
-    jp: 'GPT-5.1 Codex Max が GitHub Copilot に登場：開発者が実際に感じたこと',
-    pt: 'GPT-5.1 Codex Max no GitHub Copilot: O que os desenvolvedores realmente descobriram',
-    ru: 'GPT-5.1 Codex Max в GitHub Copilot: что на самом деле обнаружили разработчики',
+    en: 'GPT-5.1 Codex Max in Copilot: Retirement and Migration',
+    cn: 'Copilot 中的 GPT-5.1 Codex Max：退役与迁移',
+    tw: 'Copilot 中的 GPT-5.1 Codex Max：退役與遷移',
+    de: 'GPT-5.1 Codex Max in Copilot: Einstellung und Migration',
+    es: 'GPT-5.1 Codex Max en Copilot: retirada y migración',
+    fr: 'GPT-5.1 Codex Max dans Copilot : retrait et migration',
+    jp: 'Copilot の GPT-5.1 Codex Max：提供終了と移行',
+    pt: 'GPT-5.1 Codex Max no Copilot: retirada e migração',
+    ru: 'GPT-5.1 Codex Max в Copilot: прекращение поддержки и переход',
   },
   excerpt: {
-    en: "OpenAI's GPT-5.1-Codex-Max landed in GitHub Copilot's model picker in December 2025. The community reaction was mixed, and that tells you something important about how coding models actually work in practice.",
-    cn: 'OpenAI 的 GPT-5.1-Codex-Max 于 2025 年 12 月进入 GitHub Copilot 的模型选择器。社区反应褒贬不一，这恰恰说明了编码模型在实际使用中的真实情况。',
-    tw: 'OpenAI 的 GPT-5.1-Codex-Max 於 2025 年 12 月進入 GitHub Copilot 的模型選擇器。社群反應褒貶不一，這恰恰說明了編碼模型在實際使用中的真實情況。',
-    de: 'OpenAIs GPT-5.1-Codex-Max landete im Dezember 2025 im Modell-Picker von GitHub Copilot. Die Community-Reaktion war gemischt, und das sagt Wichtiges über die Praxis von KI-Coding-Modellen.',
-    es: 'El GPT-5.1-Codex-Max de OpenAI llegó al selector de modelos de GitHub Copilot en diciembre de 2025. La reacción de la comunidad fue mixta, y eso dice algo importante sobre cómo funcionan realmente los modelos de código.',
-    fr: "Le GPT-5.1-Codex-Max d'OpenAI est arrivé dans le sélecteur de modèles de GitHub Copilot en décembre 2025. La réaction de la communauté a été mitigée, et cela en dit long sur le fonctionnement réel des modèles de codage.",
-    jp: 'OpenAI の GPT-5.1-Codex-Max が 2025 年 12 月に GitHub Copilot のモデルピッカーに登場。コミュニティの反応は賛否両論で、これはコーディングモデルの実際の使い方について重要なことを示しています。',
-    pt: 'O GPT-5.1-Codex-Max da OpenAI chegou ao seletor de modelos do GitHub Copilot em dezembro de 2025. A reação da comunidade foi mista, e isso diz algo importante sobre como modelos de código realmente funcionam na prática.',
-    ru: 'GPT-5.1-Codex-Max от OpenAI появился в выборе моделей GitHub Copilot в декабре 2025. Реакция сообщества была неоднозначной, и это говорит о важном аспекте работы кодинг-моделей на практике.',
+    en: 'GPT-5.1-Codex-Max retired from GitHub Copilot on April 1, 2026. Check supported replacements and validate your repository workflow before migrating.',
+    cn: 'GPT-5.1-Codex-Max 已于 2026 年 4 月 1 日从 GitHub Copilot 退役。了解如何核对替代模型，并用自己的仓库验证迁移。',
+    tw: 'GPT-5.1-Codex-Max 已於 2026 年 4 月 1 日從 GitHub Copilot 退役。核對替代模型，並以自己的儲存庫驗證遷移。',
+    de: 'GPT-5.1-Codex-Max wurde am 1. April 2026 in GitHub Copilot eingestellt. So prüfen Sie Ersatzmodelle und die Migration Ihres Entwicklungsablaufs.',
+    es: 'GPT-5.1-Codex-Max dejó GitHub Copilot el 1 de abril de 2026. Comprueba las alternativas y valida la migración con tareas de tu repositorio.',
+    fr: 'GPT-5.1-Codex-Max a quitté GitHub Copilot le 1er avril 2026. Vérifiez les alternatives et validez la migration sur votre propre dépôt.',
+    jp: 'GPT-5.1-Codex-Max は2026年4月1日に GitHub Copilot で提供終了しました。代替モデルの確認とリポジトリ単位の移行検証を解説します。',
+    pt: 'O GPT-5.1-Codex-Max saiu do GitHub Copilot em 1 de abril de 2026. Confira alternativas e valide a migração com tarefas do seu repositório.',
+    ru: 'GPT-5.1-Codex-Max удалён из GitHub Copilot 1 апреля 2026 года. Как проверить замену и оценить переход на задачах своего репозитория.',
   },
   content: {
-    en: `# GPT-5.1 Codex Max in GitHub Copilot: What Developers Actually Found
+    en: `## Why the model disappeared
 
-On December 4, 2025, a Reddit post appeared in r/GithubCopilot with a simple message: check your model picker. GPT-5.1-Codex-Max had started rolling out in public preview, and if you didn't see it yet, you needed to update your Copilot Chat extension and reload VS Code. No fanfare, no keynote stage. Just a changelog entry and a wave of developers trying something new between compile cycles.
+GPT-5.1-Codex-Max is a historical Copilot option. GitHub's [retirement notice](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) records its removal on April 1, 2026. Reinstalling an extension cannot restore a retired model. This is a Copilot availability statement, not a claim about every OpenAI product.
 
-That low-key rollout turned out to be revealing. Within hours, the thread filled with impressions that were far more useful than any benchmark chart. Some developers called the model more methodical. Others said they barely noticed a difference. A few complained it was slower. The split reaction wasn't a failure. It was the most honest signal about where AI coding assistants actually stand in early 2026.
+The notice named GPT-5.3-Codex as a replacement at that time. For a decision today, consult the [supported-model documentation](https://docs.github.com/en/copilot/reference/ai-models/supported-models) and your account's model policies. An old recommendation does not establish access for every subscription or editor.
 
-## What GPT-5.1-Codex-Max Actually Is
+## Migrate the workflow, not just the name
 
-Let's get the basics out of the way. GPT-5.1-Codex-Max is OpenAI's coding-specialized model, designed specifically for software development tasks. It sits in the Codex family alongside earlier variants, but the "Max" label suggests expanded capabilities — likely larger context handling and more deliberate reasoning on complex codebases.
+We recommend inventorying repository instructions, reusable prompts, editor settings, and internal onboarding pages that mention Codex Max. Separate an explicit model selection from a general request for coding assistance. Update unsupported selections and explain the change to colleagues; avoid silently rewriting historical benchmark records.
 
-GitHub made it available to Copilot Pro, Pro+, Business, and Enterprise subscribers. You could access it through four surfaces: the Copilot Chat model picker in VS Code, github.com, GitHub Mobile, and Copilot CLI. That breadth of availability mattered. It meant developers could test the model in their actual workflow, not in some isolated playground.
+Build a small evaluation from your own repository: a reproducible bug, a change crossing two modules, and a regression-test task. Give each candidate the same starting commit, requirements, and permitted commands. Record the selected model and client version so later comparisons remain interpretable.
 
-One detail from the Reddit discussion caught attention: a user spotted a 258K context window figure in the GitHub interface. That number wasn't in the official announcement, so treat it as an observed claim rather than a guaranteed spec. But if accurate, it would position Codex Max well for the kind of large, multi-file refactoring tasks that smaller-context models struggle with.
+## What to inspect before rollout
 
-## The Mixed Reactions Tell the Real Story
+Judge the resulting patch: does it preserve public behavior, follow local conventions, and pass relevant checks? Include review effort and unnecessary edits in your notes. A confident explanation is not evidence that a migration is correct.
 
-Here's what I find most interesting about this release: the community didn't agree. And that disagreement is more informative than unanimous praise would have been.
+Keep the previous workflow instructions in version control and document a supported fallback. These are suggested evaluation practices, not results from a Toolsify benchmark. For wider context, see our [coding-assistant guide](/blog/ai-coding-assistants-review).`,
+    cn: `## 为什么模型选择器里找不到了
 
-Some developers reported that GPT-5.1-Codex-Max felt more concise and trustworthy for coding tasks. One user described it as more "methodical" — taking a structured approach to problems rather than rushing to a solution. For complex refactoring or architectural decisions, that patience can be the difference between clean code and technical debt.
+GPT-5.1-Codex-Max 已是 Copilot 的历史选项。[GitHub 退役公告](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/)明确记录了 2026 年 4 月 1 日这一日期。重装扩展不能恢复已经退役的模型。这里说明的是 Copilot 的可用性，不代表所有 OpenAI 产品都采取相同安排。
 
-Others were less impressed. Several comments noted the model felt slower than standard GPT-5.1-Codex. In a workflow where you're waiting for suggestions between keystrokes, even a half-second delay changes the feel of the interaction. A few developers said they preferred Claude or earlier Codex variants for certain tasks, particularly long session work where consistency across many edits matters.
+公告当时推荐 GPT-5.3-Codex。今天选型还应核对[受支持模型文档](https://docs.github.com/en/copilot/reference/ai-models/supported-models)及组织策略，不能把旧公告理解为所有订阅和编辑器都拥有相同权限。
 
-This split makes sense when you think about what "better" means for a coding model. Speed matters for autocomplete-style suggestions. Depth matters for architectural planning. Context window size matters for refactoring across large codebases. No single model optimizes for all three simultaneously, and the Reddit thread showed developers sorting themselves by which trade-off they valued most.
+## 迁移时要检查哪些地方
 
-## The Timeline Nobody Expected
+建议先盘点仓库说明、常用提示词、编辑器配置和内部入职文档中对 Codex Max 的引用。区分明确指定模型的配置与一般编码任务描述：前者需要替换，后者可能只需更新说明。历史评测记录应保留原模型名称，避免修改后失去可追溯性。
 
-If you're reading this in March 2026, the story has an unexpected twist. GPT-5.1-Codex-Max moved from public preview on December 4 to general availability on December 17, 2025. That's a fast promotion, suggesting GitHub was confident in the model's stability.
+从自己的仓库挑选一个可复现缺陷、一个涉及两个模块的修改，以及一个回归测试任务。为候选模型提供相同起始提交、需求和可执行命令范围，同时记录实际模型、客户端版本与测试日期。这样才能区分模型差异和环境变化。
 
-But on March 2, 2026, GitHub announced that the entire GPT-5.1 model family — including Codex Max — is scheduled for deprecation on April 1, 2026. The suggested replacement: GPT-5.3-Codex.
+## 如何判断迁移是否可接受
 
-Four months from preview to deprecation. That timeline tells you something about the pace of the Copilot model cycle. Models aren't settling in for long tenures anymore. They're rotating through like features in a fast-moving product, each one a stepping stone to the next iteration.
+重点审查补丁是否维持公开行为、遵循仓库约定，并通过相关检查。把人工审查耗时和不必要修改也纳入记录；模型解释得流畅，并不能证明修复正确。检查生成的测试是否真的覆盖原来的失败条件，而不是只验证新实现能够运行。
 
-For developers who spent time building workflows around GPT-5.1-Codex-Max, that's a real consideration. The model you customize your prompts for today might be deprecated before your next quarterly review.
+将旧工作流保留在版本管理中，记录经过验证的受支持备选方案，再向团队推广。以上是建议的验证方法，不是本站声称已经完成的性能实测。更多选型维度见[编码助手指南](/blog/ai-coding-assistants-review)。`,
+    tw: `## 為什麼模型選單找不到它
 
-## What This Means for Your Model Choices
+GPT-5.1-Codex-Max 已是 Copilot 的歷史選項。[GitHub 退役公告](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/)記錄的日期是 2026 年 4 月 1 日。重新安裝擴充套件不能恢復已退役的模型。這裡描述的是 Copilot 可用性，並不代表所有 OpenAI 產品都有相同安排。
 
-The practical takeaway isn't "avoid GPT-5.1-Codex-Max" or "it's the best model." It's more nuanced than that.
+公告當時建議 GPT-5.3-Codex。現在選型仍應查看[支援模型文件](https://docs.github.com/en/copilot/reference/ai-models/supported-models)及組織政策，不能把舊公告視為每種訂閱和編輯器都具備相同權限的保證。
 
-First, model choice in Copilot is becoming a workflow decision, not a loyalty decision. The platform now hosts models from OpenAI, Anthropic, Google, and others. Developers are comparing them in real time, inside the same editor, on the same codebase. That's a fundamentally different dynamic from the era of "use whatever the tool ships with."
+## 遷移要檢查哪些內容
 
-Second, the mixed reactions to Codex Max highlight that benchmarks don't predict workflow fit. A model that scores higher on a coding leaderboard might feel slower or less intuitive in your specific environment. The only reliable test is trying it on your actual code, with your actual patterns, for a full working session.
+建議盤點儲存庫說明、常用提示詞、編輯器設定與內部新人文件中的 Codex Max 引用。明確指定模型的設定需要替換，一般程式設計需求則可能只需更新說明。歷史評測應保留原模型名稱，讓後續讀者能追溯結果。
 
-Third, the fast deprecation cycle means you should invest in transferable skills, not model-specific optimizations. Learn to write clear prompts. Structure your codebase for AI readability. Build habits that survive model rotations. The developers who thrive in this environment aren't the ones who master a single model. They're the ones who can quickly evaluate and adapt to whatever comes next.
+從自己的儲存庫選一個可重現缺陷、一個跨兩個模組的修改，以及一個迴歸測試任務。讓候選模型使用相同起始提交、需求與允許執行的命令。記錄實際模型、用戶端版本及測試日期，避免把環境差異誤認為模型進步。
 
-## The Bigger Picture
+## 如何判斷遷移是否合格
 
-GPT-5.1-Codex-Max's journey from preview to deprecation in four months isn't a failure story. It's a snapshot of how fast the AI coding space moves. Each model release teaches the community something about what works, what doesn't, and what to expect next.
+審查補丁是否維持對外行為、遵循專案慣例並通過相關檢查。也記錄人工審查時間與多餘修改；解釋流暢不代表修復正確。生成的測試應涵蓋原來的失敗條件，而非只確認新程式可以執行。
 
-The Reddit thread from December 4, 2025, is still worth reading — not for the specific model details, but for the pattern it reveals. Developers asking practical questions. Comparing notes in real time. Refusing to accept marketing claims without testing them on real code. That skepticism is healthy, and it's exactly what this fast-moving field needs.
+將舊工作流程納入版本管理，記錄已驗證的受支援備案，再擴大團隊採用。這些是建議的驗證方法，不是本站完成實測後的性能結論。更多選型面向可參考[程式設計助手指南](/blog/ai-coding-assistants-review)。`,
+    de: `## Warum das Modell fehlt
 
-If you're choosing a coding model today, don't chase the latest release. Test it against your workflows, measure the trade-offs, and stay ready to switch. The next model is probably already in preview.
+GPT-5.1-Codex-Max ist eine frühere Copilot-Option. Die [GitHub-Mitteilung](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) nennt den 1. April 2026 als Einstellungstermin. Eine Neuinstallation der Erweiterung bringt das Modell nicht zurück. Diese Aussage betrifft Copilot und darf nicht auf sämtliche OpenAI-Produkte übertragen werden.
 
-## How to test it in one afternoon
+Damals wurde GPT-5.3-Codex als Alternative genannt. Prüfen Sie für eine heutige Entscheidung die [Dokumentation unterstützter Modelle](https://docs.github.com/en/copilot/reference/ai-models/supported-models) sowie die Richtlinien Ihres Kontos. Eine ältere Empfehlung garantiert keinen Zugang mit jedem Abonnement oder Editor.
 
-Pick three recent tasks from your own work: a bug with a failing test, a multi-file change with a clear acceptance criterion, and a review of a pull request you already understand. Run GPT-5.1 Codex Max and your current default model on the same branch. Do not let one model benefit from feedback you gave the other. Record time to first useful answer, number of corrections, tests suggested, files touched, and whether you trusted the reasoning.
+## Den Entwicklungsablauf umstellen
 
-Then make a model routing rule. For example: fast default model for completions, Codex Max for refactors and PR review, another model for long debugging sessions. GitHub’s [Copilot model guidance](https://docs.github.com/en/copilot/using-github-copilot/ai-models/choosing-the-right-ai-model-for-your-task) should be checked often because availability changes by plan and editor.
+Unsere Empfehlung: Erfassen Sie Verweise auf Codex Max in Repository-Anweisungen, wiederverwendbaren Prompts, Editor-Einstellungen und Einführungsunterlagen. Unterscheiden Sie eine konkrete Modellauswahl von einer allgemeinen Programmieraufgabe. Ersetzen Sie nicht unterstützte Einstellungen und erklären Sie die Änderung im Team. Historische Benchmark-Aufzeichnungen sollten ihre ursprüngliche Modellbezeichnung behalten.
 
-## What not to over-optimize
+Wählen Sie anschließend Aufgaben aus Ihrem Repository: einen reproduzierbaren Fehler, eine Änderung über zwei Module und einen Regressionstest. Geben Sie jedem Kandidaten denselben Ausgangscommit, dieselben Anforderungen und erlaubten Befehle. Halten Sie Modellname, Client-Version und Testdatum fest, damit spätere Vergleiche nachvollziehbar bleiben.
 
-Do not rewrite your entire prompt style around one preview model. Do not make a team process depend on a model that only half the team can access. Do not treat a public benchmark as proof that it will understand your build system. Instead, keep prompts transferable: goal, constraints, relevant files, tests, and stop conditions.
+## Die Ergebnisse beurteilen
 
-For more context, compare [Claude 4 vs GPT-5 for coding](/blog/claude-4-vs-gpt-5-code-benchmarks-2026), our [AI coding assistants review](/blog/ai-coding-assistants-review), and OpenAI’s [Codex overview](https://openai.com/index/introducing-codex/).
+Entscheidend ist der Patch: Bleibt das öffentliche Verhalten erhalten? Werden Projektkonventionen und relevante Prüfungen eingehalten? Erfassen Sie auch Prüfaufwand und unnötige Änderungen. Eine überzeugende Erklärung beweist keine korrekte Migration; insbesondere sollten neue Tests den ursprünglichen Fehler tatsächlich abdecken.
 
-If your team is standardizing Copilot settings, pair this article with the [GPT-5 migration playbook](/blog/gpt-5-developer-migration-playbook), the [Claude 4 vs GPT-5 coding benchmark framework](/blog/claude-4-vs-gpt-5-code-benchmarks-2026), and the [AI coding assistants review](/blog/ai-coding-assistants-review). The safest decision usually combines model routing, local evals, and clear fallback rules.
-`,
-    cn: `# GPT-5.1 Codex Max 进入 GitHub Copilot：如何评估
+Bewahren Sie bisherige Anweisungen in der Versionsverwaltung auf und dokumentieren Sie eine unterstützte Ausweichlösung. Dies sind vorgeschlagene Evaluationsschritte, keine Ergebnisse eines Toolsify-Benchmarks. Weitere Auswahlkriterien finden Sie im [Leitfaden zu Programmierassistenten](/blog/ai-coding-assistants-review).`,
+    es: `## Por qué desapareció el modelo
 
-这篇更新版文章围绕一个很实际的问题：GitHub Copilot 中的 GPT-5.1 Codex Max不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+GPT-5.1-Codex-Max es una opción histórica de Copilot. El [aviso de GitHub](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) registra su retirada el 1 de abril de 2026. Reinstalar la extensión no devuelve un modelo retirado. Esta información se refiere a Copilot, no a todos los productos de OpenAI.
 
-## 先判断使用场景
+El aviso recomendaba GPT-5.3-Codex en aquel momento. Para decidir ahora, consulta la [documentación de modelos compatibles](https://docs.github.com/en/copilot/reference/ai-models/supported-models) y las políticas de tu cuenta. Una recomendación antigua no garantiza acceso con cualquier suscripción o editor.
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+## Migrar el proceso de desarrollo
 
-## 工作流建议
+Recomendamos inventariar las referencias a Codex Max en instrucciones del repositorio, prompts reutilizables, ajustes del editor y documentación interna. Distingue una selección explícita de modelo de una petición general de programación. Actualiza las selecciones incompatibles y explica el cambio al equipo; conserva los nombres originales en registros históricos de evaluación.
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+Prepara una prueba con trabajo propio: un fallo reproducible, una modificación entre dos módulos y una tarea de regresión. Ofrece a cada candidato el mismo commit inicial, requisitos y comandos permitidos. Anota modelo, versión del cliente y fecha para poder interpretar las diferencias después.
 
-## 选择标准
+## Qué revisar antes de ampliar el uso
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+Evalúa el parche: comportamiento público conservado, convenciones respetadas y comprobaciones pertinentes superadas. Registra también esfuerzo de revisión y cambios innecesarios. Una explicación convincente no demuestra corrección; comprueba que los tests generados detecten el fallo original.
 
-## 常见失败模式
+Guarda las instrucciones anteriores en el control de versiones y documenta una alternativa compatible. Son prácticas de evaluación propuestas, no resultados de un benchmark de Toolsify. Nuestra [guía de asistentes de programación](/blog/ai-coding-assistants-review) amplía los criterios de selección.`,
+    fr: `## Pourquoi le modèle a disparu
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
+GPT-5.1-Codex-Max est une ancienne option de Copilot. L'[annonce de GitHub](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) indique un retrait le 1er avril 2026. Réinstaller une extension ne rétablit pas un modèle retiré. Cette information concerne Copilot, pas l'ensemble des produits OpenAI.
 
-## 下一步
+L'annonce recommandait alors GPT-5.3-Codex. Pour choisir aujourd'hui, consultez la [documentation des modèles pris en charge](https://docs.github.com/en/copilot/reference/ai-models/supported-models) et les règles de votre compte. Une recommandation passée ne garantit pas l'accès dans chaque abonnement ou éditeur.
 
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
-`,
-    tw: `# GPT-5.1 Codex Max 進入 GitHub Copilot：如何評估
+## Migrer le travail du dépôt
 
-這篇更新版文章聚焦一個實務問題：GitHub Copilot 中的 GPT-5.1 Codex Max不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+Nous conseillons de recenser les références à Codex Max dans les consignes du dépôt, les prompts réutilisables, les réglages de l'éditeur et l'accueil des nouveaux développeurs. Distinguez une sélection explicite de modèle d'une demande générale de programmation. Remplacez les réglages obsolètes et expliquez le changement, sans réécrire les noms de modèles dans les anciens résultats d'évaluation.
 
-## 先判斷使用場景
+Construisez ensuite une évaluation propre au dépôt : un défaut reproductible, une modification traversant deux modules et un test de régression. Fournissez le même commit initial, les mêmes exigences et les mêmes commandes autorisées aux candidats. Notez modèle, version du client et date.
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+## Vérifier le résultat concret
 
-## 工作流建議
+Examinez le patch : préserve-t-il le comportement public, respecte-t-il les conventions et passe-t-il les contrôles pertinents ? Consignez aussi le temps de relecture et les modifications superflues. Une explication assurée ne prouve pas la correction du code.
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+Conservez les anciennes consignes dans le gestionnaire de versions et documentez une solution de repli prise en charge. Ce sont des recommandations d'évaluation, pas des résultats mesurés par Toolsify. Consultez aussi notre [guide des assistants de programmation](/blog/ai-coding-assistants-review).`,
+    jp: `## モデル一覧から消えた理由
 
-## 選擇標準
+GPT-5.1-Codex-Max は現在の Copilot の選択肢ではありません。[GitHub の終了告知](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/)では、提供終了日が2026年4月1日とされています。拡張機能の再インストールで復活するものではありません。これは Copilot の提供状況であり、OpenAI の全製品について同じことを意味するわけではありません。
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+告知当時の推奨代替は GPT-5.3-Codex でした。現在の選定では[対応モデルの文書](https://docs.github.com/en/copilot/reference/ai-models/supported-models)と組織のポリシーを確認してください。過去の推奨だけでは、すべての契約やエディターで利用できるとは判断できません。
 
-## 常見失敗模式
+## 名前の変更だけで移行を終えない
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
+まず、リポジトリの指示、再利用するプロンプト、エディター設定、社内の導入文書にある Codex Max の参照を洗い出すことを勧めます。明示的なモデル指定と一般的な実装依頼を区別し、無効な設定を置き換えます。過去の評価記録のモデル名は、比較の意味が変わらないよう残してください。
 
-## 下一步
+自分のリポジトリから、再現可能な不具合、二つのモジュールにまたがる変更、回帰テストの作成を選びます。各候補には同じ開始コミット、要件、実行可能なコマンドを渡し、モデル名、クライアントのバージョン、実施日を記録します。
 
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
-`,
-    de: `# GPT-5.1 Codex Max in GitHub Copilot: richtig bewerten
+## 導入判断はパッチで行う
 
-Diese Fassung beantwortet eine praktische Frage: GPT-5.1 Codex Max in GitHub Copilot sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+公開動作を維持しているか、既存の規約に従っているか、関連する検証に通るかを確認します。レビュー時間や不要な変更も評価に含めてください。説明の説得力は、コードが正しい証拠にはなりません。追加されたテストが元の不具合を検出できるかも重要です。
 
-## Erst den Anwendungsfall klären
+以前の手順をバージョン管理に残し、利用可能な代替手順を用意してから展開します。ここで示したのは評価の提案であり、Toolsify が実測した性能結果ではありません。[コーディング支援の選び方](/blog/ai-coding-assistants-review)も参考になります。`,
+    pt: `## Por que o modelo desapareceu
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+O GPT-5.1-Codex-Max é uma opção histórica do Copilot. O [aviso do GitHub](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) registra sua retirada em 1 de abril de 2026. Reinstalar a extensão não recupera um modelo descontinuado. A informação trata do Copilot, não de todos os produtos da OpenAI.
 
-## Ein belastbarer Workflow
+Naquele momento, o aviso recomendou GPT-5.3-Codex. Para escolher hoje, consulte a [documentação de modelos compatíveis](https://docs.github.com/en/copilot/reference/ai-models/supported-models) e as políticas da conta. Uma recomendação antiga não garante acesso em qualquer assinatura ou editor.
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+## Migrar o fluxo de desenvolvimento
 
-## Auswahlkriterien
+Recomendamos levantar referências ao Codex Max nas instruções do repositório, prompts reutilizáveis, configurações do editor e materiais de integração da equipe. Diferencie uma seleção explícita de modelo de um pedido genérico de programação. Atualize configurações sem suporte e explique a mudança; preserve os nomes originais nos registros históricos de avaliação.
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+Monte um pequeno conjunto de tarefas reais: um defeito reproduzível, uma alteração entre dois módulos e um teste de regressão. Forneça aos candidatos o mesmo commit inicial, requisitos e comandos permitidos. Registre o modelo escolhido, a versão do cliente e a data para tornar comparações futuras interpretáveis.
 
-## Häufige Fehler
+## O que verificar antes de ampliar
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
+Avalie o patch: mantém o comportamento público, respeita as convenções e passa nas verificações relevantes? Anote também esforço de revisão e alterações desnecessárias. Uma explicação convincente não comprova correção; verifique se os testes gerados detectam o defeito original.
 
-## Nächster Schritt
+Guarde as instruções anteriores no controle de versões e documente uma alternativa suportada. São práticas propostas, não resultados de um benchmark da Toolsify. Veja mais critérios no [guia de assistentes de programação](/blog/ai-coding-assistants-review).`,
+    ru: `## Почему модель исчезла
 
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
-`,
-    es: `# GPT-5.1 Codex Max en GitHub Copilot: cómo evaluarlo
+GPT-5.1-Codex-Max — историческая опция Copilot. В [объявлении GitHub](https://github.blog/changelog/2026-04-03-gpt-5-1-codex-gpt-5-1-codex-max-and-gpt-5-1-codex-mini-deprecated/) датой прекращения поддержки указано 1 апреля 2026 года. Переустановка расширения не вернёт удалённую модель. Речь идёт о доступности в Copilot, а не обо всех продуктах OpenAI.
 
-Esta versión revisada responde a una pregunta práctica: GPT-5.1 Codex Max en GitHub Copilot no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+Тогда GitHub рекомендовал GPT-5.3-Codex. Для выбора сегодня проверьте [документацию поддерживаемых моделей](https://docs.github.com/en/copilot/reference/ai-models/supported-models) и политики учётной записи. Старая рекомендация не гарантирует доступ при любой подписке или в любом редакторе.
 
-## Empieza por el caso de uso
+## Перенесите рабочий процесс
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+Рекомендуем найти упоминания Codex Max в инструкциях репозитория, повторно используемых запросах, настройках редактора и материалах для новых сотрудников. Отличайте явный выбор модели от обычной просьбы написать код. Замените неподдерживаемые настройки и объясните изменения коллегам. В исторических результатах оценки сохраняйте исходное название модели.
 
-## Flujo recomendado
+Подготовьте задания из собственного проекта: воспроизводимую ошибку, изменение двух модулей и регрессионный тест. Каждому кандидату предоставьте одинаковый исходный коммит, требования и разрешённые команды. Запишите выбранную модель, версию клиента и дату проверки. Так изменения среды не будут ошибочно приняты за улучшение модели.
 
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
+## Проверяйте результат, а не объяснение
 
-## Criterios de decisión
+Оцените патч: сохраняется ли публичное поведение, соблюдаются ли соглашения проекта, проходят ли необходимые проверки? Учитывайте время ревью и лишние изменения. Уверенное объяснение не доказывает правильность кода. Убедитесь, что новые тесты действительно обнаруживают исходную ошибку, а не только запускают новую реализацию.
 
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
-
-## Fallos habituales
-
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
-
-## Siguiente paso
-
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
-`,
-    fr: `# GPT-5.1 Codex Max dans GitHub Copilot : bien l’évaluer
-
-Cette version enrichie répond à une question concrète : GPT-5.1 Codex Max dans GitHub Copilot doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
-
-## Clarifier le cas d’usage
-
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
-
-## Méthode pratique
-
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
-
-## Critères de choix
-
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
-
-## Échecs fréquents
-
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
-
-## Pour continuer
-
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
-`,
-    jp: `# GitHub Copilot の GPT-5.1 Codex Max 評価法
-
-この記事の改訂版では、GitHub Copilot の GPT-5.1 Codex Maxを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
-
-## まず用途を分ける
-
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
-
-## 実務での進め方
-
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
-
-## 選定基準
-
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
-
-## よくある失敗
-
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
-
-## 次に読むもの
-
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
-`,
-    pt: `# GPT-5.1 Codex Max no GitHub Copilot: como avaliar
-
-Esta versão revisada olha para uma pergunta prática: GPT-5.1 Codex Max no GitHub Copilot deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
-
-## Comece pelo caso de uso
-
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
-
-## Fluxo recomendado
-
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
-
-## Critérios de escolha
-
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
-
-## Falhas comuns
-
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
-
-## Próximos passos
-
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
-`,
-    ru: `# GPT-5.1 Codex Max в GitHub Copilot: как оценивать
-
-Обновленная версия статьи отвечает на практичный вопрос: GPT-5.1 Codex Max в GitHub Copilot нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
-
-## Начните со сценария
-
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
-
-## Рабочий процесс
-
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
-
-## Как выбирать
-
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
-
-## Типичные сбои
-
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
-
-## Что делать дальше
-
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
-`,
+Сохраните прежние инструкции в системе контроля версий и опишите поддерживаемый запасной вариант. Это предлагаемый способ оценки, а не результаты проведённого Toolsify бенчмарка. Дополнительные критерии есть в [обзоре помощников программиста](/blog/ai-coding-assistants-review).`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
+  updatedAt: '2026-11-15',
   category: 'AI Models',
-  tags: [
-    'GPT-5',
-    'GitHub Copilot',
-    'AI Coding',
-    'OpenAI Codex',
-    'GPT-5.1 Codex Max vs GitHub Copilot comparison 2026',
-    'best AI coding assistant GPT-5.1 or GitHub Copilot',
-    'Codex Max cloud software engineering agent',
-  ],
+  tags: ['GitHub Copilot', 'GPT-5.1-Codex-Max', 'Model Retirement', 'Coding Workflow Migration'],
 };
 
 export default postGpt51CodexMaxGithubCopilot;

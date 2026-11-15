@@ -172,6 +172,7 @@
     "privacyPolicy": "Datenschutzerklärung"
   },
   "Blog": {
+    "updatedOn": "Aktualisiert am {date}",
     "title": "Blog",
     "subTitle": "Einblicke, Anleitungen und Updates zu KI-Tools und Technologie",
     "readMore": "Weiterlesen",
@@ -211,6 +212,8 @@
       "submission": "Einreichung"
     },
     "detail": {
+      "originalLanguageNotice": "Diese Beschreibung ist derzeit in der Originalsprache verfügbar.",
+      "viewOriginal": "Original ansehen",
       "visitWebsite": "Website besuchen",
       "introduction": "Einführung"
     }

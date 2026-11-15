@@ -70,11 +70,11 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
     headline: title,
     description: post.excerpt[locale as keyof typeof post.excerpt] || post.excerpt.en,
     author: {
-      '@type': 'Person',
+      '@type': post.author === 'Toolsify Editorial Team' ? 'Organization' : 'Person',
       name: post.author,
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedAt || post.date,
     inLanguage: languageTag,
     mainEntityOfPage: articleUrl,
     articleSection: post.category,
@@ -143,6 +143,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: { param
               <div className='flex items-center gap-1.5'>
                 <Calendar className='size-4' />
                 <span>{post.date}</span>
+                {post.updatedAt && <span>{t('updatedOn', { date: post.updatedAt })}</span>}
               </div>
               <div className='flex items-center gap-1.5'>
                 <User className='size-4' />

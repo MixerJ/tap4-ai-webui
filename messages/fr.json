@@ -172,6 +172,7 @@
     "privacyPolicy": "Politique de confidentialité"
   },
   "Blog": {
+    "updatedOn": "Mis à jour le {date}",
     "title": "Blog",
     "subTitle": "Perspectives, guides et mises à jour sur les outils IA et la technologie",
     "readMore": "Lire Plus",
@@ -211,6 +212,8 @@
       "submission": "Soumission"
     },
     "detail": {
+      "originalLanguageNotice": "Cette description est actuellement disponible dans sa langue d’origine.",
+      "viewOriginal": "Voir l’original",
       "visitWebsite": "Visiter le site",
       "introduction": "Introduction"
     }

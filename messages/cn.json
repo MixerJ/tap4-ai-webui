@@ -172,6 +172,7 @@
     "privacyPolicy": "隐私政策"
   },
   "Blog": {
+    "updatedOn": "更新于 {date}",
     "title": "博客",
     "subTitle": "关于AI工具和技术的前沿见解、指南和更新",
     "readMore": "阅读更多",
@@ -211,6 +212,8 @@
       "submission": "提交"
     },
     "detail": {
+      "originalLanguageNotice": "该工具介绍目前以原文显示。",
+      "viewOriginal": "查看原文",
       "visitWebsite": "访问网站",
       "introduction": "介绍"
     }
