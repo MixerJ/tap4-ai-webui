@@ -12,6 +12,8 @@ type MetadataInput = {
   robots?: Metadata['robots'];
   type?: 'website' | 'article';
   imagePath?: string;
+  availableLocales?: readonly string[];
+  canonicalLocale?: string;
 };
 
 type SocialMetadataInput = {
@@ -50,18 +52,26 @@ export function buildLocalizedUrl(locale: string, path = ''): string {
   return buildAbsoluteUrl(locale, path);
 }
 
-export function buildLocaleAlternates(locale: string, path = ''): Metadata['alternates'] {
+export function buildLocaleAlternates(
+  locale: string,
+  path = '',
+  availableLocales?: readonly string[],
+): Metadata['alternates'] {
   const languagesMap = languages.reduce<Record<string, string>>((acc, item) => {
+    if (availableLocales && !availableLocales.includes(item.lang)) return acc;
     acc[item.code] = buildAbsoluteUrl(item.lang, path);
     return acc;
   }, {});
 
   return {
     canonical: buildAbsoluteUrl(locale, path),
-    languages: {
-      ...languagesMap,
-      'x-default': buildAbsoluteUrl('en', path),
-    },
+    languages:
+      availableLocales?.length === 0
+        ? undefined
+        : {
+            ...languagesMap,
+            'x-default': buildAbsoluteUrl('en', path),
+          },
   };
 }
 
@@ -131,6 +141,8 @@ export function buildPageMetadata({
   robots,
   type = 'website',
   imagePath = '/images/toolsify-ai.png',
+  availableLocales,
+  canonicalLocale = locale,
 }: MetadataInput): Metadata {
   const url = buildAbsoluteUrl(locale, path);
   const imageUrl = imagePath.startsWith('http')
@@ -143,7 +155,7 @@ export function buildPageMetadata({
     description,
     keywords,
     robots,
-    alternates: buildLocaleAlternates(locale, path),
+    alternates: buildLocaleAlternates(canonicalLocale, path, availableLocales),
     openGraph: {
       type,
       title,

@@ -4,297 +4,239 @@ const postGpt5DeveloperMigrationPlaybook: BlogPost = {
   id: '3001',
   slug: 'gpt-5-developer-migration-playbook',
   title: {
-    en: 'GPT-5 Migration Playbook for Developers in 2026',
-    cn: '2026 开发者 GPT-5 迁移实战手册',
-    tw: '2026 開發者 GPT-5 遷移實戰手冊',
-    de: 'GPT-5-Migration für Entwickler: Der Praxisleitfaden 2026',
-    es: 'GPT-5 para desarrolladores: guía de migración práctica 2026',
-    fr: 'GPT-5 pour les développeurs : guide de migration 2026',
-    jp: '開発者のための GPT-5 移行実践ガイド 2026',
-    pt: 'GPT-5 para desenvolvedores: guia de migração prático 2026',
-    ru: 'GPT-5 для разработчиков: практическое руководство по миграции 2026',
+    en: 'GPT-5 Integrations: A Responses API Migration Checklist',
+    cn: 'GPT-5 集成迁移：Responses API 检查清单',
+    tw: 'GPT-5 整合遷移：Responses API 檢查清單',
+    de: 'GPT-5-Integrationen: Checkliste für die Responses-API-Migration',
+    es: 'Integraciones GPT-5: lista de migración a Responses API',
+    fr: 'Intégrations GPT-5 : préparer la migration vers Responses API',
+    jp: 'GPT-5 連携の Responses API 移行チェックリスト',
+    pt: 'Integrações GPT-5: roteiro de migração para a Responses API',
+    ru: 'Интеграции GPT-5: план перехода на Responses API',
   },
   excerpt: {
-    en: 'A senior engineer shares what actually breaks when migrating to the GPT-5 API, which changes matter most, and a step-by-step playbook for a safe transition.',
-    cn: '一位资深工程师分享迁移到 GPT-5 API 时实际会踩的坑、最关键的变更，以及一套安全迁移的分步方案。',
-    tw: '一位資深工程師分享遷移到 GPT-5 API 時實際會遇到的問題、最關鍵的變更，以及安全遷移的分步方案。',
-    de: 'Ein erfahrener Entwickler teilt, was bei der Migration auf die GPT-5-API tatsächlich schiefgeht, welche Änderungen am wichtigsten sind und wie man sicher umstellt.',
-    es: 'Un ingeniero senior comparte qué falla realmente al migrar a la API de GPT-5, qué cambios importan más y una guía paso a paso para una transición segura.',
-    fr: "Un ingénieur senior partage ce qui casse vraiment lors de la migration vers l'API GPT-5, les changements les plus importants et un guide étape par étape pour une transition réussie.",
-    jp: 'ベテランエンジニアが GPT-5 API への移行で実際に壊れるもの、最も重要な変更点、そして安全な移行のステップバイステップガイドを紹介。',
-    pt: 'Um engenheiro sênior compartilha o que realmente quebra ao migrar para a API do GPT-5, quais mudanças são mais importantes e um guia passo a passo para uma transição segura.',
-    ru: 'Старший инженер делится тем, что реально ломается при миграции на API GPT-5, какие изменения наиболее важны и пошаговый план безопасного перехода.',
+    en: 'A practical plan for migrating an existing GPT-5 integration: response contracts, tool execution, conversation state, evaluation, and rollback.',
+    cn: '面向已有 GPT-5 集成，检查响应解析、工具执行、会话状态与回滚，避免同时更换模型和接口而掩盖问题。',
+    tw: '針對既有 GPT-5 整合，檢查回應解析、工具執行、對話狀態與回復方案，將模型更新和介面遷移分開驗證。',
+    de: 'Antwortformate, Werkzeugausführung und Gesprächszustand getrennt prüfen und eine bestehende GPT-5-Integration kontrolliert umstellen.',
+    es: 'Cómo revisar respuestas, herramientas y estado de conversación al migrar una integración GPT-5 existente, con criterios de evaluación y reversión.',
+    fr: 'Une méthode pour vérifier les réponses, les outils et le contexte conversationnel avant de migrer une intégration GPT-5 existante.',
+    jp: '既存の GPT-5 連携を対象に、応答解析、ツール実行、会話状態、評価と切り戻しを段階的に確認します。',
+    pt: 'Revise respostas, execução de ferramentas e estado da conversa em uma integração GPT-5 existente, com avaliação e reversão planejadas.',
+    ru: 'Как проверить обработку ответов, вызовы инструментов и состояние диалога при переносе существующей интеграции GPT-5.',
   },
   content: {
-    en: `# GPT-5 Migration Playbook for Developers in 2026
+    en: `# GPT-5 Integrations: A Responses API Migration Checklist
 
-A model migration looks simple until it touches production prompts, function schemas, stream parsers, evals, and cost controls. This playbook treats GPT-5 migration as an engineering project rather than a model swap, so you can find the risky parts before users do.
+## Separate the model from the API
 
-## Why Migrate Now?
+An existing GPT-5 integration has two independent migration decisions: which model to call and which API contract the application supports. Changing both together makes regressions harder to locate. Record the current model identifier, SDK version, endpoint, prompt revision, and output schema. First reproduce one representative request with the existing configuration; then change only the API adapter. This article proposes a validation method, not measured performance results.
 
-The usual reason to migrate is not a leaderboard screenshot. Teams move when the new model gives them better long-context behavior, cleaner tool use, stronger multimodal support, or a pricing model that fits their traffic. Those gains are real only if they survive your own prompts, retrieval layer, and user workflows.
+## Rebuild the response boundary
 
-The practical reason to plan early is risk. Legacy model versions eventually receive fewer improvements, pricing can change, and SDK examples tend to drift toward newer APIs. You do not have to migrate every workflow at once, but you should know which prompts, tools, and evals would break if the default model changed next quarter.
+The Responses API returns typed output items rather than the Chat Completions choices structure. Do not reuse a parser that assumes every response contains one text message. Give the adapter explicit outcomes for text, tool requests, refusal, incomplete output, and failure. Test a cancelled stream and a connection lost after partial text. The interface should distinguish an unfinished answer from a completed result, and a retry should not append duplicate fragments to the conversation.
 
-## The Breaking Changes You Can't Ignore
+## Keep tool execution under application control
 
-Let's start with the stuff that can actually break your code. Three areas deserve review before rollout.
+For an order-status assistant, start with a read-only lookup and record the requested order identifier. Validate arguments and the signed-in user's access before calling the backend. Return the tool result to the matching call, and test two tool calls in the same turn. A refund or email action needs an application-level confirmation and an idempotency key; model output alone must not authorize it. Replay interrupted runs without creating duplicate actions.
 
-**Instruction hierarchy.** Newer APIs often separate platform, developer, and user instructions more explicitly than older chat-completion patterns. If you packed policy, examples, formatting rules, and product behavior into one long system prompt, split it before migration. Keep durable policy separate from task-specific guidance so you can test each layer.
+## Evaluate state and release gradually
 
-**Tool and function schemas.** Tool-calling migrations usually fail at the edges: nullable fields, conditional parameters, enum drift, nested objects, and tools that return more data than the model needs. Do not trust an automatic schema conversion without replaying real calls from production logs. Budget review time for every tool that can send email, change data, create tickets, or spend money.
+Create fixtures for a follow-up question, missing tool data, a changed instruction, and a deliberately malformed backend result. Check whether the next turn preserves the correct order context without leaking another customer's data. Compare valid outputs, task completion, latency, tokens, and retry counts on identical fixtures. Establish acceptance criteria from the existing service requirements, not a borrowed benchmark. Release one workflow behind a reversible flag and keep the previous adapter until monitoring confirms that the new path meets those criteria.
 
-**Response and streaming formats.** Stream parsers are easy to forget because they live below the prompt layer. If your app renders partial responses, citations, tool-call progress, or JSON chunks, test those paths directly. A model can answer correctly while the UI still breaks because the client expects a different event shape.
+## Sources
 
-## Step-by-Step Migration Process
-
-Use a staged plan instead of a one-day model flip.
-
-**Stage 1: Audit and replay.** Run representative production prompts against the candidate model in a non-user-facing environment. The key metric is not pass/fail alone; it is output divergence by task type. Compare support replies, tool calls, refusal behavior, summaries, structured JSON, and long-context answers separately. One average score hides too much.
-
-**Stage 2: Fix the hard edges.** Tackle breaking changes in priority order: tool schemas first, stream parsing second, instruction hierarchy third. Tool schema failures create hard errors. Stream parsing failures create silent UI bugs. Instruction changes create quality drift that may only show up after review.
-
-**Stage 3: Optimize and roll out.** Once the old behavior is stable, tune for the new model's strengths. You may be able to remove prompt scaffolding, reduce chained calls, or ask for more structured output. Roll out by workflow, not by account, so you can compare similar tasks under the old and new model.
-
-## Cost and Performance Trade-offs
-
-Let's talk money. Do not compare models only by sticker price per token. A more expensive model can still lower total cost if it needs fewer retries, shorter prompts, fewer chained calls, or less human cleanup. The reverse is also true: a stronger model can become more expensive if teams use the larger context window as a dumping ground.
-
-Build a cost sheet before rollout. Track input tokens, output tokens, retry rate, tool-call count, retrieval payload size, and human review minutes for each workflow. Then compare the old and new model on the same traffic sample. If a workflow only needs classification or routing, keep it on a cheaper model. Reserve GPT-5 for tasks where reasoning quality changes the outcome.
-
-Latency is the other trade-off. Batch jobs can tolerate slower responses. Real-time chat, autocomplete, and customer support copilots cannot. Test streaming behavior, cancellation, fallback routing, and timeout copy in the UI. A model migration is successful only if users still understand what is happening while they wait.
-
-## Observability and Monitoring
-
-Don't skip this part. Add three monitoring views before users see the new model.
-
-First, create a token usage dashboard broken down by endpoint, user tier, and model version. You need visibility into actual consumption from day one, especially if the new model changes answer length or retrieval payload size.
-
-Second, add a quality regression detector. Sample production responses, review them against your rubric, and split results by task type. A support answer, a code suggestion, and a tool-calling agent fail in different ways.
-
-Third, add a cost anomaly alert. Open-ended prompts, verbose retrieval context, and repeated retries can quietly multiply spend. Alert on output tokens, retry count, and tool-call loops per endpoint rather than watching only the monthly bill.
-
-## What Nobody Tells You
-
-The change that often costs teams the most time is output determinism. A new model may follow the same prompt but vary JSON spacing, field order, refusal wording, or citation format. Tests that compare exact strings become noisy. Prefer schema validation, required-field checks, and rubric-based evaluation for subjective text.
-
-The other common surprise is rate limiting. New model access may have separate quotas, tiers, or regional constraints from the model you are replacing. Request headroom before load testing. A migration blocked by quota is avoidable; a migration blocked during a customer-facing rollout is not.
-
-## Looking Ahead
-
-The migration is worth planning, but rushing it is a mistake. Start with your least critical workflow, measure everything, and give your team time to build intuition for the new model's quirks. The teams that benefit most are usually the ones that treat model upgrades like dependency upgrades with product consequences.
-
-If multimodal capabilities are part of the reason to move, test them as a separate workstream. Document processing, screenshot analysis, and visual QA have different failure modes from text chat. Do not bundle every migration risk into one release.
-
-## A production-ready migration checklist
-
-Before rollout, confirm seven items. Every call site has an owner. Output contracts are validated in code. Tool calls have server-side authorization and idempotency. Dashboards split cost by model and endpoint. Rate-limit headroom is approved. The fallback path has been tested in staging. Support and operations know what changed.
-
-This checklist sounds plain because production incidents are plain. A model upgrade can fail through a missing enum, a longer answer, a stream parser, or a retry loop that doubles cost. Treat GPT-5 like any other dependency with behavior changes: evaluate, stage, shadow, roll out, monitor, and roll back if necessary.
-
-## Examples of safe rollout gates
-
-For a support summarizer, gate on malformed JSON under 0.5%, average latency within the current SLO, and no increase in escalations from sampled conversations. For an agent with tool use, gate on tool-argument match rate in shadow mode and require human approval for refunds, emails, and account changes during the first phase. For a coding assistant, gate on tests passed, diff size, and human review minutes.
-
-Keep the official [OpenAI API docs](https://platform.openai.com/docs), [Responses API guide](https://platform.openai.com/docs/guides/responses), [function calling guide](https://platform.openai.com/docs/guides/function-calling), and [pricing page](https://openai.com/api/pricing/) in the runbook. Pair this with our [AI agents reliability guide](/blog/ai-agents-need-reliability-more-than-capability) if the migrated workflow can take actions.
-
-Related planning material: the [Claude 4 vs GPT-5 coding comparison](/blog/claude-4-vs-gpt-5-code-benchmarks-2026), the [GitHub Copilot Codex Max analysis](/blog/gpt-5-1-codex-max-github-copilot), and the [AI for developers guide](/blog/ai-for-developers-guide). Use them to decide whether GPT-5 belongs in every path or only in high-value workflows.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    cn: `# 2026 开发者 GPT-5 迁移实战手册
+    cn: `# GPT-5 集成迁移：Responses API 检查清单
 
-这篇更新版文章围绕一个很实际的问题：GPT-5 API 迁移不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+## 先分开模型与接口的变化
 
-## 先判断使用场景
+已有 GPT-5 集成的迁移涉及两件独立的事：选用哪个模型，以及应用使用什么 API 契约。一次同时改变两者，会让回归难以定位。先记录当前模型标识、SDK 版本、接口、提示词版本和输出结构，保存一条能够重现的基线请求。第一轮只替换接口适配层，保持任务与模型配置不变。本文给出验证方法，不提供未经实测的速度或效果结论。
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+## 明确响应解析的边界
 
-## 工作流建议
+Responses API 使用带类型的输出项，不是 Chat Completions 的 choices 结构。不要继续假设每次响应都只有一条文本消息。适配层应区分文本、工具请求、拒绝、不完整输出和请求失败。为用户取消流、收到部分文本后断线分别准备测试；页面要明确标注未完成结果，重试时不能把同一段文字再次追加到会话中。保存错误类别，比只记录“生成失败”更便于排查。
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+## 工具权限由应用负责
 
-## 选择标准
+以订单查询助手为例，先接入只读查询，并记录模型请求的订单编号。服务器验证参数及当前用户的订单访问权限后，才调用业务后端。工具结果必须对应正确的调用，另外测试同一轮出现两次工具请求的情况。退款、发邮件等操作应有应用层确认与幂等键；不能把模型给出的参数当成授权。中断后重放请求时，要检查是否会重复执行操作。
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+## 用会话样例决定是否上线
 
-## 常见失败模式
+测试集至少包含追问、工具数据缺失、指令变更和后端返回错误结构。检查下一轮是否保留正确订单上下文，也检查不同用户的数据是否隔离。对同一组样例比较输出结构通过率、任务完成情况、延迟、令牌及重试次数。阈值应来自当前产品要求，而非借用宣传中的基准分数。先为一个流程开启可回退的功能开关，在监控确认满足要求前保留旧适配层。
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
+## 官方资料
 
-## 下一步
-
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    tw: `# 2026 開發者 GPT-5 遷移實戰手冊
+    tw: `# GPT-5 整合遷移：Responses API 檢查清單
 
-這篇更新版文章聚焦一個實務問題：GPT-5 API 遷移不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+## 分開模型與介面的變更
 
-## 先判斷使用場景
+既有 GPT-5 整合涉及兩項獨立決策：使用哪個模型，以及應用程式支援哪種 API 契約。同時更改兩者，會增加定位回歸問題的難度。先記錄模型識別碼、SDK 版本、端點、提示詞版本和輸出結構，保存一個能重現的基準請求。第一輪僅替換 API 適配層，保留原本任務與模型設定。本文提供驗證方法，不宣稱未經實測的效能提升。
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+## 重建回應解析邊界
 
-## 工作流建議
+Responses API 回傳具類型的輸出項目，而非 Chat Completions 的 choices 結構。解析器不能假設每次只收到一段文字。應明確區分文字、工具請求、拒絕、不完整輸出與失敗。分別測試使用者取消串流，以及收到部分文字後連線中斷的情境。介面必須讓人辨識尚未完成的答案，重新嘗試時也不能重複加入已收到的文字。錯誤紀錄應保留分類，方便追查故障來源。
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+## 工具執行仍由應用程式授權
 
-## 選擇標準
+以訂單查詢助手為例，先測試唯讀查詢並記錄請求的訂單編號。伺服器確認參數及登入者的存取權後，才呼叫後端。回傳資料必須對應正確的工具呼叫，並測試同一輪有兩次呼叫時的處理。退款與寄信需要應用層確認及冪等鍵，不能只憑模型輸出執行。重播中斷的流程時，應檢查是否產生重複操作。
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+## 以對話樣例作為發布依據
 
-## 常見失敗模式
+準備追問、工具缺資料、指令變更與後端格式錯誤等案例。確認下一輪保留正確訂單上下文，也確認不同客戶資料不會混用。在相同案例下比較結構驗證、任務完成、延遲、Token 與重試次數。驗收門檻應源自現有服務需求，而非其他團隊的榜單。先替單一流程啟用可回復的功能開關，在監控確認符合需求前保留舊適配層。
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
+## 官方資料
 
-## 下一步
-
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    de: `# GPT-5-Migration für Entwickler: Praxisleitfaden 2026
+    de: `# GPT-5-Integrationen: Checkliste für die Responses-API-Migration
 
-Diese Fassung beantwortet eine praktische Frage: die Migration zur GPT-5 API sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+## Modell und Schnittstelle getrennt ändern
 
-## Erst den Anwendungsfall klären
+Bei einer bestehenden GPT-5-Integration sind Modellwahl und API-Vertrag zwei unterschiedliche Entscheidungen. Werden beide gleichzeitig geändert, lässt sich eine Regression schwer zuordnen. Dokumentieren Sie Modellkennung, SDK-Version, Endpunkt, Prompt-Version und Ausgabeschema. Reproduzieren Sie zunächst eine typische Anfrage mit der bisherigen Konfiguration. Tauschen Sie anschließend nur den Adapter aus. Dieser Leitfaden beschreibt ein Prüfverfahren und keine gemessenen Leistungsgewinne.
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+## Den Antwortparser überprüfen
 
-## Ein belastbarer Workflow
+Die Responses API liefert typisierte Ausgabeelemente statt der choices-Struktur von Chat Completions. Ein Parser darf deshalb nicht grundsätzlich genau eine Textnachricht erwarten. Definieren Sie getrennte Ergebnisse für Text, Werkzeuganforderung, Ablehnung, unvollständige Ausgabe und Fehler. Prüfen Sie außerdem einen abgebrochenen Stream und einen Verbindungsverlust nach dem ersten Textfragment. Die Oberfläche muss unfertige Antworten kennzeichnen; ein neuer Versuch darf bereits angezeigte Fragmente nicht doppelt anhängen.
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+## Werkzeuge durch die Anwendung absichern
 
-## Auswahlkriterien
+Beginnen Sie bei einem Bestellassistenten mit einer schreibgeschützten Statusabfrage. Protokollieren Sie die angeforderte Bestellnummer und prüfen Sie Parameter sowie Zugriffsrechte des angemeldeten Nutzers auf dem Server. Ordnen Sie das Ergebnis dem richtigen Werkzeugaufruf zu und testen Sie zwei Aufrufe innerhalb derselben Runde. Rückzahlungen und E-Mails benötigen eine Bestätigung durch die Anwendung und einen Idempotenzschlüssel. Eine Modellausgabe ist keine Autorisierung. Wiederholte unterbrochene Abläufe dürfen keine zusätzlichen Aktionen auslösen.
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+## Gesprächszustand und Freigabe bewerten
 
-## Häufige Fehler
+Erstellen Sie Fälle für Rückfragen, fehlende Werkzeugdaten, geänderte Anweisungen und fehlerhafte Backend-Antworten. Prüfen Sie, ob der nächste Dialogschritt die richtige Bestellung verwendet und Kundendaten getrennt bleiben. Vergleichen Sie Aufgabenabschluss, Schemafehler, Laufzeit, Tokenverbrauch und Wiederholungen mit denselben Fällen. Leiten Sie Grenzwerte aus Ihren Serviceanforderungen ab. Aktivieren Sie zunächst einen einzelnen Ablauf über einen umkehrbaren Schalter und behalten Sie den bisherigen Adapter bis zur bestätigten Abnahme.
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
+## Offizielle Quellen
 
-## Nächster Schritt
-
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    es: `# Migración a GPT-5 para desarrolladores 2026
+    es: `# Integraciones GPT-5: lista de migración a Responses API
 
-Esta versión revisada responde a una pregunta práctica: la migración a la API de GPT-5 no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+## Separar modelo e interfaz
 
-## Empieza por el caso de uso
+En una integración GPT-5 existente, elegir el modelo y cambiar el contrato de la API son decisiones distintas. Modificarlos juntos dificulta localizar una regresión. Registra el identificador del modelo, la versión del SDK, el endpoint, la revisión del prompt y el esquema de salida. Reproduce primero una solicitud representativa con la configuración actual. Después sustituye únicamente el adaptador. Esta guía propone un procedimiento de validación, no resultados de rendimiento medidos.
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+## Revisar el procesamiento de respuestas
 
-## Flujo recomendado
+Responses API devuelve elementos de salida tipados en lugar de la estructura choices de Chat Completions. El adaptador no debe suponer que siempre recibirá un único mensaje de texto. Distingue texto, solicitudes de herramientas, rechazo, salida incompleta y fallo. Prueba la cancelación de un flujo y una desconexión después del primer fragmento. La interfaz debe señalar que una respuesta está incompleta; al reintentar, no debe añadir otra vez los fragmentos ya mostrados.
 
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
+## Autorizar las herramientas en la aplicación
 
-## Criterios de decisión
+Para un asistente de pedidos, comienza con una consulta de estado de solo lectura. Registra el pedido solicitado y valida en el servidor los parámetros y el acceso del usuario. Asocia cada resultado con su llamada y prueba dos herramientas en un mismo turno. Un reembolso o un correo necesita confirmación de la aplicación y una clave de idempotencia. Los argumentos producidos por el modelo no equivalen a una autorización. Repetir una ejecución interrumpida no debe duplicar acciones.
 
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
+## Evaluar conversación y despliegue
 
-## Fallos habituales
+Prepara casos con preguntas de seguimiento, datos ausentes, instrucciones modificadas y respuestas del backend mal formadas. Comprueba que el siguiente turno conserva el pedido correcto sin mezclar datos de clientes. Compara finalización de tareas, validación del esquema, latencia, tokens y reintentos sobre los mismos casos. Define los umbrales según el servicio actual. Activa un solo flujo mediante una opción reversible y conserva el adaptador anterior hasta verificar los criterios de aceptación.
 
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
+## Fuentes oficiales
 
-## Siguiente paso
-
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    fr: `# Migration GPT-5 pour développeurs 2026
+    fr: `# Intégrations GPT-5 : préparer la migration vers Responses API
 
-Cette version enrichie répond à une question concrète : la migration vers l’API GPT-5 doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
+## Distinguer modèle et interface
 
-## Clarifier le cas d’usage
+Pour une intégration GPT-5 existante, le choix du modèle et le contrat de l’API constituent deux décisions distinctes. Les changer ensemble complique l’analyse des régressions. Notez l’identifiant du modèle, la version du SDK, le point d’accès, la révision du prompt et le schéma de sortie. Reproduisez une requête représentative avec la configuration actuelle, puis remplacez uniquement l’adaptateur. Ce guide présente une méthode de validation, sans prétendre fournir des performances mesurées.
 
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
+## Revoir le traitement des réponses
 
-## Méthode pratique
+Responses API renvoie des éléments typés plutôt que la structure choices de Chat Completions. Le parseur ne doit donc pas attendre systématiquement un unique message textuel. Distinguez texte, demande d’outil, refus, sortie incomplète et erreur. Testez un flux annulé et une déconnexion après réception d’un premier fragment. L’interface doit signaler une réponse inachevée. Une nouvelle tentative ne doit pas ajouter deux fois le texte déjà affiché dans la conversation.
 
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
+## Garder le contrôle des outils
 
-## Critères de choix
+Pour un assistant de commandes, commencez par une consultation en lecture seule. Enregistrez le numéro demandé et vérifiez côté serveur les arguments ainsi que les droits de l’utilisateur connecté. Rattachez chaque résultat à son appel et testez deux appels dans le même tour. Un remboursement ou un courriel exige une confirmation applicative et une clé d’idempotence. La sortie du modèle ne constitue pas une autorisation. Rejouer une exécution interrompue ne doit pas déclencher d’action supplémentaire.
 
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
+## Évaluer le contexte et le déploiement
 
-## Échecs fréquents
+Préparez des cas de relance, de données manquantes, d’instructions modifiées et de réponse backend mal formée. Vérifiez que le tour suivant concerne toujours la bonne commande et préserve l’isolation des clients. Comparez réussite, schéma, latence, jetons et nouvelles tentatives sur les mêmes cas. Fixez les seuils selon les exigences du service. Activez un seul parcours avec un commutateur réversible et conservez l’ancien adaptateur jusqu’à validation.
 
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
+## Sources officielles
 
-## Pour continuer
-
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    jp: `# 開発者向け GPT-5 移行プレイブック 2026
+    jp: `# GPT-5 連携の Responses API 移行チェックリスト
 
-この記事の改訂版では、GPT-5 API 移行を発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
+## モデル変更と API 変更を分ける
 
-## まず用途を分ける
+既存の GPT-5 連携では、使用モデルの選択と API の契約変更は別の判断です。同時に変更すると、不具合の原因を切り分けにくくなります。モデル ID、SDK バージョン、エンドポイント、プロンプトの版、出力スキーマを記録してください。まず現在の設定で代表的なリクエストを再現し、最初の段階ではアダプターだけを変更します。本稿は検証手順であり、実測していない性能向上を示すものではありません。
 
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
+## 応答の解析境界を確認する
 
-## 実務での進め方
+Responses API は Chat Completions の choices 構造ではなく、型を持つ出力項目を返します。必ず一つのテキストだけが来るという前提をなくし、文章、ツール要求、拒否、不完全な出力、失敗を区別します。ストリームのキャンセルや、途中の文章を受信した直後の切断も試してください。画面には未完了であることを示し、再試行で既存の文章を二重に追加しないようにします。
 
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
+## ツールの権限はアプリ側で判断する
 
-## 選定基準
+注文確認アシスタントなら、まず読み取り専用の検索から始めます。要求された注文番号を記録し、サーバーで引数とログインユーザーのアクセス権を検証してから業務 API を呼びます。結果は対応する呼び出しに返し、一つのターンで二つのツールが要求される場合も確認します。返金やメール送信にはアプリ側の確認と冪等キーが必要です。モデルの出力だけで操作を許可せず、中断した処理の再実行による重複も防ぎます。
 
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
+## 会話と公開条件を評価する
 
-## よくある失敗
+追加質問、ツール情報の欠落、指示の変更、壊れたバックエンド応答を含む検証用データを作ります。次のターンが正しい注文を参照し、他の顧客情報を混ぜないか確認してください。同じ事例でタスク完了、形式検証、遅延、トークン、再試行回数を比較します。合格基準は宣伝のベンチマークではなく現行サービスの要件から決めます。一つの処理だけを切り替え可能なフラグで公開し、確認が終わるまで旧アダプターを残します。
 
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
+## 公式資料
 
-## 次に読むもの
-
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    pt: `# Migração para GPT-5: guia para desenvolvedores 2026
+    pt: `# Integrações GPT-5: roteiro de migração para a Responses API
 
-Esta versão revisada olha para uma pergunta prática: a migração para a API GPT-5 deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
+## Separar modelo e interface
 
-## Comece pelo caso de uso
+Em uma integração GPT-5 existente, escolher o modelo e alterar o contrato da API são decisões diferentes. Mudar ambos juntos dificulta identificar regressões. Registre o identificador do modelo, a versão do SDK, o endpoint, a revisão do prompt e o esquema de saída. Reproduza uma solicitação representativa com a configuração atual e depois substitua somente o adaptador. Este roteiro propõe uma validação; não apresenta ganhos de desempenho medidos.
 
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
+## Revisar a leitura das respostas
 
-## Fluxo recomendado
+A Responses API retorna itens de saída tipados, em vez da estrutura choices do Chat Completions. O adaptador não deve presumir que toda resposta contém uma única mensagem de texto. Separe texto, solicitação de ferramenta, recusa, saída incompleta e falha. Teste o cancelamento de um fluxo e a queda de conexão após o primeiro fragmento. A interface precisa identificar respostas inacabadas; uma nova tentativa não deve acrescentar novamente trechos já exibidos na conversa.
 
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
+## Autorizar ferramentas na aplicação
 
-## Critérios de escolha
+Para um assistente de pedidos, comece com uma consulta de status somente para leitura. Registre o pedido solicitado e valide no servidor os argumentos e o acesso do usuário. Relacione cada resultado à chamada correta e teste duas ferramentas no mesmo turno. Reembolsos e envio de e-mail exigem confirmação na aplicação e uma chave de idempotência. Argumentos gerados pelo modelo não constituem autorização. Reexecutar uma solicitação interrompida não pode duplicar ações.
 
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
+## Avaliar contexto e liberação
 
-## Falhas comuns
+Prepare casos de perguntas complementares, dados ausentes, instruções alteradas e resultados inválidos do backend. Confirme que o turno seguinte mantém o pedido correto e não mistura informações de clientes. Compare conclusão da tarefa, validação de esquema, latência, tokens e tentativas nos mesmos casos. Defina critérios a partir dos requisitos atuais do serviço. Libere um único fluxo por meio de uma configuração reversível e mantenha o adaptador anterior até confirmar que os critérios foram atendidos.
 
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
+## Fontes oficiais
 
-## Próximos passos
-
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
-    ru: `# Миграция на GPT-5 для разработчиков 2026
+    ru: `# Интеграции GPT-5: план перехода на Responses API
 
-Обновленная версия статьи отвечает на практичный вопрос: миграцию на API GPT-5 нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
+## Разделите модель и интерфейс
 
-## Начните со сценария
+В существующей интеграции GPT-5 выбор модели и изменение контракта API являются разными решениями. Одновременная замена затрудняет поиск причины регрессии. Запишите идентификатор модели, версию SDK, конечную точку, редакцию инструкции и схему результата. Сначала воспроизведите характерный запрос с прежними настройками, затем замените только адаптер. Это метод проверки миграции, а не отчёт об измеренном ускорении или улучшении качества.
 
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
+## Пересмотрите обработку ответа
 
-## Рабочий процесс
+Responses API возвращает типизированные элементы вывода вместо структуры choices в Chat Completions. Поэтому обработчик не должен ожидать ровно одно текстовое сообщение. Разделите текст, запрос инструмента, отказ, незавершённый результат и ошибку. Проверьте отмену потока и потерю соединения после первого фрагмента. Интерфейс должен показывать, что ответ не завершён. Повторная попытка не должна ещё раз добавлять уже полученный текст в историю диалога.
 
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
+## Оставьте авторизацию приложению
 
-## Как выбирать
+Для помощника по заказам начните с запроса статуса без изменения данных. Запишите номер заказа и проверьте на сервере аргументы и права текущего пользователя. Свяжите результат с правильным вызовом инструмента; отдельно испытайте два вызова за один ход. Возврат средств или отправка письма требуют подтверждения приложения и ключа идемпотентности. Сгенерированные аргументы не являются разрешением на действие. Повтор прерванного выполнения не должен создавать дубликаты операций.
 
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
+## Оцените контекст и условия выпуска
 
-## Типичные сбои
+Подготовьте случаи с уточняющим вопросом, отсутствующими данными, новой инструкцией и повреждённым ответом сервера. Проверьте, что следующий ход относится к нужному заказу и данные разных клиентов не смешиваются. На одинаковых примерах сравните завершение задачи, корректность схемы, задержку, расход токенов и количество повторов. Пороговые значения должны следовать требованиям вашего сервиса. Включайте сначала один процесс с возможностью быстрого отката. Сохраняйте прежний адаптер до подтверждения критериев и фиксируйте причину каждого отклонённого результата, чтобы не скрыть редкую ошибку за хорошим средним показателем.
 
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
+## Официальные источники
 
-## Что делать дальше
-
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+- [OpenAI — Migrate to the Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses)
+- [OpenAI — Function calling](https://developers.openai.com/api/docs/guides/function-calling)
 `,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-04',
+  updatedAt: '2026-11-15',
   category: 'Developer',
   tags: [
     'GPT-5',

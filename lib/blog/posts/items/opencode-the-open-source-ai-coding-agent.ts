@@ -4,309 +4,365 @@ const postOpencodeTheOpenSourceAiCodingAgent: BlogPost = {
   id: '3108',
   slug: 'opencode-the-open-source-ai-coding-agent',
   title: {
-    en: 'OpenCode: The Open Source AI Coding Agent That Actually Works',
-    cn: 'OpenCode：真正可用的开源AI编程代理',
-    tw: 'OpenCode：真正可用的開源AI編程代理',
-    de: 'OpenCode: Der Open-Source-KI-Coding-Agent, der wirklich funktioniert',
-    es: 'OpenCode: El agente de codificación de IA de código abierto que realmente funciona',
-    fr: "OpenCode : L'agent de codage IA open source qui fonctionne vraiment",
-    jp: 'OpenCode：実際に機能するオープンソースAIコーディングエージェント',
-    pt: 'OpenCode: O agente de codificação de IA de código aberto que realmente funciona',
-    ru: 'OpenCode: Open Source AI-агент для кодирования, который действительно работает',
+    en: 'OpenCode: Configure an AI Coding Agent for Your Repository',
+    cn: 'OpenCode：为代码仓库配置 AI 编程代理',
+    tw: 'OpenCode：為程式碼儲存庫設定 AI 程式設計代理',
+    de: 'OpenCode: Einen KI-Coding-Agenten für das Repository konfigurieren',
+    es: 'OpenCode: configura un agente de programación para tu repositorio',
+    fr: 'OpenCode : configurer un agent de programmation pour son dépôt',
+    jp: 'OpenCode：リポジトリに合わせて AI コーディングエージェントを設定する',
+    pt: 'OpenCode: configure um agente de programação para seu repositório',
+    ru: 'OpenCode: настройка ИИ-агента для вашего репозитория',
   },
   excerpt: {
-    en: 'A deep dive into OpenCode — the open source AI coding agent with 131K+ GitHub stars, multi-provider support, and a workflow-first approach that goes beyond autocomplete.',
-    cn: '深入解析OpenCode——拥有13.1万+ GitHub星标、支持多模型提供商、以工作流为核心的开源AI编程代理。',
-    tw: '深入解析OpenCode——擁有13.1萬+ GitHub星標、支援多模型提供商、以工作流為核心的開源AI編程代理。',
-    de: 'Ein tiefer Einblick in OpenCode — den Open-Source-KI-Coding-Agenten mit 131K+ GitHub-Sternen, Multi-Provider-Unterstützung und einem Workflow-First-Ansatz.',
-    es: 'Una inmersión profunda en OpenCode — el agente de codificación de IA de código abierto con 131K+ estrellas en GitHub, soporte multi-proveedor y un enfoque centrado en el flujo de trabajo.',
-    fr: "Une plongée dans OpenCode — l'agent de codage IA open source avec 131K+ étoiles GitHub, support multi-fournisseurs et une approche axée sur le workflow.",
-    jp: 'OpenCodeの詳細解説——GitHub星標13.1万以上、マルチプロバイダー対応、ワークフロー重視のオープンソースAIコーディングエージェント。',
-    pt: 'Uma análise profunda do OpenCode — o agente de codificação de IA de código aberto com 131K+ estrelas no GitHub, suporte multi-provedor e uma abordagem focada no fluxo de trabalho.',
-    ru: 'Глубокий анализ OpenCode — open source AI-агента для кодирования с 131K+ звезд на GitHub, поддержкой нескольких провайдеров и подходом, ориентированным на рабочий процесс.',
+    en: 'A practical OpenCode v2 guide to provider setup, ordered permission rules, Plan and Build agents, and verifying a focused repository change.',
+    cn: '基于 OpenCode v2 的实用指南，涵盖提供商连接、有序权限规则、Plan 与 Build 代理，以及单一缺陷修改的验证。',
+    tw: '依據 OpenCode v2 說明提供商連線、有序權限規則、Plan 與 Build 代理，以及單一缺陷修正的驗證方式。',
+    de: 'Ein praktischer Leitfaden zu OpenCode v2: Anbieter verbinden, Berechtigungen ordnen, Plan und Build einsetzen und gezielte Änderungen überprüfen.',
+    es: 'Guía práctica de OpenCode v2: conectar proveedores, ordenar permisos, usar Plan y Build y verificar un cambio concreto en el repositorio.',
+    fr: 'Guide pratique OpenCode v2 : connexion des fournisseurs, règles de permission ordonnées, agents Plan et Build et vérification d’une modification ciblée.',
+    jp: 'OpenCode v2 のプロバイダー接続、権限ルールの順序、Plan と Build、具体的な修正の検証方法を解説します。',
+    pt: 'Guia prático do OpenCode v2: conexão de provedores, permissões ordenadas, agentes Plan e Build e verificação de uma alteração específica.',
+    ru: 'Практическое руководство по OpenCode v2: подключение провайдера, порядок правил доступа, агенты Plan и Build и проверка конкретного исправления.',
   },
   content: {
-    en: `# OpenCode: The Open Source AI Coding Agent That Actually Works
+    en: `# OpenCode: Configure an AI Coding Agent for Your Repository
 
-I've tested dozens of AI coding tools over the past year. Most promise the moon and deliver autocomplete with extra steps. OpenCode caught my attention because it does something different — it treats coding as a workflow problem, not just a text generation problem.
+OpenCode is an open source coding agent with terminal, desktop, and web interfaces. Its usefulness depends on the model you connect and the repository context you provide. This guide follows the v2 documentation checked on November 15, 2026; older tutorials can use different configuration fields. The [installation guide](https://opencode.ai/docs/) documents supported packages and the \`/connect\` provider command.
 
-With over 131,000 GitHub stars and 5 million monthly developers, OpenCode has clearly struck a nerve. But popularity doesn't always mean quality. So I spent two weeks using it as my primary coding assistant to see if the hype holds up.
+## Connect the repository and provider
 
-## What Makes OpenCode Different
+Install a release appropriate to your operating system, open the project directory, and run \`opencode\`. Use \`/connect\` to configure a provider available to your account. A working client does not mean model usage is free: provider billing and data handling still apply.
 
-The first thing you notice about OpenCode is that it's not trying to be another chatbot wrapper. When you run \`opencode\` in your project and type \`/init\`, something interesting happens: it analyzes your codebase and creates an \`AGENTS.md\` file in your repository root.
+Create \`opencode.jsonc\` in the repository and add the schema below. The [configuration reference](https://opencode.ai/docs/config/) explains project, global, and managed settings. Check those layers when a setting appears ineffective; managed configuration can override project choices. Keep credentials outside committed files.
 
-That file teaches the agent about your project's structure, coding patterns, and conventions. It's a small detail, but it signals something important — OpenCode thinks about context gathering as a first-class problem, not an afterthought.
+## Set explicit command boundaries
 
-The multi-provider support is another standout feature. Unlike tools that lock you into a single model, OpenCode supports 75+ LLM providers through AI SDK and Models.dev. You can use Claude for complex reasoning, GPT for quick edits, or even run local models for sensitive code. Switching providers is as simple as running \`/connect\` and adding your API key.
+This v2 example requests confirmation for shell commands, blocks pushes, and asks before accessing directories outside the project:
 
-## The Workflow That Actually Works
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-Here's where OpenCode gets genuinely interesting. The tool has two modes: planning and build.
+The last matching permission rule wins; inspect agent-specific overrides too. These are tool permissions, not an operating-system sandbox. The [permission reference](https://opencode.ai/docs/permissions/) describes action names and matching behavior.
 
-In planning mode, OpenCode analyzes your request, breaks it into steps, and presents an approach before writing any code. You can approve, modify, or reject the plan. This sounds simple, but it prevents the common AI coding problem where the tool goes off on a tangent and writes 500 lines of code you didn't ask for.
+## Investigate one concrete defect
 
-Build mode is where execution happens. But here's the thing — even in build mode, OpenCode maintains a conversation-like flow. You can say "actually, use a different approach" mid-execution, and it adapts. The \`/undo\` and \`/redo\` commands work exactly as you'd expect, letting you roll back changes without losing context.
+For a form submitting twice, start with Plan: “Trace the submit handler and network request. Identify why one click creates two requests; propose the smallest correction.” Plan avoids editing ordinary project files, but its shell commands remain permission-controlled. Build is the agent for implementation, as documented in the [agent reference](https://opencode.ai/docs/agents/).
 
-The docs even suggest talking to OpenCode like you'd talk to a junior developer. Give clear instructions, provide examples, and be specific about what you want. That's surprisingly good advice for any AI coding tool.
+Give Build the identified files and acceptance criteria: one request per click, unchanged validation, and a regression check for repeated submission. Ask it to reuse the existing test framework and report the actual command output. Do not infer correctness from a plausible explanation.
 
-## Privacy and Enterprise Features
+## Review the result before adoption
 
-OpenCode's privacy story is refreshingly specific. The homepage states it doesn't store your code or context data. Processing happens locally or through direct API calls to your chosen provider.
-
-But there's an important caveat: the \`/share\` feature. If you use it, your conversation data gets uploaded to create public share links. The docs explicitly recommend disabling sharing for sensitive work. That kind of documented tradeoff is more credible than vague "privacy-first" claims.
-
-For enterprise teams, OpenCode offers SSO integration, central configuration management, and support for internal AI gateways. The permission system lets you set actions to allow, ask, or deny — giving security-conscious teams granular control over what the agent can do.
-
-## LSP Integration: The Secret Weapon
-
-One feature that separates OpenCode from simpler coding assistants is its Language Server Protocol integration. The tool uses LSP diagnostics to understand your codebase at a deeper level — catching type errors, understanding imports, and navigating code structure.
-
-This matters because AI coding tools are only as good as the context they can gather. A tool that can't understand your project's type system or dependency graph will make suggestions that look correct but fail at compile time. OpenCode's LSP support helps avoid that problem.
-
-The tool supports a long list of built-in language servers with automatic enablement based on file types and project requirements. It's not perfect — complex monorepo setups can still confuse it — but it's significantly better than tools that treat your codebase as a flat text file.
-
-## What Could Be Better
-
-No tool is perfect, and OpenCode has room for improvement.
-
-The learning curve is steeper than simpler alternatives. Understanding when to use planning mode versus build mode, how to structure effective prompts, and when to intervene versus let the agent work — these skills take time to develop.
-
-The desktop app is still in beta, and it shows. The terminal interface remains the most polished experience, which might deter developers who prefer GUI-based workflows.
-
-Token usage can also add up quickly. Complex multi-file operations with planning mode enabled can consume significant API credits, especially with premium models like Claude Opus or GPT-4.
-
-## Getting Started
-
-If you want to try OpenCode, here's the practical path:
-
-Install it via your preferred method — the project script, Homebrew, Docker, or package managers all work. Run \`opencode\` in your project directory, then \`/init\` to set up context. Connect a provider with \`/connect\` and start with a simple task.
-
-I'd recommend starting with planning mode enabled for your first few sessions. It helps you understand how the agent thinks about problems before you let it run freely.
-
-The tool is free to use with your own API keys. OpenCode Zen, the optional curated model layer, is a convenience feature rather than a requirement.
-
-## Where This Is Heading
-
-OpenCode represents a shift in how we think about AI coding tools. Instead of treating code generation as a text completion problem, it treats it as a workflow problem with planning, execution, verification, and rollback.
-
-The project's rapid growth — from a niche CLI tool to a platform with desktop apps, IDE extensions, and enterprise features — suggests this approach resonates with developers who want more than autocomplete.
-
-Whether OpenCode becomes the standard or inspires competitors to adopt similar workflows, the direction is clear: AI coding tools need to understand context, respect developer control, and integrate with existing workflows rather than replacing them.
-
-If you're tired of AI coding tools that promise autonomy but deliver chaos, OpenCode is worth a serious look. Just be prepared to invest time learning its workflow — the payoff is worth it.
-
-## A sharper evaluation checklist
-
-If you are testing OpenCode against Claude Code, Codex, or an IDE-native assistant, use the same branch and the same task. Ask each tool to fix a failing test, implement a small feature, and review a risky pull request. Score the result on five things: correctness, diff size, test choice, explanation quality, and rollback friction. The tool that produces the most impressive patch is not always the one you want on a team laptop. The tool that leaves the smallest safe diff often wins.
-
-Also check boring operational details. Can you pin provider defaults per repository? Can you prevent edits to generated files? Does the agent show commands before running them? Can a senior engineer understand why it changed a file? These details determine whether OpenCode becomes part of daily engineering or remains a weekend experiment.
-
-## Practical prompt examples
-
-For investigation: “Find the root cause of this failing test. Read before editing. Show the likely file and the smallest fix.” For implementation: “Add this feature behind existing patterns. Do not introduce a new dependency. Run the narrowest relevant test.” For review: “Look for behavior changes, missing tests, and security-sensitive assumptions. Do not rewrite the patch.”
-
-Those prompts are plain on purpose. OpenCode works best when you give it the same instructions you would give a careful teammate: context, boundary, acceptance test, and permission level.
-
-For adjacent reading, use the official [OpenCode documentation](https://opencode.ai/docs/), the [OpenCode GitHub repository](https://github.com/sst/opencode), our [AI for developers guide](/blog/ai-for-developers-guide), and the workflow comparison in [OpenCode vs Claude Code vs Codex](/blog/opencode-vs-claude-code-vs-codex-ai-coding-workflow).
-
-For adjacent decisions, compare OpenCode with the broader [AI coding assistants review](/blog/ai-coding-assistants-review), the tactical [AI for developers guide](/blog/ai-for-developers-guide), and our [Claude 4 vs GPT-5 coding benchmark framework](/blog/claude-4-vs-gpt-5-code-benchmarks-2026). Those three articles help separate model quality, agent workflow, and team adoption risk.
+Inspect \`git diff\`, run the relevant test and the repository's required checks, and review unexpected dependency or generated-file changes. Keep a clean Git checkpoint: filesystem undo does not reverse remote operations or database changes. Compare providers on this same defect, recording review time, remaining failures, and actual usage charges. That produces a useful selection record without inventing benchmark scores or assuming every model behaves alike.
 `,
-    cn: `# OpenCode：开源 AI 编程代理实战
+    cn: `# OpenCode：为代码仓库配置 AI 编程代理
 
-这篇更新版文章围绕一个很实际的问题：OpenCode 这样的开源 AI 编程代理不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+OpenCode 是开源编程代理，提供终端、桌面和网页界面。实际效果取决于所连接的模型，以及提供给它的代码仓库上下文。本文依据 2026 年 11 月 15 日核查的 v2 文档；旧教程可能采用不同的配置字段。[安装指南](https://opencode.ai/docs/)列出了受支持的软件包和 \`/connect\` 提供商连接命令。
 
-## 先判断使用场景
+## 连接仓库与模型提供商
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+安装适合操作系统的版本，进入项目目录并运行 \`opencode\`。使用 \`/connect\` 配置当前账号可访问的提供商。客户端能正常工作，不代表模型调用免费：仍需遵守提供商的计费和数据处理规则。
 
-## 工作流建议
+在仓库创建 \`opencode.jsonc\`，加入下方 schema。[配置参考](https://opencode.ai/docs/config/)解释了项目、全局和受管理配置之间的关系。如果设置没有生效，应检查这些层级；受管理配置可以覆盖项目选项。不要把凭据写入会提交的文件。
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+## 明确命令执行边界
 
-## 选择标准
+下面的 v2 示例要求执行 shell 命令前确认，禁止推送，并在访问项目外目录前询问：
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## 常见失败模式
+最后一条匹配的权限规则生效，也要检查特定代理的覆盖规则。这些属于工具权限，并不是操作系统级沙箱。[权限参考](https://opencode.ai/docs/permissions/)说明了动作名称和匹配行为。
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
+## 调查一个具体缺陷
 
-## 下一步
+遇到表单重复提交，可以先交给 Plan：“追踪提交处理函数和网络请求，说明为什么点击一次产生两次请求，并提出最小修正。”Plan 避免修改普通项目文件，但 shell 命令仍受权限规则控制。Build 负责实施修改，具体区别见[代理参考](https://opencode.ai/docs/agents/)。
 
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
+把定位到的文件和验收要求交给 Build：每次点击只发一个请求，保留现有校验，并添加重复提交的回归检查。要求复用现有测试框架，报告真实的命令输出。解释听起来合理，并不能证明代码正确。
+
+## 采用前检查结果
+
+查看 \`git diff\`，执行相关测试和仓库要求的检查，审查意外出现的依赖或生成文件变更。保留干净的 Git 检查点：文件系统撤销无法逆转远程操作或数据库修改。用同一缺陷比较不同提供商，记录审查时间、剩余失败和实际调用费用。这才是可用的选型记录，无需编造跑分，也不能假设所有模型行为一致。
 `,
-    tw: `# OpenCode：開源 AI 編程代理實戰
+    tw: `# OpenCode：為程式碼儲存庫設定 AI 程式設計代理
 
-這篇更新版文章聚焦一個實務問題：OpenCode 這樣的開源 AI 編程代理不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+OpenCode 是開源程式設計代理，提供終端機、桌面和網頁介面。實際效果取決於連接的模型，以及提供給它的儲存庫背景資訊。本文依據 2026 年 11 月 15 日查核的 v2 文件；舊教學可能採用不同的設定欄位。[安裝指南](https://opencode.ai/docs/)列出支援的套件和 \`/connect\` 提供商連線指令。
 
-## 先判斷使用場景
+## 連接儲存庫與模型提供商
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+安裝適合作業系統的版本，進入專案目錄並執行 \`opencode\`。使用 \`/connect\` 設定帳號可存取的提供商。用戶端能正常運作，不代表模型呼叫免費：仍須遵守提供商的計費和資料處理規則。
 
-## 工作流建議
+在儲存庫建立 \`opencode.jsonc\`，加入下方 schema。[設定參考](https://opencode.ai/docs/config/)解釋專案、全域和受管理設定的關係。如果設定沒有生效，應檢查這些層級；受管理設定可以覆寫專案選項。不要將憑證寫入會提交的檔案。
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+## 明確訂定指令執行界線
 
-## 選擇標準
+下方 v2 範例要求執行 shell 指令前確認，禁止推送，並在存取專案外目錄前詢問：
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## 常見失敗模式
+最後一條符合的權限規則生效，也須檢查個別代理的覆寫規則。這些是工具權限，並非作業系統層級的沙箱。[權限參考](https://opencode.ai/docs/permissions/)說明動作名稱和比對方式。
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
+## 調查一個具體缺陷
 
-## 下一步
+遇到表單重複送出，可以先交給 Plan：「追蹤送出處理函式與網路請求，說明為何點擊一次產生兩次請求，並提出最小修正。」Plan 避免修改一般專案檔案，但 shell 指令仍受權限控制。Build 負責實作修改，差異詳見[代理參考](https://opencode.ai/docs/agents/)。
 
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
+將定位到的檔案和驗收要求交給 Build：每次點擊只發送一個請求，保留現有驗證，並加入重複送出的迴歸檢查。要求沿用既有測試框架，回報實際指令輸出。解釋聽來合理，並不代表程式正確。
+
+## 採用前檢查結果
+
+查看 \`git diff\`，執行相關測試和儲存庫要求的檢查，審查意外出現的相依套件或產生檔案變更。保留乾淨的 Git 檢查點：檔案系統復原無法逆轉遠端操作或資料庫修改。使用同一缺陷比較不同提供商，記錄審查時間、剩餘失敗和實際呼叫費用。這才是可用的選型紀錄，無須杜撰評測分數，也不能假設所有模型行為一致。
 `,
-    de: `# OpenCode: Open-Source-KI-Coding-Agent in der Praxis
+    de: `# OpenCode: Einen KI-Coding-Agenten für das Repository konfigurieren
 
-Diese Fassung beantwortet eine praktische Frage: Open-Source-Coding-Agenten wie OpenCode sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+OpenCode ist ein quelloffener Coding-Agent mit Terminal-, Desktop- und Weboberfläche. Sein Nutzen hängt vom verbundenen Modell und dem bereitgestellten Repository-Kontext ab. Dieser Leitfaden folgt der am 15. November 2026 geprüften v2-Dokumentation; ältere Anleitungen verwenden möglicherweise andere Konfigurationsfelder. Die [Installationsanleitung](https://opencode.ai/docs/) beschreibt unterstützte Pakete und den Anbieterbefehl \`/connect\`.
 
-## Erst den Anwendungsfall klären
+## Repository und Anbieter verbinden
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+Installieren Sie eine passende Version, öffnen Sie das Projektverzeichnis und starten Sie \`opencode\`. Über \`/connect\` richten Sie einen für Ihr Konto verfügbaren Anbieter ein. Ein funktionierender Client bedeutet keine kostenlose Modellnutzung: Abrechnung und Datenverarbeitung des Anbieters gelten weiterhin.
 
-## Ein belastbarer Workflow
+Erstellen Sie \`opencode.jsonc\` im Repository mit dem folgenden Schema. Die [Konfigurationsreferenz](https://opencode.ai/docs/config/) erläutert projektbezogene, globale und verwaltete Einstellungen. Prüfen Sie diese Ebenen bei scheinbar wirkungslosen Optionen; verwaltete Einstellungen können Projektentscheidungen überschreiben. Zugangsdaten gehören nicht in eingecheckte Dateien.
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+## Befehle ausdrücklich begrenzen
 
-## Auswahlkriterien
+Dieses v2-Beispiel verlangt eine Bestätigung für Shell-Befehle, blockiert Pushes und fragt vor Zugriffen außerhalb des Projekts:
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## Häufige Fehler
+Die letzte passende Berechtigungsregel gewinnt. Prüfen Sie auch agentenspezifische Überschreibungen. Diese Werkzeugrechte sind keine Betriebssystem-Sandbox. Die [Berechtigungsreferenz](https://opencode.ai/docs/permissions/) erklärt Aktionen und Musterabgleich.
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
+## Einen konkreten Fehler untersuchen
 
-## Nächster Schritt
+Bei einem doppelt gesendeten Formular beginnen Sie mit Plan: „Verfolge Submit-Handler und Netzwerkanfrage. Erkläre, weshalb ein Klick zwei Anfragen auslöst, und schlage die kleinste Korrektur vor.“ Plan vermeidet Änderungen an normalen Projektdateien; Shell-Befehle unterliegen weiterhin den Berechtigungen. Build übernimmt die Implementierung, wie die [Agentenreferenz](https://opencode.ai/docs/agents/) beschreibt.
 
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
+Übergeben Sie Build die betroffenen Dateien und Abnahmekriterien: eine Anfrage pro Klick, unveränderte Validierung und eine Regressionsprüfung für wiederholtes Absenden. Verlangen Sie das vorhandene Testframework und tatsächliche Befehlsausgaben. Eine plausible Erklärung beweist keine Korrektheit.
+
+## Ergebnis vor der Übernahme prüfen
+
+Prüfen Sie \`git diff\`, den relevanten Test und die vorgeschriebenen Repository-Prüfungen sowie unerwartete Änderungen an Abhängigkeiten oder generierten Dateien. Bewahren Sie einen sauberen Git-Ausgangspunkt: Dateisystem-Rücknahmen machen weder entfernte Aktionen noch Datenbankänderungen rückgängig. Vergleichen Sie Anbieter anhand desselben Fehlers und erfassen Sie Prüfzeit, verbleibende Fehler und tatsächliche Nutzungskosten. So entsteht eine brauchbare Entscheidungsgrundlage ohne erfundene Benchmarkwerte oder die Annahme identischen Modellverhaltens.
 `,
-    es: `# OpenCode: agente de código IA open source
+    es: `# OpenCode: configura un agente de programación para tu repositorio
 
-Esta versión revisada responde a una pregunta práctica: agentes de código open source como OpenCode no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+OpenCode es un agente de programación de código abierto con interfaces de terminal, escritorio y web. Su utilidad depende del modelo conectado y del contexto del repositorio que recibe. Esta guía sigue la documentación de v2 consultada el 15 de noviembre de 2026; los tutoriales antiguos pueden utilizar otros campos. La [guía de instalación](https://opencode.ai/docs/) describe los paquetes compatibles y el comando \`/connect\`.
 
-## Empieza por el caso de uso
+## Conecta el repositorio y el proveedor
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+Instala una versión adecuada para tu sistema, abre el directorio del proyecto y ejecuta \`opencode\`. Usa \`/connect\` para configurar un proveedor disponible en tu cuenta. Que el cliente funcione no significa que el modelo sea gratuito: siguen aplicándose la facturación y las condiciones de tratamiento de datos del proveedor.
 
-## Flujo recomendado
+Crea \`opencode.jsonc\` en el repositorio y añade el esquema siguiente. La [referencia de configuración](https://opencode.ai/docs/config/) explica los ajustes del proyecto, globales y administrados. Revisa esas capas cuando una opción parezca no funcionar; la configuración administrada puede prevalecer. Mantén las credenciales fuera de los archivos versionados.
 
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
+## Delimita la ejecución de comandos
 
-## Criterios de decisión
+Este ejemplo de v2 pide confirmación para comandos de shell, bloquea los envíos y pregunta antes de acceder a directorios externos:
 
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## Fallos habituales
+Prevalece la última regla coincidente; revisa también las modificaciones específicas del agente. Son permisos de herramientas, no un aislamiento del sistema operativo. La [referencia de permisos](https://opencode.ai/docs/permissions/) explica las acciones y la coincidencia de patrones.
 
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
+## Investiga un fallo concreto
 
-## Siguiente paso
+Para un formulario que se envía dos veces, comienza con Plan: «Rastrea el controlador de envío y la petición de red. Explica por qué un clic genera dos peticiones y propone la corrección mínima». Plan evita editar archivos normales del proyecto, pero sus comandos siguen sujetos a permisos. Build realiza la implementación, según la [referencia de agentes](https://opencode.ai/docs/agents/).
 
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
+Entrega a Build los archivos afectados y estos criterios: una petición por clic, validación sin cambios y una comprobación de regresión del envío repetido. Pide reutilizar el marco de pruebas existente y mostrar la salida real de los comandos. Una explicación convincente no demuestra que el código sea correcto.
+
+## Revisa antes de adoptar
+
+Inspecciona \`git diff\`, ejecuta la prueba pertinente y las comprobaciones exigidas, y revisa cambios inesperados en dependencias o archivos generados. Conserva un punto de partida limpio en Git: deshacer archivos no revierte operaciones remotas ni cambios en bases de datos. Compara proveedores con el mismo fallo y registra tiempo de revisión, errores pendientes y costes reales. Así obtienes una base de selección útil, sin inventar puntuaciones ni asumir que todos los modelos se comportan igual.
 `,
-    fr: `# OpenCode : agent de code IA open source
+    fr: `# OpenCode : configurer un agent de programmation pour son dépôt
 
-Cette version enrichie répond à une question concrète : les agents de code open source comme OpenCode doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
+OpenCode est un agent de programmation open source accessible dans un terminal, une application de bureau ou une interface web. Son intérêt dépend du modèle connecté et du contexte du dépôt fourni. Ce guide suit la documentation v2 vérifiée le 15 novembre 2026 ; les anciens tutoriels peuvent utiliser d’autres champs. Le [guide d’installation](https://opencode.ai/docs/) présente les paquets disponibles et la commande \`/connect\`.
 
-## Clarifier le cas d’usage
+## Connecter le dépôt et le fournisseur
 
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
+Installez une version adaptée à votre système, ouvrez le répertoire du projet et lancez \`opencode\`. Configurez avec \`/connect\` un fournisseur accessible à votre compte. Un client opérationnel ne signifie pas une utilisation gratuite du modèle : la facturation et les conditions de traitement des données du fournisseur s’appliquent.
 
-## Méthode pratique
+Créez \`opencode.jsonc\` dans le dépôt avec le schéma ci-dessous. La [référence de configuration](https://opencode.ai/docs/config/) explique les paramètres du projet, globaux et administrés. Vérifiez ces couches si une option semble sans effet ; les paramètres administrés peuvent prévaloir. Gardez les identifiants hors des fichiers versionnés.
 
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
+## Définir les limites des commandes
 
-## Critères de choix
+Cet exemple v2 demande confirmation pour les commandes shell, interdit les push et demande l’accord avant tout accès hors du projet :
 
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## Échecs fréquents
+La dernière règle correspondante l’emporte ; examinez aussi les exceptions propres à l’agent. Ces permissions d’outils ne constituent pas un bac à sable du système. La [référence des permissions](https://opencode.ai/docs/permissions/) précise les actions et les correspondances.
 
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
+## Étudier un défaut précis
 
-## Pour continuer
+Pour un formulaire envoyé deux fois, commencez avec Plan : « Suis le gestionnaire d’envoi et la requête réseau. Explique pourquoi un clic produit deux requêtes et propose la correction minimale. » Plan évite de modifier les fichiers ordinaires du projet, mais ses commandes shell restent soumises aux permissions. Build réalise l’implémentation, selon la [référence des agents](https://opencode.ai/docs/agents/).
 
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
+Donnez à Build les fichiers concernés et les critères : une requête par clic, validation inchangée et contrôle de non-régression des envois répétés. Demandez de réutiliser le cadre de tests et de fournir les sorties réelles. Une explication plausible ne prouve pas la correction du code.
+
+## Vérifier avant d’adopter
+
+Examinez \`git diff\`, lancez le test pertinent et les vérifications imposées par le dépôt, puis contrôlez les changements inattendus de dépendances ou de fichiers générés. Conservez un point de départ Git propre : l’annulation de fichiers ne rétablit ni opérations distantes ni bases de données. Comparez les fournisseurs sur ce même défaut en consignant temps de revue, erreurs restantes et frais réels. Vous obtenez une base de choix utile sans scores inventés ni hypothèse de comportement identique entre modèles.
 `,
-    jp: `# OpenCode：オープンソースAIコーディングエージェント
+    jp: `# OpenCode：リポジトリに合わせて AI コーディングエージェントを設定する
 
-この記事の改訂版では、OpenCode のようなオープンソースAIコーディングAgentを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
+OpenCode は、ターミナル、デスクトップ、Web のインターフェースを持つオープンソースのコーディングエージェントです。有用性は接続するモデルと、提供するリポジトリの情報に左右されます。本記事は 2026 年 11 月 15 日に確認した v2 の文書に基づきます。古いチュートリアルでは設定項目が異なる場合があります。[インストールガイド](https://opencode.ai/docs/)には対応パッケージと \`/connect\` コマンドが記載されています。
 
-## まず用途を分ける
+## リポジトリとプロバイダーを接続する
 
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
+OS に合うリリースをインストールし、プロジェクトのディレクトリで \`opencode\` を起動します。\`/connect\` でアカウントから利用できるプロバイダーを設定します。クライアントが動作してもモデルの利用が無料になるわけではなく、提供元の課金とデータ処理条件が適用されます。
 
-## 実務での進め方
+リポジトリに \`opencode.jsonc\` を作り、下記のスキーマを追加します。[設定リファレンス](https://opencode.ai/docs/config/)は、プロジェクト、グローバル、管理設定の関係を説明しています。設定が効かないときは各階層を確認してください。管理設定がプロジェクトの選択を上書きする場合があります。認証情報はコミット対象のファイルに含めません。
 
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
+## コマンドの実行範囲を明示する
 
-## 選定基準
+この v2 の例では、シェルコマンドに確認を求め、push を禁止し、プロジェクト外のディレクトリへのアクセス時にも確認します。
 
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## よくある失敗
+一致する最後の権限ルールが適用されるため、エージェント固有の上書きも確認します。これはツールの権限であり、OS のサンドボックスではありません。アクション名と照合の仕組みは[権限リファレンス](https://opencode.ai/docs/permissions/)を参照してください。
 
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
+## 具体的な不具合を一つ調べる
 
-## 次に読むもの
+フォームが二重送信される場合は Plan で始めます。「送信ハンドラーとネットワーク要求を追跡し、1 回のクリックで 2 回要求が送られる理由と最小の修正案を示して」と依頼します。Plan は通常のプロジェクトファイルの編集を避けますが、シェルコマンドは引き続き権限管理の対象です。実装を担当するのは Build で、違いは[エージェントリファレンス](https://opencode.ai/docs/agents/)に説明があります。
 
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
+Build には対象ファイルと合格条件を渡します。クリックごとの要求は 1 回、入力検証は現状維持、連続送信には回帰チェックを用意する、という条件です。既存のテスト基盤を使い、実際のコマンド出力を報告させます。もっともらしい説明だけで正しさを判断しないでください。
+
+## 採用前に結果を確認する
+
+\`git diff\` を確認し、関連テストとリポジトリ必須のチェックを実行して、依存関係や生成ファイルの意図しない変更を調べます。クリーンな Git の基準点を残してください。ファイルの取り消しでは、リモート操作やデータベース変更を元に戻せません。同じ不具合でプロバイダーを比較し、レビュー時間、残った失敗、実際の利用料金を記録します。架空のスコアやモデルの挙動が同一という前提に頼らず、選定の根拠を作れます。
 `,
-    pt: `# OpenCode: agente de código IA open source
+    pt: `# OpenCode: configure um agente de programação para seu repositório
 
-Esta versão revisada olha para uma pergunta prática: agentes de código open source como OpenCode deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
+OpenCode é um agente de programação de código aberto com interfaces de terminal, desktop e web. Sua utilidade depende do modelo conectado e do contexto do repositório fornecido. Este guia segue a documentação v2 verificada em 15 de novembro de 2026; tutoriais antigos podem usar campos diferentes. O [guia de instalação](https://opencode.ai/docs/) descreve pacotes compatíveis e o comando \`/connect\`.
 
-## Comece pelo caso de uso
+## Conecte o repositório e o provedor
 
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
+Instale uma versão apropriada ao sistema, abra o diretório do projeto e execute \`opencode\`. Use \`/connect\` para configurar um provedor disponível na sua conta. Um cliente funcionando não significa uso gratuito do modelo: a cobrança e as condições de tratamento de dados do provedor continuam válidas.
 
-## Fluxo recomendado
+Crie \`opencode.jsonc\` no repositório com o esquema abaixo. A [referência de configuração](https://opencode.ai/docs/config/) explica ajustes do projeto, globais e gerenciados. Confira essas camadas quando uma opção parecer não funcionar; configurações gerenciadas podem prevalecer. Mantenha credenciais fora dos arquivos versionados.
 
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
+## Defina limites para os comandos
 
-## Critérios de escolha
+Este exemplo v2 solicita confirmação para comandos de shell, bloqueia envios e pergunta antes de acessar diretórios externos ao projeto:
 
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## Falhas comuns
+A última regra correspondente prevalece; confira também as substituições específicas do agente. São permissões de ferramentas, não uma sandbox do sistema operacional. A [referência de permissões](https://opencode.ai/docs/permissions/) explica ações e correspondência de padrões.
 
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
+## Investigue um defeito concreto
 
-## Próximos passos
+Para um formulário enviado duas vezes, comece com Plan: “Rastreie o manipulador de envio e a requisição de rede. Explique por que um clique cria duas requisições e proponha a menor correção.” Plan evita editar arquivos comuns do projeto, mas seus comandos continuam sujeitos às permissões. Build implementa a alteração, conforme a [referência de agentes](https://opencode.ai/docs/agents/).
 
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
+Entregue ao Build os arquivos identificados e os critérios: uma requisição por clique, validação preservada e uma verificação de regressão para envio repetido. Peça que reutilize o framework de testes existente e apresente a saída real dos comandos. Uma explicação plausível não comprova a correção do código.
+
+## Revise antes de adotar
+
+Inspecione \`git diff\`, execute o teste relevante e as verificações exigidas pelo repositório e examine mudanças inesperadas em dependências ou arquivos gerados. Preserve um ponto inicial limpo no Git: desfazer arquivos não reverte operações remotas nem alterações no banco de dados. Compare provedores nesse mesmo defeito, registrando tempo de revisão, falhas restantes e custos reais. Isso cria uma base útil para escolher, sem inventar pontuações nem presumir comportamento idêntico entre modelos.
 `,
-    ru: `# OpenCode: open source AI-агент для кода
+    ru: `# OpenCode: настройка ИИ-агента для вашего репозитория
 
-Обновленная версия статьи отвечает на практичный вопрос: open source AI-агенты для кода вроде OpenCode нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
+OpenCode — агент для программирования с открытым исходным кодом, терминальным, настольным и веб-интерфейсами. Его полезность зависит от подключённой модели и контекста репозитория. Руководство опирается на документацию v2, проверенную 15 ноября 2026 года; старые инструкции могут использовать другие поля конфигурации. [Руководство по установке](https://opencode.ai/docs/) описывает поддерживаемые пакеты и команду \`/connect\`.
 
-## Начните со сценария
+## Подключите репозиторий и провайдера
 
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
+Установите подходящий для ОС выпуск, откройте каталог проекта и запустите \`opencode\`. Через \`/connect\` настройте провайдера, доступного вашей учётной записи. Работающий клиент не означает бесплатного использования модели: сохраняются тарификация и условия обработки данных провайдера.
 
-## Рабочий процесс
+Создайте \`opencode.jsonc\` в репозитории, добавив схему ниже. [Справочник конфигурации](https://opencode.ai/docs/config/) объясняет проектные, глобальные и управляемые настройки. Проверьте эти уровни, если параметр не действует: управляемая конфигурация может переопределять проектную. Не помещайте секреты в отслеживаемые Git файлы.
 
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
+## Явно ограничьте команды
 
-## Как выбирать
+Этот пример v2 запрашивает подтверждение команд оболочки, запрещает отправку изменений и спрашивает разрешение перед доступом за пределы проекта:
 
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
+\`\`\`json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ]
+}
+\`\`\`
 
-## Типичные сбои
+Действует последнее совпавшее правило; проверьте также переопределения конкретного агента. Это разрешения инструментов, а не изоляция средствами ОС. [Справочник разрешений](https://opencode.ai/docs/permissions/) описывает действия и сопоставление шаблонов.
 
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
+## Исследуйте конкретный дефект
 
-## Что делать дальше
+Если форма отправляется дважды, начните с Plan: «Проследи обработчик отправки и сетевой запрос. Объясни, почему один клик создаёт два запроса, и предложи минимальное исправление». Plan избегает изменения обычных файлов проекта, но команды оболочки по-прежнему контролируются разрешениями. Реализацию выполняет Build; различия описаны в [справочнике агентов](https://opencode.ai/docs/agents/).
 
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
+Передайте Build найденные файлы и критерии приёмки: один запрос на клик, прежняя валидация и регрессионная проверка повторной отправки. Попросите использовать существующий тестовый фреймворк и показать фактический вывод команд. Правдоподобное объяснение не доказывает корректность кода.
+
+## Проверьте результат перед внедрением
+
+Изучите \`git diff\`, запустите относящийся к изменению тест и обязательные проверки репозитория, проверьте неожиданные изменения зависимостей и сгенерированных файлов. Сохраните чистую исходную точку в Git: отмена файловых изменений не отменяет удалённые операции или изменения базы данных. Сравнивайте провайдеров на одном дефекте, фиксируя время проверки, оставшиеся ошибки и реальные расходы. Так появляется полезное основание для выбора без выдуманных баллов и предположений об одинаковом поведении моделей.
 `,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
+  updatedAt: '2026-11-15',
   category: 'Developer Tools',
   tags: [
     'AI Coding',

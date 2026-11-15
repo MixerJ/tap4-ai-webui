@@ -36,6 +36,7 @@ export interface BlogPost {
   };
   author: string;
   date: string;
+  updatedAt?: string;
   category: string;
   tags: string[];
   image?: string;

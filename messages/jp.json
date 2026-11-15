@@ -164,6 +164,7 @@
     "privacyPolicy": "プライバシーポリシー"
   },
   "Blog": {
+    "updatedOn": "更新日：{date}",
     "title": "ブログ",
     "subTitle": "AIツールとテクノロジーに関する洞察、ガイド、更新情報",
     "readMore": "続きを読む",
@@ -203,6 +204,8 @@
       "submission": "提出"
     },
     "detail": {
+      "originalLanguageNotice": "このツールの説明は現在、原文の言語で表示されています。",
+      "viewOriginal": "原文を見る",
       "visitWebsite": "サイトを訪問する",
       "introduction": "紹介"
     }

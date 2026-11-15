@@ -4,297 +4,187 @@ const postOpenaiOperator: BlogPost = {
   id: '3109',
   slug: 'openai-operator',
   title: {
-    en: 'OpenAI Operator: The AI Agent That Browses the Web for You',
-    cn: 'OpenAI Operator：帮你自动浏览网页的AI Agent',
-    tw: 'OpenAI Operator：幫你自動瀏覽網頁的AI Agent',
-    de: 'OpenAI Operator: Der KI-Agent, der für dich im Web surft',
-    es: 'OpenAI Operator: El agente de IA que navega la web por ti',
-    fr: "OpenAI Operator : L'agent IA qui navigue sur le web pour vous",
-    jp: 'OpenAI Operator：あなたのためにWebを閲覧するAIエージェント',
-    pt: 'OpenAI Operator: O agente de IA que navega na web por você',
-    ru: 'OpenAI Operator: AI-агент, который серфит в интернете за вас',
+    en: 'OpenAI Operator: History, Successors, and Browser Workflows',
+    cn: 'OpenAI Operator：历史、后继产品与浏览器工作流',
+    tw: 'OpenAI Operator：歷史、後繼產品與瀏覽器工作流程',
+    de: 'OpenAI Operator: Geschichte, Nachfolger und Browserabläufe',
+    es: 'OpenAI Operator: historia, sucesores y tareas de navegador',
+    fr: 'OpenAI Operator : histoire, successeurs et tâches web',
+    jp: 'OpenAI Operator：歴史、後継製品、ブラウザー作業',
+    pt: 'OpenAI Operator: história, sucessores e tarefas no navegador',
+    ru: 'OpenAI Operator: история, преемники и работа в браузере',
   },
   excerpt: {
-    en: "OpenAI Operator can book restaurants, shop online, and fill out forms — all by browsing the web like a human. Here's what it actually does well, where it struggles, and whether it's worth the $200/month price tag.",
-    cn: 'OpenAI Operator能订餐厅、网购、填表单——像人一样浏览网页。它真正擅长什么、哪里有坑、值不值每月200美元，这里一次说清楚。',
-    tw: 'OpenAI Operator能訂餐廳、網購、填表單——像人一樣瀏覽網頁。它真正擅長什麼、哪裡有坑、值不值每月200美元，這裡一次說清楚。',
-    de: 'OpenAI Operator kann Restaurants buchen, online einkaufen und Formulare ausfüllen — alles durch menschliches Web-Browsing. Was es wirklich gut kann, wo es hapert und ob es die 200$/Monat wert ist.',
-    es: 'OpenAI Operator puede reservar restaurantes, comprar online y rellenar formularios — todo navegando la web como un humano. Lo que realmente hace bien, dónde falla y si vale los $200/mes.',
-    fr: "OpenAI Operator peut réserver des restaurants, faire du shopping en ligne et remplir des formulaires — en naviguant sur le web comme un humain. Ce qu'il fait vraiment bien, où il a des difficultés et s'il vaut les 200$/mois.",
-    jp: 'OpenAI Operatorはレストラン予約、オンラインショッピング、フォーム入力ができます——すべて人間のようにWebを閲覧しながら。本当に得意なこと、苦手なこと、月額$200の価値があるかどうかを解説します。',
-    pt: 'OpenAI Operator pode reservar restaurantes, fazer compras online e preencher formulários — tudo navegando na web como um humano. O que realmente faz bem, onde falha e se vale os $200/mês.',
-    ru: 'OpenAI Operator может бронировать рестораны, делать покупки в интернете и заполнять формы — всё это, серфя в сети как человек. Что он действительно хорошо делает, где struggles и стоит ли $200 в месяц.',
+    en: 'Operator became ChatGPT agent, which is also no longer available. Follow the official transition and learn how to evaluate browser-based automation.',
+    cn: 'Operator 曾并入 ChatGPT agent，后者现也已停止提供。梳理官方产品变迁，并学习如何评估浏览器自动化任务。',
+    tw: 'Operator 曾整合至 ChatGPT agent，後者現也已停止提供。整理官方產品變遷，並介紹瀏覽器自動化的評估方法。',
+    de: 'Operator ging in ChatGPT agent auf; auch dieses Angebot ist nicht mehr verfügbar. Ein Überblick über die Entwicklung und die Prüfung von Browseraufgaben.',
+    es: 'Operator se integró en ChatGPT agent, que tampoco está disponible ya. Revisa la evolución oficial y cómo evaluar tareas realizadas en un navegador.',
+    fr: 'Operator a été intégré à ChatGPT agent, désormais lui aussi indisponible. Retrouvez la chronologie officielle et une méthode pour évaluer les tâches web.',
+    jp: 'Operator は ChatGPT agent に統合され、その agent も提供終了しています。公式の変遷とブラウザー作業の評価方法を整理します。',
+    pt: 'O Operator foi integrado ao ChatGPT agent, que também não está mais disponível. Entenda a evolução oficial e como avaliar automações no navegador.',
+    ru: 'Operator вошёл в ChatGPT agent, который тоже больше не доступен. Официальная хронология и подход к оценке браузерной автоматизации.',
   },
   content: {
-    en: `# OpenAI Operator: The AI Agent That Browses the Web for You
+    en: `## Where Operator fits in the timeline
 
-I tried booking a dinner reservation through OpenAI Operator last Tuesday. It found three Italian restaurants near my office, checked availability for 7pm, compared reviews across Google and Yelp, and completed the reservation — all in about 90 seconds. The only input I gave was "book me an Italian dinner for two tomorrow evening." That's either impressive or unsettling, depending on your perspective.
+OpenAI introduced Operator as a browser-using research preview in January 2025. Its [launch article](https://openai.com/index/introducing-operator/) records the July 2025 integration into ChatGPT agent. That makes early tutorials historical documentation, not a current setup guide.
 
-OpenAI launched Operator in January 2026 as their first dedicated web-browsing agent. Unlike ChatGPT, which answers questions about the web, Operator actually uses the web — clicking buttons, filling forms, navigating sites — to complete tasks on your behalf. It's a significant shift from "AI that talks about things" to "AI that does things."
+As checked on November 15, 2026, the [ChatGPT agent help page](https://help.openai.com/en/articles/11752874-chatgpt-agent) also says agent is no longer available and directs readers to ChatGPT Work and cloud-browser documentation. The same page retains older instructions lower down; follow its current availability notice rather than treating those commands as a fresh onboarding path.
 
-## What Operator Actually Is
+## What the browser approach demonstrated
 
-At its core, Operator is an AI agent with a built-in web browser. When you give it a task, it opens a virtual browser window, navigates to websites, and interacts with them the same way you would — clicking links, typing in search boxes, selecting options from dropdowns, and submitting forms.
+Operator used screenshots and graphical controls to interact with web pages. This differs from an integration that exchanges structured data through an API. A visual workflow can encounter navigation changes, ambiguous buttons, and incomplete forms. Its final state matters more than a convincing narration of the clicks.
 
-The technology behind it combines GPT-4o's vision capabilities with browser automation. Operator "sees" web pages by analyzing screenshots, identifies interactive elements like buttons and input fields, and decides what to click or type based on your instructions. It's essentially giving an AI model eyes and hands for the web.
+## A practical evaluation brief
 
-What makes it different from traditional automation tools like Selenium or Puppeteer is that Operator doesn't need pre-written scripts. You describe what you want in plain English, and it figures out the steps. No XPath selectors, no CSS queries, no brittle scripts that break when a website redesigns.
+For a browser tool currently supported in your account, we recommend starting with a comparison task: find suitable appointment options and return their dates, locations, and source links. Specify whether the deliverable is a shortlist or an actual booking. Those are different permissions and different success conditions.
 
-## How It Works in Practice
+Before authorizing a submission, inspect the recipient, selected option, total cost, and cancellation terms. Keep authentication under your control and define what happens if a page changes or the session expires. These are workflow-design recommendations, not promises about a particular current product.
 
-Operator handles three categories of tasks particularly well.
+Save the resulting confirmation separately from the agent's summary. Our [AI agents guide](/blog/what-are-ai-agents-practical-guide) explains the broader distinction between suggesting an action and completing one.`,
+    cn: `## 先看清产品时间线
 
-**Shopping and research.** Ask it to "find the best noise-canceling headphones under $300" and it can search multiple retailers, compare prices, read reviews, and present options with direct purchase links. This is the right kind of task because the agent can gather information first and ask for confirmation before any purchase.
+OpenAI 在 2025 年 1 月将 Operator 作为能够使用浏览器的研究预览推出。[官方发布文章](https://openai.com/index/introducing-operator/)随后记录了 2025 年 7 月并入 ChatGPT agent 的变化。因此，早期教程应作为历史材料阅读，不能直接当成今天的开通步骤。
 
-**Form filling and applications.** Need to fill out a job application, register for an event, or complete an online form? Operator-style agents are strongest when fields are clearly labeled and the user provides the source information. They get weaker when forms hide conditional steps, upload rules, or legal confirmations.
+截至 2026 年 11 月 15 日核查，[ChatGPT agent 帮助页](https://help.openai.com/en/articles/11752874-chatgpt-agent)顶部也明确表示 agent 已不再提供，并引导用户查阅 ChatGPT Work 和云端浏览器文档。该页下方仍保留部分旧操作说明，判断可用性应以上方新提示为准，不宜继续照搬旧命令。
 
-**Booking and reservations.** Restaurant reservations, hotel bookings, and appointment scheduling are good candidates when the steps are visible: select date, select time, enter party size, review, confirm. The review step matters. A browser agent should pause before committing money, changing an account, or sending a message on your behalf.
+## 浏览器操作方式说明了什么
 
-## The Real Limitations
+Operator 通过截图观察网页，再操作图形界面控件。这与通过 API 交换结构化数据的集成方式不同。页面导航变化、相似按钮和未填完的表单，都可能影响任务是否真正完成。因此，判断结果要查看网页最终状态，不能只看助手对点击过程的描述。
 
-Let me be direct about where Operator falls short.
+## 如何设计一次有意义的验证
 
-**Login walls are a problem.** Many useful websites require authentication. Operator can handle some login flows, but it struggles with two-factor authentication, CAPTCHAs, and sites that actively block automated access. If your task requires logging into a banking portal or a corporate intranit, Operator probably can't help.
+对于你的账户当前支持的浏览器工具，建议先做预约选项比较：返回日期、地点及来源链接。任务说明应明确是生成候选清单，还是实际提交预约；两者涉及不同权限，也有不同验收条件。还应说明哪些条件必须满足，哪些可以由工具提出替代建议。
 
-**Complex multi-step workflows break down.** A 3-step task like "search for flights, compare prices, book the cheapest" works fine. A 15-step workflow involving multiple sites, conditional logic, and data transfer between steps? The success rate drops significantly. I saw roughly 60% reliability on complex workflows versus 90%+ on simple ones.
+授权提交前，核对接收方、选定项目、总费用和取消条款。登录信息由自己控制，并事先说明页面变化或会话过期时如何处理。这里提供的是工作流设计建议，不是对当前某款产品功能的保证。
 
-**Speed isn't great.** Operator takes 30-90 seconds for tasks you could do manually in 15-20 seconds once you know where to click. It's reading and interpreting every page element, which takes time. For one-off tasks, you're trading your time for convenience. For repetitive tasks, the math works out better.
+完成后单独保存实际确认记录，再与助手总结核对，避免把“已尝试”误认为“已成功”。更多背景见[AI Agent 实用指南](/blog/what-are-ai-agents-practical-guide)。`,
+    tw: `## 先確認產品時間線
 
-**Cost adds up.** At $200/month for ChatGPT Pro (which includes Operator access), it's not cheap. You need to use it regularly for specific workflows to justify the cost. Occasional use doesn't make financial sense compared to just doing things yourself or using free alternatives.
+OpenAI 在 2025 年 1 月推出 Operator，當時定位為可操作瀏覽器的研究預覽。[官方發布文章](https://openai.com/index/introducing-operator/)後來記錄了 2025 年 7 月整合至 ChatGPT agent 的變更。因此，早期教學應視為歷史資料，不是今天可以直接採用的啟用步驟。
 
-## Operator vs. the Competition
+截至 2026 年 11 月 15 日查核，[ChatGPT agent 說明頁](https://help.openai.com/en/articles/11752874-chatgpt-agent)頂部也已註明 agent 不再提供，並引導讀者查閱 ChatGPT Work 與雲端瀏覽器文件。頁面下方仍有部分舊操作說明，判斷可用性應以上方新提示為準，不宜繼續照用舊指令。
 
-OpenAI isn't alone in this space. Anthropic's Claude can browse the web through its computer use feature. Google's Gemini has similar capabilities. And specialized tools like Browser Use and Hyperbrowser offer open-source alternatives.
+## 瀏覽器操作方式的意義
 
-Operator's advantage is integration — it's built into ChatGPT, which millions of people already use. No separate tool to install, no API keys to manage, no configuration. You describe what you want, and it does it.
+Operator 透過截圖觀察網頁，再操作圖形介面控制項。這與使用 API 交換結構化資料的整合不同。導覽方式改變、相似的按鈕與未完成的表單，都可能影響任務結果。因此，應檢查網頁最終狀態，而不是只相信助手對操作過程的描述。
 
-The disadvantage is lock-in. Your browsing agent is tied to OpenAI's ecosystem, their pricing, and their decisions about what the agent can and can't do. Open-source alternatives give you more control but require technical setup.
+## 如何規劃實際驗證
 
-## Getting Started
+對於帳戶目前支援的瀏覽器工具，建議先比較預約選項，要求提供日期、地點與來源連結。先說清楚要的是候選清單，還是實際送出預約；這是不同的授權範圍，也需要不同的驗收標準。哪些條件不可更動、哪些能提出替代方案，也應事先寫明。
 
-If you want to try Operator, you'll need a ChatGPT Pro subscription ($200/month). Once subscribed, Operator is available directly in the ChatGPT interface.
+授權送出前，核對接收對象、所選項目、總費用與取消條款。登入資訊由自己掌握，並約定頁面改版或工作階段過期時的處理方式。這些是流程設計建議，不是對某個現行產品功能的保證。
 
-Start with simple tasks: "Find me the best-rated coffee maker on Amazon under $100" or "Book a table for two at an Italian restaurant near Times Square for Friday at 7pm." Get a feel for what it can handle before attempting complex workflows.
+最後把真正的確認紀錄與助手摘要分開保存並核對，避免將「已嘗試」當成「已完成」。更多概念可閱讀[AI Agent 實用指南](/blog/what-are-ai-agents-practical-guide)。`,
+    de: `## Die zeitliche Einordnung
 
-A practical tip: be specific in your instructions. "Book a restaurant" is too vague. "Book an Italian restaurant in downtown Seattle for 4 people this Saturday at 7pm, budget around $50 per person" gives Operator enough context to succeed.
+OpenAI stellte Operator im Januar 2025 als Forschungsvorschau für Browseraufgaben vor. Der [Veröffentlichungsartikel](https://openai.com/index/introducing-operator/) dokumentiert die Integration in ChatGPT agent im Juli 2025. Frühe Anleitungen sind deshalb historische Dokumente und keine aktuelle Einrichtungshilfe.
 
-The technology is genuinely useful for specific use cases — repetitive web tasks, research across multiple sites, and structured data entry. It's not a replacement for human browsing, but it's a capable assistant for the right tasks. Whether that's worth $200/month depends entirely on how much web busywork you deal with daily.
+Bei der Prüfung am 15. November 2026 meldet auch die [Hilfeseite zu ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent), dass agent nicht mehr verfügbar ist. Sie verweist auf ChatGPT Work und die Dokumentation zum Cloud-Browser. Weiter unten stehen noch ältere Bedienhinweise; für die Verfügbarkeit ist der neue Hinweis maßgeblich.
 
-## A safer Operator workflow
+## Was der Browseransatz zeigte
 
-The best way to use Operator is to make the approval points explicit. Before it starts, tell it which sites are allowed, what information it may use, what it must not submit, and what a successful result looks like. For a travel search, that might be: compare three refundable hotels, exclude sponsored placements, show cancellation terms, and stop before payment. For procurement research, it might be: collect pricing pages, support docs, SOC 2 notes, and integration limits, then return the source URLs.
+Operator beobachtete Webseiten anhand von Screenshots und bediente grafische Steuerelemente. Das unterscheidet sich von einer API-Integration, die strukturierte Daten austauscht. Veränderte Navigation, ähnliche Schaltflächen und unvollständige Formulare können einen Ablauf unterbrechen. Entscheidend ist der erreichte Zustand, nicht die überzeugende Beschreibung einzelner Klicks.
 
-OpenAI's own [Operator announcement](https://openai.com/index/introducing-operator/) is worth reading because it frames the product as supervised action, not invisible autonomy. The broader [OpenAI agents documentation](https://platform.openai.com/docs/guides/agents) is also useful if you are thinking about browser agents as part of a product workflow rather than a personal assistant.
+## Einen aussagekräftigen Versuch planen
 
-## Operator vs browser automation scripts
+Für ein aktuell in Ihrem Konto unterstütztes Browserwerkzeug empfehlen wir zunächst einen Vergleich von Terminen. Das Ergebnis sollte Datum, Ort und Quellenlinks enthalten. Legen Sie fest, ob eine Auswahlliste oder eine tatsächliche Buchung gewünscht ist. Beides verlangt unterschiedliche Berechtigungen und Erfolgskriterien.
 
-Use scripts such as Playwright or Selenium when the flow is stable, high-volume, and easy to test. They are faster and cheaper once written. Use Operator-style browsing when the task changes often, involves judgment across unstructured pages, or would be too brittle to script. A weekly vendor comparison across ten websites is a better fit than a checkout regression test that runs 5,000 times per day.
+Prüfen Sie vor einer verbindlichen Übermittlung Empfänger, Auswahl, Gesamtpreis und Stornobedingungen. Behalten Sie die Kontrolle über die Anmeldung und definieren Sie den Umgang mit geänderten Seiten oder abgelaufenen Sitzungen. Das sind Empfehlungen zur Gestaltung eines Ablaufs, keine Zusagen über aktuelle Produktfunktionen.
 
-Open-source projects such as [browser-use](https://github.com/browser-use/browser-use) give technical teams more control over execution and logging, but they require setup and maintenance. Operator's advantage is convenience; its trade-off is vendor lock-in. If you need a deeper system view, read our [Operator web automation architecture guide](/blog/operator-agents-api-web-automation-architecture), the [practical AI agents guide](/blog/what-are-ai-agents-practical-guide), and [why AI agents need reliability more than capability](/blog/ai-agents-need-reliability-more-than-capability).
+Speichern Sie die tatsächliche Bestätigung getrennt von der Zusammenfassung des Assistenten. Unser [Leitfaden zu KI-Agenten](/blog/what-are-ai-agents-practical-guide) erläutert den Unterschied zwischen dem Vorschlagen und dem Ausführen einer Handlung.`,
+    es: `## La cronología del producto
 
-## Decision checklist
+OpenAI presentó Operator en enero de 2025 como una versión preliminar de investigación que utilizaba un navegador. El [artículo de lanzamiento](https://openai.com/index/introducing-operator/) recoge su integración en ChatGPT agent en julio de 2025. Los tutoriales iniciales son documentación histórica, no instrucciones actuales de configuración.
 
-Use Operator for repetitive browser work with clear constraints, visible confirmation screens, and low to medium risk. Avoid it for banking, healthcare, regulated records, irreversible purchases, or anything where a hidden mistake is worse than doing the task manually. If login, CAPTCHA, or two-factor authentication appears, treat that as a handoff point rather than a challenge to beat.
+En la revisión del 15 de noviembre de 2026, la [ayuda de ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent) también indica que agent ya no está disponible y remite a ChatGPT Work y a la documentación del navegador en la nube. Más abajo quedan instrucciones antiguas; la advertencia actual de disponibilidad tiene prioridad.
 
-A good Operator prompt includes five lines: task goal, allowed websites, ranking criteria, forbidden actions, and required confirmation. That structure turns a flashy demo into a repeatable workflow. Browser agents will not win because they can click buttons. They will win when they stop at the right moment and make human review easy.
-`,
-    cn: `# OpenAI Operator：帮你自动浏览网页的AI Agent
+## Qué mostró el enfoque visual
 
-这篇更新版文章围绕一个很实际的问题：OpenAI Operator 这样的浏览器 Agent不该只看发布公告，而要看它在真实工作流里如何省时间、哪里会失败、以及什么时候不值得投入。
+Operator observaba capturas de pantalla e interactuaba con controles gráficos. Es distinto de una integración que intercambia datos estructurados mediante una API. Cambios de navegación, botones ambiguos y formularios incompletos pueden interrumpir el trabajo. Importa el estado final de la página, no una narración convincente de los clics.
 
-## 先判断使用场景
+## Diseñar una evaluación útil
 
-把任务分成三类：一次性探索、可重复流程、以及会影响生产结果的关键流程。一次性探索可以大胆试；可重复流程要写下输入、验收标准和回滚方式；关键流程则必须有人复核。很多 AI 工具的问题不是“不会做”，而是在登录、权限、长上下文、边界条件和成本控制上容易出错。
+Para una herramienta de navegador compatible hoy con tu cuenta, recomendamos empezar comparando citas disponibles. Pide fechas, ubicaciones y enlaces de origen. Aclara si quieres una lista de opciones o una reserva efectiva: requieren permisos y criterios de éxito diferentes.
 
-## 工作流建议
+Antes de autorizar el envío, revisa destinatario, opción elegida, coste total y condiciones de cancelación. Mantén el control del inicio de sesión y define qué hacer si cambia la página o caduca la sesión. Son recomendaciones de diseño del proceso, no promesas sobre funciones de un producto actual.
 
-第一步，用一个低风险样例跑通端到端流程。第二步，记录每次失败的原因：信息不足、工具权限、模型误解、外部网站变化、还是测试覆盖不足。第三步，把可复用提示词、检查清单和人工确认点固化下来。
+Guarda la confirmación real por separado del resumen del asistente. Nuestra [guía de agentes de IA](/blog/what-are-ai-agents-practical-guide) explica la diferencia entre sugerir una acción y completarla.`,
+    fr: `## Replacer Operator dans son histoire
 
-## 选择标准
+OpenAI a présenté Operator en janvier 2025 comme un aperçu de recherche utilisant un navigateur. L'[article de lancement](https://openai.com/index/introducing-operator/) indique son intégration à ChatGPT agent en juillet 2025. Les premiers tutoriels constituent donc des archives, pas un parcours actuel de configuration.
 
-评估时不要只问“哪个模型更强”。更有用的问题是：它能不能解释改动原因？能不能在多文件任务里保持上下文？失败时是否容易回滚？价格和延迟是否适合你的调用量？是否有文档、社区案例和安全边界？
+Lors de notre vérification du 15 novembre 2026, la [page d'aide de ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent) précise également que agent n'est plus disponible. Elle renvoie vers ChatGPT Work et la documentation du navigateur cloud. Des instructions anciennes restent plus bas ; la nouvelle indication de disponibilité doit guider la lecture.
 
-## 常见失败模式
+## Ce que montrait l'approche visuelle
 
-常见坑包括：把预览功能当成长期承诺、用单次成功案例代替评测、忽略 token 成本、没有把输出接入测试、以及让 Agent 在没有权限边界的情况下修改生产数据。解决办法很朴素：小范围试点、明确验收、保留日志、设置人工批准。
+Operator observait des captures d'écran et manipulait des éléments graphiques. Cette méthode diffère d'une intégration échangeant des données structurées via une API. Une navigation modifiée, des boutons ambigus ou un formulaire incomplet peuvent empêcher l'aboutissement d'une tâche. L'état final de la page compte davantage que le récit des clics.
 
-## 下一步
+## Préparer une évaluation concrète
 
-如果你正在做开发者工具选型，可以结合站内的 [AI 开发者指南](/blog/ai-for-developers-guide)、[AI 编码助手评测](/blog/ai-coding-assistants-review) 和相关专题文章一起看。先用一周时间在真实任务里做 A/B 测试，再决定是否推广到团队。
-`,
-    tw: `# OpenAI Operator：幫你自動瀏覽網頁的AI Agent
+Pour un outil de navigation actuellement pris en charge par votre compte, nous recommandons de commencer par comparer des rendez-vous. Demandez dates, lieux et liens sources. Précisez si vous attendez une sélection de possibilités ou une réservation effective : les permissions et les critères de réussite diffèrent.
 
-這篇更新版文章聚焦一個實務問題：OpenAI Operator 這樣的瀏覽器 Agent不能只看發表公告，而要看它在真實工作流程中如何省時間、哪裡會失敗、以及什麼情況下不值得投入。
+Avant d'autoriser l'envoi, vérifiez destinataire, choix, coût total et conditions d'annulation. Gardez la maîtrise de l'authentification et prévoyez le cas d'une page modifiée ou d'une session expirée. Ces recommandations concernent la conception du travail, sans promettre une fonction actuelle particulière.
 
-## 先判斷使用場景
+Conservez la confirmation réelle séparément du résumé de l'assistant. Notre [guide des agents IA](/blog/what-are-ai-agents-practical-guide) distingue plus largement une action proposée d'une action accomplie.`,
+    jp: `## 製品の時系列を確認する
 
-把任務分成一次性探索、可重複流程、以及會影響生產結果的關鍵流程。一次性探索可以快速試；可重複流程要寫下輸入、驗收標準和回滾方式；關鍵流程則必須有人複核。
+OpenAI は2025年1月、ブラウザーを操作する研究プレビューとして Operator を発表しました。[公開時の記事](https://openai.com/index/introducing-operator/)には、2025年7月に ChatGPT agent へ統合されたことも記録されています。初期のチュートリアルは歴史資料であり、現在の導入手順としてそのまま使うべきではありません。
 
-## 工作流建議
+2026年11月15日の確認時点で、[ChatGPT agent のヘルプ](https://help.openai.com/en/articles/11752874-chatgpt-agent)の冒頭には agent も利用できなくなったと記載され、ChatGPT Work とクラウドブラウザーの文書が案内されています。同じページの下部には古い操作説明が残っていますが、利用可否は新しい告知を基準に判断してください。
 
-第一步，用低風險樣例跑通端到端流程。第二步，記錄每次失敗的原因：資訊不足、工具權限、模型誤解、外部網站變化，還是測試覆蓋不足。第三步，把可複用提示詞、檢查清單和人工確認點固定下來。
+## 画面操作という方式の特徴
 
-## 選擇標準
+Operator はスクリーンショットを見て、画面上のボタンや入力欄を操作しました。構造化データを交換する API 連携とは異なり、画面構成の変更、似たボタン、未入力の項目などが作業の成否に影響します。クリックの説明がもっともらしくても、ページの最終状態を確認する必要があります。
 
-不要只問「哪個模型更強」。更有用的問題是：它能不能解釋改動原因？能不能在多檔案任務裡保持上下文？失敗時是否容易回滾？價格和延遲是否適合你的調用量？
+## 評価する作業を具体的にする
 
-## 常見失敗模式
+現在アカウントで対応しているブラウザーツールを試すなら、まず予約候補の比較を勧めます。日付、場所、情報源のリンクを求め、候補一覧が目的なのか、予約の送信まで必要なのかを指定します。この二つは必要な許可も成功条件も異なります。
 
-常見坑包括：把預覽功能當成長期承諾、用單次成功案例代替評測、忽略 token 成本、沒有把輸出接入測試，以及讓 Agent 在沒有權限邊界的情況下修改生產資料。
+送信を許可する前に、相手先、選択内容、総額、キャンセル条件を確認します。認証は自分で管理し、ページ変更やセッション切れへの対応も決めておきます。これらは作業設計の提案であり、特定の現行製品の機能を保証するものではありません。
 
-## 下一步
+実際の確認記録を助手の要約とは別に保存し、両者を照合してください。[AI エージェントの実用ガイド](/blog/what-are-ai-agents-practical-guide)では、提案と実行の違いをさらに説明しています。`,
+    pt: `## A cronologia do produto
 
-可以結合站內的 [AI 開發者指南](/blog/ai-for-developers-guide)、[AI 編碼助手評測](/blog/ai-coding-assistants-review) 和相關專題一起看。先用一週時間在真實任務裡做 A/B 測試，再決定是否推廣到團隊。
-`,
-    de: `# OpenAI Operator: Der KI-Agent, der für dich im Web surft
+A OpenAI apresentou o Operator em janeiro de 2025 como uma prévia de pesquisa capaz de usar um navegador. O [artigo de lançamento](https://openai.com/index/introducing-operator/) registra sua integração ao ChatGPT agent em julho de 2025. Os primeiros tutoriais são, portanto, documentação histórica, não um roteiro atual de configuração.
 
-Diese Fassung beantwortet eine praktische Frage: Browser-Agenten wie OpenAI Operator sollte man nicht nach Ankündigungen bewerten, sondern danach, wie es im echten Workflow Zeit spart, wo es scheitert und wann sich der Aufwand nicht lohnt.
+Na consulta de 15 de novembro de 2026, a [ajuda do ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent) também informa que agent não está mais disponível e aponta para ChatGPT Work e a documentação do navegador em nuvem. A página ainda mantém instruções antigas abaixo; o aviso atual de disponibilidade deve orientar a leitura.
 
-## Erst den Anwendungsfall klären
+## O que a abordagem visual mostrou
 
-Teilen Sie Aufgaben in Experimente, wiederholbare Prozesse und produktionskritische Abläufe. Experimente dürfen schnell sein. Wiederholbare Prozesse brauchen Eingaben, Abnahmekriterien und Rollback. Kritische Abläufe brauchen menschliche Freigabe.
+O Operator observava capturas de tela e manipulava controles gráficos. Isso difere de uma integração que troca dados estruturados por uma API. Mudanças na navegação, botões ambíguos e formulários incompletos podem interromper o trabalho. O estado final da página importa mais que uma descrição convincente dos cliques.
 
-## Ein belastbarer Workflow
+## Planejar uma avaliação concreta
 
-Starten Sie mit einem risikoarmen Beispiel. Protokollieren Sie Fehler: fehlender Kontext, Berechtigungen, Modellmissverständnisse, externe Änderungen oder fehlende Tests. Danach entstehen wiederverwendbare Prompts, Checklisten und klare Stopppunkte.
+Para uma ferramenta de navegador hoje suportada pela sua conta, recomendamos começar comparando horários disponíveis. Peça datas, locais e links de origem. Especifique se deseja uma lista de opções ou uma reserva efetiva: permissões e critérios de sucesso são diferentes.
 
-## Auswahlkriterien
+Antes de autorizar o envio, confira destinatário, opção escolhida, custo total e condições de cancelamento. Mantenha o controle da autenticação e defina o procedimento se a página mudar ou a sessão expirar. São recomendações para desenhar o processo, não garantias sobre funções atuais de um produto.
 
-Fragen Sie nicht nur, welches Modell stärker ist. Wichtig sind Kontexttreue, Erklärbarkeit, Rollback, Kosten, Latenz, Dokumentation und Sicherheitsgrenzen. Ein langsameres Tool kann besser sein, wenn es weniger Nacharbeit erzeugt.
+Guarde a confirmação real separadamente do resumo do assistente. Nosso [guia de agentes de IA](/blog/what-are-ai-agents-practical-guide) explica a diferença entre sugerir uma ação e concluí-la.`,
+    ru: `## Место Operator в истории
 
-## Häufige Fehler
+OpenAI представила Operator в январе 2025 года как исследовательскую предварительную версию с управлением браузером. В [статье о запуске](https://openai.com/index/introducing-operator/) отражена интеграция в ChatGPT agent в июле 2025 года. Ранние инструкции теперь являются историческими материалами, а не актуальным руководством по подключению.
 
-Gefährlich sind Preview-Funktionen ohne Plan B, Demos ohne Messung, unkontrollierte Token-Kosten und Agenten mit zu breiten Rechten. Kleine Piloten, Logs und menschliche Bestätigung lösen mehr Probleme als ein weiterer Modellwechsel.
+При проверке 15 ноября 2026 года [справка ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent) также сообщает, что agent больше не доступен, и направляет читателей к ChatGPT Work и документации облачного браузера. Ниже на той же странице сохранились старые инструкции; ориентироваться следует на новое сообщение о доступности.
 
-## Nächster Schritt
+## Что показал визуальный подход
 
-Lesen Sie ergänzend den [AI Developer Guide](/blog/ai-for-developers-guide) und den Vergleich der [AI Coding Assistants](/blog/ai-coding-assistants-review). Testen Sie eine Woche lang echte Aufgaben, bevor Sie teamweit standardisieren.
-`,
-    es: `# OpenAI Operator: el agente de IA que navega por ti
+Operator анализировал снимки экрана и взаимодействовал с графическими элементами страницы. Это отличается от интеграции через API, где передаются структурированные данные. Изменившаяся навигация, похожие кнопки и незаполненные поля способны нарушить выполнение. Проверять нужно конечное состояние страницы, а не убедительность рассказа о нажатиях.
 
-Esta versión revisada responde a una pregunta práctica: agentes de navegador como OpenAI Operator no debe evaluarse por el anuncio, sino por cómo funciona en tareas reales, dónde falla y cuándo no compensa.
+## Подготовьте содержательную проверку
 
-## Empieza por el caso de uso
+Для браузерного инструмента, который сейчас поддерживается вашей учётной записью, рекомендуем начать со сравнения вариантов записи. Запросите даты, адреса и ссылки на источники. Уточните, нужен ли список предложений или фактическая запись: это разные разрешения и критерии успеха.
 
-Separa las tareas en exploración, procesos repetibles y flujos críticos. La exploración admite pruebas rápidas. Los procesos repetibles necesitan entradas, criterios de aceptación y rollback. Los flujos críticos requieren revisión humana.
+Перед отправкой проверьте получателя, выбранный вариант, полную стоимость и условия отмены. Сохраняйте контроль над входом в аккаунт и заранее определите порядок действий при изменении страницы или завершении сеанса. Это рекомендации по организации процесса, а не обещания конкретных современных функций.
 
-## Flujo recomendado
-
-Prueba primero un ejemplo de bajo riesgo. Registra por qué falla: falta de contexto, permisos, mala interpretación, cambios externos o pruebas insuficientes. Después convierte lo aprendido en prompts, listas de verificación y puntos de aprobación.
-
-## Criterios de decisión
-
-No preguntes solo qué modelo es más potente. Mira si mantiene contexto, explica cambios, permite revertir, encaja en tu presupuesto y tiene límites de seguridad claros. La mejor herramienta es la que reduce retrabajo.
-
-## Fallos habituales
-
-Los errores más comunes son tratar una preview como estable, confiar en una demo, ignorar coste y latencia, no conectar pruebas y dar permisos demasiado amplios al agente. Piloto pequeño, logs y aprobación humana siguen siendo la base.
-
-## Siguiente paso
-
-Combina esta guía con [AI for Developers](/blog/ai-for-developers-guide) y la revisión de [AI coding assistants](/blog/ai-coding-assistants-review). Una semana de pruebas reales vale más que diez tablas de marketing.
-`,
-    fr: `# OpenAI Operator : l’agent IA qui navigue pour vous
-
-Cette version enrichie répond à une question concrète : les agents de navigateur comme OpenAI Operator doit être jugé sur son comportement dans un vrai workflow, pas seulement sur une annonce produit.
-
-## Clarifier le cas d’usage
-
-Séparez les tâches en exploration, processus répétables et opérations critiques. L’exploration peut être rapide. Un processus répétable exige des entrées, des critères d’acceptation et un retour arrière. Une opération critique demande une validation humaine.
-
-## Méthode pratique
-
-Commencez par un exemple à faible risque. Notez chaque échec : contexte manquant, permissions, mauvaise interprétation, changement externe ou tests insuffisants. Transformez ensuite ces observations en prompts, check-lists et points d’arrêt.
-
-## Critères de choix
-
-Ne demandez pas seulement quel modèle est le plus fort. Vérifiez la tenue du contexte, l’explication des changements, la facilité de rollback, le coût, la latence, la documentation et les limites de sécurité.
-
-## Échecs fréquents
-
-Les pièges classiques : traiter une preview comme un contrat, croire une démo unique, oublier les coûts token, ne pas brancher de tests et donner trop de droits à l’agent. Un pilote mesuré reste la meilleure protection.
-
-## Pour continuer
-
-À lire avec le [guide IA pour développeurs](/blog/ai-for-developers-guide) et le comparatif des [assistants de code IA](/blog/ai-coding-assistants-review). Testez sur vos propres tâches avant de standardiser.
-`,
-    jp: `# OpenAI Operator：Web操作AIエージェント実践ガイド
-
-この記事の改訂版では、OpenAI Operator のようなブラウザーAgentを発表内容ではなく、実際のワークフローでどう役立つか、どこで失敗するか、どの条件なら採用すべきかで判断します。
-
-## まず用途を分ける
-
-タスクを、試験的な探索、繰り返し使う処理、本番に影響する処理に分けます。探索は素早く試して構いません。繰り返す処理には入力、合格条件、ロールバックが必要です。本番処理には人間の確認を残します。
-
-## 実務での進め方
-
-低リスクの例で端から端まで試し、失敗理由を記録します。コンテキスト不足、権限、モデルの誤解、外部サービスの変更、テスト不足を分けて見ると改善しやすくなります。
-
-## 選定基準
-
-単に「強いモデル」を選ぶのではなく、複数ファイルの文脈保持、変更理由の説明、ロールバック、コスト、遅延、ドキュメント、安全境界を確認します。
-
-## よくある失敗
-
-プレビュー機能を安定版のように扱う、デモだけで判断する、token コストを見ない、テストにつなげない、Agent に広すぎる権限を与える。この5つが典型的です。
-
-## 次に読むもの
-
-[AI 開発者ガイド](/blog/ai-for-developers-guide) と [AI コーディングアシスタント比較](/blog/ai-coding-assistants-review) も合わせて確認してください。実案件で一週間試すと、採用判断が明確になります。
-`,
-    pt: `# OpenAI Operator: o agente de IA que navega por você
-
-Esta versão revisada olha para uma pergunta prática: agentes de navegador como o OpenAI Operator deve ser avaliado pelo desempenho em fluxos reais, não apenas pelo anúncio.
-
-## Comece pelo caso de uso
-
-Separe tarefas em exploração, processos repetíveis e operações críticas. Exploração pode ser rápida. Processos repetíveis precisam de entradas, critérios de aceite e rollback. Operações críticas exigem revisão humana.
-
-## Fluxo recomendado
-
-Teste um exemplo de baixo risco, registre por que falhou e transforme o aprendizado em prompts, checklists e pontos de aprovação. Preste atenção a contexto insuficiente, permissões, custo, latência e mudanças em serviços externos.
-
-## Critérios de escolha
-
-Não pergunte apenas qual modelo é mais forte. Veja se mantém contexto, explica mudanças, permite reversão, cabe no orçamento, tem documentação e limites de segurança claros.
-
-## Falhas comuns
-
-Os erros mais frequentes são tratar preview como estável, confiar em uma demo, ignorar tokens, não rodar testes e dar permissões amplas demais ao agente. Pilotos pequenos e logs continuam essenciais.
-
-## Próximos passos
-
-Leia também o [guia de IA para desenvolvedores](/blog/ai-for-developers-guide) e a análise de [assistentes de código com IA](/blog/ai-coding-assistants-review). Uma semana em tarefas reais vale mais que uma tabela genérica.
-`,
-    ru: `# OpenAI Operator: AI-агент для работы в браузере
-
-Обновленная версия статьи отвечает на практичный вопрос: браузерные агенты вроде OpenAI Operator нужно оценивать не по анонсам, а по тому, как инструмент ведет себя в реальном рабочем процессе.
-
-## Начните со сценария
-
-Разделите задачи на разовые эксперименты, повторяемые процессы и критичные производственные операции. Для первых достаточно быстрой проверки. Для вторых нужны входные данные, критерии приемки и способ отката. Для третьих обязателен человек в контуре.
-
-## Рабочий процесс
-
-Запустите небольшой пример, зафиксируйте причины ошибок, затем оформите повторяемый промпт и чек-лист проверки. Отдельно отмечайте проблемы с правами доступа, длинным контекстом, стоимостью, задержкой и внешними сервисами.
-
-## Как выбирать
-
-Не спрашивайте только, какая модель сильнее. Смотрите, объясняет ли она изменения, держит ли контекст в нескольких файлах, легко ли откатить результат, подходит ли цена вашему объему и есть ли понятные границы безопасности.
-
-## Типичные сбои
-
-Частые ошибки: принимать preview за стабильный продукт, верить одному удачному демо, не считать токены, не подключать тесты и давать агенту слишком широкие права. Надежная стратегия проста: пилот, метрики, логи и ручное подтверждение важных действий.
-
-## Что делать дальше
-
-Читайте эту статью вместе с материалами [AI for Developers](/blog/ai-for-developers-guide) и [обзором AI coding assistants](/blog/ai-coding-assistants-review). После недели тестов на реальных задачах станет понятно, подходит ли инструмент вашей команде.
-`,
+Отдельно сохраните реальное подтверждение и сопоставьте его с итогом, написанным помощником. Попытка выполнить действие ещё не означает успешное завершение. Наш [практический обзор ИИ-агентов](/blog/what-are-ai-agents-practical-guide) подробнее объясняет различие между рекомендацией и выполнением.`,
   },
   author: 'Toolsify Editorial Team',
   date: '2026-03-27',
+  updatedAt: '2026-11-15',
   category: 'AI Agents',
-  tags: ['AI Agents', 'OpenAI', 'Automation', 'Web Automation', 'openai operator'],
+  tags: ['OpenAI Operator', 'Browser Automation', 'ChatGPT agent', 'Product History'],
 };
 
 export default postOpenaiOperator;

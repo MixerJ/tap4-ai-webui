@@ -7,6 +7,8 @@ import { BLOG_POSTS } from '@/lib/blog';
 import { BLOG_PAGE_SIZE, EXPLORE_PAGE_SIZE, InfoPageSize } from '@/lib/constants';
 import { BASE_URL } from '@/lib/env';
 import fetchAllRows from '@/lib/fetch-all-rows';
+import { TOOL_CONTENT, TOOL_CONTENT_UPDATED_AT } from '@/lib/tool-content';
+import { getAvailableToolLocales } from '@/lib/tool-localization';
 
 export const revalidate = 3600;
 
@@ -15,6 +17,7 @@ type RouteConfig = {
   lastModified?: Date;
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority: number;
+  locales?: readonly string[];
 };
 
 function normalizeUrl(baseUrl: string, locale: string, path: string): string {
@@ -34,7 +37,7 @@ function buildStaticRoutes(): RouteConfig[] {
     ? new Date(
         Math.max(
           ...BLOG_POSTS.map((post) => {
-            const parsed = new Date(post.date).getTime();
+            const parsed = new Date(post.updatedAt || post.date).getTime();
             return Number.isNaN(parsed) ? 0 : parsed;
           }),
         ),
@@ -53,7 +56,7 @@ function buildStaticRoutes(): RouteConfig[] {
 
   const blogPostRoutes: RouteConfig[] = BLOG_POSTS.map((post) => ({
     path: `blog/${post.slug}`,
-    lastModified: safeDate(post.date),
+    lastModified: safeDate(post.updatedAt || post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
@@ -74,7 +77,7 @@ function buildStaticRoutes(): RouteConfig[] {
 
 function toSitemap(routes: RouteConfig[], baseUrl: string): MetadataRoute.Sitemap {
   const sitemapData: MetadataRoute.Sitemap = routes.flatMap((route) =>
-    locales.map((locale) => ({
+    (route.locales || locales).map((locale) => ({
       url: normalizeUrl(baseUrl, locale, route.path),
       lastModified: route.lastModified,
       changeFrequency: route.changeFrequency,
@@ -114,11 +117,17 @@ async function fetchDynamicRoutes(): Promise<RouteConfig[]> {
 
   const routes: RouteConfig[] = tools
     .filter((tool) => tool.name)
-    .map((tool) => ({
-      path: `ai/${encodeURIComponent(tool.name)}`,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }));
+    .map((tool) => {
+      const available = getAvailableToolLocales(TOOL_CONTENT[tool.name]);
+      return {
+        path: `ai/${encodeURIComponent(tool.name)}`,
+        // Original-only entries have one canonical URL, not nine untranslated copies.
+        locales: available.length ? available : ['en'],
+        lastModified: available.length ? safeDate(TOOL_CONTENT_UPDATED_AT) : undefined,
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      };
+    });
   const categoryCounts = new Map<string, number>();
   tools.forEach((tool) => {
     if (tool.category_name) categoryCounts.set(tool.category_name, (categoryCounts.get(tool.category_name) || 0) + 1);
